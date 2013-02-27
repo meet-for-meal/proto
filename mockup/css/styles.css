@@ -1,0 +1,1058 @@
+/* =Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html
+-------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+body {
+    line-height: 1;
+}
+h1, h2, h3, h4, h5, h6 {
+    clear: both;
+    font-weight: normal;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote {
+    quotes: none;
+}
+blockquote:before, blockquote:after {
+    content: '';
+    content: none;
+}
+del {
+    text-decoration: line-through;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+a img {
+    border: none;
+}
+
+/* General
+-------------------------------------------------------------- */
+
+body {
+    font-family: 'Droid Sans';
+    color:#333333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Economica', Arial, sans-serif;
+    margin: 0;
+    font-weight: bold;
+    color: #333333;
+    text-rendering: optimizelegibility;
+}
+
+p {
+    font-size:12px;
+    margin-bottom:10px;
+    line-height: 18px;
+}
+
+hr {
+    margin:20px 0px;
+    border:1px solid #F1F1F1;
+}
+
+a, a:hover, a:focus, a:active {
+    color:#d55035;
+    text-decoration:none;
+    outline:none;
+}
+
+a:hover {
+    color: #a3311a;
+}
+
+.wrapper {
+    width:960px;
+    margin:0 auto;
+    overflow:hidden;
+}
+
+img.avatar {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.btn {
+    background:#d55035;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border:1px solid #a3311a;
+    color:#FFFFFF;
+    padding:5px 10px;
+    display:inline-block;
+    cursor:pointer;
+    box-shadow:0px 0px 5px #a35724 inset;
+}
+
+.btn:hover {
+    background:#a3311a;
+}
+
+/* Header
+-------------------------------------------------------------- */
+
+header {
+    height:35px;
+    background:url('../img/satinweave.png');
+    position:relative;
+    font-family: "Helvetica Neue", Helvetica, Arial,sans-serif;
+}
+
+header a#logo {
+    display:block;
+    width:100px;
+    height:100px;
+    position:absolute;
+    top:5px;
+    z-index: 200;
+}
+
+header a#logo:hover {
+    opacity:0.9;
+}
+
+header form#search-form {
+    float:left;
+    margin-left:130px;
+}
+
+header form#search-form input {
+    width:280px;
+    padding:2px 5px;
+    line-height:18px;
+    margin-top:5px;
+    border:1px solid #CCC;
+    background:#F6F6F6;
+}
+
+header nav {
+    float:right;
+    text-align:right;
+}
+
+header nav ul li {
+    display:inline-block;
+    line-height:28px;
+    font-size:12px;
+    font-weight:bold;
+    padding: 0 15px;
+    border-top:4px transparent solid;
+}
+
+header nav ul li a {
+    color:#555;
+    display:block;
+}
+
+header nav ul li.current {
+    border-top:4px #d55035 solid;
+}
+
+header nav ul li.current a, header nav li:hover a {
+    color:#d55035;
+}
+
+header nav ul li [class^="icon-"] {
+    margin-right:5px;
+}
+
+header nav ul li a.no-text [class^="icon-"] {
+    margin-right:0px;
+}
+
+header nav ul li.current [class^="icon-"],
+header nav li:hover [class^="icon-"] {
+    background-image: url("../img/icons-red.png");
+}
+
+/* Google maps
+-------------------------------------------------------------- */
+
+#googlemaps-container-top {
+    position: relative;
+    z-index: 2;
+    -webkit-box-shadow: inset 0px 3px 3px rgba(0,0,0,.25);
+    -moz-box-shadow: inset 0px 3px 3px rgba(0,0,0,.25);
+    box-shadow: inset 0px 3px 3px rgba(0,0,0,.25);
+    height: 20px;
+}
+
+#googlemaps-container-bottom {
+    position: relative;
+    z-index: 2;
+    -webkit-box-shadow: inset 0px -3px 3px rgba(0,0,0,.25);
+    -moz-box-shadow: inset 0px -3px 3px rgba(0,0,0,.25);
+    box-shadow: inset 0px -3px 3px rgba(0,0,0,.25);
+    height: 20px;
+    margin-top: -40px;
+    border-bottom: 5px solid #f6f6f6;
+}
+
+#googlemaps{
+    position: relative;
+    z-index: 1;
+    height: 400px;
+    width: 100%;
+    top: -20px;
+}
+
+#closest-users {
+    background: rgba(255,255,255,0.8);
+    right: 20px;
+    z-index: 400;
+    bottom: 40px;
+    position: absolute;
+}
+
+#closest-users h3 {
+    background:rgba(0,0,0,0.8);
+    padding:10px;
+    color:#E4E4E4;
+    border-radius:3px 3px 0px 0px;
+    -moz-border-radius:3px 3px 0px 0px;
+    -webkit-border-radius:3px 3px 0px 0px;
+}
+
+#closest-users a {
+    color:#333;
+}
+
+#closest-users a:hover {
+    color:#d55035;
+}
+
+#closest-users ul {
+    padding:10px;
+}
+
+#closest-users ul li.user {
+    clear:both;
+    overflow:hidden;
+    margin-bottom:5px;
+}
+
+#closest-users ul li.user img {
+    float:left;
+    margin:0px 5px 5px 0px;
+}
+
+#closest-users .user-title {
+    font-size:14px;
+    font-weight:bold;
+}
+
+#closest-users .user-time {
+    font-size:11px;
+}
+
+#closest-users .user-tags {
+    font-size:12px;
+}
+
+#closest-users ul li.user span {
+    display:block;
+}
+
+/* Layout
+-------------------------------------------------------------- */
+
+.col-1 {
+    width:300px;
+    padding:10px;
+    float:left;
+}
+
+.col-2 {
+    width:620px;
+    padding:10px;
+    float:left;
+}
+
+.col-3 {
+    width:940px;
+    padding:10px;
+    float:left;
+}
+
+
+#large_bg_img {
+    display: block;
+    height: 90px;
+    min-width: 930px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    background: black;
+}
+
+#large_bg_img h2 {
+    line-height: 24Px;
+    position: absolute;
+    top: 50%;
+    color: #FFFFFF;
+    z-index: 400;
+    left: 50%;
+    width: 600px;
+    margin: -12px 0px 0px -300px;
+    text-align: center;
+}
+
+#large_bg_img_overlay {
+    background: url(../img/fill.png) repeat;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+}
+
+#large_bg_img img.big {
+    min-height: 750px;
+    min-width: 1190px;
+    width: 100%;
+    position: absolute;
+    bottom: -260px;
+    left: 0;
+}
+
+
+/* Content
+-------------------------------------------------------------- */
+
+#container {
+    background:url('../img/satinweave.png');
+}
+
+#container .wrapper {
+    background:white;
+    border-left: 3px solid #F6F6F6;
+    border-right: 3px solid #F6F6F6;
+    padding:10px 0px 20px 0px;
+}
+
+#container .wrapper.home {
+    border-top:5px solid #d55035;
+    margin-top:-5px;
+    z-index:300;
+    position:relative;
+}
+
+#container h2 {
+    margin-bottom:15px;
+}
+
+#current-user img {
+    float:left;
+    margin:0px 10px 10px 0px;
+}
+
+#current-user h3 {
+    clear:none;
+}
+
+#current-user span {
+    display:block;
+    font-size:12px;
+    line-height:25px;
+}
+
+#user-search-form {
+    background:#F1F1F1;
+    padding:10px;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+}
+
+#user-search-form .btn {
+    float:right;
+}
+
+#user-search-form [class^="icon-"] {
+    margin-right:5px;
+}
+
+
+/* Footer
+-------------------------------------------------------------- */
+
+footer {
+    background: url('../img/bg-k20.png');
+    border-top:5px solid #F1F1F1;
+    overflow:hidden;
+}
+
+footer .col-left, footer .col-middle, footer .col-right {
+    width:33.33%;
+    float:left;
+}
+
+footer h3 {
+    width: 70%;
+    border-bottom: 3px solid #F1F1F1;
+    color: #d55035;
+    float: left;
+    font-size: 18px;
+    margin: 0px 0px 15px 0px;
+    padding: 15px 0px 5px 0px;
+}
+
+footer p {
+    clear:both;
+    font-size:12px;
+    padding:0px 30px 0px 0px;
+    line-height:16px;
+}
+
+footer #copyright {
+    color:#777777;
+    font-size:10px;
+    padding:60px 0px 5px 0px;
+    text-align:center;
+    clear:both;
+}
+
+#footer-menu-back-to-top {
+    margin: 10px;
+    z-index: 999;
+}
+
+#footer-menu-back-to-top a {
+    width: 30px;
+    height: 30px;
+    float:right;
+    display: block;
+    background-color: #d55035;
+    background-image: url(../img/scroll-top-top.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+#footer-menu-back-to-top a:hover {background-color: #aaa;}
+
+
+/* Icons
+-------------------------------------------------------------- */
+
+[class^="icon-"],
+[class*=" icon-"] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-top: 1px;
+    *margin-right: .3em;
+    line-height: 14px;
+    vertical-align: -3px;
+    /*vertical-align: text-top;*/
+    background-image: url("../img/icons-black.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+}
+
+.icon-red,
+.nav-pills > .active > a > [class^="icon-"],
+.nav-pills > .active > a > [class*=" icon-"],
+.nav-list > .active > a > [class^="icon-"],
+.nav-list > .active > a > [class*=" icon-"],
+.navbar-inverse .nav > .active > a > [class^="icon-"],
+.navbar-inverse .nav > .active > a > [class*=" icon-"],
+.dropdown-menu > li > a:hover > [class^="icon-"],
+.dropdown-menu > li > a:hover > [class*=" icon-"],
+.dropdown-menu > .active > a > [class^="icon-"],
+.dropdown-menu > .active > a > [class*=" icon-"],
+.dropdown-submenu:hover > a > [class^="icon-"],
+.dropdown-submenu:hover > a > [class*=" icon-"] {
+    background-image: url("../img/icons-red.png");
+}
+
+.icon-glass {
+    background-position: 0      0;
+}
+
+.icon-music {
+    background-position: -24px 0;
+}
+
+.icon-search {
+    background-position: -48px 0;
+}
+
+.icon-envelope {
+    background-position: -72px 0;
+}
+
+.icon-heart {
+    background-position: -96px 0;
+}
+
+.icon-star {
+    background-position: -120px 0;
+}
+
+.icon-star-empty {
+    background-position: -144px 0;
+}
+
+.icon-user {
+    background-position: -168px 0;
+}
+
+.icon-film {
+    background-position: -192px 0;
+}
+
+.icon-th-large {
+    background-position: -216px 0;
+}
+
+.icon-th {
+    background-position: -240px 0;
+}
+
+.icon-th-list {
+    background-position: -264px 0;
+}
+
+.icon-ok {
+    background-position: -288px 0;
+}
+
+.icon-remove {
+    background-position: -312px 0;
+}
+
+.icon-zoom-in {
+    background-position: -336px 0;
+}
+
+.icon-zoom-out {
+    background-position: -360px 0;
+}
+
+.icon-off {
+    background-position: -384px 0;
+}
+
+.icon-signal {
+    background-position: -408px 0;
+}
+
+.icon-cog {
+    background-position: -432px 0;
+}
+
+.icon-trash {
+    background-position: -456px 0;
+}
+
+.icon-home {
+    background-position: 0 -24px;
+}
+
+.icon-file {
+    background-position: -24px -24px;
+}
+
+.icon-time {
+    background-position: -48px -24px;
+}
+
+.icon-road {
+    background-position: -72px -24px;
+}
+
+.icon-download-alt {
+    background-position: -96px -24px;
+}
+
+.icon-download {
+    background-position: -120px -24px;
+}
+
+.icon-upload {
+    background-position: -144px -24px;
+}
+
+.icon-inbox {
+    background-position: -168px -24px;
+}
+
+.icon-play-circle {
+    background-position: -192px -24px;
+}
+
+.icon-repeat {
+    background-position: -216px -24px;
+}
+
+.icon-refresh {
+    background-position: -240px -24px;
+}
+
+.icon-list-alt {
+    background-position: -264px -24px;
+}
+
+.icon-lock {
+    background-position: -287px -24px;
+}
+
+.icon-flag {
+    background-position: -312px -24px;
+}
+
+.icon-headphones {
+    background-position: -336px -24px;
+}
+
+.icon-volume-off {
+    background-position: -360px -24px;
+}
+
+.icon-volume-down {
+    background-position: -384px -24px;
+}
+
+.icon-volume-up {
+    background-position: -408px -24px;
+}
+
+.icon-qrcode {
+    background-position: -432px -24px;
+}
+
+.icon-barcode {
+    background-position: -456px -24px;
+}
+
+.icon-tag {
+    background-position: 0 -48px;
+}
+
+.icon-tags {
+    background-position: -25px -48px;
+}
+
+.icon-book {
+    background-position: -48px -48px;
+}
+
+.icon-bookmark {
+    background-position: -72px -48px;
+}
+
+.icon-print {
+    background-position: -96px -48px;
+}
+
+.icon-camera {
+    background-position: -120px -48px;
+}
+
+.icon-font {
+    background-position: -144px -48px;
+}
+
+.icon-bold {
+    background-position: -167px -48px;
+}
+
+.icon-italic {
+    background-position: -192px -48px;
+}
+
+.icon-text-height {
+    background-position: -216px -48px;
+}
+
+.icon-text-width {
+    background-position: -240px -48px;
+}
+
+.icon-align-left {
+    background-position: -264px -48px;
+}
+
+.icon-align-center {
+    background-position: -288px -48px;
+}
+
+.icon-align-right {
+    background-position: -312px -48px;
+}
+
+.icon-align-justify {
+    background-position: -336px -48px;
+}
+
+.icon-list {
+    background-position: -360px -48px;
+}
+
+.icon-indent-left {
+    background-position: -384px -48px;
+}
+
+.icon-indent-right {
+    background-position: -408px -48px;
+}
+
+.icon-facetime-video {
+    background-position: -432px -48px;
+}
+
+.icon-picture {
+    background-position: -456px -48px;
+}
+
+.icon-pencil {
+    background-position: 0 -72px;
+}
+
+.icon-map-marker {
+    background-position: -24px -72px;
+}
+
+.icon-adjust {
+    background-position: -48px -72px;
+}
+
+.icon-tint {
+    background-position: -72px -72px;
+}
+
+.icon-edit {
+    background-position: -96px -72px;
+}
+
+.icon-share {
+    background-position: -120px -72px;
+}
+
+.icon-check {
+    background-position: -144px -72px;
+}
+
+.icon-move {
+    background-position: -168px -72px;
+}
+
+.icon-step-backward {
+    background-position: -192px -72px;
+}
+
+.icon-fast-backward {
+    background-position: -216px -72px;
+}
+
+.icon-backward {
+    background-position: -240px -72px;
+}
+
+.icon-play {
+    background-position: -264px -72px;
+}
+
+.icon-pause {
+    background-position: -288px -72px;
+}
+
+.icon-stop {
+    background-position: -312px -72px;
+}
+
+.icon-forward {
+    background-position: -336px -72px;
+}
+
+.icon-fast-forward {
+    background-position: -360px -72px;
+}
+
+.icon-step-forward {
+    background-position: -384px -72px;
+}
+
+.icon-eject {
+    background-position: -408px -72px;
+}
+
+.icon-chevron-left {
+    background-position: -432px -72px;
+}
+
+.icon-chevron-right {
+    background-position: -456px -72px;
+}
+
+.icon-plus-sign {
+    background-position: 0 -96px;
+}
+
+.icon-minus-sign {
+    background-position: -24px -96px;
+}
+
+.icon-remove-sign {
+    background-position: -48px -96px;
+}
+
+.icon-ok-sign {
+    background-position: -72px -96px;
+}
+
+.icon-question-sign {
+    background-position: -96px -96px;
+}
+
+.icon-info-sign {
+    background-position: -120px -96px;
+}
+
+.icon-screenshot {
+    background-position: -144px -96px;
+}
+
+.icon-remove-circle {
+    background-position: -168px -96px;
+}
+
+.icon-ok-circle {
+    background-position: -192px -96px;
+}
+
+.icon-ban-circle {
+    background-position: -216px -96px;
+}
+
+.icon-arrow-left {
+    background-position: -240px -96px;
+}
+
+.icon-arrow-right {
+    background-position: -264px -96px;
+}
+
+.icon-arrow-up {
+    background-position: -289px -96px;
+}
+
+.icon-arrow-down {
+    background-position: -312px -96px;
+}
+
+.icon-share-alt {
+    background-position: -336px -96px;
+}
+
+.icon-resize-full {
+    background-position: -360px -96px;
+}
+
+.icon-resize-small {
+    background-position: -384px -96px;
+}
+
+.icon-plus {
+    background-position: -408px -96px;
+}
+
+.icon-minus {
+    background-position: -433px -96px;
+}
+
+.icon-asterisk {
+    background-position: -456px -96px;
+}
+
+.icon-exclamation-sign {
+    background-position: 0 -120px;
+}
+
+.icon-gift {
+    background-position: -24px -120px;
+}
+
+.icon-leaf {
+    background-position: -48px -120px;
+}
+
+.icon-fire {
+    background-position: -72px -120px;
+}
+
+.icon-eye-open {
+    background-position: -96px -120px;
+}
+
+.icon-eye-close {
+    background-position: -120px -120px;
+}
+
+.icon-warning-sign {
+    background-position: -144px -120px;
+}
+
+.icon-plane {
+    background-position: -168px -120px;
+}
+
+.icon-calendar {
+    background-position: -192px -120px;
+}
+
+.icon-random {
+    width: 16px;
+    background-position: -216px -120px;
+}
+
+.icon-comment {
+    background-position: -240px -120px;
+}
+
+.icon-magnet {
+    background-position: -264px -120px;
+}
+
+.icon-chevron-up {
+    background-position: -288px -120px;
+}
+
+.icon-chevron-down {
+    background-position: -313px -119px;
+}
+
+.icon-retweet {
+    background-position: -336px -120px;
+}
+
+.icon-shopping-cart {
+    background-position: -360px -120px;
+}
+
+.icon-folder-close {
+    background-position: -384px -120px;
+}
+
+.icon-folder-open {
+    width: 16px;
+    background-position: -408px -120px;
+}
+
+.icon-resize-vertical {
+    background-position: -432px -119px;
+}
+
+.icon-resize-horizontal {
+    background-position: -456px -118px;
+}
+
+.icon-hdd {
+    background-position: 0 -144px;
+}
+
+.icon-bullhorn {
+    background-position: -24px -144px;
+}
+
+.icon-bell {
+    background-position: -48px -144px;
+}
+
+.icon-certificate {
+    background-position: -72px -144px;
+}
+
+.icon-thumbs-up {
+    background-position: -96px -144px;
+}
+
+.icon-thumbs-down {
+    background-position: -120px -144px;
+}
+
+.icon-hand-right {
+    background-position: -144px -144px;
+}
+
+.icon-hand-left {
+    background-position: -168px -144px;
+}
+
+.icon-hand-up {
+    background-position: -192px -144px;
+}
+
+.icon-hand-down {
+    background-position: -216px -144px;
+}
+
+.icon-circle-arrow-right {
+    background-position: -240px -144px;
+}
+
+.icon-circle-arrow-left {
+    background-position: -264px -144px;
+}
+
+.icon-circle-arrow-up {
+    background-position: -288px -144px;
+}
+
+.icon-circle-arrow-down {
+    background-position: -312px -144px;
+}
+
+.icon-globe {
+    background-position: -336px -144px;
+}
+
+.icon-wrench {
+    background-position: -360px -144px;
+}
+
+.icon-tasks {
+    background-position: -384px -144px;
+}
+
+.icon-filter {
+    background-position: -408px -144px;
+}
+
+.icon-briefcase {
+    background-position: -432px -144px;
+}
+
+.icon-fullscreen {
+    background-position: -456px -144px;
+}

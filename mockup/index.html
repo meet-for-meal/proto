@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Meet for Meal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Set Viewport-->
+    <meta name="viewport" content="user-scalable=no,initial-scale=1.0, maximum-scale=1.0 width=device-width" />
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/jquery.gmap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+    <link href="css/styles.css" rel="stylesheet">
+
+</head>
+<body>
+
+<header>
+
+    <div class="wrapper">
+
+        <a href="#" id="logo"><img src="img/logo-mini.png" alt=""></a>
+
+        <form id="search-form">
+            <input type="text" name="search" placeholder="Rechercher une personne ou un restaurant...">
+        </form>
+
+        <nav>
+            <ul>
+                <li class="current"><a href="#"><i class="icon-home"></i> Accueil</a></li>
+                <li><a href="#"><i class="icon-map-marker"></i>Les restaurants</a></li>
+                <li><a href="#"><i class="icon-user"></i>Mon profil</a></li>
+                <li><a href="#" class="no-text"><i class="icon-envelope"></i></a></li>
+                <li><a href="homepage.html" class="no-text"><i class="icon-off"></i></a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+</header>
+
+<section id="container">
+
+    <!-- start: Map -->
+    <div style="position:relative;">
+
+        <!-- starts: Google Maps -->
+        <div id="googlemaps-container-top"></div>
+        <div id="googlemaps" class="google-map google-map-full"></div>
+        <div id="googlemaps-container-bottom"></div>
+        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript">
+            $('#googlemaps').gMap({
+                maptype: 'ROADMAP',
+                scrollwheel: false,
+                zoom: 16,
+                markers: [
+                    {
+                        address: '2! rue du plateau paris', // Your Adress Here
+                        html: '',
+                        popup: false,
+                    }
+
+                ],
+            });
+        </script>
+        <!-- end: Google Maps -->
+
+        <div id="closest-users">
+            <h3>Utilisateurs proches de vous</h3>
+            <ul>
+                <li class="user">
+                    <a href="#">
+                        <img src="img/users/alexandra.jpg" width="40" height="40" class="avatar" alt="">
+                        <span class="user-title">Alexandra Martin</span>
+                        <span class="user-time">12H - 13H</span>
+                        <span class="user-tags">#communication #musique #badminton</span>
+                    </a>
+                </li>
+                <li class="user">
+                    <a href="#">
+                        <img src="img/users/herve.jpg" width="40" height="40" class="avatar" alt="">
+                        <span class="user-title">Hervé Tran</span>
+                        <span class="user-time">13H - 14H30</span>
+                        <span class="user-tags">#multimedia #guitare #blues</span>
+                    </a>
+                </li>
+                <li class="user">
+                    <a href="#">
+                        <img src="img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
+                        <span class="user-title">Pierre Grimaud</span>
+                        <span class="user-time">13H - 14H</span>
+                        <span class="user-tags">#informatique #chat</span>
+                    </a>
+                </li>
+                <li class="user">
+                    <a href="#">
+                        <img src="img/users/romain.jpg" width="40" height="40" class="avatar" alt="">
+                        <span class="user-title">Romain Deligny</span>
+                        <span class="user-time">12H - 13H30</span>
+                        <span class="user-tags">#infirmier #football</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- end: Map -->
+
+    <div class="wrapper home">
+
+        <div class="col-2">
+            <h2>Recherche avancée</h2>
+            <form id="user-search-form">
+                <p>
+                    <strong><i class="icon-time"></i> Tranche horaire : </strong><br>
+                    <label for="time-start">Début</label>
+                    <input type="text" id="time-start">
+                    <label for="time-end">Fin</label>
+                    <input type="text" id="time-end" >
+                    <input type="submit" class="btn" value="Trouver">
+                </p>
+                <p>
+                    <label for="interests"><strong><i class="icon-heart"></i> Goûts / Intérêts : </strong></label><br>
+                    <input type="text" id="interests">
+                </p>
+            </form>
+        </div>
+
+        <div id="current-user" class="col-1">
+            <img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
+            <h3>Hervé Tran</h3>
+            <span class="user-tags">#multimedia #guitare #blues</span>
+            <span><a href="#"><i class="icon-pencil icon-red"></i> Poster une annonce</a></span>
+
+            <hr>
+
+            <h2>Meat For Meal</h2>
+            <p>
+                Le principe du site est simple: Trouver un partenaire pour partager un repas.
+            </p>
+            <p>
+                Vous êtes seul ce midi (/soir) ? Recherchez un partenaire aux alentours afin de partager un moment ensemble autour d’un repas. Vous pouvez effectuer une recherche par type de restaurant ou par tranche horaires et choisir, parmi la liste des personnes libres, celle qui vous intéresse ! La visibilité de ses centres d’intérêts vous aidera à choisir un sujet de conversation.
+            </p>
+            <p>
+                Personne ne vous intéresse ? Postez votre propre annonce !
+                La recherche de partenaire est effectuée dans un rayon de 1km aux alentours de votre géolocalisation.
+            </p>
+
+        </div>
+
+        <div class="col-2">
+
+        </div>
+
+        <div class="col-1">
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="wrapper">
+
+        <div class="col-left">
+            <h3>À propos de Meet For Meal</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<br>
+                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+
+        <div class="col-middle">
+            <h3>Contactez-nous</h3>
+            <p>
+                <strong>Meet For Meal</strong><br>
+                61 rue lafayette<br>
+                93100 Rue Rapatal<br>
+                FRANCE<br>
+                <a href="mailto:contact@meetformeal.com">contact@meetformeal.com</a>
+            </p>
+        </div>
+
+        <div class="col-right">
+
+            <h3>Suivez-nous</h3>
+
+            <div id="footer-menu-back-to-top">
+                <a href="#"></a>
+            </div>
+
+            <p>
+                Nos pages Facebook et Twitter seront bientôt disponibles !
+            </p>
+
+        </div>
+
+        <div id="copyright">
+            <p>
+                &copy; 2013, Meet For Meal.
+            </p>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+
+</html>
