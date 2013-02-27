@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Meet for Meal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Set Viewport-->
+    <meta name="viewport" content="user-scalable=no,initial-scale=1.0, maximum-scale=1.0 width=device-width" />
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/jquery.gmap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+    <link href="css/styles.css" rel="stylesheet">
+
+</head>
+
+<style>
+.author-msg{
+	font-size: 13px;
+}
+.author-msg a{
+	font-weight: bold;
+}
+
+/* même style que les images de la home, a surcharger */
+.img-msg{
+	float: left;
+	margin: 0px 5px 5px 0px;
+}
+
+.content-msg{
+	margin-left: 50px;
+}
+
+#conversations ul li{
+	cursor: pointer;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	padding: 5px 2px 5px 2px;
+	margin-bottom: 5px;
+}
+
+#conversations ul li a{
+	font-weight: bold;
+	font-size: 13px;
+}
+
+#conversations ul li.current{
+	background: url('img/60overlay-orange.png') repeat;
+}
+
+#conversations ul li.current:hover{
+	background: url('img/60overlay-orange.png') repeat;
+}
+
+#conversations li.current a{
+	color: #FFF;
+}
+
+#conversations ul li:hover{
+	background: url('img/30overlay-orange.png') repeat;
+}
+
+#conversations ul li.current{
+	background-color: ;
+
+}
+
+#conversations .name-conversation{
+	margin-bottom: 7px;
+}
+
+#conversations .extract-conversation{
+	margin-bottom: 0px;
+}
+
+</style>
+
+
+<body>
+
+<header>
+
+    <div class="wrapper">
+
+        <a href="index.html" id="logo"><img src="img/logo-mini.png" alt=""></a>
+
+        <form id="search-form">
+            <input type="text" name="search" placeholder="Rechercher une personne ou un restaurant...">
+        </form>
+
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="icon-home"></i> Accueil</a></li>
+                <li><a href="restaurant.html"><i class="icon-map-marker"></i>Les restaurants</a></li>
+                <li class="current"><a href="userpage.html"><i class="icon-user"></i>Mon profil</a></li>
+                <li><a href="message.html" class="no-text"><i class="icon-envelope"></i></a></li>
+                <li><a href="homepage.html" class="no-text"><i class="icon-off"></i></a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+</header>
+
+<section id="container">
+
+    <div id="large_bg_img" class="clearfix">
+
+        <div id="large_bg_img_overlay"></div>
+        <img src="img/bg2.jpg" id="image" class="big" alt="" />
+
+        <h1>Votre messagerie</h1>
+
+    </div>
+
+    <div class="wrapper">
+
+        <div class="col-2">
+
+            <h2>Messages de Pierre</h2>
+            <div class="single-msg">
+	        	<div class="img-msg">
+        			<img src="img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
+       			</div>
+	            
+	            <p class="author-msg"><a href="userpage.html" title=""/>Pierre Grimaud</a> dit :</p>
+	            <div class="content-msg">
+		            <p>
+		            	Bonjour,
+		            </p>
+		            <p>
+		            	Je suis passionné d'informatique tout comme vous, et je souhaiterais savoir si vous voudriez partager votre repas ce midi avec moi ? 
+		            </p>
+				</div>
+        	</div>
+
+        	<div class="single-msg">
+	        	<div class="img-msg">
+        			<img src="img/users/herve.jpg" width="40" height="40" class="avatar" alt="">
+       			</div>
+           		
+           		<p class="author-msg"><a href="" title=""/>moi</a> :</p>
+           		<div class="content-msg">
+		            <p>
+		            	Bonjour,
+		            </p>
+		            <p>
+		            	Ca serait avec plaisir évidemment ! J'ai cru voir dans votre profil que vous aimiez les restaurants chinois et je vous avoue que ça fait longtemps que je n'ai pas été dans l'un de ceux-ci. Que diriez-vous de nous retrouver vers 13h devant celui du coin de la rue Legendre, avec l'enseigne rouge ?
+
+	            	</p>
+	            </div>
+        	</div>
+        	<div class="single-msg">
+	        	<div class="img-msg">
+        			<img src="img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
+       			</div>
+           		
+           		<p class="author-msg"><a href="userpage.html" title=""/>Pierre Grimaud</a> dit :</p>
+           		<div class="content-msg">
+		            <p>
+		            	Parfait pour moi ! A tout a l'heure !
+		            </p>
+        		</div>
+        	</div>
+        </div>
+        <div id="conversations" class="col-1">
+			<h2>Mes autres conversations</h2>
+			<ul>
+				<li class="conversation current">
+					<div class="img-msg">
+        			<img src="img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
+       				</div>
+					<p class="name-conversation"><a href="#" title="">Pierre Grimaud</a></p>
+					<p class="extract-conversation">Bonjour, je suis passionné d'informatique...</p>
+				</li>
+				<li class="conversation">
+					<div class="img-msg">
+        			<img src="img/users/alexandra.jpg" width="40" height="40" class="avatar" alt="">
+       				</div>
+					<p class="name-conversation"><a href="#" title="">Alexandra Martin</a></p>
+					<p class="extract-conversation">Coucou ! Ca fait longtemps qu'on s'est pas...</p>
+				</li>
+			</ul>
+        </div>
+
+        <div class="col-2">
+
+        </div>
+
+        <div class="col-1">
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="wrapper">
+
+        <div class="col-left">
+            <h3>À propos de Meet For Meal</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<br>
+                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+
+        <div class="col-middle">
+            <h3>Contactez-nous</h3>
+            <p>
+                <strong>Meet For Meal</strong><br>
+                61 rue lafayette<br>
+                93100 Rue Rapatal<br>
+                FRANCE<br>
+                <a href="mailto:contact@meetformeal.com">contact@meetformeal.com</a>
+            </p>
+        </div>
+
+        <div class="col-right">
+
+            <h3>Suivez-nous</h3>
+
+            <div id="footer-menu-back-to-top">
+                <a href="#"></a>
+            </div>
+
+            <p>
+                Nos pages Facebook et Twitter seront bientôt disponibles !
+            </p>
+
+        </div>
+
+        <div id="copyright">
+            <p>
+                &copy; 2013, Meet For Meal.
+            </p>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+
+</html>
