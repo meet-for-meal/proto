@@ -82,6 +82,10 @@ a:hover {
     color: #a3311a;
 }
 
+a:hover img {
+    opacity:0.8;
+}
+
 .wrapper {
     width:960px;
     margin:0 auto;
@@ -128,10 +132,6 @@ header a#logo {
     position:absolute;
     top:5px;
     z-index: 200;
-}
-
-header a#logo:hover {
-    opacity:0.9;
 }
 
 header form#search-form {
@@ -309,7 +309,7 @@ header nav li:hover [class^="icon-"] {
     background: black;
 }
 
-#large_bg_img h2 {
+#large_bg_img h1 {
     line-height: 24Px;
     position: absolute;
     top: 50%;
@@ -381,6 +381,8 @@ header nav li:hover [class^="icon-"] {
     line-height:25px;
 }
 
+/* User search */
+
 #user-search-form {
     background:#F1F1F1;
     padding:10px;
@@ -397,6 +399,17 @@ header nav li:hover [class^="icon-"] {
     margin-right:5px;
 }
 
+/* User page */
+
+#container .wrapper.userpage .avatar {
+    float:left;
+    margin:0px 10px 10px 0px;
+}
+
+#container .wrapper.userpage h3 {
+    clear:none;
+    margin-bottom:5px;
+}
 
 /* Footer
 -------------------------------------------------------------- */
@@ -470,7 +483,7 @@ footer #copyright {
     width: 14px;
     height: 14px;
     margin-top: 1px;
-    *margin-right: .3em;
+    margin-right: 5px;
     line-height: 14px;
     vertical-align: -3px;
     /*vertical-align: text-top;*/
