@@ -93,6 +93,8 @@ a:hover img {
 }
 
 img.avatar {
+    float:left;
+    margin:0px 10px 10px 0px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -401,11 +403,6 @@ header nav li:hover [class^="icon-"] {
 
 /* User page */
 
-#container .wrapper.userpage .avatar {
-    float:left;
-    margin:0px 10px 10px 0px;
-}
-
 #container .wrapper.userpage h3 {
     clear:none;
     margin-bottom:5px;
@@ -433,6 +430,18 @@ ul#search-result li p {
 img.restaurant-category {
     float:left;
     margin:0px 10px 0px 0px;
+}
+
+/* Announcement */
+
+#announcement-user {
+    background:#F1F1F1;
+    padding:10px;
+    overflow:hidden;
+}
+
+#announcement-user p {
+    margin-bottom:0px;
 }
 
 /* Footer
