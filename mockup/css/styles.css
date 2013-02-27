@@ -411,6 +411,30 @@ header nav li:hover [class^="icon-"] {
     margin-bottom:5px;
 }
 
+/* Restaurant search */
+
+ul#search-result li {
+    padding:10px;
+    border-bottom:1px solid #F1F1F1;
+}
+
+ul#search-result li:last-child {
+    border-bottom:0px;
+}
+
+ul#search-result li.featured {
+    background:#F1F1F1;
+}
+
+ul#search-result li p {
+    margin-bottom:0px;
+}
+
+img.restaurant-category {
+    float:left;
+    margin:0px 10px 0px 0px;
+}
+
 /* Footer
 -------------------------------------------------------------- */
 

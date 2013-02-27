@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Meet for Meal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Set Viewport-->
+    <meta name="viewport" content="user-scalable=no,initial-scale=1.0, maximum-scale=1.0 width=device-width" />
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/jquery.gmap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+    <link href="css/styles.css" rel="stylesheet">
+
+</head>
+<body>
+
+<header>
+
+    <div class="wrapper">
+
+        <a href="index.html" id="logo"><img src="img/logo-mini.png" alt=""></a>
+
+        <form id="search-form">
+            <input type="text" name="search" placeholder="Rechercher une personne ou un restaurant...">
+        </form>
+
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="icon-home"></i> Accueil</a></li>
+                <li class="current"><a href="restaurant.html"><i class="icon-map-marker"></i>Les restaurants</a></li>
+                <li><a href="userpage.html"><i class="icon-user"></i>Mon profil</a></li>
+                <li><a href="message.html" class="no-text"><i class="icon-envelope"></i></a></li>
+                <li><a href="homepage.html" class="no-text"><i class="icon-off"></i></a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+</header>
+
+<section id="container">
+
+    <div id="large_bg_img" class="clearfix">
+
+        <div id="large_bg_img_overlay"></div>
+        <img src="img/bg2.jpg" id="image" class="big" alt="" />
+
+        <h1>Listes des restaurants</h1>
+
+    </div>
+
+    <div class="wrapper">
+
+        <div class="col-2">
+
+            <ul id="search-result">
+                <li class="featured">
+                    <img src="https://foursquare.com/img/categories_v2/food/sandwiches_bg_32.png" class="restaurant-category">
+                    <p>
+                        <span><strong>BALT</strong></span><br>
+                        <span>Catégorie : <strong>Sandwicherie</strong></span><br>
+                        <span>Adresse : <strong>15, rue Monsigny Paris (75002) </strong></span><br>
+                        <span>Les sandwichs Balt doivent beaucoup à la baguette Julien. Ils sont à composer soi-même : rosbif, œuf dur écrasé, poivron mariné ou mayonnaise au basilic etc.</span><br>
+                        <a href="#"><i class="icon-eye-open icon-red"></i>Consulter</a> - <a href="#"><i class="icon-user icon-red"></i>Inviter quelqu'un</a>
+                    </p>
+                </li>
+                <li>
+                    <img src="https://foursquare.com/img/categories_v2/nightlife/bar_bg_32.png" class="restaurant-category">
+                    <p>
+                        <span><strong>2 bis</strong></span><br>
+                        <span>Catégorie : <strong>Bar</strong></span><br>
+                        <span>Adresse : <strong>2 bis rue des Ecoles (75005) </strong></span><br>
+                        <span>La pinte la moins chère de Paris</span><br>
+                        <a href="#"><i class="icon-eye-open icon-red"></i>Consulter</a> - <a href="#"><i class="icon-user icon-red"></i>Inviter quelqu'un</a>
+                    </p>
+                </li>
+                <li>
+                    <img src="https://foursquare.com/img/categories_v2/food/sandwiches_bg_32.png" class="restaurant-category">
+                    <p>
+                        <span><strong>BALT</strong></span><br>
+                        <span>Catégorie : <strong>Sandwicherie</strong></span><br>
+                        <span>Adresse : <strong>15, rue Monsigny Paris (75002) </strong></span><br>
+                        <span>Les sandwichs Balt doivent beaucoup à la baguette Julien. Ils sont à composer soi-même : rosbif, œuf dur écrasé, poivron mariné ou mayonnaise au basilic etc.</span><br>
+                        <a href="#"><i class="icon-eye-open icon-red"></i>Consulter</a> - <a href="#"><i class="icon-user icon-red"></i>Inviter quelqu'un</a>
+                    </p>
+                </li>
+                <li>
+                    <img src="https://foursquare.com/img/categories_v2/nightlife/bar_bg_32.png" class="restaurant-category">
+                    <p>
+                        <span><strong>2 bis</strong></span><br>
+                        <span>Catégorie : <strong>Bar</strong></span><br>
+                        <span>Adresse : <strong>2 bis rue des Ecoles (75005) </strong></span><br>
+                        <span>La pinte la moins chère de Paris</span><br>
+                        <a href="#"><i class="icon-eye-open icon-red"></i>Consulter</a> - <a href="#"><i class="icon-user icon-red"></i>Inviter quelqu'un</a>
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="col-1">
+            
+        </div>
+
+        <div class="col-2">
+
+        </div>
+
+        <div class="col-1">
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="wrapper">
+
+        <div class="col-left">
+            <h3>À propos de Meet For Meal</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<br>
+                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+
+        <div class="col-middle">
+            <h3>Contactez-nous</h3>
+            <p>
+                <strong>Meet For Meal</strong><br>
+                61 rue lafayette<br>
+                93100 Rue Rapatal<br>
+                FRANCE<br>
+                <a href="mailto:contact@meetformeal.com">contact@meetformeal.com</a>
+            </p>
+        </div>
+
+        <div class="col-right">
+
+            <h3>Suivez-nous</h3>
+
+            <div id="footer-menu-back-to-top">
+                <a href="#"></a>
+            </div>
+
+            <p>
+                Nos pages Facebook et Twitter seront bientôt disponibles !
+            </p>
+
+        </div>
+
+        <div id="copyright">
+            <p>
+                &copy; 2013, Meet For Meal.
+            </p>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+
+</html>
