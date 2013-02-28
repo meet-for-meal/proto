@@ -245,7 +245,7 @@ header #notifications {
     margin-left: -150px;
     z-index: 100;
     padding: 5px 10px;
-    background: rgba(255,255,255,0.9);
+    background: #F6F6F6;
     border-top: 2px solid #d55035;
     border-left: 1px solid #CCC;
     border-right: 1px solid #CCC;
