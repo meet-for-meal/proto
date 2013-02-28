@@ -92,6 +92,10 @@ a:hover img {
     overflow:hidden;
 }
 
+.red {
+    color:#d55035;
+}
+
 img.avatar {
     float:left;
     margin:0px 10px 10px 0px;
@@ -110,12 +114,17 @@ img.avatar {
     padding:5px 10px;
     display:inline-block;
     cursor:pointer;
-    box-shadow:0px 0px 5px #a35724 inset;
 }
 
 .btn:hover {
     background:#a3311a;
     color: #F1F1F1;
+}
+
+a.btn {
+    line-height: 21px;
+    font-size: 11px;
+    padding: 0px 10px;
 }
 
 /* Header
@@ -135,6 +144,19 @@ header a#logo {
     position:absolute;
     top:5px;
     z-index: 200;
+}
+
+header a#logo img {
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out
+}
+
+header a#logo:hover img {
+    opacity:1;
+    margin-top:5px;
 }
 
 header form#search-form {
@@ -171,11 +193,34 @@ header nav ul li a {
 }
 
 header nav ul li.current {
-    border-top:4px #d55035 solid;
+    border-top:4px solid #d55035;
 }
 
 header nav ul li.current a, header nav li:hover a {
     color:#d55035;
+}
+
+header nav ul li a.no-text {
+    position:relative;
+}
+
+header nav ul li a .notif {
+    opacity: 0.8;
+    padding: 0px 3Px;
+    left: 10px;
+    position: absolute;
+    border-radius: 20%;
+    -moz-border-radius: 20%;
+    -webkit-border-radius: 20%;
+    text-align: center;
+    font-size: 10px;
+    font-weight: normal;
+    width: auto;
+    line-height: 13px;
+    height: 13px;
+    background: #d55035;
+    display: inline-block;
+    color: #FFF;
 }
 
 header nav ul li [class^="icon-"] {
@@ -189,6 +234,44 @@ header nav ul li a.no-text [class^="icon-"] {
 header nav ul li.current [class^="icon-"],
 header nav li:hover [class^="icon-"] {
     background-image: url("../img/icons-red.png");
+}
+
+header #notifications {
+    display:none;
+    position: absolute;
+    width: 300px;
+    top: 35px;
+    left: 50%;
+    margin-left: -150px;
+    z-index: 100;
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.9);
+    border-top: 2px solid #d55035;
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+}
+
+header #notifications ul {
+    font-size:12px;
+}
+
+header #notifications ul li {
+    border-bottom: 1px solid #E4E4E4;
+    line-height: 15px;
+    padding: 5px;
+}
+
+header #notifications ul li:last-child {
+    border-bottom:none;
+}
+
+header #notifications ul li a {
+    color:#333;
+}
+
+header #notifications ul li a .red {
+    font-weight: bold;
 }
 
 /* Google maps
@@ -394,8 +477,36 @@ header nav li:hover [class^="icon-"] {
     -webkit-border-radius:3px;
 }
 
+#user-search-form p:last-child {
+    margin-bottom:0px;
+}
+
+
 #user-search-form .btn {
     float:right;
+}
+
+#user-search-form label {
+    display: inline-block;
+    width: 120px;
+    margin-right: 15px;
+}
+
+#user-search-form input[type="text"] {
+    color: #333;
+    padding: 4px 5px;
+    line-height: 13px;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+}
+
+#user-search-form input#time-start, #user-search-form input#time-end {
+    width:100px;
+    margin:0px 5px;
+}
+
+#user-search-form input#interests {
+    width:300px;
 }
 
 #user-search-form [class^="icon-"] {
@@ -406,14 +517,14 @@ header nav li:hover [class^="icon-"] {
 
 .user-interact{
     float: right;
-    margin: 10px 10px 0px 10px;
+    margin: 0px;
 }
 
 .user-interact a{
     text-align: center;
     display: block;
     vertical-align: top;
-    margin: 10px 5px 10px 5px;
+    margin: 0px 0px 5px 0px;
 }
 
 .result-search {
@@ -480,6 +591,10 @@ header nav li:hover [class^="icon-"] {
 
 #conversations ul li.current{
     background: #F1F1F1;
+    -moz-border-radius: 3px 3px 0px 0px;
+    -webkit-border-radius: 3px 3px 0px 0px;
+    border-bottom: 4px solid #d55035;
+    border-radius: 3px 3px 0px 0px;
 }
 
 #conversations ul li:hover{
@@ -494,7 +609,7 @@ header nav li:hover [class^="icon-"] {
     margin-bottom: 0px;
 }
 
-#conversations .message-date, .single-msg .message-date {
+#conversations .message-date, .single-msg .message-date, #notifications .message-date {
     margin-bottom:1px;
     color:#999;
     font-size:11px;
@@ -519,6 +634,7 @@ header nav li:hover [class^="icon-"] {
 ul#search-result li {
     padding:10px;
     border-bottom:1px solid #F1F1F1;
+    overflow:hidden;
 }
 
 ul#search-result li:last-child {
@@ -533,6 +649,19 @@ ul#search-result li p {
     margin-bottom:0px;
 }
 
+ul#search-result li .restaurant-description {
+    float: left;
+    width:90%;
+}
+
+ul#search-result li .restaurant-description .btn {
+    margin-top:5px;
+}
+
+ul#search-result li .restaurant-description .title {
+    font-size:14px;
+}
+
 img.restaurant-category {
     float:left;
     margin:0px 10px 0px 0px;
@@ -545,20 +674,8 @@ img.restaurant-category {
     font-size: 13px;
 }
 
-.user-interact{
-    float: right;
-    margin: 10px 10px 0px 10px;
-}
-
-.user-interact a{
-    text-align: center;
-    display: block;
-    vertical-align: top;
-    margin: 10px 5px 10px 5px;
-}
-
 .result-search .user-content{
-    margin: 10px 5px 5px 45px;
+    margin: 10px 5px 5px 50px;
 }
 
 .user-content p:last-child {
@@ -578,7 +695,13 @@ img.restaurant-category {
 }
 
 #announcement-user p {
+    float:left;
     margin-bottom:0px;
+}
+
+#announcement-user p:last-child {
+    text-align: center;
+    float:right;
 }
 
 /* Footer
@@ -660,6 +783,11 @@ footer #copyright {
     background-image: url("../img/icons-black.png");
     background-position: 14px 14px;
     background-repeat: no-repeat;
+}
+
+.btn > [class^="icon-"],
+.btn >[class*=" icon-"] {
+    background-image: url("../img/icons-white.png");
 }
 
 .icon-red,

@@ -15,6 +15,7 @@
     <![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="js/jquery.gmap.min.js"></script>
+    <script src="js/base.js"></script>
 
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
@@ -36,13 +37,43 @@
 
         <nav>
             <ul>
+                <li><a href="#" class="no-text toggle-notif"><i class="icon-info-sign"></i><span class="notif">3</span></a></li>
                 <li><a href="index.html"><i class="icon-home"></i> Accueil</a></li>
                 <li><a href="restaurant.html"><i class="icon-map-marker"></i>Les restaurants</a></li>
                 <li><a href="userpage.html"><i class="icon-user"></i>Mon profil</a></li>
-                <li><a href="message.html" class="no-text"><i class="icon-envelope"></i></a></li>
+                <li><a href="message.html" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
                 <li><a href="homepage.html" class="no-text"><i class="icon-off"></i></a></li>
             </ul>
         </nav>
+
+        <div id="notifications">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="red">Alexandra Martin</span> a proposé une annonce.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="red">Rémy Hannequin</span> souhaite devenir votre ami.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="red">Pierre Grimaud</span> a proposé une annonce.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="red">Romain Deligny</span> a proposé une annonce.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
     </div>
 
@@ -81,9 +112,11 @@
                 <img src="img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
                 <p>
                     Proposé par <strong>Alexandra Martin</strong><br>
-                    <i class="icon-heart"></i>Centres d'intérêts  : <strong>#communication #badminton</strong><br>
-                    <i class="icon-glass"></i>Préférences culinaires : <strong>#italien #japonais</strong><br>
-                    <span><a href="#"><i class="icon-eye-open icon-red"></i> Voir son profil</a></span>
+                    <i class="icon-heart"></i>Centres d'intérêts  : <a href="#">#communication</a> <a href="#">#badminton</a><br>
+                    <i class="icon-glass"></i>Préférences culinaires : <a href="#">#italien</a> <a href="#">#japonais</a><br>
+                </p>
+                <p>
+                    <span><a href="#" class="btn"><i class="icon-eye-open icon-red"></i> Voir son profil</a></span>
                 </p>
 
             </div>
@@ -95,7 +128,7 @@
             <h2>Répondre à l'annonce :</h2>
 
             <p>
-                <a href="#" class="btn">Je suis intéressé !</a>
+                <a href="#" class="btn"><i class="icon-pencil"></i>Je suis intéressé !</a>
             </p>
 
         </div>

@@ -15,6 +15,7 @@
     <![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="js/jquery.gmap.min.js"></script>
+    <script src="js/base.js"></script>
 
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
@@ -36,13 +37,43 @@
 
         <nav>
             <ul>
+                <li><a href="#" class="no-text toggle-notif"><i class="icon-info-sign"></i><span class="notif">3</span></a></li>
                 <li class="current"><a href="index.html"><i class="icon-home"></i> Accueil</a></li>
                 <li><a href="restaurant.html"><i class="icon-map-marker"></i>Les restaurants</a></li>
                 <li><a href="userpage.html"><i class="icon-user"></i>Mon profil</a></li>
-                <li><a href="message.html" class="no-text"><i class="icon-envelope"></i></a></li>
+                <li><a href="message.html" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
                 <li><a href="homepage.html" class="no-text"><i class="icon-off"></i></a></li>
             </ul>
         </nav>
+
+        <div id="notifications">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="red">Alexandra Martin</span> a proposé une annonce.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="red">Rémy Hannequin</span> souhaite devenir votre ami.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="red">Pierre Grimaud</span> a proposé une annonce.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="red">Romain Deligny</span> a proposé une annonce.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
     </div>
 
@@ -122,15 +153,12 @@
             <h2>Recherche avancée</h2>
             <form id="user-search-form" action="announcementsearch.html">
                 <p>
-                    <strong><i class="icon-time"></i> Tranche horaire : </strong><br>
-                    <label for="time-start">Début</label>
-                    <input type="text" id="time-start">
-                    <label for="time-end">Fin</label>
-                    <input type="text" id="time-end" >
+                    <label for="time-start"><strong><i class="icon-time"></i> Quand ? </strong></label>
+                    De <input type="text" id="time-start"> à <input type="text" id="time-end" >
                     <input type="submit" class="btn" value="Trouver">
                 </p>
                 <p>
-                    <label for="interests"><strong><i class="icon-heart"></i> Goûts / Intérêts : </strong></label><br>
+                    <label for="interests"><strong><i class="icon-heart"></i> Goûts / Intérêts</strong></label>
                     <input type="text" id="interests">
                 </p>
             </form>
@@ -138,34 +166,14 @@
             <hr>
 
             <h2>À découvrir</h2>
-            <ul id="search-result">
-                <li>
-                    <img src="https://foursquare.com/img/categories_v2/food/sandwiches_bg_32.png" class="restaurant-category">
-                    <p>
-                        <span><strong>BALT</strong></span><br>
-                        <span>Catégorie : <strong>Sandwicherie</strong></span><br>
-                        <span>Adresse : <strong>15, rue Monsigny Paris (75002) </strong></span><br>
-                        <span>Les sandwichs Balt doivent beaucoup à la baguette Julien. Ils sont à composer soi-même : rosbif, œuf dur écrasé, poivron mariné ou mayonnaise au basilic etc.</span><br>
-                        <a href="#"><i class="icon-eye-open icon-red"></i>Consulter</a> - <a href="#"><i class="icon-user icon-red"></i>Inviter quelqu'un</a>
-                    </p>
-                </li>
-                <li>
-                    <img src="https://foursquare.com/img/categories_v2/nightlife/bar_bg_32.png" class="restaurant-category">
-                    <p>
-                        <span><strong>2 bis</strong></span><br>
-                        <span>Catégorie : <strong>Bar / Sandwicherie</strong></span><br>
-                        <span>Adresse : <strong>2 bis rue des Ecoles (75005) </strong></span><br>
-                        <span>La pinte la moins chère de Paris</span><br>
-                        <a href="#"><i class="icon-eye-open icon-red"></i>Consulter</a> - <a href="#"><i class="icon-user icon-red"></i>Inviter quelqu'un</a>
-                    </p>
-                </li>
+
         </div>
 
         <div id="current-user" class="col-1">
             <img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
             <h3>Hervé Tran</h3>
-            <span class="user-tags">#multimedia #guitare #blues</span>
-            <span><a href="#"><i class="icon-pencil icon-red"></i> Poster une annonce</a></span>
+            <span class="user-tags"><a href="#">#multimedia</a> <a href="#">#guitare</a> <a href="#">#blues</a></span>
+            <span><a href="#" class="btn"><i class="icon-pencil"></i> Poster une annonce</a></span>
 
             <hr>
 

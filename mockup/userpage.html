@@ -15,6 +15,7 @@
     <![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="js/jquery.gmap.min.js"></script>
+    <script src="js/base.js"></script>
 
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
@@ -36,13 +37,43 @@
 
         <nav>
             <ul>
+                <li><a href="#" class="no-text toggle-notif"><i class="icon-info-sign"></i><span class="notif">3</span></a></li>
                 <li><a href="index.html"><i class="icon-home"></i> Accueil</a></li>
                 <li><a href="restaurant.html"><i class="icon-map-marker"></i>Les restaurants</a></li>
                 <li class="current"><a href="userpage.html"><i class="icon-user"></i>Mon profil</a></li>
-                <li><a href="message.html" class="no-text"><i class="icon-envelope"></i></a></li>
+                <li><a href="message.html" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
                 <li><a href="homepage.html" class="no-text"><i class="icon-off"></i></a></li>
             </ul>
         </nav>
+
+        <div id="notifications">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="red">Alexandra Martin</span> a proposé une annonce.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="red">Rémy Hannequin</span> souhaite devenir votre ami.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="red">Pierre Grimaud</span> a proposé une annonce.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="red">Romain Deligny</span> a proposé une annonce.<br>
+                        <span class="message-date">28/02/2013 à 14h42</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
     </div>
 
@@ -74,10 +105,10 @@
                 Age : <strong>22</strong>
             </p>
             <p>
-                Goûts culinaires : <strong>#italien #japonais</strong>
+                Goûts culinaires : <a href="#">#italien</a> <a href="#">#japonais</a>
             </p>
             <p>
-                Centres d'intérêts : <strong>#guitare #blues #pocker</strong>
+                Centres d'intérêts : <a href="#">#guitare</a> <a href="#">#blues</a> <a href="#">#poker</a>
             </p>
             <p>
                 Présentation : Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
@@ -87,10 +118,7 @@
                 <i class="icon-eye-open"></i>Profil complété à <strong>90%</strong>
             </p>
             <p>
-                <a href="#" class="btn">Ajouter en ami</a>
-            </p>
-            <p>
-                <span><a href="#"><i class="icon-envelope icon-red"></i> Contacter cet utilisateur</a></span>
+                <a href="#" class="btn"><i class="icon-envelope icon-plus"></i>Ajouter en ami</a> <a href="#" class="btn"><i class="icon-envelope icon-red"></i>Contacter cet utilisateur</a>
             </p>
         </div>
 
@@ -98,26 +126,6 @@
 
             <h2>Amis</h2>
 
-            <a href="userpage.html" title="Alexandra"><img src="img/users/alexandra.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Herve"><img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Pierre"><img src="img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Romain"><img src="img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Alexandra"><img src="img/users/alexandra.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Herve"><img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Pierre"><img src="img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Romain"><img src="img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Alexandra"><img src="img/users/alexandra.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Herve"><img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Pierre"><img src="img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Romain"><img src="img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Alexandra"><img src="img/users/alexandra.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Herve"><img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Pierre"><img src="img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Romain"><img src="img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Alexandra"><img src="img/users/alexandra.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Herve"><img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Pierre"><img src="img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage.html" title="Romain"><img src="img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
             <a href="userpage.html" title="Alexandra"><img src="img/users/alexandra.jpg" width="64" height="64" class="avatar" alt=""></a>
             <a href="userpage.html" title="Herve"><img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt=""></a>
             <a href="userpage.html" title="Pierre"><img src="img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
