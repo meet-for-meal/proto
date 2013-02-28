@@ -18,75 +18,10 @@
 
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
     <link href="css/styles.css" rel="stylesheet">
 
 </head>
-
-<style>
-.author-msg{
-	font-size: 13px;
-}
-.author-msg a{
-	font-weight: bold;
-}
-
-/* même style que les images de la home, a surcharger */
-.img-msg{
-	float: left;
-	margin: 0px 5px 5px 0px;
-}
-
-.content-msg{
-	margin-left: 50px;
-}
-
-#conversations ul li{
-	cursor: pointer;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	padding: 5px 2px 5px 2px;
-	margin-bottom: 5px;
-}
-
-#conversations ul li a{
-	font-weight: bold;
-	font-size: 13px;
-}
-
-#conversations ul li.current{
-	background: url('img/60overlay-orange.png') repeat;
-}
-
-#conversations ul li.current:hover{
-	background: url('img/60overlay-orange.png') repeat;
-}
-
-#conversations li.current a{
-	color: #FFF;
-}
-
-#conversations ul li:hover{
-	background: url('img/30overlay-orange.png') repeat;
-}
-
-#conversations ul li.current{
-	background-color: ;
-
-}
-
-#conversations .name-conversation{
-	margin-bottom: 7px;
-}
-
-#conversations .extract-conversation{
-	margin-bottom: 0px;
-}
-
-</style>
-
 
 <body>
 
@@ -129,13 +64,11 @@
 
         <div class="col-2">
 
-            <h2>Messages de Pierre</h2>
+            <h2>Conversation avec Pierre</h2>
             <div class="single-msg">
-	        	<div class="img-msg">
-        			<img src="img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
-       			</div>
-	            
-	            <p class="author-msg"><a href="userpage.html" title=""/>Pierre Grimaud</a> dit :</p>
+                <img src="img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
+                <p class="author-msg"><a href="userpage.html" title=""/>Pierre Grimaud</a></p>
+                <p class="message-date">28/02/13 à 23h31</p>
 	            <div class="content-msg">
 		            <p>
 		            	Bonjour,
@@ -147,11 +80,9 @@
         	</div>
 
         	<div class="single-msg">
-	        	<div class="img-msg">
-        			<img src="img/users/herve.jpg" width="40" height="40" class="avatar" alt="">
-       			</div>
-           		
-           		<p class="author-msg"><a href="" title=""/>moi</a> :</p>
+                <img src="img/users/herve.jpg" width="40" height="40" class="avatar" alt="">
+           		<p class="author-msg"><a href="userpage.html" title=""/>Moi</a></p>
+                <p class="message-date">28/02/13 à 23h31</p>
            		<div class="content-msg">
 		            <p>
 		            	Bonjour,
@@ -163,11 +94,9 @@
 	            </div>
         	</div>
         	<div class="single-msg">
-	        	<div class="img-msg">
-        			<img src="img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
-       			</div>
-           		
-           		<p class="author-msg"><a href="userpage.html" title=""/>Pierre Grimaud</a> dit :</p>
+                <img src="img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
+           		<p class="author-msg"><a href="userpage.html" title=""/>Pierre Grimaud</a></p>
+                <p class="message-date">28/02/13 à 23h31</p>
            		<div class="content-msg">
 		            <p>
 		            	Parfait pour moi ! A tout a l'heure !
@@ -179,17 +108,15 @@
 			<h2>Mes autres conversations</h2>
 			<ul>
 				<li class="conversation current">
-					<div class="img-msg">
-        			<img src="img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
-       				</div>
+        			<img src="img/users/pierre.jpg" width="64" height="64" class="avatar" alt="">
 					<p class="name-conversation"><a href="#" title="">Pierre Grimaud</a></p>
+                    <p class="message-date">28/02/13 à 23h31</p>
 					<p class="extract-conversation">Bonjour, je suis passionné d'informatique...</p>
 				</li>
 				<li class="conversation">
-					<div class="img-msg">
-        			<img src="img/users/alexandra.jpg" width="40" height="40" class="avatar" alt="">
-       				</div>
-					<p class="name-conversation"><a href="#" title="">Alexandra Martin</a></p>
+        			<img src="img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
+					<p class="name-conversation"><a href="#" title="">Alexandra Martin (1)</a></p>
+                    <p class="message-date">28/02/13 à 22h31</p>
 					<p class="extract-conversation">Coucou ! Ca fait longtemps qu'on s'est pas...</p>
 				</li>
 			</ul>

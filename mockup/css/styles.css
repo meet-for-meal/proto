@@ -115,6 +115,7 @@ img.avatar {
 
 .btn:hover {
     background:#a3311a;
+    color: #F1F1F1;
 }
 
 /* Header
@@ -383,7 +384,7 @@ header nav li:hover [class^="icon-"] {
     line-height:25px;
 }
 
-/* User search */
+/* User search form */
 
 #user-search-form {
     background:#F1F1F1;
@@ -401,11 +402,116 @@ header nav li:hover [class^="icon-"] {
     margin-right:5px;
 }
 
+/* User search result */
+
+.user-interact{
+    float: right;
+    margin: 10px 10px 0px 10px;
+}
+
+.user-interact a{
+    text-align: center;
+    display: block;
+    vertical-align: top;
+    margin: 10px 5px 10px 5px;
+}
+
+.result-search {
+    padding: 10px 7px;
+    margin: 0px 0px 10px 5px;
+    background-color: #F1F1F1;
+    font-size: 12px;
+}
+
+.result-search img {
+    float: left;
+    margin: 0px 10px 10px 0px;
+}
+
+.result-search .user-title{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.result-search .user-content{
+    margin: 10px 5px 5px 45px;
+}
+
+.result-search .label-user{
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 5px;
+}
+
 /* User page */
 
 #container .wrapper.userpage h3 {
     clear:none;
     margin-bottom:5px;
+}
+
+/* Messages */
+
+.author-msg{
+    font-size: 13px;
+    margin:0px;
+}
+.author-msg a{
+    font-weight: bold;
+}
+
+.content-msg{
+    margin: 5px 0px 15px 50px;
+}
+
+#conversations ul li{
+    cursor: pointer;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+#conversations ul li a{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#conversations ul li.current{
+    background: #F1F1F1;
+}
+
+#conversations ul li:hover{
+    background: #F1F1F1;
+}
+
+#conversations .conversation img {
+    margin-bottom:0;
+}
+
+#conversations .name-conversation{
+    margin-bottom: 0px;
+}
+
+#conversations .message-date, .single-msg .message-date {
+    margin-bottom:1px;
+    color:#999;
+    font-size:11px;
+    line-height:11px;
+}
+
+#conversations .extract-conversation{
+    margin:0px;
+}
+
+.single-msg {
+    border-bottom: 1px solid #F1F1F1;
+    margin-bottom: 15px;
+}
+
+.single-msg:last-child {
+    border-bottom:none;
 }
 
 /* Restaurant search */
@@ -430,6 +536,37 @@ ul#search-result li p {
 img.restaurant-category {
     float:left;
     margin:0px 10px 0px 0px;
+}
+
+/* Announcement search result */
+
+.result-search .user-title{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.user-interact{
+    float: right;
+    margin: 10px 10px 0px 10px;
+}
+
+.user-interact a{
+    text-align: center;
+    display: block;
+    vertical-align: top;
+    margin: 10px 5px 10px 5px;
+}
+
+.result-search .user-content{
+    margin: 10px 5px 5px 45px;
+}
+
+.user-content p:last-child {
+    margin-bottom:0;
+}
+
+.result-search .announce-msg{
+    font-style: italic;
 }
 
 /* Announcement */
