@@ -23,7 +23,6 @@
     <link href="css/styles.css" rel="stylesheet">
 
 </head>
-
 <body>
 
 <header>
@@ -41,7 +40,7 @@
                 <li><a href="#" class="no-text toggle-notif"><i class="icon-info-sign"></i><span class="notif">3</span></a></li>
                 <li><a href="index.html"><i class="icon-home"></i> Accueil</a></li>
                 <li><a href="restaurant.html"><i class="icon-map-marker"></i>Les restaurants</a></li>
-                <li><a href="mypage.html"><i class="icon-user"></i>Mon profil</a></li>
+                <li class="current"><a href="mypage.html"><i class="icon-user"></i>Mon profil</a></li>
                 <li><a href="message.html" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
                 <li><a href="homepage.html" class="no-text"><i class="icon-off"></i></a></li>
             </ul>
@@ -87,72 +86,69 @@
         <div id="large_bg_img_overlay"></div>
         <img src="img/bg2.jpg" id="image" class="big" alt="" />
 
-        <h1>Résultats de la recherche</h1>
+        <h1>Mon profil</h1>
 
     </div>
 
-    <div class="wrapper">
+    <div class="wrapper userpage">
 
         <div class="col-2">
-            <h2>Les annonces proches de vous</h2>
-            <ul>
-                <li class="result-search">
-                    <div class="user-interact">
-                        <a href="announcement.html" title="" class="btn see-profile"><i class="icon-eye-open"></i>En savoir plus</a>
-                        <a href="#" title="" class="btn add-friend"><i class="icon-plus"></i>Inviter à manger</a>
-                    </div>
-                    <img src="img/users/alexandra.jpg" width="40" height="40" class="avatar" alt="">
-                    <a href="userpage.html">
-                        <span class="user-title">Bastian PEGHAIRE</span>
-                    </a>
-                    <div class="user-content">
-                        <p class="announce-msg">&laquo; Je recherche quelqu'un avec qui manger près de la rue des peupliers...De préférence un grec ou un ... &raquo;<p>
-                        <p>
-                            <i class="icon-time"></i>Disponibilité : <strong>12h00</strong> - <strong>13h30</strong><br>
-                            <i class="icon-map-marker"></i>Localisation : <strong>Paris Vème</strong><br>
-                            <i class="icon-heart"></i>Centres d'intérêts : <a href="#">#informatique</a> <a href="#">#chat</a><br>
-                            <i class="icon-glass"></i>Préférences culinaires : <a href="#">#chinois</a> <a href="#">#grec</a> <a href="#">#pizzeria</a>
-                        </p>
-                    </div>
-                </li>
-
-                <li class="result-search">
-                    <div class="user-interact">
-                        <a href="announcement.html" title="" class="btn see-profile"><i class="icon-eye-open"></i>En savoir plus</a>
-                        <a href="#" title="" class="btn add-friend"><i class="icon-plus"></i>Inviter à manger</a>
-                        
-                    </div>
-                    <img src="img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
-                    <a href="userpage.html">
-                        <span class="user-title">Pierre Grimaud</span>
-                    </a>
-                    <div class="user-content">
-                        <p class="announce-msg">&laquo; Coucou ! Je cherche quelqu'un avec qui manger quelque chose de pas trop cher de ... &raquo;<p>
-                        <p>
-                            <i class="icon-time"></i>Disponibilité : <strong>11h30</strong> - <strong>14h00</strong><br>
-                            <i class="icon-map-marker"></i>Localisation : <strong>Paris VIème</strong><br>
-                            <i class="icon-heart"></i>Centres d'intérêts : <a href="#">#jeuxvideos</a> <a href="#">#animaux</a><br>
-                            <i class="icon-glass"></i>Préférences culinaires : <a href="#">#indien</a> <a href="#">#italien</a>
-                        </p>
-                    </div>
-                </li>
-
-                
-            </ul>
-        	
+            <h2>Informations sur votre profil</h2>
+            <img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
+            <p>
+                <i class="icon-user"></i><strong>Hervé Tran</strong>
+            </p>
+            <p>
+                Sexe : <strong>Homme</strong>
+            </p>
+            <p>
+                Age : <strong>22</strong>
+            </p>
+            <p>
+                Goûts culinaires : <a href="#">#italien</a> <a href="#">#japonais</a>
+            </p>
+            <p>
+                Centres d'intérêts : <a href="#">#guitare</a> <a href="#">#blues</a> <a href="#">#poker</a>
+            </p>
+            <p>
+                Présentation : Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+            </p>
+            <p>
+                <i class="icon-eye-open"></i>Profil complété à <strong>90%</strong>
+            </p>
+            <p>
+                <a href="#" class="btn"><i class="icon-cog icon-plus"></i>Modifier votre profil</a>
+            </p>
         </div>
-        <div id="conversations" class="col-1">
-            <h2>Meet For Meal</h2>
-            <p>
-                Le principe du site est simple: Trouver un partenaire pour partager un repas.
-            </p>
-            <p>
-                Vous êtes seul ce midi (/soir) ? Recherchez un partenaire aux alentours afin de partager un moment ensemble autour d’un repas. Vous pouvez effectuer une recherche par type de restaurant ou par tranche horaires et choisir, parmi la liste des personnes libres, celle qui vous intéresse ! La visibilité de ses centres d’intérêts vous aidera à choisir un sujet de conversation.
-            </p>
-            <p>
-                Personne ne vous intéresse ? Postez votre propre annonce !
-                La recherche de partenaire est effectuée dans un rayon de 1km aux alentours de votre géolocalisation.
-            </p>
+
+        <div class="col-1">
+
+            <h2>Nouvelles demandes d'ajout</h2>
+
+            <div class="user">
+                <img src="img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
+                <p>
+                    <a href="userpage.html" class="black"><strong>Alexandra Martin</strong></a><br>
+                    <a href="#">#communication</a> <a href="#">#musique</a> <a href="#">#badminton</a><br>
+                    <a href="#" class="btn"><i class="icon-ok"></i>Accepter</a> <a href="#" class="btn btn-neutral"><i class="icon-remove"></i>Ignorer</a>
+                </p>
+            </div>
+
+            <hr>
+
+            <h2>Mes amis</h2>
+
+            <a href="userpage.html" title="Pierre"><img src="img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
+            <a href="userpage.html" title="Romain"><img src="img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
+        </div>
+
+        <div class="col-2">
+
+        </div>
+
+        <div class="col-1">
+
         </div>
 
     </div>
