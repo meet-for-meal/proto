@@ -1,0 +1,56 @@
+<html>
+<head>
+<script src="jquery-1.9.1.js"></script>
+<script src="jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+$(function() {
+  var menu = new Essilab.MainMenu();
+  menu.load(function(json){
+	  /*
+	  $(json).each(function(e) {
+		// console.log(e);
+	  });
+	  */
+  
+	  var builder = new Essilab.FormBuilder(), form = builder.getForm()
+	  
+	  builder.addInput('text',{ name : 'last_name', label : 'Nom'}, { click : function(){console.log('click')}})
+	         .addInput('text',{ name : 'first_name', label : 'Prenom'}, { focus : function(){ console.log('focus')}})
+	         .addInput('select', { label : 'Genre', children : [['fieldLabel','fieldValue'], ['fieldLabel2','fieldValue2']]})
+	         .addInput('radio', { label : 'Accepter les conditions'})
+	         .addButton({label : 'Hello'}, {click : function() {
+	        	 
+	        		   var datas = form.serializeArray(), json = {};
+	        		   // Convert to json.
+	        		   $.each(datas, function(id, e) { json[e.name] = e.value});
+	        		   
+	        		   $.ajax({
+	        			   url : CONTEXT_PATH+'/user/insert',
+	        			   method : 'post',
+	        			   data : {
+	        				   // Serialize to json string
+	        				   data : JSON.stringify(json)
+	        			   }, 
+	        			   success : function(){
+	        				 
+	        			   }
+	        		 });
+	        	 return false;
+	        	// alert("OK")
+	          }});
+	  
+		$('#viewport').append(builder.getForm());	
+		
+		var table = $('<div/>');
+		$('#viewport').append(table);
+
+  });
+});
+</script>
+</head>
+<body>
+<div id="viewport">
+</div>
+</body>
+</html>
