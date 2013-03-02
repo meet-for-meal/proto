@@ -2,7 +2,7 @@ package org.essilab.module.user.model;
 
 public class User {
 	public Long id;
-	public String lastName;
+	public String lastname;
 	public String firstname;
 	public String email;
 	public String password;
@@ -14,9 +14,9 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
-	public User(Long id, String firstname, String lastName,float lastLatitude,float lastLongitude) {
+	public User(Long id, String firstname, String lastname,float lastLatitude,float lastLongitude) {
 		super();
-		this.lastName = lastName;
+		this.lastname = lastname;
 		this.firstname = firstname;
 		this.id = id;
 		this.lastLatitude = lastLatitude;

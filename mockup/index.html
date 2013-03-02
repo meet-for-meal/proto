@@ -15,6 +15,7 @@
     <![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="js/jquery.gmap.min.js"></script>
+    <script src="js/jquery.cycle.all.js"></script>
     <script src="js/base.js"></script>
 
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
@@ -40,7 +41,7 @@
                 <li><a href="#" class="no-text toggle-notif"><i class="icon-info-sign"></i><span class="notif">3</span></a></li>
                 <li class="current"><a href="index.html"><i class="icon-home"></i> Accueil</a></li>
                 <li><a href="restaurant.html"><i class="icon-map-marker"></i>Les restaurants</a></li>
-                <li><a href="userpage.html"><i class="icon-user"></i>Mon profil</a></li>
+                <li><a href="mypage.html"><i class="icon-user"></i>Mon profil</a></li>
                 <li><a href="message.html" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
                 <li><a href="homepage.html" class="no-text"><i class="icon-off"></i></a></li>
             </ul>
@@ -149,32 +150,68 @@
 
     <div class="wrapper home">
 
-        <div class="col-2">
+        <div class="col-container">
+            <div class="col-2">
+                <h2>Recherche avancée</h2>
+                <form id="user-search-form" action="announcementsearch.html">
+                    <p>
+                        <label for="time-start"><strong><i class="icon-time"></i> Quand ? </strong></label>
+                        De <input type="text" id="time-start"> à <input type="text" id="time-end" >
+                        <input type="submit" class="btn" value="Trouver">
+                    </p>
+                    <p>
+                        <label for="interests"><strong><i class="icon-heart"></i> Goûts / Intérêts</strong></label>
+                        <input type="text" id="interests">
+                    </p>
+                </form>
 
-            <h2>Recherche avancée</h2>
-            <form id="user-search-form" action="announcementsearch.html">
-                <p>
-                    <label for="time-start"><strong><i class="icon-time"></i> Quand ? </strong></label>
-                    De <input type="text" id="time-start"> à <input type="text" id="time-end" >
-                    <input type="submit" class="btn" value="Trouver">
-                </p>
-                <p>
-                    <label for="interests"><strong><i class="icon-heart"></i> Goûts / Intérêts</strong></label>
-                    <input type="text" id="interests">
-                </p>
-            </form>
+            </div>
+            <div id="current-user" class="col-1">
+                <img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
+                <h3><a href="#" class="black">Hervé Tran</a></h3>
+                <span class="user-tags"><a href="#">#multimedia</a> <a href="#">#guitare</a> <a href="#">#blues</a></span>
+                <span><a href="announcementcreate.html" class="btn"><i class="icon-pencil"></i> Poster une annonce</a></span>
+            </div>
+        </div>
+        <div class="col-2">
 
             <hr>
 
             <h2>À découvrir</h2>
 
+            <div id="featured-restaurants">
+                <div class="restaurant">
+                    <img src="img/restaurants/ocinq.jpg" title="Restaurant Ocinq" alt="">
+                    <div class="restaurant-infos">
+                        <a href="#" title="Restaurant Ocinq">
+                            <h3>Restaurant Ocinq</h3>
+                            <p>Situé à quelques pas de Montparnasse, rue de la Gaîté, le restaurant Ocinq vous accueille dans un cadre exceptionnel : décoration moderne aux teintes chaleureuses, ambiance lounge, large baie vitrée, il a tout pour plaire !</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="restaurant">
+                    <img src="img/restaurants/creperie-framboise.jpg" title="Crêperie Framboise" alt="">
+                    <div class="restaurant-infos">
+                        <a href="#" title="Crêperie Framboise">
+                            <h3>Crêperie Framboise</h3>
+                            <p>La Crêperie Framboise, située dans le 8ème arrondissement de Paris, à deux pas du rond-point des Champs-Élysées, vous invite pour une pause gourmande dans un cadre élégant, moderne et très lumineux. </p>
+                        </a>
+                    </div>
+                </div>
+                <div class="restaurant">
+                    <img src="img/restaurants/vingt-vins-dart.jpg" title="Vingt vins d'art" alt="">
+                    <div class="restaurant-infos">
+                        <a href="#" title="Vingt vins d'art">
+                            <h3>Vingt vins d'art</h3>
+                            <p>Dans le Marais, entre les métros Saint-Paul et Pont Marie, le Vingt vins d'art a ouvert ses portes tout récemment. À la fois bar à (très bons) vins, restaurant et galerie d'art, le lieu propose aussi quelques concerts pour des soirées chaudement recommandées !</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <div id="current-user" class="col-1">
-            <img src="img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
-            <h3>Hervé Tran</h3>
-            <span class="user-tags"><a href="#">#multimedia</a> <a href="#">#guitare</a> <a href="#">#blues</a></span>
-            <span><a href="#" class="btn"><i class="icon-pencil"></i> Poster une annonce</a></span>
+        <div class="col-1">
 
             <hr>
 

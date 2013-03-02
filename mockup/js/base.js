@@ -11,4 +11,11 @@ $(document).ready(function(){
         $(this).children('.notif').remove();
     });
 
+    $('#featured-restaurants').after('<div id="nav">').cycle({
+        fx:     'fade',
+        speed:   1000,
+        timeout: 3000,
+        pager:  '#nav'
+    });
+
 });

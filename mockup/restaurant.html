@@ -40,7 +40,7 @@
                 <li><a href="#" class="no-text toggle-notif"><i class="icon-info-sign"></i><span class="notif">3</span></a></li>
                 <li><a href="index.html"><i class="icon-home"></i> Accueil</a></li>
                 <li class="current"><a href="restaurant.html"><i class="icon-map-marker"></i>Les restaurants</a></li>
-                <li><a href="userpage.html"><i class="icon-user"></i>Mon profil</a></li>
+                <li><a href="mypage.html"><i class="icon-user"></i>Mon profil</a></li>
                 <li><a href="message.html" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
                 <li><a href="homepage.html" class="no-text"><i class="icon-off"></i></a></li>
             </ul>
@@ -81,19 +81,54 @@
 
 <section id="container">
 
-    <div id="large_bg_img" class="clearfix">
+    <!-- start: Map -->
+    <div id="restaurant-map" style="position:relative;">
 
-        <div id="large_bg_img_overlay"></div>
-        <img src="img/bg2.jpg" id="image" class="big" alt="" />
+        <!-- starts: Google Maps -->
+        <div id="googlemaps-container-top"></div>
+        <div id="googlemaps" class="google-map google-map-full"></div>
+        <div id="googlemaps-container-bottom"></div>
+        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript">
+            $('#googlemaps').gMap({
+                maptype: 'ROADMAP',
+                scrollwheel: false,
+                zoom: 16,
+                markers: [
+                    {
+                        address: '2! rue du plateau paris', // Your Adress Here
+                        html: '',
+                        popup: false,
+                    }
 
-        <h1>Listes des restaurants</h1>
+                ],
+            });
+        </script>
+        <!-- end: Google Maps -->
 
     </div>
+    <!-- end: Map -->
 
     <div class="wrapper">
 
-        <div class="col-2">
-            <h2>Tous les résultats pour "Sandwicherie"</h2>
+        <div id="map-action-bar">
+            <div class="actions">
+                <button class="btn find-venues"><i class="icon-search"></i>Rechercher</button>
+                <button class="btn check-all"><i class="icon-check"></i>Tout cocher</button>
+                <button class="btn uncheck-all"><i class="icon-remove"></i>Tout décocher</button>
+            </div>
+            <div class="categories">
+                <label><input type="checkbox" name="4bf58dd8d48988d16a941735" checked=""> Boulangerie</label><label><input type="checkbox" name="50327c8591d4c4b30a586d5d" checked=""> Brasserie</label><label><input type="checkbox" name="4bf58dd8d48988d16c941735" checked=""> Lieu servant des hamburgers</label><label><input type="checkbox" name="4bf58dd8d48988d145941735" checked=""> Restaurant chinois</label><label><input type="checkbox" name="4bf58dd8d48988d147941735" checked=""> Café-restaurant</label><label><input type="checkbox" name="4bf58dd8d48988d16e941735" checked=""> Fast-food</label><label><input type="checkbox" name="4bf58dd8d48988d10c941735" checked=""> Restaurant français</label><label><input type="checkbox" name="4bf58dd8d48988d10e941735" checked=""> Restaurant grec</label>
+                <label><input type="checkbox" name="4bf58dd8d48988d10f941735" checked=""> Restaurant indien</label><label><input type="checkbox" name="4bf58dd8d48988d111941735" checked=""> Restaurant japonais</label><label><input type="checkbox" name="4bf58dd8d48988d113941735" checked=""> Restaurant coréen</label><label><input type="checkbox" name="4bf58dd8d48988d1ca941735" checked=""> Pizzeria</label><label><input type="checkbox" name="4bf58dd8d48988d1c5941735" checked=""> Sandwicherie</label><label><input type="checkbox" name="4bf58dd8d48988d1ce941735" checked=""> Restaurant de fruits de mer</label><label><input type="checkbox" name="4bf58dd8d48988d1c7941735" checked=""> Snack</label><label><input type="checkbox" name="4bf58dd8d48988d1cc941735" checked=""> Restaurant-grill</label>
+                <label><input type="checkbox" name="4bf58dd8d48988d1d2941735" checked=""> Bar à sushis</label><label><input type="checkbox" name="4bf58dd8d48988d1db931735" checked=""> Bar à tapas</label><label><input type="checkbox" name="4bf58dd8d48988d149941735" checked=""> Restaurant thaïlandais</label><label><input type="checkbox" name="4f04af1f2fb6e1c99f3db0bb" checked=""> Restaurant turc</label><label><input type="checkbox" name="4bf58dd8d48988d1d3941735" checked=""> Restaurant végétarien/végétalien</label>
+            </div>
+        </div>
+
+        <div class="col-3">
+
+            <hr>
+
+            <h2>Les restaurants autour de vous</h2>
             <ul id="search-result">
                 <li class="featured">
                     <img src="https://foursquare.com/img/categories_v2/food/sandwiches_bg_32.png" class="restaurant-category">
