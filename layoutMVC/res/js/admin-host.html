@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Admin</title>
+<script src="jquery-1.9.1.js"></script>
+<script src="tools.js"></script>
+<script>
+$(function(){
+	var button = $('<button/>');
+	button.text('Ajouter utilisateur');
+	var button2 = $('<button/>'); 
+	
+	button2.text('Liste Utilisateur');
+	button2.on('click', function(){
+		$.ajax({
+			 url : CONTEXT_PATH + '/user/display.ajax',
+			 dataType : "json",
+			 success : function(json) {
+				
+				 var list = $('<ul/>');
+				 list.appendTo('body');
+				 var li;
+				 $.each(json, function(idx, e) {
+					 li = $('<li/>');
+					 li.html(e.login);
+					 li.appendTo(list);
+				 });
+			 }
+		})
+	});
+	
+	button2.appendTo('body');
+	button.appendTo('body');
+	
+
+	button.on('click', function(){
+		  var builder = new Essilab.FormBuilder(), form = builder.getForm()
+		  
+		  builder.addInput('text',{ name : 'login', label : 'Login'}, 
+				                  { click : function(){console.log('click')}
+		  					})
+		         .addInput('text',{ name : 'password', label : 'Mot de passe'}, { focus : function(){ console.log('focus')}})
+		         .addInput('select', { label : 'Genre', children : [['fieldLabel','fieldValue'], ['fieldLabel2','fieldValue2']]})
+		         .addInput('radio', { label : 'Accepter les conditions'})
+		         .addButton({label : 'Envoyer'}, {
+		        	 click : function() {
+		        	// TODO Check validaty.
+		        	// serialise data to json string.
+		        	var list = form.serializeArray(), json = {};
+		        	$.each(list, function(idx, elem) { json[elem.name] = elem.value});
+		        	json = JSON.stringify(json);
+		        	console.log(json);
+		        	$.ajax({
+		        		url : CONTEXT_PATH + '/user/insert.ajax',
+		        		data : {
+		        			json : json
+		        		},
+		        		success : function(response){
+		        			console.log('success');
+		        		}
+		        	})
+		        	// Send serialized data to server.
+					return false;		        	 
+		         }});
+		
+		  form.appendTo('body');
+		})
+	
+
+
+});
+</script>
+</head>
+<body>
+
+</body>
+</html>
