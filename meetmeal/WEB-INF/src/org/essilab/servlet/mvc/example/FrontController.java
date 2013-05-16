@@ -18,7 +18,7 @@ import org.essilab.module.user.actions.UserListDisplay;
 
 public class FrontController extends HttpServlet {
 
-	Map<String, IAction> actions = new HashMap<>();
+	Map<String, IAction> actions = new HashMap<String, IAction>();
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);

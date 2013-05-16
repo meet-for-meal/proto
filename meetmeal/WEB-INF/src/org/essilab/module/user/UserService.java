@@ -8,7 +8,7 @@ import org.essilab.module.user.model.UserDao;
 
 public class UserService {
 
-	UserDao userDao = UserDao.getInstance();
+//	UserDao userDao = UserDao.getInstance();
 	private static UserService instance = null;
 	private UserService() { }
 	public static UserService getInstance(){
@@ -19,7 +19,7 @@ public class UserService {
 	
 	public List<User> userList() {
 		try {
-			return userDao.findAll();
+			return UserDao.getAll();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

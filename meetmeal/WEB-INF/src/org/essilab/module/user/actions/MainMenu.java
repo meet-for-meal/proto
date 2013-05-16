@@ -29,7 +29,7 @@ public class MainMenu implements IAction {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		ObjectMapper mapper = new ObjectMapper();
-		List<Map<String, Object>> list = new ArrayList<>();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		/*addNode(list, "title", "Utilisateurs");
 		addNode(list, "title", "Produits");
 		addNode(list, "user", new User("Michael", "THOMAS"));

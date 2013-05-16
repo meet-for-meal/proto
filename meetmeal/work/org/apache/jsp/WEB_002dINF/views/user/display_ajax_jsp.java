@@ -82,9 +82,9 @@ for (User user : users) {
 	
       out.write("\n");
       out.write("{ \"user\" : \"");
-      out.print( user.email );
+      out.print( user.getEmail() );
       out.write("\", \"password\" : \"");
- out.print(user.password); 
+      out.print(user.getPassword()); 
       out.write('"');
       out.write('}');
       out.write('\n');
