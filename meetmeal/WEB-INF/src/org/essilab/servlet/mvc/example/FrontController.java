@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.essilab.module.error.actions.ErrorAction;
 import org.essilab.module.user.actions.MainMenu;
@@ -36,10 +37,17 @@ public class FrontController extends HttpServlet {
 				.getRequestURI()
 				.substring(request.getContextPath().length()+1);
 
-
-		if (url.trim().isEmpty())
-			url = "index/index";
-
+		HttpSession session = request.getSession();
+		if (url.trim().isEmpty()){
+			if(session.getAttribute("sessionUser") != null){
+				response.sendRedirect( request.getContextPath() + "/index" );
+				return;
+			}else{
+				response.sendRedirect( request.getContextPath() + "/homepage" );
+				return;
+			}
+			
+		}
 
 		request.setAttribute("url", url);
 		

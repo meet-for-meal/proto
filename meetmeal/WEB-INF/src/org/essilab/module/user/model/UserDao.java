@@ -8,7 +8,21 @@ import java.util.List;
 import org.essilab.module.connect.Connect;
 
 public class UserDao {
-
+	
+	// Search for existing user in DB
+	public static User authenticateUser(String mail, String password) throws SQLException {
+		String request = "SELECT * FROM User U "+
+			"WHERE '"+mail+"' LIKE CONCAT('%',U.email,'%') "+
+			"AND '"+password+"' LIKE CONCAT('%',U.password,'%')";
+		
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ResultSet result = ps.executeQuery();
+		Connect.getConnection().close();
+		if(result != null)
+			return createUser(result);
+		else
+			return null;
+	}
 	//One
 	public static User getUser(int userid) throws SQLException {
 		String request = "SELECT * FROM User WHERE id = "+userid;
@@ -19,6 +33,16 @@ public class UserDao {
 		
 		return createUser(result);
 	}
+	
+	//Insert
+	public static void insert(User user) throws SQLException{
+
+		String request = "INSERT INTO user VALUES (NULL ,  '"+ user.getFirstname() +"',  '"+ user.getLastname() +"',  '"+ user.getEmail() +"',  '"+ user.getPassword() +"', NULL , NULL , NULL , NULL)";
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		Connect.getConnection().close();
+		
+	}
 
 	//All
 	public static List<User> getAll() throws SQLException {
@@ -26,7 +50,7 @@ public class UserDao {
 		
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
-		Connect.getConnection().close();;
+		Connect.getConnection().close();
 		
 		return createUsers(result);
 	}
@@ -44,6 +68,9 @@ public class UserDao {
 		
 		return createUsers(result);
 	}
+	
+	
+		
 	
 
 	//Find friends of an User
@@ -145,19 +172,24 @@ public class UserDao {
 	//Create User
 	private static User createUser(ResultSet result) {
 		User user = new User();
+
 		try {
-			result.next(); 
-			if (result != null) {
-				user = new User(
-					result.getInt("id"),
-					result.getString("firstname"), 
-					result.getString("lastname"),
-					result.getString("email"),
-					result.getString("password"),
-					result.getDate("lastPosition"),
-					result.getDouble("lastLatitude"),
-					result.getDouble("lastLongitude")
-				);	
+			if(result.next()){ 
+				if (result != null) {
+					user = new User(
+						result.getInt("id"),
+						result.getString("firstname"), 
+						result.getString("lastname"),
+						result.getString("email"),
+						result.getString("password"),
+						result.getDate("lastPosition"),
+						result.getDouble("lastLatitude"),
+						result.getDouble("lastLongitude")
+					);	
+				}
+			}
+			else{
+				return null;
 			}
 		} catch (SQLException e) { e.printStackTrace();	}
 		return user;

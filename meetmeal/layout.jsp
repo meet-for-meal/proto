@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -10,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
     <% 
-	 	if(request.getAttribute("url").equals("user/homepage") || request.getAttribute("url").equals("user/register")){
+	 	if(request.getAttribute("url").equals("homepage") || request.getAttribute("url").equals("register")){
 	 		out.println("<link href=\"" + request.getContextPath() +"/res/styles/default/homepage.css\" rel=\"stylesheet\">");
 	 	}
 	 	else{
@@ -32,7 +33,7 @@
 
 <% 
  out.flush();
- request.getRequestDispatcher("/WEB-INF/views/"+request.getAttribute("url")+".jsp")
+ request.getRequestDispatcher("/WEB-INF/views/front/"+request.getAttribute("url")+".jsp")
          .include(request, response);
 %>
 

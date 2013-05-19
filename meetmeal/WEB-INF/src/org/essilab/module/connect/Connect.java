@@ -9,8 +9,8 @@ public class Connect  {
 	}
 	
 	public static Connection getConnection(){
-		String base = "MEET_FOR_MEAL";
-		String socket = "8889";			//or try 3306
+		String base = "meet_for_meal";
+		String socket = "3306";			//or try 3306
 		String url = "jdbc:mysql://localhost:"+socket+"/" + base;
 		String user = "root";
 		String passwd = "root";
@@ -23,7 +23,7 @@ public class Connect  {
 		catch (SQLException e) { e.printStackTrace(); }
 		catch (IllegalAccessException e) { e.printStackTrace(); }
 		catch (Exception e) { e.printStackTrace(); } 
-	
+		
 		return null;
 	}
 }

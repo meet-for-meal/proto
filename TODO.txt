@@ -1,0 +1,4 @@
+- Dans la bdd : passer le sex a null
+
+
+- check si l'email est déjà présent dans la db
