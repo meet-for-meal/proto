@@ -23,6 +23,16 @@ public class UserDao {
 		else
 			return null;
 	}
+	
+	//setFirstVisit
+	 public static void setFirstVisit(int id) throws SQLException{
+		String request = "UPDATE user SET firstVisit=0 WHERE id= "+ id +"";
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		Connect.getConnection().close();
+	 }
+	
+	
 	//One
 	public static User getUser(int userid) throws SQLException {
 		String request = "SELECT * FROM user WHERE id = "+userid;
