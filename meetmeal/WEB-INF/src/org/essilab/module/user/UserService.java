@@ -42,4 +42,12 @@ public class UserService {
 		}
 		return null;
 	}
+	
+	public void setFirstVisit(User u ){
+		try {
+			 UserDao.setFirstVisit(u.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

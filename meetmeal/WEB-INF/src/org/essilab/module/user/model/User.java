@@ -15,7 +15,8 @@ public class User {
 	private List<User> friends;
 	private List<Interest> interests;
 	private List<Category> tastes;
-	
+	private int firstVisit;
+	private int isAdmin;
 	private Date lastPosition;
 	private double lastLat, lastLong;
 	
@@ -47,12 +48,14 @@ public class User {
 		this.interests = new ArrayList<Interest>();
 		this.tastes = new ArrayList<Category>();
 	}
-	public User(int _id, String _ln, String _fn, String _e, String _p, Date _lp, double _llat, double _llng) {
+	public User(int _id, String _ln, String _fn, String _e,int _a, int _fv, String _p, Date _lp, double _llat, double _llng) {
 		this.id = _id;
 		this.lastname = _ln;
 		this.firstname = _fn;
 		this.email = _e;
 		this.password = _p;
+		this.firstVisit = _fv;
+		this.isAdmin = _a;
 		this.lastPosition = _lp;
 		this.lastLat = _llat;
 		this.lastLong = _llng;
@@ -76,6 +79,8 @@ public class User {
 	public int getId() 						{ return this.id; }
 	public String getLastname() 			{ return this.lastname; }
 	public String getFirstname()			{ return this.firstname; }
+	public int getIsAdmin()					{ return this.isAdmin; }
+	public int getFirstVisit()				{ return this.firstVisit; }
 	public String getEmail() 				{ return this.email; }
 	public String getPassword()				{ return this.password; }
 	public List<User> getFriends() 			{ return this.friends; }
@@ -86,6 +91,8 @@ public class User {
 	public void setId(int _id) 				{ this.id = _id; }
 	public void setLastname(String _l) 		{ this.lastname = _l; }
 	public void setFirstname(String _f)		{ this.firstname = _f; }
+	public void setIsAdmin(int _a)			{ this.isAdmin = _a; }
+	public void setFirstVisit(int _f)		{ this.firstVisit = _f; }
 	public void setEmail(String _e) 		{ this.email = _e; }
 	public void setPassword(String _p)		{ this.password = _p; }
 	public void setFriends(List<User> _f) 	{ this.friends = _f; }

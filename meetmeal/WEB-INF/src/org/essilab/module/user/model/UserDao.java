@@ -23,6 +23,10 @@ public class UserDao {
 		else
 			return null;
 	}
+	
+	
+	
+	
 	//One
 	public static User getUser(int userid) throws SQLException {
 		String request = "SELECT * FROM User WHERE id = "+userid;
@@ -37,7 +41,16 @@ public class UserDao {
 	//Insert
 	public static void insert(User user) throws SQLException{
 
-		String request = "INSERT INTO user VALUES (NULL ,  '"+ user.getFirstname() +"',  '"+ user.getLastname() +"',  '"+ user.getEmail() +"',  '"+ user.getPassword() +"', NULL , NULL , NULL , NULL)";
+		String request = "INSERT INTO user VALUES (NULL,  '"+ user.getFirstname() +"',  '"+ user.getLastname() +"',  '"+ user.getEmail() +"',  '"+ user.getPassword() +"', NULL, 1, 0, NULL, NULL, NULL)";
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		Connect.getConnection().close();
+		
+	}
+	
+	//setFirstVisit
+	public static void setFirstVisit(int id) throws SQLException{
+		String request = "UPDATE user SET firstVisit=0 WHERE id= "+ id +"";
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ps.executeUpdate();
 		Connect.getConnection().close();
@@ -181,6 +194,8 @@ public class UserDao {
 						result.getString("firstname"), 
 						result.getString("lastname"),
 						result.getString("email"),
+						result.getInt("isAdmin"),
+						result.getInt("firstVisit"),
 						result.getString("password"),
 						result.getDate("lastPosition"),
 						result.getDouble("lastLatitude"),
@@ -205,6 +220,8 @@ public class UserDao {
 					result.getString("firstname"), 
 					result.getString("lastname"),
 					result.getString("email"),
+					result.getInt("isAdmin"),
+					result.getInt("firstVisit"),
 					result.getString("password"),
 					result.getDate("lastPosition"),
 					result.getDouble("lastLatitude"),
