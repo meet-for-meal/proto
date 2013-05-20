@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
     <% 
-	 	if(request.getAttribute("url").equals("homepage") || request.getAttribute("url").equals("register")){
+	 	if(request.getAttribute("url").equals("homepage") || request.getAttribute("url").equals("register") || request.getAttribute("url").equals("connect-admin")){
 	 		out.println("<link href=\"" + request.getContextPath() +"/res/styles/default/homepage.css\" rel=\"stylesheet\">");
 	 	}
 	 	else{
