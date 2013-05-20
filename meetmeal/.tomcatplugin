@@ -7,5 +7,5 @@
     <updateXml>true</updateXml>
     <warLocation></warLocation>
     <extraInfo></extraInfo>
-    <webPath>/LayoutingMVC</webPath>
+    <webPath>/meetformeal</webPath>
 </tomcatProjectProperties>
