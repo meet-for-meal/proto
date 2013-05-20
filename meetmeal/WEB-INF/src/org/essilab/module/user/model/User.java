@@ -23,7 +23,7 @@ public class User {
 	
 	//Constructor
 	public User() {
-		this.lastPosition = new Date();
+//		this.lastPosition = new Date();
 		this.friends = new ArrayList<User>();
 		this.interests = new ArrayList<Interest>();
 		this.tastes = new ArrayList<Category>();
