@@ -9,8 +9,8 @@ public class Connect  {
 	}
 	
 	public static Connection getConnection(){
-		String base = "meet_for_meal";
-		String socket = "3306";			//or try 3306
+		String base = "MEET_FOR_MEAL";
+		String socket = "3306";			//8889 or try 3306
 		String url = "jdbc:mysql://localhost:"+socket+"/" + base;
 		String user = "root";
 		String passwd = "root";

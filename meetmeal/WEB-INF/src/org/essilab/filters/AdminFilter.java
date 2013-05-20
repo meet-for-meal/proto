@@ -33,14 +33,18 @@ public class AdminFilter  implements Filter {
          * If sessionUser is null, then there is no valid session
          */
         User user = (User) session.getAttribute("sessionUser");
-        System.out.println(user.getId());
-        if ( user.getIsAdmin() != 1 ) {
-            /* Redirect to login page */
-            session.invalidate();
-            response.sendRedirect( request.getContextPath() +  CONNECTION);
-        } else {
-            /* display back-office */
-            chain.doFilter( request, response );
+        if(user != null){
+	        if ( user.getIsAdmin() != 1 ) {
+	            /* Redirect to login page */
+	            session.invalidate();
+	            response.sendRedirect( request.getContextPath() +  CONNECTION);
+	        } else {
+	            /* display back-office */
+	            chain.doFilter( request, response );
+	        }
+        }
+        else{
+        	response.sendRedirect( request.getContextPath() +  CONNECTION);
         }
     }
  

@@ -17,7 +17,8 @@ public class User {
 	private List<User> friends;
 	private List<Interest> interests;
 	private List<Category> tastes;
-	
+	private int firstVisit;
+	private int isAdmin;
 	private Date lastPosition;
 	private double lastLat, lastLong;
 	
@@ -43,6 +44,7 @@ public class User {
 		this.age = _a;
 		this.email = _e;
 	}
+<<<<<<< HEAD
 	public User(int _id, String _ln, String _fn, int _a, String _e, int _g, boolean _fv, boolean _ia) {
 		this(_id,_ln,_fn, _a, _e);
 		this.gender = _g;
@@ -59,6 +61,16 @@ public class User {
 	}
 	public User(int _id, String _ln, String _fn, int _a, String _e, String _p, int _g, boolean _fv, boolean _ia, Date _lp, double _llat, double _llng) {
 		this(_id,_ln,_fn, _a,_e,_p,_g,_fv,_ia);
+=======
+	public User(int _id, String _ln, String _fn, String _e,int _a, int _fv, String _p, Date _lp, double _llat, double _llng) {
+		this.id = _id;
+		this.lastname = _ln;
+		this.firstname = _fn;
+		this.email = _e;
+		this.password = _p;
+		this.firstVisit = _fv;
+		this.isAdmin = _a;
+>>>>>>> 644ac3549244b15a5b8325ab5be0704458248a0a
 		this.lastPosition = _lp;
 		this.lastLat = _llat;
 		this.lastLong = _llng;
@@ -74,7 +86,12 @@ public class User {
 	public int getId() 						{ return this.id; }
 	public String getLastname() 			{ return this.lastname; }
 	public String getFirstname()			{ return this.firstname; }
+<<<<<<< HEAD
 	public int getAge()						{ return this.age; }
+=======
+	public int getIsAdmin()					{ return this.isAdmin; }
+	public int getFirstVisit()				{ return this.firstVisit; }
+>>>>>>> 644ac3549244b15a5b8325ab5be0704458248a0a
 	public String getEmail() 				{ return this.email; }
 	public String getPassword()				{ return this.password; }
 	public int getGender()					{ return this.gender; }
@@ -88,7 +105,12 @@ public class User {
 	public void setId(int _id) 				{ this.id = _id; }
 	public void setLastname(String _l) 		{ this.lastname = _l; }
 	public void setFirstname(String _f)		{ this.firstname = _f; }
+<<<<<<< HEAD
 	public void setAge(int _a)				{ this.age = _a; }
+=======
+	public void setIsAdmin(int _a)			{ this.isAdmin = _a; }
+	public void setFirstVisit(int _f)		{ this.firstVisit = _f; }
+>>>>>>> 644ac3549244b15a5b8325ab5be0704458248a0a
 	public void setEmail(String _e) 		{ this.email = _e; }
 	public void setPassword(String _p)		{ this.password = _p; }
 	public void setGender(int _g)			{ this.gender = _g; }
