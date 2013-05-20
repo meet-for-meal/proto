@@ -36,12 +36,20 @@ public class UserDao {
 	
 	//Insert
 	public static void insert(User user) throws SQLException{
-
-		String request = "INSERT INTO user VALUES (NULL ,  '"+ user.getFirstname() +"',  '"+ user.getLastname() +"',  '"+ user.getEmail() +"',  '"+ user.getPassword() +"', NULL , NULL , NULL , NULL)";
+		String request = "INSERT INTO User VALUES (NULL, " +
+				" '"+ user.getFirstname() +"'," +
+				" '"+ user.getLastname() +"'," +
+				" "+ user.getAge() +"," +
+				" '"+ user.getEmail() +"'," +
+				" '"+ user.getPassword() +"'," +
+				" "+ user.getGender() +"," +
+				" 1," +
+				" "+ (user.getIsAdmin() ? 1 : 0) +"," +
+				" NULL, NULL, NULL)";
+		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
+		ps.execute();
 		Connect.getConnection().close();
-		
 	}
 
 	//All
@@ -68,10 +76,6 @@ public class UserDao {
 		
 		return createUsers(result);
 	}
-	
-	
-		
-	
 
 	//Find friends of an User
 	public static List<User> findFriends(int userId) throws SQLException {
@@ -164,7 +168,7 @@ public class UserDao {
 		List<User> users = new ArrayList<User>();
 		try {
 			while (result.next()) 
-				users.add(new User(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email")));	
+				users.add(new User(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getInt("age"), result.getString("email"), result.getInt("gender"), result.getBoolean("firstVisit"), result.getBoolean("isAdmin")));	
 		} catch (SQLException e) { e.printStackTrace();	}
 		return users;
 	}
@@ -180,8 +184,12 @@ public class UserDao {
 						result.getInt("id"),
 						result.getString("firstname"), 
 						result.getString("lastname"),
+						result.getInt("age"),
 						result.getString("email"),
 						result.getString("password"),
+						result.getInt("gender"),
+						result.getBoolean("firstVisit"),
+						result.getBoolean("isAdmin"),
 						result.getDate("lastPosition"),
 						result.getDouble("lastLatitude"),
 						result.getDouble("lastLongitude")
@@ -204,8 +212,12 @@ public class UserDao {
 					result.getInt("id"),
 					result.getString("firstname"), 
 					result.getString("lastname"),
+					result.getInt("age"),
 					result.getString("email"),
 					result.getString("password"),
+					result.getInt("gender"),
+					result.getBoolean("firstVisit"),
+					result.getBoolean("isAdmin"),
 					result.getDate("lastPosition"),
 					result.getDouble("lastLatitude"),
 					result.getDouble("lastLongitude")
@@ -221,6 +233,7 @@ public class UserDao {
 			User u = getUser(1);
 			System.out.println(u.getId()+" "+u.getLastname()+" "+u.getFirstname()+"\n");
 			
+			//All
 			List<User> items = getAll();
 			System.out.println("Nb Users = "+ items.size());
 			for (User v : items) 
@@ -278,6 +291,10 @@ public class UserDao {
 			for (User v : items) 
 				System.out.println(v.getId()+" "+v.getLastname()+" "+v.getFirstname());
 			System.out.println("");
+			
+			//Insert
+			User u1 = new User(0, "Truc", "Machin", 30, "test@msn.com", "haha", 1, true, false);
+			insert(u1);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
