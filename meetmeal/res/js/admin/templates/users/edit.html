@@ -1,0 +1,38 @@
+<div id="main">
+  <h1>Éditer</h1>
+  <div id="alert-success" style="display: none" class="alert alert-success">
+    <strong>Bravo !</strong> La ressource a bien été mise à jour.
+  </div>
+  <div id="alert-error" style="display: none" class="alert alert-error">
+    <strong>Oups !</strong> Une erreur s'est produite.
+  </div>
+  <div id="user"></div>
+</div>
+
+<script id="edit-template" type="text/x-template">
+  <form id="user-form" class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label" for="username">Username</label>
+      <div class="controls">
+        <input type="text" id="username" value="<%= user.username %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="firstname">Prénom</label>
+      <div class="controls">
+        <input type="text" id="firstname" value="<%= user.firstname %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="lastname">Nom</label>
+      <div class="controls">
+        <input type="text" id="lastname" value="<%= user.lastname %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <button type="submit" class="btn">Sauvegarder</button>
+      </div>
+    </div>
+  </form>
+</script>

@@ -11,7 +11,7 @@ public class UserDao {
 	
 	// Search for existing user in DB
 	public static User authenticateUser(String mail, String password) throws SQLException {
-		String request = "SELECT * FROM User U "+
+		String request = "SELECT * FROM user U "+
 			"WHERE '"+mail+"' LIKE CONCAT('%',U.email,'%') "+
 			"AND '"+password+"' LIKE CONCAT('%',U.password,'%')";
 		
@@ -29,7 +29,7 @@ public class UserDao {
 	
 	//One
 	public static User getUser(int userid) throws SQLException {
-		String request = "SELECT * FROM User WHERE id = "+userid;
+		String request = "SELECT * FROM user WHERE id = "+userid;
 		
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
@@ -245,7 +245,7 @@ public class UserDao {
 			System.out.println("");
 			
 			//Interests
-			String [] strings = new String[] {"Animaux", "Jeux vidŽo", "Informatique"};
+			String [] strings = new String[] {"Animaux", "Jeux vidï¿½o", "Informatique"};
 			List<String> params = new ArrayList<String>();
 			for(String s : strings)
 				params.add(s);

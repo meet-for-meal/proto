@@ -1,0 +1,25 @@
+<div id="main">
+  <div id="venue">
+    <img src="/img/ajax-loader.gif" alt="Loading..." /> Loading...
+  </div>
+  <div class="google-map" id="map"></div>
+</div>
+
+<script id="show-template" type="text/x-template">
+  <h1>Restaurant : <%= f.name %></h1>
+  <p><strong>ID MeetForMeal :</strong> <%= m.id %></p>
+  <p><strong>ID Foursquare :</strong> <a href="<%= f.canonicalUrl %>"><%= f.id %></a></p>
+  <p><strong>Description :</strong> <%= f.description %></p>
+  <p><strong>Adresse :</strong> <%= f.location.address %></p>
+  <p><strong>Pays :</strong> <%= f.location.country %></p>
+  <p><strong>Catégories :</strong></p>
+  <ul>
+  <% _.each(f.categories, function (category) { %>
+    <li><%= category.name %></li>
+  <% }) %>
+  </ul>
+  <p><strong>Site Web :</strong> <a href="<%= f.url %>"><%= f.url %></a></p>
+  <a href="/pages/venues/edit.html?venue=<%= m.id %>">
+    <button class="btn btn-primary">Modifier le restaurant</button>
+  </a>
+</script>

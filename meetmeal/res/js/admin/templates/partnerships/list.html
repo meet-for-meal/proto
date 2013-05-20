@@ -1,0 +1,35 @@
+<div id="main">
+  <h1>Liste des partenariats</h1>
+  <div id="partnerships-list"></div>
+</div>
+
+<script id="list-template" type="text/x-template">
+  <table class="table table-striped">
+    <tr>
+      <th>#</th>
+      <th>Label</th>
+      <th>Actions</th>
+    </tr>
+    <% _.each(partnerships, function (partnership) { %>
+    <tr class="partnership-<%= partnership.id %>">
+      <td><%= partnership.id %></td>
+      <td><%= partnership.label %></td>
+      <td>
+        <div class="btn-group">
+          <button data-toggle="dropdown" class="btn dropdown-toggle">
+            Action <i class="caret"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#/partnerships/<%= partnership.id %>/edit">Éditer</a>
+            </li>
+            <li>
+              <a class="delete" href="#/partnerships/<%= partnership.id %>">Supprimer</a>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% }); %>
+  </table>
+</script>
