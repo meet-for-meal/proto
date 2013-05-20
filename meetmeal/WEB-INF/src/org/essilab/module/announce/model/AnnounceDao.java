@@ -13,7 +13,7 @@ public class AnnounceDao {
 	//One
 	public static Announce getAnnounce(int announceid) throws SQLException {
 		String request = "SELECT A.id, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message, " +
-			"U.firstname, U.lastname, U.email "+
+			"U.firstname, U.lastname, U.email, U.gender, U.age "+
 			"FROM Announce A " +
 			"INNER JOIN User U ON U.id = A.creatorId " +
 			"WHERE A.id = "+announceid;
@@ -28,7 +28,7 @@ public class AnnounceDao {
 	//All
 	public static List<Announce> getAll() throws SQLException {
 		String request = "SELECT A.id, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message, " +
-			"U.firstname, U.lastname, U.email "+
+			"U.firstname, U.lastname, U.email, U.gender, U.age "+
 			"FROM Announce A " +
 			"INNER JOIN User U ON U.id = A.creatorId";
 		
@@ -43,11 +43,12 @@ public class AnnounceDao {
 	//Announce same near Users
 	public static List<Announce> findAnnouncesBySameNearUsers(List<String> interests) throws SQLException {
 		String request = "SELECT A.id, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message, " +
-				"U.firstname, U.lastname, U.email "+
+				"U.firstname, U.lastname, U.email, U.gender, U.age "+
 				"FROM Announce A " +
 				"INNER JOIN User U ON U.id = A.creatorId " +
 				"INNER JOIN Has_Interest HI ON U.id = HI.userId " +
 				"INNER JOIN Interest I ON I.id = HI.interestId ";
+				
 		if (interests != null) {
 			if (interests.size() > 0)
 				request += "WHERE I.tag = '"+interests.get(0)+"' ";
@@ -56,6 +57,7 @@ public class AnnounceDao {
 					request += "OR I.tag =  '"+interests.get(0)+"' ";
 			}
 		}
+		request += "GROUP BY A.id";
 		
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
@@ -79,7 +81,7 @@ public class AnnounceDao {
 						result.getDouble("latitude"),
 						result.getDouble("longitude"),
 						result.getString("message") );
-				announce.setCreator(new User(result.getInt("id"), result.getString("firstname"), result.getString("lastname"),	result.getString("email")));
+				announce.setCreator(new User(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getInt("age"), result.getString("email"), result.getInt("gender")));
 			}
 		} catch (SQLException e) { e.printStackTrace();	}
 		return announce;
@@ -98,7 +100,7 @@ public class AnnounceDao {
 						result.getDouble("latitude"),
 						result.getDouble("longitude"),
 						result.getString("message") );
-				an.setCreator(new User(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email")));
+				an.setCreator(new User(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getInt("age"), result.getString("email"), result.getInt("gender")));
 				announces.add(an);	
 			}
 		} catch (SQLException e) { e.printStackTrace();	}
@@ -110,19 +112,24 @@ public class AnnounceDao {
 	public static void main(String[] args)  {
 		try {
 			//One
+			System.out.println("One");
 			Announce item = getAnnounce(1);
 			System.out.println(item.getCreatedDate()+" "+item.getCreator().getFirstname()+" "+item.getMessage()+" "+item.getDisponibilityDate()+"\n");
 			
 			//All
+			System.out.println("All");
 			List<Announce> items = getAll();
 			for (Announce i : items) 
 				System.out.println(i.getCreatedDate()+" "+i.getCreator().getFirstname()+" "+i.getMessage()+" "+i.getDisponibilityDate());
 			System.out.println(items.size()+"\n");
 			
 			//Announce same near Users
-			items = findAnnouncesBySameNearUsers(null);
+			System.out.println("Announce same near Users");
+			List<String> tags = new ArrayList<String>();
+			tags.add("Informatique");
+			items = findAnnouncesBySameNearUsers(tags);
 			for (Announce i : items) 
-				System.out.println(i.getCreatedDate()+" "+i.getCreator().getFirstname()+" "+i.getMessage()+" "+i.getDisponibilityDate());
+				System.out.println(i.getId()+" "+i.getCreatedDate()+" "+i.getCreator().getFirstname()+" "+i.getMessage()+" "+i.getDisponibilityDate());
 			System.out.println(items.size()+"\n");
 			
 			
