@@ -1,0 +1,35 @@
+<div id="main">
+  <h1>Liste des utilisateurs</h1>
+  <div id="users-list"></div>
+</div>
+
+<script id="list-template" type="text/x-template">
+  <table class="table table-striped">
+    <tr>
+      <th>#</th>
+      <th>Username</th>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Actions</th>
+    </tr>
+    <% _.each(users, function (user) { %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.username %></td>
+      <td><%= user.firstname %></td>
+      <td><%= user.lastname %></td>
+      <td>
+        <div class="btn-group">
+          <button data-toggle="dropdown" class="btn dropdown-toggle">
+            Action <i class="caret"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="/pages/users/edit.html?user=<%= user.id %>">Éditer</a></li>
+            <li><a class="delete" href="/pages/users/delete.html?user=<%= user.id %>">Supprimer</a></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% }); %>
+  </table>
+</script>

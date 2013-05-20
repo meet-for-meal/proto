@@ -11,7 +11,7 @@ public class UserDao {
 	
 	// Search for existing user in DB
 	public static User authenticateUser(String mail, String password) throws SQLException {
-		String request = "SELECT * FROM User U "+
+		String request = "SELECT * FROM user U "+
 			"WHERE '"+mail+"' LIKE CONCAT('%',U.email,'%') "+
 			"AND '"+password+"' LIKE CONCAT('%',U.password,'%')";
 		
@@ -24,6 +24,8 @@ public class UserDao {
 			return null;
 	}
 	
+<<<<<<< HEAD
+=======
 	//setFirstVisit
 	 public static void setFirstVisit(int id) throws SQLException{
 		String request = "UPDATE user SET firstVisit=0 WHERE id= "+ id +"";
@@ -33,9 +35,10 @@ public class UserDao {
 	 }
 	
 	
+>>>>>>> 5df772ab23412ad319b21ce7312ddeb1b3952221
 	//One
 	public static User getUser(int userid) throws SQLException {
-		String request = "SELECT * FROM User WHERE id = "+userid;
+		String request = "SELECT * FROM user WHERE id = "+userid;
 		
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
@@ -294,7 +297,7 @@ public class UserDao {
 			System.out.println("");
 			
 			//Interests
-			String [] strings = new String[] {"Animaux", "Jeux vid√©o", "Informatique"};
+			String [] strings = new String[] {"Animaux", "Jeux vidÔøΩo", "Informatique"};
 			List<String> params = new ArrayList<String>();
 			for(String s : strings)
 				params.add(s);
@@ -353,7 +356,7 @@ public class UserDao {
 //			u1.setId(getIdByEmail(u1.getEmail()));
 //			u1.setAge(21);
 //			u1.setEmail("romain@mail.com");
-//			u1.setPassword("h√©h√©");
+//			u1.setPassword("héhé");
 //			u1.setGender(1);
 //			u1.setIsAdmin(true);
 //			u1.setFirstVisit(false);

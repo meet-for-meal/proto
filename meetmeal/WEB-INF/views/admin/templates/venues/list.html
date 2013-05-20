@@ -1,0 +1,34 @@
+<div id="main">
+  <h1>Liste des restaurants partenaires</h1>
+  <div id="venues-list"></div>
+</div>
+
+<script id="list-template" type="text/x-template">
+  <table class="table table-striped">
+    <tr>
+      <th>#</th>
+      <th>Nom</th>
+      <th>Partenariat</th>
+      <th>Actions</th>
+    </tr>
+    <% _.each(venues, function (venue) { %>
+    <tr class="venue-<%= venue.id %>">
+      <td><%= venue.id %></td>
+      <td class="name"><img src="/img/ajax-loader.gif" alt="loading" /></td>
+      <td><%= venue.partnership %></td>
+      <td>
+        <div class="btn-group">
+          <button data-toggle="dropdown" class="btn dropdown-toggle">
+            Action <i class="caret"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="/pages/venues/show.html?venue=<%= venue.id %>">Afficher</a></li>
+            <li><a href="/pages/venues/edit.html?venue=<%= venue.id %>">Éditer</a></li>
+            <li><a class="delete" href="/pages/venues/delete.html?venue=<%= venue.id %>">Supprimer</a></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% }); %>
+  </table>
+</script>
