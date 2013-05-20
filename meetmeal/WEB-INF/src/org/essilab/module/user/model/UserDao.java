@@ -23,6 +23,7 @@ public class UserDao {
 		else
 			return null;
 	}
+	
 	//One
 	public static User getUser(int userid) throws SQLException {
 		String request = "SELECT * FROM User WHERE id = "+userid;
@@ -48,7 +49,37 @@ public class UserDao {
 				" NULL, NULL, NULL)";
 		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.execute();
+		ps.executeUpdate();
+		Connect.getConnection().close();
+	}
+	
+	//Update
+	public static void update(User user) throws SQLException{
+		String request = "UPDATE User SET" +
+				" firstname='"+ user.getFirstname() +"'," +
+				" lastname='"+ user.getLastname() +"'," +
+				" age="+ user.getAge() +"," +
+				" email='"+ user.getEmail() +"'," +
+				" password='"+ user.getPassword() +"'," +
+				" gender="+ user.getGender() +"," +
+				" firstVisit="+ user.getFirstVisit() +"," +
+				" isAdmin="+ (user.getIsAdmin() ? 1 : 0) +"," +
+				" lastPosition="+ user.getLastPosition() +"," +
+				" lastLatitude="+ user.getLastLat() +"," +
+				" lastLongitude="+ user.getLastLong() +
+				" WHERE id="+ user.getId();
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		Connect.getConnection().close();
+	}
+	
+	//Delete
+	public static void delete(User user) throws SQLException{
+		String request = "DELETE User WHERE id="+ user.getId();
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
 		Connect.getConnection().close();
 	}
 
@@ -61,6 +92,17 @@ public class UserDao {
 		Connect.getConnection().close();
 		
 		return createUsers(result);
+	}
+	
+	//Get UserId by email
+	public static int getIdByEmail(String email) throws SQLException {
+		String request = "SELECT id FROM User WHERE email = "+email;
+		
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ResultSet result = ps.executeQuery();
+		Connect.getConnection().close();
+		
+		return result.getInt("id");
 	}
 	
 	//Find Users by name
@@ -227,6 +269,8 @@ public class UserDao {
 		return users;
 	}
 	
+	
+	//MAIN
 	public static void main(String[] args)  {
 		try {
 			//One
@@ -293,8 +337,21 @@ public class UserDao {
 			System.out.println("");
 			
 			//Insert
-			User u1 = new User(0, "Truc", "Machin", 30, "test@msn.com", "haha", 1, true, false);
+			User u1 = new User(0, "Truc", "Machin", 30, "test@msn.com", "haha", 0, true, false);
 			insert(u1);
+			
+			//Update
+//			u1.setId(getIdByEmail(u1.getEmail()));
+//			u1.setAge(21);
+//			u1.setEmail("romain@mail.com");
+//			u1.setPassword("héhé");
+//			u1.setGender(1);
+//			u1.setIsAdmin(true);
+//			u1.setFirstVisit(false);
+//			
+//			//Delete 
+//			delete(u1);
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
