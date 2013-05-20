@@ -65,7 +65,7 @@ public final class message_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("    <div class=\"wrapper\">\r\n");
       out.write("\r\n");
-      out.write("        <a href=\"index\" id=\"logo\"><img src=\"/meetmeal/res/styles/default/img/logo-mini.png\" alt=\"\"></a>\r\n");
+      out.write("        <a href=\"index\" id=\"logo\"><img src=\"/meetformeal/res/styles/default/img/logo-mini.png\" alt=\"\"></a>\r\n");
       out.write("\r\n");
       out.write("        <form id=\"search-form\">\r\n");
       out.write("            <input type=\"text\" name=\"search\" placeholder=\"Rechercher une personne ou un restaurant...\">\r\n");
@@ -120,7 +120,7 @@ public final class message_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <div id=\"large_bg_img\" class=\"clearfix\">\r\n");
       out.write("\r\n");
       out.write("        <div id=\"large_bg_img_overlay\"></div>\r\n");
-      out.write("        <img src=\"/meetmeal/res/styles/default/img/bg2.jpg\" id=\"image\" class=\"big\" alt=\"\" />\r\n");
+      out.write("        <img src=\"/meetformeal/res/styles/default/img/bg2.jpg\" id=\"image\" class=\"big\" alt=\"\" />\r\n");
       out.write("\r\n");
       out.write("        <h1>Votre messagerie</h1>\r\n");
       out.write("\r\n");
@@ -132,7 +132,7 @@ public final class message_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("            <h2>Conversation avec Pierre</h2>\r\n");
       out.write("            <div class=\"single-msg\">\r\n");
-      out.write("                <img src=\"/meetmeal/res/styles/default/img/users/pierre.jpg\" width=\"40\" height=\"40\" class=\"avatar\" alt=\"\">\r\n");
+      out.write("                <img src=\"/meetformeal/res/styles/default/img/users/pierre.jpg\" width=\"40\" height=\"40\" class=\"avatar\" alt=\"\">\r\n");
       out.write("                <p class=\"author-msg\"><a href=\"userpage\" title=\"\"/>Pierre Grimaud</a></p>\r\n");
       out.write("                <p class=\"message-date\">28/02/13 Ã  23h31</p>\r\n");
       out.write("                <div class=\"content-msg\">\r\n");
@@ -146,7 +146,7 @@ public final class message_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </div>\r\n");
       out.write("\r\n");
       out.write("            <div class=\"single-msg\">\r\n");
-      out.write("                <img src=\"/meetmeal/res/styles/default/img/users/herve.jpg\" width=\"40\" height=\"40\" class=\"avatar\" alt=\"\">\r\n");
+      out.write("                <img src=\"/meetformeal/res/styles/default/img/users/herve.jpg\" width=\"40\" height=\"40\" class=\"avatar\" alt=\"\">\r\n");
       out.write("                <p class=\"author-msg\"><a href=\"userpage\" title=\"\"/>Moi</a></p>\r\n");
       out.write("                <p class=\"message-date\">28/02/13 Ã  23h31</p>\r\n");
       out.write("                <div class=\"content-msg\">\r\n");
@@ -160,7 +160,7 @@ public final class message_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("            <div class=\"single-msg\">\r\n");
-      out.write("                <img src=\"/meetmeal/res/styles/default/img/users/pierre.jpg\" width=\"40\" height=\"40\" class=\"avatar\" alt=\"\">\r\n");
+      out.write("                <img src=\"/meetformeal/res/styles/default/img/users/pierre.jpg\" width=\"40\" height=\"40\" class=\"avatar\" alt=\"\">\r\n");
       out.write("                <p class=\"author-msg\"><a href=\"userpage\" title=\"\"/>Pierre Grimaud</a></p>\r\n");
       out.write("                <p class=\"message-date\">28/02/13 Ã  23h31</p>\r\n");
       out.write("                <div class=\"content-msg\">\r\n");
@@ -174,13 +174,13 @@ public final class message_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <h2>Mes autres conversations</h2>\r\n");
       out.write("            <ul>\r\n");
       out.write("                <li class=\"conversation current\">\r\n");
-      out.write("                    <img src=\"/meetmeal/res/styles/default/img/users/pierre.jpg\" width=\"64\" height=\"64\" class=\"avatar\" alt=\"\">\r\n");
+      out.write("                    <img src=\"/meetformeal/res/styles/default/img/users/pierre.jpg\" width=\"64\" height=\"64\" class=\"avatar\" alt=\"\">\r\n");
       out.write("                    <p class=\"name-conversation\"><a href=\"#\" title=\"\">Pierre Grimaud</a></p>\r\n");
       out.write("                    <p class=\"message-date\">28/02/13 Ã  23h31</p>\r\n");
       out.write("                    <p class=\"extract-conversation\">Bonjour, je suis passionnÃ© d'informatique...</p>\r\n");
       out.write("                </li>\r\n");
       out.write("                <li class=\"conversation\">\r\n");
-      out.write("                    <img src=\"/meetmeal/res/styles/default/img/users/alexandra.jpg\" width=\"64\" height=\"64\" class=\"avatar\" alt=\"\">\r\n");
+      out.write("                    <img src=\"/meetformeal/res/styles/default/img/users/alexandra.jpg\" width=\"64\" height=\"64\" class=\"avatar\" alt=\"\">\r\n");
       out.write("                    <p class=\"name-conversation\"><a href=\"#\" title=\"\">Alexandra Martin (1)</a></p>\r\n");
       out.write("                    <p class=\"message-date\">28/02/13 Ã  22h31</p>\r\n");
       out.write("                    <p class=\"extract-conversation\">Coucou ! Ca fait longtemps qu'on s'est pas...</p>\r\n");

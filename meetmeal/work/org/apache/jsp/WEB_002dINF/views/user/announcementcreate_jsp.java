@@ -65,7 +65,7 @@ public final class announcementcreate_jsp extends org.apache.jasper.runtime.Http
       out.write("\r\n");
       out.write("    <div class=\"wrapper\">\r\n");
       out.write("\r\n");
-      out.write("        <a href=\"index\" id=\"logo\"><img src=\"/meetmeal/res/styles/default/img/logo-mini.png\" alt=\"\"></a>\r\n");
+      out.write("        <a href=\"index\" id=\"logo\"><img src=\"/meetformeal/res/styles/default/img/logo-mini.png\" alt=\"\"></a>\r\n");
       out.write("\r\n");
       out.write("        <form id=\"search-form\">\r\n");
       out.write("            <input type=\"text\" name=\"search\" placeholder=\"Rechercher une personne ou un restaurant...\">\r\n");
@@ -120,7 +120,7 @@ public final class announcementcreate_jsp extends org.apache.jasper.runtime.Http
       out.write("    <div id=\"large_bg_img\" class=\"clearfix\">\r\n");
       out.write("\r\n");
       out.write("        <div id=\"large_bg_img_overlay\"></div>\r\n");
-      out.write("        <img src=\"/meetmeal/res/styles/default/img/bg2.jpg\" id=\"image\" class=\"big\" alt=\"\" />\r\n");
+      out.write("        <img src=\"/meetformeal/res/styles/default/img/bg2.jpg\" id=\"image\" class=\"big\" alt=\"\" />\r\n");
       out.write("\r\n");
       out.write("        <h1>CrÃ©er une annonce</h1>\r\n");
       out.write("\r\n");

@@ -72,11 +72,11 @@ define(['jquery', 'backbone'], function ($, Backbone) {
       var self = this;
       
       $.ajax({
-    	  url: '/meetmeal/user/display.ajax',
+    	  url: '/meetformeal/user/display.ajax',
     	  type: 'GET',
     	  dataType: 'json',
     	  success: function (friends) {
-    		  var customMarker = {icon: '/meetmeal/res/styles/default/img/logo-marker.png'};
+    		  var customMarker = {icon: '/meetformeal/res/styles/default/img/logo-marker.png'};
     	      for(var i in friends) {
     	        var friend = friends[i];
     	        var position = new google.maps.LatLng(friend.lastLatitude, friend.lastLongitude);
@@ -200,7 +200,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
 
     // Add one infowindow to a marker from a map
     addInfoWindow: function (map, marker, label) {
-      var contentString = label.hasOwnProperty('id') ? '<h2><img width="70" src="/meetmeal/res/styles/default/img/' + label.id + '.jpg" alt="" />' + label.label + '</h2>' : '<h2>' + label.label + '</h2>',
+      var contentString = label.hasOwnProperty('id') ? '<h2><img width="70" src="/meetformeal/res/styles/default/img/' + label.id + '.jpg" alt="" />' + label.label + '</h2>' : '<h2>' + label.label + '</h2>',
           infowindow = new google.maps.InfoWindow({ content: contentString });
       map.infowindows = map.infowindows || [];
       map.infowindows.push(infowindow);

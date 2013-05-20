@@ -64,7 +64,7 @@ public final class announcement_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\r\n");
       out.write("    <div class=\"wrapper\">\r\n");
       out.write("\r\n");
-      out.write("        <a href=\"index\" id=\"logo\"><img src=\"/meetmeal/res/styles/default/img/logo-mini.png\" alt=\"\"></a>\r\n");
+      out.write("        <a href=\"index\" id=\"logo\"><img src=\"/meetformeal/res/styles/default/img/logo-mini.png\" alt=\"\"></a>\r\n");
       out.write("\r\n");
       out.write("        <form id=\"search-form\">\r\n");
       out.write("            <input type=\"text\" name=\"search\" placeholder=\"Rechercher une personne ou un restaurant...\">\r\n");
@@ -119,7 +119,7 @@ public final class announcement_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("    <div id=\"large_bg_img\" class=\"clearfix\">\r\n");
       out.write("\r\n");
       out.write("        <div id=\"large_bg_img_overlay\"></div>\r\n");
-      out.write("        <img src=\"/meetmeal/res/styles/default/img/bg2.jpg\" id=\"image\" class=\"big\" alt=\"\" />\r\n");
+      out.write("        <img src=\"/meetformeal/res/styles/default/img/bg2.jpg\" id=\"image\" class=\"big\" alt=\"\" />\r\n");
       out.write("\r\n");
       out.write("        <h1>Annonce de Alexandra Martin</h1>\r\n");
       out.write("\r\n");
@@ -144,7 +144,7 @@ public final class announcement_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\r\n");
       out.write("            <div id=\"announcement-user\">\r\n");
       out.write("\r\n");
-      out.write("                <img src=\"/meetmeal/res/styles/default/img/users/alexandra.jpg\" width=\"64\" height=\"64\" class=\"avatar\" alt=\"\">\r\n");
+      out.write("                <img src=\"/meetformeal/res/styles/default/img/users/alexandra.jpg\" width=\"64\" height=\"64\" class=\"avatar\" alt=\"\">\r\n");
       out.write("                <p>\r\n");
       out.write("                    ProposÃ© par <strong>Alexandra Martin</strong><br>\r\n");
       out.write("                    <i class=\"icon-heart\"></i>Centres d'intÃ©rÃªts  : <a href=\"#\">#communication</a> <a href=\"#\">#badminton</a><br>\r\n");

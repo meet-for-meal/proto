@@ -65,7 +65,7 @@ public final class announcementsearch_jsp extends org.apache.jasper.runtime.Http
       out.write("\r\n");
       out.write("    <div class=\"wrapper\">\r\n");
       out.write("\r\n");
-      out.write("        <a href=\"index\" id=\"logo\"><img src=\"/meetmeal/res/styles/default/img/logo-mini.png\" alt=\"\"></a>\r\n");
+      out.write("        <a href=\"index\" id=\"logo\"><img src=\"/meetformeal/res/styles/default/img/logo-mini.png\" alt=\"\"></a>\r\n");
       out.write("\r\n");
       out.write("        <form id=\"search-form\">\r\n");
       out.write("            <input type=\"text\" name=\"search\" placeholder=\"Rechercher une personne ou un restaurant...\">\r\n");
@@ -120,7 +120,7 @@ public final class announcementsearch_jsp extends org.apache.jasper.runtime.Http
       out.write("    <div id=\"large_bg_img\" class=\"clearfix\">\r\n");
       out.write("\r\n");
       out.write("        <div id=\"large_bg_img_overlay\"></div>\r\n");
-      out.write("        <img src=\"/meetmeal/res/styles/default/img/bg2.jpg\" id=\"image\" class=\"big\" alt=\"\" />\r\n");
+      out.write("        <img src=\"/meetformeal/res/styles/default/img/bg2.jpg\" id=\"image\" class=\"big\" alt=\"\" />\r\n");
       out.write("\r\n");
       out.write("        <h1>RÃ©sultats de la recherche</h1>\r\n");
       out.write("\r\n");
@@ -136,7 +136,7 @@ public final class announcementsearch_jsp extends org.apache.jasper.runtime.Http
       out.write("                        <a href=\"announcement\" title=\"\" class=\"btn see-profile\"><i class=\"icon-eye-open\"></i>En savoir plus</a>\r\n");
       out.write("                        <a href=\"#\" title=\"\" class=\"btn add-friend\"><i class=\"icon-plus\"></i>Inviter Ã  manger</a>\r\n");
       out.write("                    </div>\r\n");
-      out.write("                    <img src=\"/meetmeal/res/styles/default/img/users/alexandra.jpg\" width=\"40\" height=\"40\" class=\"avatar\" alt=\"\">\r\n");
+      out.write("                    <img src=\"/meetformeal/res/styles/default/img/users/alexandra.jpg\" width=\"40\" height=\"40\" class=\"avatar\" alt=\"\">\r\n");
       out.write("                    <a href=\"userpage\">\r\n");
       out.write("                        <span class=\"user-title\">Bastian PEGHAIRE</span>\r\n");
       out.write("                    </a>\r\n");
@@ -157,7 +157,7 @@ public final class announcementsearch_jsp extends org.apache.jasper.runtime.Http
       out.write("                        <a href=\"#\" title=\"\" class=\"btn add-friend\"><i class=\"icon-plus\"></i>Inviter Ã  manger</a>\r\n");
       out.write("                        \r\n");
       out.write("                    </div>\r\n");
-      out.write("                    <img src=\"/meetmeal/res/styles/default/img/users/pierre.jpg\" width=\"40\" height=\"40\" class=\"avatar\" alt=\"\">\r\n");
+      out.write("                    <img src=\"/meetformeal/res/styles/default/img/users/pierre.jpg\" width=\"40\" height=\"40\" class=\"avatar\" alt=\"\">\r\n");
       out.write("                    <a href=\"userpage\">\r\n");
       out.write("                        <span class=\"user-title\">Pierre Grimaud</span>\r\n");
       out.write("                    </a>\r\n");

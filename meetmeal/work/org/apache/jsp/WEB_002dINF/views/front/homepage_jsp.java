@@ -72,7 +72,7 @@ public final class homepage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<div id=\"large_bg_img\" class=\"clearfix\">\r\n");
       out.write("\r\n");
       out.write("    <div id=\"large_bg_img_overlay\"></div>\r\n");
-      out.write("    <img src=\"/meetmeal/res/styles/default/img/bg2.jpg\" id=\"image\" class=\"big\" alt=\"\" />\r\n");
+      out.write("    <img src=\"/meetformeal/res/styles/default/img/bg2.jpg\" id=\"image\" class=\"big\" alt=\"\" />\r\n");
       out.write("\r\n");
       out.write("</div>\r\n");
       out.write("\r\n");
@@ -92,7 +92,7 @@ public final class homepage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("            <h1>Meet for Meal</h1>\r\n");
       out.write("\r\n");
-      out.write("            <a href=\"index\"><img src=\"/meetmeal/res/styles/default/img/logo.png\" id=\"logo\" alt=\"\" /></a>\r\n");
+      out.write("            <a href=\"index\"><img src=\"/meetformeal/res/styles/default/img/logo.png\" id=\"logo\" alt=\"\" /></a>\r\n");
       out.write("\r\n");
       out.write("            <h2>\r\n");
       out.write("                Eat better. Eat together.\r\n");
