@@ -1,3 +1,6 @@
 .idea/
 *.class
 *_jsp.java
+.metadata/
+meetmeal/.metadata/
+meetmeal/.DS_Store
