@@ -3,11 +3,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import org.essilab.module.connect.Connect;
 import org.essilab.module.user.model.User;
+import org.essilab.module.user.model.UserDao;
 
 public class AnnounceDao {
 	
@@ -26,6 +28,61 @@ public class AnnounceDao {
 		return createAnnounce(result);
 	}
 		
+	//Insert
+	public static void insert(Announce a) throws SQLException{
+		String request = "INSERT INTO Announce VALUES (NULL" +
+			", "+ (a.getCreator() != null ? a.getCreator().getId()+"" : "NULL") +
+			", "+ (a.getCreatedDate() != null ? "'"+new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'" : "NULL") +
+			", "+ (a.getDisponibilityDate() != null ? "'"+new java.sql.Date(a.getDisponibilityDate().getTime())+" "+new java.sql.Time(a.getDisponibilityDate().getTime())+"'" : "NULL") +
+			", "+ (a.getIsOpen()? 1: 0) +"," +
+			" "+ a.getLatitude() +"," +
+			" "+ a.getLongitude() +"," +
+			" '"+ a.getMessage() +"')";
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		Connect.getConnection().close();
+	}
+	
+	//Update
+	public static void update(Announce a) throws SQLException{
+		String request = "UPDATE Announce SET";
+			if (a.getCreator() != null)
+			request += " creatorId="+ a.getCreator().getId();
+			if (a.getCreatedDate() != null)
+			request += ", createdDate='"+ new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'";
+			if (a.getDisponibilityDate() != null)
+			request += ", disponibilityDate='"+ new java.sql.Date(a.getDisponibilityDate().getTime())+" "+new java.sql.Time(a.getDisponibilityDate().getTime()) +"'";
+			request += ", isOpen="+ (a.getIsOpen()? 1: 0) +"," +
+			" latitude="+ a.getLatitude() +"," +
+			" longitude="+ a.getLongitude() +"," +
+			" message='"+ a.getMessage() +"'" +
+			" WHERE id="+ a.getId();
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		Connect.getConnection().close();
+	}
+	
+	//Delete
+	public static void delete(Announce a) throws SQLException{
+		String request = "DELETE FROM Announce WHERE id="+ a.getId();
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		Connect.getConnection().close();
+	}
+	
+	//Get AnnounceId by createdDate and creatorId
+	public static int getIdByCreatoridCreatedDate(int creatorId, Date createdDate) throws SQLException {
+		String request = "SELECT id FROM Announce WHERE creatorId = "+creatorId+" AND createdDate = '"+ new java.sql.Date(createdDate.getTime())+" "+ new java.sql.Time(createdDate.getTime())+"';";
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ResultSet result = ps.executeQuery();
+		Connect.getConnection().close();
+		return (result != null && result.next()) ? result.getInt("id") : null;
+	}
+	
 	//All
 	public static List<Announce> getAll() throws SQLException {
 		String request = "SELECT A.id, A.creatorId, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message, " +
@@ -157,7 +214,21 @@ public class AnnounceDao {
 				System.out.println(i.getCreatedDate()+" "+i.getCreator().getFirstname()+" "+i.getMessage()+" "+i.getDisponibilityDate());
 			System.out.println(items.size()+"\n");
 			
+			//Insert
+			Announce a1 = new Announce(0, new Date(), new Date(), true, (long)48.1021, 2.5292, "Viens, viens, regarde comme on est bien");
+			a1.setCreator(UserDao.getUser(4));
+			insert(a1);
 			
+			//Update
+			a1.setId(getIdByCreatoridCreatedDate(4, a1.getCreatedDate()));
+			a1.setIsOpen(false);
+			a1.setLatitude(47.2192);
+			a1.setMessage("Perdu");
+			a1.setDisponibilityDate(new Date());
+			update(a1);
+			
+			//Delete 
+			delete(a1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

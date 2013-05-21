@@ -76,14 +76,14 @@ public class UserDao {
 			" isAdmin="+ (user.getIsAdmin()? 1: 0);
 			if (user.getLastPosition() != null) {
 			request += "," +
-			" lastPosition=?," +
+			" lastPosition='"+new java.sql.Date(user.getLastPosition().getTime())+" "+new java.sql.Time(user.getLastPosition().getTime())+"'," +
 			" lastLatitude="+ user.getLastLat() +"," +
 			" lastLongitude="+ user.getLastLong();
 			}
 			request += " WHERE id="+ user.getId();
 		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.setDate(1, new java.sql.Date(user.getLastPosition().getTime()));
+//		ps.setDate(1, ();
 		ps.executeUpdate();
 		Connect.getConnection().close();
 	}
@@ -159,8 +159,8 @@ public class UserDao {
 	}
 	
 	//Find near Users with tags
-	public static List<User> findNearUsersByTag(int userId, int tagId) throws SQLException {
-		String request = "CALL nearUsersByTag("+userId+","+tagId+", 5)";
+	public static List<User> findNearUsersByInterest(int userId, int interestId) throws SQLException {
+		String request = "CALL nearUsersByInterest("+userId+","+interestId+", 5)";
 		
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
@@ -333,7 +333,7 @@ public class UserDao {
 			System.out.println("");
 			
 			//Near Users tag
-			items = findNearUsersByTag(1, 5);
+			items = findNearUsersByInterest(1, 5);
 			System.out.println("Nb near tag = "+ items.size());
 			for (User v : items) 
 				System.out.println(v.getId()+" "+v.getLastname()+" "+v.getFirstname());

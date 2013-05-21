@@ -34,8 +34,8 @@ public class Message {
 	//Getters
 	public int getId() 						{ return this.id; }
 	public String getContent() 				{ return this.content; }
-	public User getUser1()					{ return this.sender; }
-	public User getUser2() 					{ return this.receiver; }
+	public User getSender()					{ return this.sender; }
+	public User getReceiver() 				{ return this.receiver; }
 	public Date getSentDate() 				{ return this.createdDate; }
 	//Setters
 	public void setId(int _id) 				{ this.id = _id; }
