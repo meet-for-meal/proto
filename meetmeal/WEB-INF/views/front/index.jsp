@@ -125,6 +125,7 @@
                     <p>
                         <label for="interests"><strong><i class="icon-heart"></i> Goûts / Intérêts</strong></label>
                         <input type="text" id="interests" name="interests">
+                        <span id="suggestions"></span>
                     </p>
                 </form>
 

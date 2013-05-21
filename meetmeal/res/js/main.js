@@ -1,12 +1,16 @@
 require.config({
   paths: {
     jquery: 'jquery',
+    jqueryUI: 'jquery-ui.custom',
     cycle: 'jquery.cycle.all',
     bootstrap: 'bootstrap',
     backbone: 'backbone',
     lodash: 'lodash'
   },
   shim: {
+    jqueryUI: {
+      deps: ['jquery']
+    },
     bootstrap: {
       deps: ['jquery'],
       exports: '$'
@@ -25,7 +29,7 @@ require.config({
   baseUrl: '/meetformeal/res/js/'
 });
 
-require(['app', 'jquery', 'cycle', 'bootstrap'], function (MainView, $) {
+require(['app', 'jquery', 'jqueryUI', 'cycle', 'bootstrap'], function (MainView, $) {
   'use strict';
   
   $(document).ready(function(){
@@ -65,6 +69,15 @@ require(['app', 'jquery', 'cycle', 'bootstrap'], function (MainView, $) {
         $('.close').click(function(e){
           e.preventDefault();
           $(this).parent('.alert').fadeOut(300);
+        });
+
+        var availableTags = [
+            "Animaux", "Cinéma", "Concert", "Cosmétique", "Cuisine", "Informatique", "Jeux vidéo", "Mode", "Musique", "Peinture", "Religion", "Sport", "Télévision", "Théâtre", "Voiture", "Voyage"
+        ];
+
+        $("#interests").autocomplete({
+          source: availableTags,
+          appendTo: "#suggestions"
         });
 
         $('#featured-restaurants').after('<div id="nav">').cycle({

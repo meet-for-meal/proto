@@ -14,6 +14,7 @@
 	 		out.println("<link href=\"" + request.getContextPath() +"/res/styles/default/homepage.css\" rel=\"stylesheet\">");
 	 	}
 	 	else{
+	 		out.println("<link href=\""+ request.getContextPath() +"/res/styles/default/blitzer/jquery-ui-custom.css\" rel=\"stylesheet\">");
 	 		out.println("<link href=\""+ request.getContextPath() +"/res/styles/default/styles.css\" rel=\"stylesheet\">");
 	 	}
 	%>
