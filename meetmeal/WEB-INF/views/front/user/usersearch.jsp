@@ -4,7 +4,7 @@
 
     <div class="wrapper">
 
-        <a href="index" id="logo"><img src="/meetformeal/res/styles/default/img/logo-mini.png" alt=""></a>
+        <a href="index" id="logo"><img src="/meetmeal/res/styles/default/img/logo-mini.png" alt=""></a>
 
         <form id="search-form">
             <input type="text" name="search" placeholder="Rechercher une personne ou un restaurant...">
@@ -59,7 +59,7 @@
     <div id="large_bg_img" class="clearfix">
 
         <div id="large_bg_img_overlay"></div>
-        <img src="/meetformeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
+        <img src="/meetmeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
 
         <h1>Résultats de la recherche</h1>
 
@@ -76,7 +76,7 @@
                         <a href="#" title="" class="btn add-friend"><i class="icon-plus"></i>Ajouter comme ami</a>
                         
                     </div>
-                    <img src="/meetformeal/res/styles/default/img/users/alexandra.jpg" width="40" height="40" class="avatar" alt="">
+                    <img src="/meetmeal/res/styles/default/img/users/alexandra.jpg" width="40" height="40" class="avatar" alt="">
                     <a href="userpage">
                         <span class="user-title">Bastian PEGHAIRE</span>
                     </a>
@@ -94,7 +94,7 @@
                         <a href="#" title="" class="btn add-friend"><i class="icon-plus"></i>Ajouter comme ami</a>
                         
                     </div>
-                    <img src="/meetformeal/res/styles/default/img/users/romain.jpg" width="40" height="40" class="avatar" alt="">
+                    <img src="/meetmeal/res/styles/default/img/users/romain.jpg" width="40" height="40" class="avatar" alt="">
                     <a href="userpage.html">
                         <span class="user-title">Bastien PENNE GUERRE</span>
                     </a>

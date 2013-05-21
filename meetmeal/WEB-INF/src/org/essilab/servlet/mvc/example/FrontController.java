@@ -50,23 +50,15 @@ public class FrontController extends HttpServlet {
 		}
 
 		request.setAttribute("url", url);
-
-		IAction action = actions.get(url);
 		
+		IAction action = actions.get(url);
 		if (null != action)
 			action.execute(request, response);
 		
 		if (null == request.getAttribute("render"))
-			if(url.substring(0,5).equals("admin")){
-				request
-				.getRequestDispatcher("/WEB-INF/views/admin/index.jsp")
-				.include(request, response);
-			}
-			else{
-				request
-				.getRequestDispatcher(url.endsWith(".ajax") ? "/WEB-INF/views/"+url+".jsp" : "/layout.jsp")
-				.include(request, response);				
-			}
+			request
+			.getRequestDispatcher(url.endsWith(".ajax") ? "/WEB-INF/views/"+url+".jsp" : "/layout.jsp")
+			.include(request, response);
 
 	}
 

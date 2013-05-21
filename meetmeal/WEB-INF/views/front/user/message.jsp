@@ -4,7 +4,7 @@
 
     <div class="wrapper">
 
-        <a href="index" id="logo"><img src="/meetformeal/res/styles/default/img/logo-mini.png" alt=""></a>
+        <a href="index" id="logo"><img src="/meetmeal/res/styles/default/img/logo-mini.png" alt=""></a>
 
         <form id="search-form">
             <input type="text" name="search" placeholder="Rechercher une personne ou un restaurant...">
@@ -59,7 +59,7 @@
     <div id="large_bg_img" class="clearfix">
 
         <div id="large_bg_img_overlay"></div>
-        <img src="/meetformeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
+        <img src="/meetmeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
 
         <h1>Votre messagerie</h1>
 
@@ -71,7 +71,7 @@
 
             <h2>Conversation avec Pierre</h2>
             <div class="single-msg">
-                <img src="/meetformeal/res/styles/default/img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
+                <img src="/meetmeal/res/styles/default/img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
                 <p class="author-msg"><a href="userpage" title=""/>Pierre Grimaud</a></p>
                 <p class="message-date">28/02/13 à 23h31</p>
                 <div class="content-msg">
@@ -85,7 +85,7 @@
             </div>
 
             <div class="single-msg">
-                <img src="/meetformeal/res/styles/default/img/users/herve.jpg" width="40" height="40" class="avatar" alt="">
+                <img src="/meetmeal/res/styles/default/img/users/herve.jpg" width="40" height="40" class="avatar" alt="">
                 <p class="author-msg"><a href="userpage" title=""/>Moi</a></p>
                 <p class="message-date">28/02/13 à 23h31</p>
                 <div class="content-msg">
@@ -99,7 +99,7 @@
                 </div>
             </div>
             <div class="single-msg">
-                <img src="/meetformeal/res/styles/default/img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
+                <img src="/meetmeal/res/styles/default/img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
                 <p class="author-msg"><a href="userpage" title=""/>Pierre Grimaud</a></p>
                 <p class="message-date">28/02/13 à 23h31</p>
                 <div class="content-msg">
@@ -113,13 +113,13 @@
             <h2>Mes autres conversations</h2>
             <ul>
                 <li class="conversation current">
-                    <img src="/meetformeal/res/styles/default/img/users/pierre.jpg" width="64" height="64" class="avatar" alt="">
+                    <img src="/meetmeal/res/styles/default/img/users/pierre.jpg" width="64" height="64" class="avatar" alt="">
                     <p class="name-conversation"><a href="#" title="">Pierre Grimaud</a></p>
                     <p class="message-date">28/02/13 à 23h31</p>
                     <p class="extract-conversation">Bonjour, je suis passionné d'informatique...</p>
                 </li>
                 <li class="conversation">
-                    <img src="/meetformeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
+                    <img src="/meetmeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
                     <p class="name-conversation"><a href="#" title="">Alexandra Martin (1)</a></p>
                     <p class="message-date">28/02/13 à 22h31</p>
                     <p class="extract-conversation">Coucou ! Ca fait longtemps qu'on s'est pas...</p>

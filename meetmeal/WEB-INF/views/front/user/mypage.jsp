@@ -3,7 +3,7 @@
 
     <div class="wrapper">
 
-        <a href="index" id="logo"><img src="/meetformeal/res/styles/default/img/logo-mini.png" alt=""></a>
+        <a href="index" id="logo"><img src="/meetmeal/res/styles/default/img/logo-mini.png" alt=""></a>
 
         <form id="search-form">
             <input type="text" name="search" placeholder="Rechercher une personne ou un restaurant...">
@@ -58,7 +58,7 @@
     <div id="large_bg_img" class="clearfix">
 
         <div id="large_bg_img_overlay"></div>
-        <img src="/meetformeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
+        <img src="/meetmeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
 
         <h1>Mon profil</h1>
 
@@ -68,7 +68,7 @@
 
         <div class="col-2">
             <h2>Informations sur votre profil</h2>
-            <img src="/meetformeal/res/styles/default/img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
+            <img src="/meetmeal/res/styles/default/img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
             <p>
                 <i class="icon-user"></i><strong>Hervé Tran</strong>
             </p>
@@ -101,7 +101,7 @@
             <h2>Nouvelles demandes d'ajout</h2>
 
             <div class="user">
-                <img src="/meetformeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
+                <img src="/meetmeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
                 <p>
                     <a href="userpage" class="black"><strong>Alexandra Martin</strong></a><br>
                     <a href="#">#communication</a> <a href="#">#musique</a> <a href="#">#badminton</a><br>
@@ -113,8 +113,8 @@
 
             <h2>Mes amis</h2>
 
-            <a href="userpage" title="Pierre"><img src="/meetformeal/res/styles/default/img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage" title="Romain"><img src="/meetformeal/res/styles/default/img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
+            <a href="userpage" title="Pierre"><img src="/meetmeal/res/styles/default/img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
+            <a href="userpage" title="Romain"><img src="/meetmeal/res/styles/default/img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
         </div>
 
         <div class="col-2">

@@ -66,7 +66,7 @@ public final class InscriptionForm {
         } else {
             result = "Échec de l'inscription.";
         }
-        
+     
         return User;
     }
     

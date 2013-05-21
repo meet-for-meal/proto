@@ -26,7 +26,7 @@ public class UserService {
 		return null;
 	}
 	
-	public void userInsert(User u){
+	public void userInsert(User u ){
 		try {
 			UserDao.insert(u);
 		} catch (SQLException e) {
@@ -34,21 +34,12 @@ public class UserService {
 		}
 	}
 	
-	public User userAuthenticate(User u){
+	public User userAuthenticate(User u ){
 		try {
 			 return UserDao.authenticateUser(u.getEmail(), u.getPassword());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	public void setFirstVisit(User u, boolean isFirstTime){
-		try {
-			 u.setFirstVisit(isFirstTime);
-			 UserDao.update(u);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }

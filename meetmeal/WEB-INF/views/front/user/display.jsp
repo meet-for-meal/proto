@@ -6,7 +6,7 @@
 
     <div class="wrapper">
 
-        <a href="index.html" id="logo"><img src="/meetformeal/res/styles/default/img/logo-mini.png" alt=""></a>
+        <a href="index.html" id="logo"><img src="/meetmeal/res/styles/default/img/logo-mini.png" alt=""></a>
 
         <form id="search-form">
             <input type="text" name="search" placeholder="Rechercher une personne ou un restaurant...">
@@ -61,7 +61,7 @@
     <div id="large_bg_img" class="clearfix">
 
         <div id="large_bg_img_overlay"></div>
-        <img src="/meetformeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
+        <img src="/meetmeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
 
         <h1>Profil de Hervé Tran</h1>
 
@@ -71,7 +71,7 @@
 
         <div class="col-2">
             <h2>Informations sur l'utilisateur</h2>
-            <img src="/meetformeal/res/styles/default/img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
+            <img src="/meetmeal/res/styles/default/img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
             <p>
                 <i class="icon-user"></i><strong>Hervé Tran</strong>
             </p>
@@ -103,10 +103,10 @@
 
             <h2>Amis</h2>
 
-            <a href="display" title="Alexandra"><img src="/meetformeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="display" title="Herve"><img src="/meetformeal/res/styles/default/img/users/herve.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="display" title="Pierre"><img src="/meetformeal/res/styles/default/img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="display" title="Romain"><img src="/meetformeal/res/styles/default/img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
+            <a href="display" title="Alexandra"><img src="/meetmeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt=""></a>
+            <a href="display" title="Herve"><img src="/meetmeal/res/styles/default/img/users/herve.jpg" width="64" height="64" class="avatar" alt=""></a>
+            <a href="display" title="Pierre"><img src="/meetmeal/res/styles/default/img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
+            <a href="display" title="Romain"><img src="/meetmeal/res/styles/default/img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
         </div>
 
         <div class="col-2">

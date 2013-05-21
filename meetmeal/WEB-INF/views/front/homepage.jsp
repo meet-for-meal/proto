@@ -4,7 +4,7 @@
 <div id="large_bg_img" class="clearfix">
 
     <div id="large_bg_img_overlay"></div>
-    <img src="/meetformeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
+    <img src="/meetmeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
 
 </div>
 
@@ -24,7 +24,7 @@
 
             <h1>Meet for Meal</h1>
 
-            <a href="index"><img src="/meetformeal/res/styles/default/img/logo.png" id="logo" alt="" /></a>
+            <a href="index"><img src="/meetmeal/res/styles/default/img/logo.png" id="logo" alt="" /></a>
 
             <h2>
                 Eat better. Eat together.
