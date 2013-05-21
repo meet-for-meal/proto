@@ -34,7 +34,7 @@ public class AdminFilter  implements Filter {
          */
         User user = (User) session.getAttribute("sessionUser");
         if(user != null){
-	        if ( user.getIsAdmin() != 1 ) {
+	        if ( user.getIsAdmin() != true ) {
 	            /* Redirect to login page */
 	            session.invalidate();
 	            response.sendRedirect( request.getContextPath() +  CONNECTION);

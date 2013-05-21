@@ -62,15 +62,9 @@ public class RestaurantDao {
 	}
 	
 	
-	
+	//MAIN
 	public static void main(String[] args)  {
 		try {
-//			List<User> categs = usersByInterests();
-//			for (Category c : categs) {
-//				System.out.println(c.getName());
-//			}
-//			System.out.println(categs.size());
-			
 			//One
 			Restaurant r = getRestaurant(1);
 			System.out.println(r.getId()+" "+r.getName()+" "+r.getPartnership()+" "+r.getTitleImage()+"\n");

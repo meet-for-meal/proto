@@ -1,0 +1,53 @@
+<div id="main">
+  <div id="m-content"></div>
+  <div id="venue">
+     <img src="res/styles/default/img/ajax-loader.gif" alt="loading" /> Loading...
+  </div>
+  <div class="google-map" id="map"></div>
+</div>
+
+<script id="edit-template" type="text/x-template">
+  <h1>Éditer</h1>
+  <form class="form-horizontal" action="" method="">
+    <div class="control-group">
+      <label class="control-label" for="partnership">Partenariat</label>
+      <div class="controls">
+        <select id="partnership">
+        <% _.each(p, function (partnership) { %>
+          <option value="<%= partnership %>"<% if(partnership === m.partnership){ %> selected<% } %>>
+            <%= partnership %>
+          </option>
+        <% }) %>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="idFoursquare">ID Foursquare</label>
+      <div class="controls">
+        <input type="text" id="idFoursquare" value="<%= m.foursquare_id %>">
+        <button class="btn update-venue">Mettre à jour les informations</button>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" class="btn btn-primary" value="Enregistrer">
+      </div>
+    </div>
+  </form>
+  <p><strong>ID MeetForMeal :</strong> <%= m.id %></p>
+</script>
+
+<script id="venue-template" type="text/x-template">
+  <h2><%= f.name %></h2>
+
+  <p><strong>Description :</strong> <%= f.description %></p>
+  <p><strong>Adresse :</strong> <%= f.location.address %></p>
+  <p><strong>Pays :</strong> <%= f.location.country %></p>
+  <p><strong>Catégories :</strong></p>
+  <ul>
+  <% _.each(f.categories, function (category) { %>
+    <li><%= category.name %></li>
+  <% }) %>
+  </ul>
+  <p><strong>Site Web :</strong> <a href="<%= f.url %>"><%= f.url %></a></p>
+</script>

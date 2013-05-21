@@ -1,0 +1,24 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.sidebar-nav {
+  padding: 9px 0;
+}
+@media (max-with: 980px) {
+  /* Enable use of floated navbar text */
+  .navbar-text.pull-right {
+    float: none;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+#map {
+  width: 700px;
+  height: 400px;
+}
+
+.google-map img {
+  /* Fix Twitter Bootstrap affecting Google Maps */
+  max-width: none;
+}
