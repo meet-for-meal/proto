@@ -1,8 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="org.essilab.module.user.model.User"%>
 
-
-
 <header>
 
     <div class="wrapper">

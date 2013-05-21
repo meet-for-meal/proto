@@ -408,6 +408,32 @@ header #notifications ul li a .red {
     display:block;
 }
 
+#map_canvas {
+    height: 400px;
+    width: 100%;
+}
+
+#filters h1 {
+    width: 230px;
+    float: left;
+}
+
+#filters .actions {
+    display: none;
+    float: left;
+    margin-top: 15px;
+}
+
+#filters .clear {
+    clear: both;
+}
+
+#filters label {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+
 /* Layout
 -------------------------------------------------------------- */
 

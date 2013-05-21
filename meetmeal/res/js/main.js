@@ -30,25 +30,18 @@ require(['app', 'jquery', 'cycle', 'bootstrap'], function (MainView, $) {
   
   $(document).ready(function(){
 
-	    $('html').click(function() {
-	        //Hide the menus if visible
-	        $('#notifications').slideUp(200);
-	    });
+        $('html').click(function() {
+            //Hide the menus if visible
+            $('#notifications').slideUp(200);
+        });
 
-	    $('.toggle-notif').click(function(e){
-	        e.stopPropagation();
-	        $('#notifications').slideToggle(200);
-	        $(this).children('.notif').remove();
-	    });
+        $('.toggle-notif').click(function(e){
+            e.stopPropagation();
+            $('#notifications').slideToggle(200);
+            $(this).children('.notif').remove();
+        });
 
-	    $('#featured-restaurants').after('<div id="nav">').cycle({
-	        fx:     'fade',
-	        speed:   1000,
-	        timeout: 3000,
-	        pager:  '#nav'
-	    });
-
-      $('#toggle-map').click(function(){
+        $('#toggle-map').click(function(){
           var map = $('#meetformealmap');
           if(map.hasClass('deployed')) {
               map.animate({
@@ -67,7 +60,19 @@ require(['app', 'jquery', 'cycle', 'bootstrap'], function (MainView, $) {
               });
               $('#closest-users').fadeIn(250);
           }
-      });
+        });
+
+        $('.close').click(function(e){
+          e.preventDefault();
+          $(this).parent('.alert').fadeOut(300);
+        });
+
+        $('#featured-restaurants').after('<div id="nav">').cycle({
+          fx:     'fade',
+          speed:   1000,
+          timeout: 3000,
+          pager:  '#nav'
+        });
 
 	});
 
