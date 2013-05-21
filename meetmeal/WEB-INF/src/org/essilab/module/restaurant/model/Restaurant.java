@@ -51,6 +51,7 @@ public class Restaurant {
 	public String getName()						{ return this.name;	}
 	public long getLatitude()					{ return this.latitude; }
 	public long getLongitude()					{ return this.longitude; }
+	public String getFoursquareId()				{ return this.foursquareId;	}
 	public int getPartnership()					{ return this.partnership;	}
 	public String getUrlImage()					{ return this.urlImage;	}
 	public String getTitleImage()				{ return this.titleImage; }
@@ -62,6 +63,7 @@ public class Restaurant {
 	public void setName(String _name)			{ name = _name; }
 	public void setLatitude(long _latitude)		{ latitude = _latitude; }
 	public void setLongitude(long _longitude)	{ longitude = _longitude; }
+	public void setFoursquareId(String _f)		{ foursquareId = _f; }
 	public void setPartnership(int _p)			{ partnership = _p; }
 	public void setUrlImage(String _u)			{ urlImage = _u; }
 	public void setTitleImage(String _t)		{ titleImage = _t; }
