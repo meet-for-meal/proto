@@ -35,6 +35,7 @@ define([
 
     renderUser: function (user) {
       this.$user.html(this.template({ user: user }));
+      Util.renderGoogleMap(user.lastLatitude, user.lastLongitude, user.firstname + ' ' + user.lastname);
     },
 
     updateUser: function (e) {
@@ -42,9 +43,12 @@ define([
       var self = this,
           $form = $(e.currentTarget),
           data = {
-        username:  $form.find('#username').val(),
         firstname: $form.find('#firstname').val(),
-        lastname:  $form.find('#lastname').val()
+        lastname:  $form.find('#lastname').val(),
+        email:     $form.find('#email').val(),
+        age:       $form.find('#age').val(),
+        gender:    $form.find('#gender').val(),
+        password:  $form.find('#password').val()
       };
       Util.apiRequest('/users/edit/' + this.userId, 'GET', null, data, function() {
         self.$alertSuccess.show();

@@ -9,3 +9,4 @@ meetmeal/.project
 meetmeal/.tomcatplugin
 meetmeal/res/.DS_Store
 mockup/.DS_Store
+meetmeal/WEB-INF/classes/*

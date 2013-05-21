@@ -8,15 +8,11 @@
   </div>
   <div id="user"></div>
 </div>
+<h2>Dernière position</h2>
+<div class="google-map" id="map"></div>
 
 <script id="edit-template" type="text/x-template">
   <form id="user-form" class="form-horizontal">
-    <div class="control-group">
-      <label class="control-label" for="username">Username</label>
-      <div class="controls">
-        <input type="text" id="username" value="<%= user.username %>">
-      </div>
-    </div>
     <div class="control-group">
       <label class="control-label" for="firstname">Prénom</label>
       <div class="controls">
@@ -27,6 +23,39 @@
       <label class="control-label" for="lastname">Nom</label>
       <div class="controls">
         <input type="text" id="lastname" value="<%= user.lastname %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="email">E-mail</label>
+      <div class="controls">
+        <input type="text" id="email" value="<%= user.email %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="age">Âge</label>
+      <div class="controls">
+        <input type="text" id="age" value="<%= user.age %>" class="input-mini">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="password">Mot de passe</label>
+      <div class="controls">
+        <input type="password" id="password" value="<%= user.password %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="password2">Confirmer le mot de passe</label>
+      <div class="controls">
+        <input type="password" id="password2" value="<%= user.password %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="gender">Genre</label>
+      <div class="controls">
+        <select id="gender">
+          <option value="0"<% if(user.gender === 0){ %> selected="selected"<% } %>>Femme</option>
+          <option value="1"<% if(user.gender === 1){ %> selected="selected"<% } %>>Homme</option>
+        </select>
       </div>
     </div>
     <div class="control-group">
