@@ -60,7 +60,7 @@
 <section id="container">
 
     <!-- start: Map -->
-    <div style="position:relative;">
+    <div id="meetformealmap" class="deployed">
 
         <!-- starts: Google Maps -->
         <div id="googlemaps-container-top"></div>
@@ -104,6 +104,10 @@
                     </a>
                 </li>
             </ul>
+        </div>
+
+        <div id="toggle-map">
+
         </div>
 
     </div>

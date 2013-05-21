@@ -48,6 +48,27 @@ require(['app', 'jquery', 'cycle', 'bootstrap'], function (MainView, $) {
 	        pager:  '#nav'
 	    });
 
+      $('#toggle-map').click(function(){
+          var map = $('#meetformealmap');
+          if(map.hasClass('deployed')) {
+              map.animate({
+                  height: 130
+              }, 300, function() {
+                  map.removeClass()
+                  map.addClass('not-deployed');
+              });
+              $('#closest-users').fadeOut(150);
+          } else if (map.hasClass('not-deployed')) {
+              map.animate({
+                  height: 400
+              }, 500, function() {
+                  map.removeClass()
+                  map.addClass('deployed');
+              });
+              $('#closest-users').fadeIn(250);
+          }
+      });
+
 	});
 
   var mainView = new MainView();
