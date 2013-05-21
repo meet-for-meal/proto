@@ -51,8 +51,18 @@ public class Connection extends HttpServlet {
             user = userService.userAuthenticate(user);
             if(user != null){
             	session.setAttribute( ATT_SESSION_USER, user );
-                response.sendRedirect( request.getContextPath() + "/index" );
-    			return;
+            	userService.setFirstVisit(user, false);
+            	System.out.println("connectioncontroller1");
+            	System.out.println(url);
+    			if(url.equals("connect-admin")){
+    				System.out.println("connectioncontroller");
+    				response.sendRedirect( request.getContextPath() + "/admin" );
+    				return;
+    			}
+    			else{
+	                response.sendRedirect( request.getContextPath() + "/index" );
+	    			return;
+    			}
             }
             else{
             	request.setAttribute( "not_exist", "true" );
@@ -64,7 +74,7 @@ public class Connection extends HttpServlet {
         /* store form error and data in request */
         request.setAttribute( ATT_FORM, form );
         request.setAttribute( ATT_USER, user );
- 
+        
         this.getServletContext().getRequestDispatcher( "/layout.jsp" ).forward( request, response );
     }
 }

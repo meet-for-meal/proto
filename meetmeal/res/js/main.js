@@ -22,7 +22,7 @@ require.config({
     	desps: ['jquery']
     }
   },
-  baseUrl: '/meetmeal/res/js/'
+  baseUrl: '/meetformeal/res/js/'
 });
 
 require(['app', 'jquery', 'cycle', 'bootstrap'], function (MainView, $) {

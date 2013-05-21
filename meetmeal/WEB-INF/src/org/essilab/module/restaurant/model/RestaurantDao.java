@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.essilab.module.category.model.Category;
 import org.essilab.module.connect.Connect;
+import org.essilab.module.user.model.User;
 
 public class RestaurantDao {
 
@@ -14,7 +15,7 @@ public class RestaurantDao {
 	public static Restaurant getRestaurant(int restoid) throws SQLException {
 		String request = "SELECT * FROM Restaurant R "+
 			"INNER JOIN Category C ON R.categoryId = C.id "+
-			"WHERE id = "+restoid;
+			"WHERE R.id = "+restoid;
 		
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
@@ -40,7 +41,7 @@ public class RestaurantDao {
 		try {
 			result.next(); 
 			if (result != null) {
-				resto = new Restaurant(result.getString("name"), result.getLong("latitude"), result.getLong("longitude"));	
+				resto = new Restaurant(result.getInt("id"), result.getString("name"), result.getLong("latitude"), result.getLong("longitude"), result.getString("foursquareId"), result.getInt("partnership"), result.getString("urlImage"), result.getString("titleImage"), result.getString("descImage"));	
 				resto.setCategory(new Category(result.getInt("id"), result.getString("foursquareId"), result.getString("name")));
 			}
 		} catch (SQLException e) { e.printStackTrace();	}
@@ -52,7 +53,7 @@ public class RestaurantDao {
 		List<Restaurant> restaurants = new ArrayList<Restaurant>();
 		try {
 			while (result.next()) {
-				Restaurant resto = new Restaurant(result.getString("name"), result.getLong("latitude"), result.getLong("longitude"));	
+				Restaurant resto = new Restaurant(result.getInt("id"), result.getString("name"), result.getLong("latitude"), result.getLong("longitude"), result.getString("foursquareId"), result.getInt("partnership"), result.getString("urlImage"), result.getString("titleImage"), result.getString("descImage"));	
 				resto.setCategory(new Category(result.getInt("id"), result.getString("foursquareId"), result.getString("name")));
 				restaurants.add(resto);	
 			}
@@ -61,17 +62,22 @@ public class RestaurantDao {
 	}
 	
 	
-	
+	//MAIN
 	public static void main(String[] args)  {
-//		try {
-//			List<User> categs = usersByInterests();
-//			for (Category c : categs) {
-//				System.out.println(c.getName());
-//			}
-//			System.out.println(categs.size());
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			//One
+			Restaurant r = getRestaurant(1);
+			System.out.println(r.getId()+" "+r.getName()+" "+r.getPartnership()+" "+r.getTitleImage()+"\n");
+			
+			//All
+			List<Restaurant> items = getAll();
+			System.out.println("Nb Restaurants = "+ items.size());
+			for (Restaurant i : items) 
+				System.out.println(i.getId()+" "+i.getName()+" "+i.getPartnership()+" "+i.getTitleImage());
+			System.out.println("");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

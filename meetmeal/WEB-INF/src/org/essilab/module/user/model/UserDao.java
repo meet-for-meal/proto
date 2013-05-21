@@ -3,6 +3,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.essilab.module.connect.Connect;
@@ -23,6 +24,16 @@ public class UserDao {
 		else
 			return null;
 	}
+	
+	//setFirstVisit
+	public static void setFirstVisit(int id) throws SQLException{
+		String request = "UPDATE user SET firstVisit=0 WHERE id= "+ id +"";
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		Connect.getConnection().close();
+	}
+	
+	
 	//One
 	public static User getUser(int userid) throws SQLException {
 		String request = "SELECT * FROM User WHERE id = "+userid;
@@ -36,12 +47,54 @@ public class UserDao {
 	
 	//Insert
 	public static void insert(User user) throws SQLException{
-
-		String request = "INSERT INTO user VALUES (NULL ,  '"+ user.getFirstname() +"',  '"+ user.getLastname() +"',  '"+ user.getEmail() +"',  '"+ user.getPassword() +"', NULL , NULL , NULL , NULL)";
+		String request = "INSERT INTO User VALUES (NULL, " +
+			" '"+ user.getFirstname() +"'," +
+			" '"+ user.getLastname() +"'," +
+			" "+ user.getAge() +"," +
+			" '"+ user.getEmail() +"'," +
+			" '"+ user.getPassword() +"'," +
+			" "+ user.getGender() +"," +
+			" "+ (user.getFirstVisit()? 1: 0) +"," +
+			" "+ (user.getIsAdmin() ? 1 : 0) +"," +
+			" NULL, NULL, NULL)";
+		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ps.executeUpdate();
 		Connect.getConnection().close();
-		
+	}
+	
+	//Update
+	public static void update(User user) throws SQLException{
+		String request = "UPDATE User SET" +
+			" firstname='"+ user.getFirstname() +"'," +
+			" lastname='"+ user.getLastname() +"'," +
+			" age="+ user.getAge() +"," +
+			" email='"+ user.getEmail() +"'," +
+			" password='"+ user.getPassword() +"'," +
+			" gender="+ user.getGender() +"," +
+			" firstVisit="+ (user.getFirstVisit()? 1: 0) +"," +
+			" isAdmin="+ (user.getIsAdmin()? 1: 0);
+			if (user.getLastPosition() != null) {
+			request += "," +
+			" lastPosition=?," +
+			" lastLatitude="+ user.getLastLat() +"," +
+			" lastLongitude="+ user.getLastLong();
+			}
+			request += " WHERE id="+ user.getId();
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.setDate(1, new java.sql.Date(user.getLastPosition().getTime()));
+		ps.executeUpdate();
+		Connect.getConnection().close();
+	}
+	
+	//Delete
+	public static void delete(User user) throws SQLException{
+		String request = "DELETE FROM User WHERE id="+ user.getId();
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		Connect.getConnection().close();
 	}
 
 	//All
@@ -53,6 +106,16 @@ public class UserDao {
 		Connect.getConnection().close();
 		
 		return createUsers(result);
+	}
+	
+	//Get UserId by email
+	public static int getIdByEmail(String email) throws SQLException {
+		String request = "SELECT id FROM User WHERE email = '"+email+"'";
+		
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ResultSet result = ps.executeQuery();
+		Connect.getConnection().close();
+		return (result != null && result.next()) ? result.getInt("id") : null;
 	}
 	
 	//Find Users by name
@@ -68,10 +131,6 @@ public class UserDao {
 		
 		return createUsers(result);
 	}
-	
-	
-		
-	
 
 	//Find friends of an User
 	public static List<User> findFriends(int userId) throws SQLException {
@@ -164,7 +223,7 @@ public class UserDao {
 		List<User> users = new ArrayList<User>();
 		try {
 			while (result.next()) 
-				users.add(new User(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email")));	
+				users.add(new User(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getInt("age"), result.getString("email"), result.getInt("gender"), result.getBoolean("firstVisit"), result.getBoolean("isAdmin")));	
 		} catch (SQLException e) { e.printStackTrace();	}
 		return users;
 	}
@@ -174,21 +233,22 @@ public class UserDao {
 		User user = new User();
 
 		try {
-			if(result.next()){ 
-				if (result != null) {
-					user = new User(
-						result.getInt("id"),
-						result.getString("firstname"), 
-						result.getString("lastname"),
-						result.getString("email"),
-						result.getString("password"),
-						result.getDate("lastPosition"),
-						result.getDouble("lastLatitude"),
-						result.getDouble("lastLongitude")
-					);	
-				}
-			}
-			else{
+			if(result != null && result.next()){ 
+				user = new User(
+					result.getInt("id"),
+					result.getString("firstname"), 
+					result.getString("lastname"),
+					result.getInt("age"),
+					result.getString("email"),
+					result.getString("password"),
+					result.getInt("gender"),
+					result.getBoolean("firstVisit"),
+					result.getBoolean("isAdmin"),
+					result.getDate("lastPosition"),
+					result.getDouble("lastLatitude"),
+					result.getDouble("lastLongitude")
+				);	
+			} else{
 				return null;
 			}
 		} catch (SQLException e) { e.printStackTrace();	}
@@ -204,8 +264,12 @@ public class UserDao {
 					result.getInt("id"),
 					result.getString("firstname"), 
 					result.getString("lastname"),
+					result.getInt("age"),
 					result.getString("email"),
 					result.getString("password"),
+					result.getInt("gender"),
+					result.getBoolean("firstVisit"),
+					result.getBoolean("isAdmin"),
 					result.getDate("lastPosition"),
 					result.getDouble("lastLatitude"),
 					result.getDouble("lastLongitude")
@@ -215,12 +279,15 @@ public class UserDao {
 		return users;
 	}
 	
+	
+	//MAIN
 	public static void main(String[] args)  {
 		try {
 			//One
 			User u = getUser(1);
 			System.out.println(u.getId()+" "+u.getLastname()+" "+u.getFirstname()+"\n");
 			
+			//All
 			List<User> items = getAll();
 			System.out.println("Nb Users = "+ items.size());
 			for (User v : items) 
@@ -228,7 +295,7 @@ public class UserDao {
 			System.out.println("");
 			
 			//Interests
-			String [] strings = new String[] {"Animaux", "Jeux vidéo", "Informatique"};
+			String [] strings = new String[] {"Animaux", "Jeux vid√©o", "Informatique"};
 			List<String> params = new ArrayList<String>();
 			for(String s : strings)
 				params.add(s);
@@ -278,6 +345,25 @@ public class UserDao {
 			for (User v : items) 
 				System.out.println(v.getId()+" "+v.getLastname()+" "+v.getFirstname());
 			System.out.println("");
+			
+			//Insert
+			User u1 = new User(0, "Truc", "Machin", 30, "test@msn.com", "haha", 0, true, false);
+//			insert(u1);
+			
+			//Update
+			u1.setId(getIdByEmail(u1.getEmail()));
+			u1.setAge(21);
+			u1.setEmail("romain@mail.com");
+			u1.setPassword("hihi");
+			u1.setGender(1);
+			u1.setIsAdmin(true);
+			u1.setFirstVisit(false);
+			u1.setLastPosition(new Date());
+			update(u1);
+			
+			//Delete 
+//			delete(u1);
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

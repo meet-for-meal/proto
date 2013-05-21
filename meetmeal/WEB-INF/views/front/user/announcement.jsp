@@ -3,7 +3,7 @@
 
     <div class="wrapper">
 
-        <a href="index" id="logo"><img src="/meetmeal/res/styles/default/img/logo-mini.png" alt=""></a>
+        <a href="index" id="logo"><img src="/meetformeal/res/styles/default/img/logo-mini.png" alt=""></a>
 
         <form id="search-form">
             <input type="text" name="search" placeholder="Rechercher une personne ou un restaurant...">
@@ -58,7 +58,7 @@
     <div id="large_bg_img" class="clearfix">
 
         <div id="large_bg_img_overlay"></div>
-        <img src="/meetmeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
+        <img src="/meetformeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
 
         <h1>Annonce de Alexandra Martin</h1>
 
@@ -83,7 +83,7 @@
 
             <div id="announcement-user">
 
-                <img src="/meetmeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
+                <img src="/meetformeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
                 <p>
                     Proposé par <strong>Alexandra Martin</strong><br>
                     <i class="icon-heart"></i>Centres d'intérêts  : <a href="#">#communication</a> <a href="#">#badminton</a><br>
