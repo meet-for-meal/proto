@@ -16,11 +16,16 @@
             <a class="close" href="#">x</a>
             ${form.result}
         </span>
+        </c:if>
+
+        <c:if test="${!empty form.errors['password']}">
         <span class="alert erreur">
             <a class="close" href="#">x</a>
             ${form.errors['password']}
         </span>
+        </c:if>
 
+        <c:if test="${!empty form.errors['email']}">
         <span class="alert erreur">
             <a class="close" href="#">x</a>
             ${form.errors['email']}
@@ -40,6 +45,7 @@
             Mauvais identifiant / mot de passe
         </span>
         </c:if>
+
     </div>
 
 </header>
