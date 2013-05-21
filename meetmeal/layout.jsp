@@ -1,5 +1,4 @@
-<%@ page pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ page pageEncoding="UTF-8" %><!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -18,16 +17,6 @@
 	 		out.println("<link href=\""+ request.getContextPath() +"/res/styles/default/styles.css\" rel=\"stylesheet\">");
 	 	}
 	%>
-    
-    <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map_canvas { height: 400px; width: 100%; }
-      #filters h1 { width: 230px; float: left; }
-      #filters .actions { display: none; float: left; margin-top: 15px; }
-      #filters .clear { clear: both; }
-      #filters label { display: inline-block; padding: 0 10px; }
-    </style>
 </head>
 <body>
 

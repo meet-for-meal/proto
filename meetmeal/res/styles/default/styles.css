@@ -287,6 +287,11 @@ header #notifications ul li a .red {
 /* Google maps
 -------------------------------------------------------------- */
 
+#meetformealmap {
+    position:relative;
+    overflow: hidden;
+}
+
 #googlemaps-container-top {
     position: relative;
     z-index: 2;
@@ -313,6 +318,37 @@ header #notifications ul li a .red {
     height: 400px;
     width: 100%;
     top: -20px;
+}
+
+#toggle-map {
+    width: 150px;
+    z-index: 2;
+    left: 50%;
+    bottom: 3px;
+    margin-left: -75px;
+    font-size: 12px;
+    background: #d55035;
+    position: absolute;
+    padding: 2px 10px;
+    text-align: center;
+    color: #FFF;
+    border-radius: 5px 5px 0px 0px;
+    cursor: pointer;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-left: 1px solid rgba(0,0,0,0.1);
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+#toggle-map:hover {
+    color:#CCC;
+}
+
+#meetformealmap.deployed #toggle-map:after {
+    content:"Cacher la carte";
+}
+
+#meetformealmap.not-deployed #toggle-map:after {
+    content:"Afficher la carte";
 }
 
 #closest-users {
@@ -371,6 +407,32 @@ header #notifications ul li a .red {
 #closest-users ul li.user span {
     display:block;
 }
+
+#map_canvas {
+    height: 400px;
+    width: 100%;
+}
+
+#filters h1 {
+    width: 230px;
+    float: left;
+}
+
+#filters .actions {
+    display: none;
+    float: left;
+    margin-top: 15px;
+}
+
+#filters .clear {
+    clear: both;
+}
+
+#filters label {
+    display: inline-block;
+    padding: 0 10px;
+}
+
 
 /* Layout
 -------------------------------------------------------------- */

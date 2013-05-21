@@ -47,9 +47,9 @@ public final class ConnectionForm {
  
         /* Initialisation du rÈsultat global de la validation. */
         if ( errors.isEmpty() ) {
-            result = "SuccËs de la connexion.";
+            result = "Succès de la connexion.";
         } else {
-            result = "…chec de la connexion.";
+            result = "Echec de la connexion.";
         }
         
  
