@@ -52,10 +52,9 @@ public class Connection extends HttpServlet {
             if(user != null){
             	session.setAttribute( ATT_SESSION_USER, user );
             	userService.setFirstVisit(user, false);
-            	System.out.println("connectioncontroller1");
-            	System.out.println(url);
+
     			if(url.equals("connect-admin")){
-    				System.out.println("connectioncontroller");
+
     				response.sendRedirect( request.getContextPath() + "/admin" );
     				return;
     			}
