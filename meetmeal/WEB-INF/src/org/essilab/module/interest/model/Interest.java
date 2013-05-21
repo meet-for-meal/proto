@@ -5,9 +5,9 @@ public class Interest {
 	private int id;
 	private String tag = null;
 	
-	Interest()						{}
-	Interest(String _tag)			{ tag = _tag; }
-	Interest(int _id, String _tag) { 
+	public Interest()						{}
+	public Interest(String _tag)			{ tag = _tag; }
+	public Interest(int _id, String _tag) { 
 		id = _id;
 		tag = _tag; 
 	}

@@ -63,6 +63,18 @@
     	<servlet-name>Connection</servlet-name>
     	<servlet-class>org.essilab.servlet.connection.Connection</servlet-class>
 	</servlet>
+	
+	<servlet>
+    	<servlet-name>SearchAnnounce</servlet-name>
+    	<servlet-class>org.essilab.servlet.SearchAnnounce</servlet-class>
+	</servlet>
+	
+	<servlet>
+    	<servlet-name>SingleAnnounce</servlet-name>
+    	<servlet-class>org.essilab.servlet.SingleAnnounce</servlet-class>
+	</servlet>
+	
+	
 
  
 	
@@ -81,6 +93,15 @@
     	<url-pattern>/connect-admin</url-pattern>
 	</servlet-mapping>
  
+ 	<servlet-mapping>
+    	<servlet-name>SingleAnnounce</servlet-name>
+    	<url-pattern>/announcement</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    	<servlet-name>SearchAnnounce</servlet-name>
+    	<url-pattern>/announcementsearch</url-pattern>
+	</servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>

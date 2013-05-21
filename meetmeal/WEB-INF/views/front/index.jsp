@@ -116,7 +116,7 @@
         <div class="col-container">
             <div class="col-2">
                 <h2>Recherche avancée</h2>
-                <form id="user-search-form" action="announcementsearch">
+                <form id="user-search-form" action="announcementsearch" method="post">
                     <p>
                         <label for="time-start"><strong><i class="icon-time"></i> Quand ? </strong></label>
                         De <input type="text" id="time-start"> à <input type="text" id="time-end" >
@@ -124,7 +124,7 @@
                     </p>
                     <p>
                         <label for="interests"><strong><i class="icon-heart"></i> Goûts / Intérêts</strong></label>
-                        <input type="text" id="interests">
+                        <input type="text" id="interests" name="interests">
                     </p>
                 </form>
 
