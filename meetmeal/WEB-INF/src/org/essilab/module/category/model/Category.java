@@ -14,7 +14,7 @@ public class Category {
 	
 	//Constructor
 	public Category() {	}
-	
+	public Category(String _n){ this.name = _n; }
 	public Category(int _i, String _f, String _n) {
 		this.id = _i;
 		this.foursquareId = _f;
