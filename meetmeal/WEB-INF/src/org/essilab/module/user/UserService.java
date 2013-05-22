@@ -26,6 +26,15 @@ public class UserService {
 		return null;
 	}
 	
+	public User userSelect(int id) {
+		try {
+			return UserDao.getUser(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public void userInsert(User u){
 		try {
 			UserDao.insert(u);

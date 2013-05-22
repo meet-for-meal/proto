@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.essilab.module.error.actions.ErrorAction;
 import org.essilab.module.user.actions.MainMenu;
+import org.essilab.module.user.actions.UserAjax;
 import org.essilab.module.user.actions.UserInsert;
 import org.essilab.module.user.actions.UserListAjax;
 import org.essilab.module.user.actions.UserListDisplay;
@@ -23,8 +24,8 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		actions.put("users", new UserListAjax());
-		actions.put("users/*", new UserListAjax());
+		actions.put("ajax/users", new UserListAjax());
+//		actions.put("ajax/users/*", new UserAjax(1));
 		actions.put("user/display", new UserListDisplay());
 		actions.put("user/display.ajax", new UserListAjax());
 		actions.put("user/insert.ajax", new UserInsert());
@@ -57,6 +58,22 @@ public class FrontController extends HttpServlet {
 		
 		if (null != action)
 			action.execute(request, response);
+		else {
+			try {
+				int slashIndex = url.lastIndexOf('/');
+				System.out.println(url);
+	
+				if (url.contains("ajax/users/")) {
+					int endValue = Integer.parseInt(url.substring(slashIndex+1));
+					if (endValue > 0) {
+						action = new UserAjax(endValue);
+						action.execute(request, response);
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		if (null == request.getAttribute("render"))
 			if(url.substring(0,5).equals("admin")){
