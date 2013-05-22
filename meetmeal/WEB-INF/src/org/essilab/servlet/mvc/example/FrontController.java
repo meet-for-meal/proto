@@ -60,7 +60,8 @@ public class FrontController extends HttpServlet {
 		if (null != action)
 			action.execute(request, response);
 		else {
-			try {
+
+			/*try {
 				int slashIndex = url.lastIndexOf('/');
 				int endValue = Integer.parseInt(url.substring(slashIndex+1));
 				System.out.println(url);
@@ -79,7 +80,7 @@ public class FrontController extends HttpServlet {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 		}
 		
 		if (null == request.getAttribute("render")) {

@@ -122,6 +122,7 @@ public class AnnounceDao {
 		HashMap<Integer, Announce> announcesMap = new HashMap<Integer, Announce>();
 		
 		for (Integer interest : interests) {
+
 			String request = "CALL nearAnnouncesByInterests("+userId+","+ interest.intValue() +", 10)";
 			
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);

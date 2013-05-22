@@ -1,9 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.text.SimpleDateFormat"%>
-
-<%@page import="org.essilab.module.announce.model.Announce"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <header>
 
     <div class="wrapper">
@@ -90,7 +86,8 @@
 						<div class="user-content">
 	                        <p class="announce-msg">&laquo; ${announce.message} &raquo;<p>
 	                        <p>
-	                            <i class="icon-time"></i>Disponibilité : <strong>${announce.disponibilityDate}</strong><br>
+
+	                            <i class="icon-time"></i>Disponibilité : <strong>Le <fmt:formatDate type="date" value="${announce.disponibilityDate}" /> à <fmt:formatDate type="time" timeStyle="short" value="${announce.disponibilityDate}" /></strong><br>
 	                            <!-- <i class="icon-map-marker"></i>Localisation : <strong>Paris VÃ¨me</strong><br> -->
 	                            <!-- <i class="icon-heart"></i>Centres d'intérêts : <a href="#">#informatique</a> <a href="#">#chat</a><br> -->
 	                            <!-- <i class="icon-glass"></i>Préférences culinaires : <a href="#">#chinois</a> <a href="#">#grec</a> <a href="#">#pizzeria</a>-->
@@ -107,7 +104,11 @@
 			</c:choose>
 
         </div>
+
         <div id="conversations" class="col-1">
+            <h2>Pas de résultats?</h2>
+            <p><span><a href="announcementcreate" class="btn"><i class="icon-pencil"></i> Poster une annonce</a></span></p>
+            
             <h2>Meet For Meal</h2>
             <p>
                 Le principe du site est simple: Trouver un partenaire pour partager un repas.
