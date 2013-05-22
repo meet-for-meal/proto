@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <header>
 
     <div class="wrapper">
@@ -78,7 +79,7 @@
 		                    &laquo; ${announce.message} &raquo;
 		                </p>
 		                <p>
-		                    <i class="icon-time"></i>Disponibilité : <strong>${announce.disponibilityDate}</strong> <!-- <i class="icon-map-marker"></i>Localisation : <strong>Paris VÃ¨me</strong>-->
+		                    <i class="icon-time"></i>Disponibilité : <strong>Le <fmt:formatDate type="date" value="${announce.disponibilityDate}" /> à <fmt:formatDate type="time" timeStyle="short" value="${announce.disponibilityDate}" /></strong> <!-- <i class="icon-map-marker"></i>Localisation : <strong>Paris VÃ¨me</strong>-->
 		                </p>
 		            </div>
 		

@@ -43,12 +43,8 @@
        <servlet-name>controller</servlet-name>
        <servlet-class>org.essilab.servlet.mvc.example.FrontController</servlet-class>
     </servlet>
-
     
-    <servlet-mapping>
-      <servlet-name>default</servlet-name>
-      <url-pattern>/res/*</url-pattern>
-    </servlet-mapping>    
+           
     <servlet>
     	<servlet-name>Deconnection</servlet-name>
     	<servlet-class>org.essilab.servlet.connection.Deconnection</servlet-class>
@@ -75,12 +71,19 @@
 	</servlet>
 	
 	<servlet>
-    	<servlet-name>UserProfil</servlet-name>
-    	<servlet-class>org.essilab.servlet.UserProfil</servlet-class>
+    	<servlet-name>CreateAnnounce</servlet-name>
+    	<servlet-class>org.essilab.servlet.CreateAnnounce</servlet-class>
 	</servlet>
 
- 
-	
+    <servlet>
+        <servlet-name>UserProfil</servlet-name>
+        <servlet-class>org.essilab.servlet.UserProfil</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+      <servlet-name>default</servlet-name>
+      <url-pattern>/res/*</url-pattern>
+    </servlet-mapping> 
  	<servlet-mapping>
     	<servlet-name>Deconnection</servlet-name>
     	<url-pattern>/logout</url-pattern>
@@ -105,10 +108,20 @@
     	<servlet-name>SearchAnnounce</servlet-name>
     	<url-pattern>/announcementsearch</url-pattern>
 	</servlet-mapping>
+
+	
+	<servlet-mapping>
+    	<servlet-name>CreateAnnounce</servlet-name>
+    	<url-pattern>/announcementcreate</url-pattern>
+	</servlet-mapping>
+	
+	
+
 	<servlet-mapping>
     	<servlet-name>UserProfil</servlet-name>
     	<url-pattern>/mypage</url-pattern>
 	</servlet-mapping>
+
 
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>

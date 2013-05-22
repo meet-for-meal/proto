@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.essilab.module.connect.Connect;
+import org.essilab.module.user.model.User;
 
 public class InterestDao {
 
@@ -20,17 +21,46 @@ public class InterestDao {
 		return createInterest(result);
 	}
 	
+	//Insert
+	public static boolean insert(Interest i) throws SQLException{
+		boolean ok = false;
+		if (getInterestByTag(i.getTag()) == null) {
+			String request = "INSERT INTO Interest VALUES (NULL, '"+ i.getTag() +"')";
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			ok = true;
+		}
+		return ok;
+	}
+	
+	//Delete
+	public static boolean delete(int id) throws SQLException {
+		boolean ok = false;
+		if (getInterest(id) != null) {
+			String request = "DELETE FROM Interest WHERE id="+ id;
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			if (getInterest(id) == null) 
+				ok = true;
+			Connect.getConnection().close();
+		}
+		return ok;
+	}
+	
 	
 	// By Tag
-		public static Interest getInterestByTag(String tag) throws SQLException {
-			String request = "SELECT * FROM Interest WHERE tag LIKE \""+tag+"\"";
-			
-			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-			ResultSet result = ps.executeQuery();
-			Connect.getConnection().close();
-			
-			return createInterest(result);
-		}
+	public static Interest getInterestByTag(String tag) throws SQLException {
+		String request = "SELECT * FROM Interest WHERE tag LIKE \""+tag+"\"";
+		
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ResultSet result = ps.executeQuery();
+		Connect.getConnection().close();
+		
+		return createInterest(result);
+	}
 	
 	
 	//All

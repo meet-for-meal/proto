@@ -27,7 +27,8 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		actions.put("ajax/users", new UserListAjax());
-		actions.put("ajax/interests", new InterestListAjax());
+		actions.put("ajax/interests", new InterestListAjax(true));
+		actions.put("ajax/interests/false", new InterestListAjax(false));
 		actions.put("user/display", new UserListDisplay());
 		actions.put("user/display.ajax", new UserListAjax());
 		actions.put("user/insert.ajax", new UserInsertAjax());
@@ -59,26 +60,28 @@ public class FrontController extends HttpServlet {
 		if (null != action)
 			action.execute(request, response);
 		else {
-			try {
-				System.out.println(url);
-				if (url.contains("ajax/users/")) {
-					int slashIndex = url.lastIndexOf('/');
-					int endValue = Integer.parseInt(url.substring(slashIndex+1));
-					if (endValue > 0) {
-						if (request.getMethod().equalsIgnoreCase("GET")) {
-							action = new UserGetAjax(endValue);
-						} else if (request.getMethod().equalsIgnoreCase("PUT")) {
-							action = new UserInsertAjax(endValue);
-						} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
-							action = new UserDeleteAjax(endValue);
+
+				try {
+	
+					System.out.println(url);
+					if (url.contains("ajax/users/")) {
+						int slashIndex = url.lastIndexOf('/');
+						int endValue = Integer.parseInt(url.substring(slashIndex+1));
+						if (endValue > 0) {
+							if (request.getMethod().equalsIgnoreCase("GET")) {
+								action = new UserGetAjax(endValue);
+							} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+								action = new UserInsertAjax(endValue);
+							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+								action = new UserDeleteAjax(endValue);
+							}
+							action.execute(request, response);
 						}
-						action.execute(request, response);
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
-		}
 		
 		if (null == request.getAttribute("render")) {
 			if(url.substring(0,5).equals("admin")){
