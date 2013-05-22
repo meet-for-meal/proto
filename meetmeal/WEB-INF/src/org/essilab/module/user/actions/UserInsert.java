@@ -1,20 +1,19 @@
 package org.essilab.module.user.actions;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.essilab.module.user.UserService;
+import org.essilab.module.user.model.User;
 import org.essilab.servlet.mvc.example.IAction;
 
-public class UserInsertAjax implements IAction{
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class UserInsert implements IAction{
 
 	UserService service = UserService.getInstance();
-	int id;
-	
-	public UserInsertAjax() {}
-	public UserInsertAjax(int id) {
-		this.id = id;
-	}
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

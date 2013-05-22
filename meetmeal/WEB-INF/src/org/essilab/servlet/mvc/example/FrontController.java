@@ -51,7 +51,6 @@ public class FrontController extends HttpServlet {
 				response.sendRedirect( request.getContextPath() + "/homepage" );
 				return;
 			}
-			
 		}
 		request.setAttribute("url", url);
 
@@ -61,12 +60,11 @@ public class FrontController extends HttpServlet {
 			action.execute(request, response);
 		else {
 			try {
-				int slashIndex = url.lastIndexOf('/');
-				int endValue = Integer.parseInt(url.substring(slashIndex+1));
 				System.out.println(url);
-	
-				if (endValue > 0) {
-					if (url.contains("ajax/users/")) {
+				if (url.contains("ajax/users/")) {
+					int slashIndex = url.lastIndexOf('/');
+					int endValue = Integer.parseInt(url.substring(slashIndex+1));
+					if (endValue > 0) {
 						if (request.getMethod().equalsIgnoreCase("GET")) {
 							action = new UserGetAjax(endValue);
 						} else if (request.getMethod().equalsIgnoreCase("PUT")) {

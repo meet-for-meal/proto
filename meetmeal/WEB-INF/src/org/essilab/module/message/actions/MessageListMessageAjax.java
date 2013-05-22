@@ -25,7 +25,7 @@ public class MessageListMessageAjax implements IAction{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		List<Message> messages = service.messageListMessages(senderId, receiverId);
 		try {
-			response.setContentType("text/x-javascript;charset=UTF-8");
+			response.setContentType(HEADER_TYPE_JSON);
 			mapper.writeValue(response.getOutputStream(), messages);
 		} catch (Exception e) {
 			e.printStackTrace();

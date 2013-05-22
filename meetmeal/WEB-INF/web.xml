@@ -74,7 +74,10 @@
     	<servlet-class>org.essilab.servlet.SingleAnnounce</servlet-class>
 	</servlet>
 	
-	
+	<servlet>
+    	<servlet-name>UserPage</servlet-name>
+    	<servlet-class>org.essilab.servlet.UserPage</servlet-class>
+	</servlet>
 
  
 	
@@ -101,6 +104,10 @@
 	<servlet-mapping>
     	<servlet-name>SearchAnnounce</servlet-name>
     	<url-pattern>/announcementsearch</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+    	<servlet-name>UserPage</servlet-name>
+    	<url-pattern>/mypage</url-pattern>
 	</servlet-mapping>
 
     <servlet-mapping>

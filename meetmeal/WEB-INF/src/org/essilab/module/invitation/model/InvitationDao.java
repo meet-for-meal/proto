@@ -1,4 +1,4 @@
-package org.essilab.module.announce.model;
+package org.essilab.module.invitation.model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,10 +11,10 @@ import org.essilab.module.connect.Connect;
 import org.essilab.module.user.model.User;
 import org.essilab.module.user.model.UserDao;
 
-public class AnnounceDao {
+public class InvitationDao {
 	
 	//One
-	public static Announce getAnnounce(int announceid) throws SQLException {
+	public static Invitation getAnnounce(int announceid) throws SQLException {
 		String request = "SELECT A.id, A.creatorId, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message " +
 			"FROM Announce A " +
 			"WHERE A.id = "+announceid;
@@ -27,7 +27,7 @@ public class AnnounceDao {
 	}
 		
 	//Insert
-	public static void insert(Announce a) throws SQLException{
+	public static void insert(Invitation a) throws SQLException{
 		String request = "INSERT INTO Announce VALUES (NULL" +
 			", "+ (a.getCreator() != null ? a.getCreator().getId()+"" : "NULL") +
 			", "+ (a.getCreatedDate() != null ? "'"+new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'" : "NULL") +
@@ -43,7 +43,7 @@ public class AnnounceDao {
 	}
 	
 	//Update
-	public static void update(Announce a) throws SQLException{
+	public static void update(Invitation a) throws SQLException{
 		String request = "UPDATE Announce SET";
 			if (a.getCreator() != null)
 			request += " creatorId="+ a.getCreator().getId();
@@ -63,7 +63,7 @@ public class AnnounceDao {
 	}
 	
 	//Delete
-	public static void delete(Announce a) throws SQLException{
+	public static void delete(Invitation a) throws SQLException{
 		String request = "DELETE FROM Announce WHERE id="+ a.getId();
 		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
@@ -82,7 +82,7 @@ public class AnnounceDao {
 	}
 	
 	//All
-	public static List<Announce> getAll() throws SQLException {
+	public static List<Invitation> getAll() throws SQLException {
 		String request = "SELECT A.id, A.creatorId, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message "+
 			"FROM Announce A " +
 			"INNER JOIN User U ON U.id = A.creatorId";
@@ -95,7 +95,7 @@ public class AnnounceDao {
 	}
 	
 	//Announces with same Interests
-	public static List<Announce> findAnnouncesByInterests(List<Integer> interests) throws SQLException {
+	public static List<Invitation> findAnnouncesByInterests(List<Integer> interests) throws SQLException {
 		String request = "SELECT A.id, A.creatorId, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message "+
 				"FROM Announce A " +
 				"INNER JOIN User U ON U.id = A.creatorId " +
@@ -118,8 +118,8 @@ public class AnnounceDao {
 	}
 	
 	//Near Announces with same Interests
-	public static List<Announce> findNearAnnouncesByInterests(int userId, List<Integer> interests, int distance) throws SQLException {
-		HashMap<Integer, Announce> announcesMap = new HashMap<Integer, Announce>();
+	public static List<Invitation> findNearAnnouncesByInterests(int userId, List<Integer> interests, int distance) throws SQLException {
+		HashMap<Integer, Invitation> announcesMap = new HashMap<Integer, Invitation>();
 		
 		for (Integer interest : interests) {
 			String request = "CALL nearAnnouncesByInterests("+userId+","+ interest.intValue() +", "+distance+")";
@@ -127,24 +127,24 @@ public class AnnounceDao {
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 			ResultSet result = ps.executeQuery();
 			
-			List<Announce> tmp = createAnnounces(result);
-			for(Announce a : tmp) {
+			List<Invitation> tmp = createAnnounces(result);
+			for(Invitation a : tmp) {
 				announcesMap.put(a.getId(), a);
 			}
 		}
 		Connect.getConnection().close();
 		
-		return new ArrayList<Announce>(announcesMap.values());
+		return new ArrayList<Invitation>(announcesMap.values());
 	}
 	
 	
 	//Create Announce
-	private static Announce createAnnounce(ResultSet result) {
-		Announce announce = new Announce();
+	private static Invitation createAnnounce(ResultSet result) {
+		Invitation announce = new Invitation();
 		try {
 			result.next(); 
 			if (result != null) {
-				announce = new Announce(
+				announce = new Invitation(
 						result.getInt("id"),
 						result.getTimestamp("createdDate"), 
 						result.getTimestamp("disponibilityDate"),
@@ -159,11 +159,11 @@ public class AnnounceDao {
 	}
 		
 	//Create Announces
-	private static List<Announce> createAnnounces(ResultSet result) {
-		List<Announce> announces = new ArrayList<Announce>();
+	private static List<Invitation> createAnnounces(ResultSet result) {
+		List<Invitation> announces = new ArrayList<Invitation>();
 		try {
 			while (result.next()) {
-				Announce an = new Announce(
+				Invitation an = new Invitation(
 						result.getInt("id"),
 						result.getTimestamp("createdDate"), 
 						result.getTimestamp("disponibilityDate"),
@@ -183,12 +183,12 @@ public class AnnounceDao {
 	public static void main(String[] args)  {
 		try {
 			//One
-			Announce item = getAnnounce(1);
+			Invitation item = getAnnounce(1);
 			System.out.println(item.getCreatedDate()+" "+item.getCreator().getFirstname()+" "+item.getMessage()+" "+item.getDisponibilityDate()+"\n");
 			
 			//All
-			List<Announce> items = getAll();
-			for (Announce i : items) 
+			List<Invitation> items = getAll();
+			for (Invitation i : items) 
 				System.out.println(i.getCreatedDate()+" "+i.getCreator().getFirstname()+" "+i.getMessage()+" "+i.getDisponibilityDate());
 			System.out.println(items.size()+"\n");
 		
@@ -199,19 +199,19 @@ public class AnnounceDao {
 			interests.add(Integer.valueOf(4));
 			interests.add(Integer.valueOf(8));
 			items = findAnnouncesByInterests(interests);
-			for (Announce i : items) 
+			for (Invitation i : items) 
 				System.out.println(i.getId()+" "+i.getCreatedDate()+" "+i.getCreator().getFirstname()+" "+i.getMessage()+" "+i.getDisponibilityDate());
 			System.out.println(items.size()+"\n");
 			
 			//Near Announce same Users
 			System.out.println("Near Announce same Users");
 			items = findNearAnnouncesByInterests(3, interests, 5);
-			for (Announce i : items) 
+			for (Invitation i : items) 
 				System.out.println(i.getCreatedDate()+" "+i.getCreator().getFirstname()+" "+i.getMessage()+" "+i.getDisponibilityDate());
 			System.out.println(items.size()+"\n");
 			
 			//Insert
-			Announce a1 = new Announce(0, new Date(), new Date(), true, (long)48.1021, 2.5292, "Viens, viens, regarde comme on est bien");
+			Invitation a1 = new Invitation(0, new Date(), new Date(), true, (long)48.1021, 2.5292, "Viens, viens, regarde comme on est bien");
 			a1.setCreator(UserDao.getUser(4));
 			insert(a1);
 			

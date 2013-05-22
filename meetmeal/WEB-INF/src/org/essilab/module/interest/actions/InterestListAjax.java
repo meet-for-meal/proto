@@ -21,7 +21,7 @@ public class InterestListAjax implements IAction{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		List<Interest> interests = service.interestList();
 		try {
-			response.setContentType("text/x-javascript;charset=UTF-8");
+			response.setContentType("application/x-javascript;charset=UTF-8");
 			List<String> listInterest = new ArrayList<String>();
 			for (Interest i : interests)
 				listInterest.add(i.getTag());

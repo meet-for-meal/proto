@@ -20,10 +20,9 @@ public class UserListAjax implements IAction{
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Get From Persistence Layer.
 		List<User> users = service.userList();
 		try {
-			response.setContentType("text/x-javascript;charset=UTF-8");
+			response.setContentType(HEADER_TYPE_JSON);
 			mapper.writeValue(response.getOutputStream(), users);
 		} catch (Exception e) {
 			e.printStackTrace();
