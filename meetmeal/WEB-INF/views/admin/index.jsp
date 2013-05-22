@@ -46,6 +46,10 @@
           <li class="nav-header">Partenariats</li>
           <li><a href="<%= request.getContextPath() %>/admin#partnerships">Liste</a></li>
         </ul>
+        <ul class="nav nav-list">
+          <li class="nav-header">Annonces</li>
+          <li><a href="<%= request.getContextPath() %>/admin#announcements">Liste</a></li>
+        </ul>
       </div><!--/.well -->
     </div><!--/span-->
     <div id="content" class="span9"></div><!--/span-->

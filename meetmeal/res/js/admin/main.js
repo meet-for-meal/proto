@@ -3,13 +3,14 @@ require(['jquery', 'bootstrap', 'backbone'], function ($, Bootstrap, Backbone) {
   var Router = Backbone.Router.extend({
 
     routes: {
-      '':                'index',          // #
-      'users':           'userList',       // #users
-      'users/:id/edit':  'userEdit',       // #users/:id/edit
-      'venues':          'venueList',      // #venues
-      'venues/:id':      'venueShow',      // #venues/:id
-      'venues/:id/edit': 'venueEdit',      // #venues/:id/edit
-      'partnerships':    'partnershipList' // #partnerships
+      '':                'index',           // #
+      'users':           'userList',        // #users
+      'users/:id/edit':  'userEdit',        // #users/:id/edit
+      'venues':          'venueList',       // #venues
+      'venues/:id':      'venueShow',       // #venues/:id
+      'venues/:id/edit': 'venueEdit',       // #venues/:id/edit
+      'partnerships':    'partnershipList', // #partnerships
+      'announcements':   'announcementList' // #announcements
     },
 
     index: function() {
@@ -60,6 +61,15 @@ require(['jquery', 'bootstrap', 'backbone'], function ($, Bootstrap, Backbone) {
     partnershipList: function() {
       require(['admin/views/partnerships/list'], function (partnershipListView) {
         new partnershipListView();
+      });
+    },
+
+
+    /* Announcements */
+
+    announcementList: function() {
+      require(['admin/views/announcements/list'], function (announcementListView) {
+        new announcementListView();
       });
     }
 
