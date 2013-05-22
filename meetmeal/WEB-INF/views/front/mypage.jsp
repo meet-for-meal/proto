@@ -53,7 +53,7 @@ User user = (User)session.getAttribute("sessionUser");
 
         <div class="col-2">
             <h2>Informations sur votre profil</h2>
-            <img src="/meetformeal/res/styles/default/img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
+            <img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
             <p>
                 <i class="icon-user"></i><strong><% out.print(user.getLastname()); %></strong>
             </p>
