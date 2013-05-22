@@ -8,7 +8,6 @@ import org.essilab.module.interest.model.InterestDao;
 
 public class InterestService {
 
-	//UserDao userDao = UserDao.getInstance();
 	private static InterestService instance = null;
 	private InterestService() { }
 	public static InterestService getInstance(){

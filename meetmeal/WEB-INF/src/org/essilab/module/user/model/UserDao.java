@@ -12,17 +12,18 @@ public class UserDao {
 	
 	// Search for existing user in DB
 	public static User authenticateUser(String mail, String password) throws SQLException {
-		String request = "SELECT * FROM User U "+
-			"WHERE '"+mail+"' LIKE CONCAT('%',U.email,'%') "+
-			"AND '"+password+"' LIKE CONCAT('%',U.password,'%')";
-		
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ResultSet result = ps.executeQuery();
-		Connect.getConnection().close();
-		if(result != null)
-			return createUser(result);
-		else
-			return null;
+		if (Connect.getConnection() != null) {
+			String request = "SELECT * FROM User U "+
+				"WHERE '"+mail+"' LIKE CONCAT('%',U.email,'%') "+
+				"AND '"+password+"' LIKE CONCAT('%',U.password,'%')";
+			
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ResultSet result = ps.executeQuery();
+			Connect.getConnection().close();
+			if(result != null)
+				return createUser(result);
+		} 
+		return null;
 	}
 	
 	//setFirstVisit

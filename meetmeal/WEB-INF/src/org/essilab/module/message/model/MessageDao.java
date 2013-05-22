@@ -29,14 +29,7 @@ public class MessageDao {
 	
 	//List conversation with people for an User
 	public static List<Message> findListConversation(int senderId) throws SQLException {
-		/* http://stackoverflow.com/questions/11095024/select-the-latest-message-between-the-communication-of-two-user-in-mysql
-		  	SELECT M.* FROM 
-				(SELECT MAX(M.id) AS message_id 
-			         FROM Message M
-			         WHERE 1 IN (senderId, receiverId)
-			         GROUP BY IF (1 = senderId, receiverId, senderId)) AS latest
-			LEFT JOIN Message USING(message_id)
-		 */
+		/* http://stackoverflow.com/questions/11095024/select-the-latest-message-between-the-communication-of-two-user-in-mysql */
 		
 		/*  GOOD
 		  	SELECT * FROM 
@@ -66,11 +59,11 @@ public class MessageDao {
 	}
 	
 	//List Messages for a conversation between 2 User
-	public static List<Message> findListMessage(int userId1, int userId2) throws SQLException {
+	public static List<Message> findListMessage(int senderId, int receiverId) throws SQLException {
 		String request = "SELECT M.id, M.createdDate, M.senderId sid, M.receiverId rid, M.content " +
 				"FROM Message M "+
-				"WHERE senderId = "+userId1+" AND receiverId = "+userId2+" "+
-				"OR (senderId = "+userId2+" AND receiverId = "+userId1+") "+
+				"WHERE senderId = "+senderId+" AND receiverId = "+receiverId+" "+
+				"OR (senderId = "+receiverId+" AND receiverId = "+senderId+") "+
 				"ORDER BY M.createdDate ASC;";
 		
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
@@ -85,7 +78,7 @@ public class MessageDao {
 		List<Message> messages = new ArrayList<Message>();
 		try {
 			while (result.next()) {
-				Message msg = new Message(result.getInt("id"), result.getString("content"), result.getDate("createdDate"));	
+				Message msg = new Message(result.getInt("id"), result.getString("content"), result.getTimestamp("createdDate"));	
 				msg.setSender(UserDao.getUser(result.getInt("sid")));
 				msg.setReceiver(UserDao.getUser(result.getInt("rid")));
 				messages.add(msg);	
