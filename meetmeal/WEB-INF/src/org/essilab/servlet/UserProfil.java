@@ -16,7 +16,7 @@ import org.essilab.module.interest.InterestService;
 import org.essilab.module.interest.model.Interest;
 import org.essilab.module.user.model.User;
 
-public class UserPage extends HttpServlet {
+public class UserProfil extends HttpServlet {
     public static final String ATT_USER         = "user";
     public static final String ATT_SESSION_INTERESTS = "interests";
     public static final String ATT_SESSION_CATEGORIES = "categories";
