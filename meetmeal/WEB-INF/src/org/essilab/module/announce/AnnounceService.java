@@ -30,7 +30,7 @@ public class AnnounceService {
 			System.out.println(u.getId());
 			System.out.println(list.get(0));
 			//System.out.println(list.get(1));
-			 return AnnounceDao.findNearAnnouncesByInterests(u.getId(), list);
+			 return AnnounceDao.findNearAnnouncesByInterests(u.getId(), list,10);
 			//return AnnounceDao.getAll();
 		} catch (SQLException e) {
 			e.printStackTrace();

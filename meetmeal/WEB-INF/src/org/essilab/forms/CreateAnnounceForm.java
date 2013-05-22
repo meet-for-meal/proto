@@ -1,7 +1,5 @@
 package org.essilab.forms;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +11,9 @@ import org.essilab.module.announce.model.Announce;
 import org.essilab.module.interest.InterestService;
 import org.essilab.module.interest.model.Interest;
 
-public class SearchAnnounceForm {
-	private static final String INTERESTS   = "interests";
+public class CreateAnnounceForm {
+	private static final String DISPO   = "dispo";
+	private static final String DESCRIPTION   = "description";
     private String              result;
     private Map<String, String> errors      = new HashMap<String, String>();
 
@@ -28,22 +27,9 @@ public class SearchAnnounceForm {
     }
     
     
-    public List<Interest> SearchAnnounce( HttpServletRequest request ) {
-    	String interests = getFieldValue( request, INTERESTS );
-    	if(interests != null){
-    		InterestService interestService = InterestService.getInstance();
-    		List<Interest> list = new ArrayList<Interest>();
-    		String str[]=interests.split(",");
-    		for(String s : str){
-    			Interest in = interestService.getInterestByTag(s);
-    			if (in != null)
-    				list.add(in);
-    		}
-    		return list;
-    	}
-    	else{
-    		System.out.println("SearchAnnounceForm.java");
-    	}
+    public Announce CreateAnnounce( HttpServletRequest request ) {
+    	String interests = getFieldValue( request, DISPO );
+
     	return null;
     }
 	
