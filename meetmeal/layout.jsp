@@ -5,10 +5,11 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title><%= request.getAttribute("title") %></title>
+    <title>Meet For Meal - <%= request.getAttribute("title") %></title>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
+    <link rel="icon" type="image/png" href="<%=request.getContextPath()%>/res/styles/default/img/favicon.png">
     <% 
 	 	if(request.getAttribute("url").equals("homepage") || request.getAttribute("url").equals("register") || request.getAttribute("url").equals("connect-admin")){
 	 		out.println("<link href=\"" + request.getContextPath() +"/res/styles/default/homepage.css\" rel=\"stylesheet\">");
