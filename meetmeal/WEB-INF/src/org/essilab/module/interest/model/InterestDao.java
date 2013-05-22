@@ -20,6 +20,19 @@ public class InterestDao {
 		return createInterest(result);
 	}
 	
+	
+	// By Tag
+		public static Interest getInterestByTag(String tag) throws SQLException {
+			String request = "SELECT * FROM Interest WHERE tag LIKE \""+tag+"\"";
+			
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ResultSet result = ps.executeQuery();
+			Connect.getConnection().close();
+			
+			return createInterest(result);
+		}
+	
+	
 	//All
 	public static List<Interest> getAll() throws SQLException {
 		String request = "SELECT * FROM Interest";

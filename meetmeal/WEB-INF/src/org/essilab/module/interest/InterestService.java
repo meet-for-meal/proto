@@ -28,4 +28,17 @@ public class InterestService {
 		}
 		return null;
 	}
+	
+	
+	public static Interest getInterestByTag(String s){
+		try {
+			 return InterestDao.getInterestByTag(s);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.essilab.module.announce.model.Announce;
+import org.essilab.module.interest.InterestService;
 import org.essilab.module.interest.model.Interest;
 
 public class SearchAnnounceForm {
@@ -28,11 +29,13 @@ public class SearchAnnounceForm {
     public List<Interest> SearchAnnounce( HttpServletRequest request ) {
     	String interests = getFieldValue( request, INTERESTS );
     	if(interests != null){
+    		InterestService interestService = InterestService.getInstance();
     		List<Interest> list = new ArrayList<Interest>();
     		String str[]=interests.split(",");
     		for(String s : str){
-    			Interest in = new Interest(s);
-    			list.add(in);
+    			Interest in = interestService.getInterestByTag(s);
+    			if (in != null)
+    				list.add(in);
     		}
     		return list;
     	}

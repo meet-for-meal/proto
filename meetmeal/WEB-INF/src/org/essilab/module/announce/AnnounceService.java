@@ -1,6 +1,7 @@
 package org.essilab.module.announce;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.essilab.module.announce.model.Announce;
@@ -22,8 +23,15 @@ public class AnnounceService {
 	
 	public List<Announce> getAnnounces(User u, List<Interest> interests){
 		try {
-			 //return AnnounceDao.FindNearAnnouncesByTags(u.getId(), interests);
-			return AnnounceDao.getAll();
+			List<Integer> list = new ArrayList<Integer>();
+			for(Interest in : interests){
+				list.add(in.getId());
+			}
+			System.out.println(u.getId());
+			System.out.println(list.get(0));
+			//System.out.println(list.get(1));
+			 return AnnounceDao.findNearAnnouncesByInterests(u.getId(), list);
+			//return AnnounceDao.getAll();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
