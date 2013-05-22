@@ -26,6 +26,26 @@ public class UserProfil extends HttpServlet {
     			.getRequestURI()
     			.substring(request.getContextPath().length()+1);
         request.setAttribute("url", url);
+        HttpSession session = request.getSession();
+        
+        User user = (User) session.getAttribute("sessionUser");
+        if (user != null ) {
+
+            InterestService interestService = InterestService.getInstance();
+            List<Interest>  interest = interestService.getInterestByUser(user);
+            System.out.println(interest.get(0));
+            CategoryService categoryService = CategoryService.getInstance();
+            List<Category>  category = (List<Category>) categoryService.getCategoryByUser(user);
+            session.setAttribute(ATT_SESSION_INTERESTS, interest);
+            session.setAttribute(ATT_SESSION_CATEGORIES, category);
+            
+        } else {
+        	session.setAttribute(ATT_SESSION_INTERESTS, null);
+        	session.setAttribute(ATT_SESSION_CATEGORIES, null);
+        }
+ 
+        /* store form error and data in request */
+        request.setAttribute( ATT_USER, user );
         this.getServletContext().getRequestDispatcher("/layout.jsp" ).forward( request, response );
     }
  
@@ -44,18 +64,14 @@ public class UserProfil extends HttpServlet {
         /* Récupération de la session depuis la requête */
         HttpSession session = request.getSession();
  
-        /**
-         * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
-         * User à la session, sinon suppression du bean de la session.
-         */
+
         User user = (User) session.getAttribute("sessionUser");
-        
         if (user != null ) {
 
             InterestService interestService = InterestService.getInstance();
-            List<Interest>  interest = (List<Interest>) interestService.getInterestByUser(user);
+            List<Interest>  interest = interestService.getInterestByUser(user);
             CategoryService categoryService = CategoryService.getInstance();
-            List<Category>  category = (List<Category>) categoryService.getCategoryByUser(user);
+            List<Category>  category = categoryService.getCategoryByUser(user);
             session.setAttribute(ATT_SESSION_INTERESTS, interest);
             session.setAttribute(ATT_SESSION_CATEGORIES, category);
             

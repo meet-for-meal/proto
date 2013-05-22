@@ -63,7 +63,6 @@ public class FrontController extends HttpServlet {
 
 				try {
 	
-					System.out.println(url);
 					if (url.contains("ajax/users/")) {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));

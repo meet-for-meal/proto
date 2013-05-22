@@ -58,7 +58,6 @@ public class UserDao {
 			" "+ (user.getFirstVisit()? 1: 0) +"," +
 			" "+ (user.getIsAdmin() ? 1 : 0) +"," +
 			" NULL, NULL, NULL)";
-		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ps.executeUpdate();
 		Connect.getConnection().close();
@@ -82,7 +81,7 @@ public class UserDao {
 			" lastLongitude="+ user.getLastLong();
 			}
 			request += " WHERE id="+ user.getId();
-		System.out.println(request);
+
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 //		ps.setDate(1, ();
 		ps.executeUpdate();

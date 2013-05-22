@@ -63,9 +63,9 @@ public class InterestService {
 		return null;
 	}
 	
-	public static Interest getInterestByUser(User u){
+	public List<Interest> getInterestByUser(User u){
 		try {
-			 return (Interest) InterestDao.findInterestsUser(u.getId());
+			 return  InterestDao.findInterestsUser(u.getId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

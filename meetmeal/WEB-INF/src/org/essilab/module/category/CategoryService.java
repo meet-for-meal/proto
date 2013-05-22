@@ -26,9 +26,9 @@ public class CategoryService {
 		return null;
 	}
 	
-	public static Category getCategoryByUser(User u){
+	public List<Category> getCategoryByUser(User u){
 		try {
-			 return (Category) CategoryDao.findCategoriesUser(u.getId());
+			 return CategoryDao.findCategoriesUser(u.getId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
