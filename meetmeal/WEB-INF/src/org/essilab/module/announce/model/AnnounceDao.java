@@ -15,10 +15,8 @@ public class AnnounceDao {
 	
 	//One
 	public static Announce getAnnounce(int announceid) throws SQLException {
-		String request = "SELECT A.id, A.creatorId, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message, " +
-			"U.firstname, U.lastname, U.email, U.gender, U.age "+
+		String request = "SELECT A.id, A.creatorId, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message " +
 			"FROM Announce A " +
-			"INNER JOIN User U ON U.id = A.creatorId " +
 			"WHERE A.id = "+announceid;
 		
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
@@ -85,8 +83,7 @@ public class AnnounceDao {
 	
 	//All
 	public static List<Announce> getAll() throws SQLException {
-		String request = "SELECT A.id, A.creatorId, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message, " +
-			"U.firstname, U.lastname, U.email, U.gender, U.age "+
+		String request = "SELECT A.id, A.creatorId, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message "+
 			"FROM Announce A " +
 			"INNER JOIN User U ON U.id = A.creatorId";
 		
@@ -99,8 +96,7 @@ public class AnnounceDao {
 	
 	//Announces with same Interests
 	public static List<Announce> findAnnouncesByInterests(List<Integer> interests) throws SQLException {
-		String request = "SELECT A.id, A.creatorId, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message, " +
-				"U.firstname, U.lastname, U.email, U.gender, U.age "+
+		String request = "SELECT A.id, A.creatorId, A.createdDate, A.disponibilityDate, A.isOpen, A.latitude, A.longitude, A.message "+
 				"FROM Announce A " +
 				"INNER JOIN User U ON U.id = A.creatorId " +
 				"INNER JOIN Has_Interest HI ON U.id = HI.userId " +
@@ -150,13 +146,13 @@ public class AnnounceDao {
 			if (result != null) {
 				announce = new Announce(
 						result.getInt("id"),
-						result.getDate("createdDate"), 
-						result.getDate("disponibilityDate"),
+						result.getTimestamp("createdDate"), 
+						result.getTimestamp("disponibilityDate"),
 						result.getBoolean("isOpen"),
 						result.getDouble("latitude"),
 						result.getDouble("longitude"),
 						result.getString("message") );
-				announce.setCreator(new User(result.getInt("creatorId"), result.getString("firstname"), result.getString("lastname"), result.getInt("age"), result.getString("email"), result.getInt("gender")));
+				announce.setCreator(UserDao.getUser(result.getInt("creatorId")));
 			}
 		} catch (SQLException e) { e.printStackTrace();	}
 		return announce;
@@ -169,13 +165,13 @@ public class AnnounceDao {
 			while (result.next()) {
 				Announce an = new Announce(
 						result.getInt("id"),
-						result.getDate("createdDate"), 
-						result.getDate("disponibilityDate"),
+						result.getTimestamp("createdDate"), 
+						result.getTimestamp("disponibilityDate"),
 						result.getBoolean("isOpen"),
 						result.getDouble("latitude"),
 						result.getDouble("longitude"),
 						result.getString("message") );
-				an.setCreator(new User(result.getInt("creatorId"), result.getString("firstname"), result.getString("lastname"), result.getInt("age"), result.getString("email"), result.getInt("gender")));
+				an.setCreator(UserDao.getUser(result.getInt("creatorId")));
 				announces.add(an);	
 			}
 		} catch (SQLException e) { e.printStackTrace();	}

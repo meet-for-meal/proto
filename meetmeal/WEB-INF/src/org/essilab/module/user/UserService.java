@@ -26,12 +26,30 @@ public class UserService {
 		return null;
 	}
 	
+	public User userSelect(int id) {
+		try {
+			return UserDao.getUser(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public void userInsert(User u){
 		try {
 			UserDao.insert(u);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean userDelete(int id) {
+		try {
+			return UserDao.delete(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	public User userAuthenticate(User u){

@@ -12,17 +12,18 @@ public class UserDao {
 	
 	// Search for existing user in DB
 	public static User authenticateUser(String mail, String password) throws SQLException {
-		String request = "SELECT * FROM User U "+
-			"WHERE '"+mail+"' LIKE CONCAT('%',U.email,'%') "+
-			"AND '"+password+"' LIKE CONCAT('%',U.password,'%')";
-		
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ResultSet result = ps.executeQuery();
-		Connect.getConnection().close();
-		if(result != null)
-			return createUser(result);
-		else
-			return null;
+		if (Connect.getConnection() != null) {
+			String request = "SELECT * FROM User U "+
+				"WHERE '"+mail+"' LIKE CONCAT('%',U.email,'%') "+
+				"AND '"+password+"' LIKE CONCAT('%',U.password,'%')";
+			
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ResultSet result = ps.executeQuery();
+			Connect.getConnection().close();
+			if(result != null)
+				return createUser(result);
+		} 
+		return null;
 	}
 	
 	//setFirstVisit
@@ -89,12 +90,18 @@ public class UserDao {
 	}
 	
 	//Delete
-	public static void delete(User user) throws SQLException{
-		String request = "DELETE FROM User WHERE id="+ user.getId();
-		System.out.println(request);
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean delete(int id) throws SQLException {
+		boolean ok = false;
+		if (getUser(id) != null) {
+			String request = "DELETE FROM User WHERE id="+ id;
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			if (getUser(id) == null) 
+				ok = true;
+			Connect.getConnection().close();
+		}
+		return ok;
 	}
 
 	//All
@@ -115,7 +122,7 @@ public class UserDao {
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
 		Connect.getConnection().close();
-		return (result != null && result.next()) ? result.getInt("id") : null;
+		return (result != null && result.next()) ? result.getInt("id") : 0;
 	}
 	
 	//Find Users by name
@@ -244,7 +251,7 @@ public class UserDao {
 					result.getInt("gender"),
 					result.getBoolean("firstVisit"),
 					result.getBoolean("isAdmin"),
-					result.getDate("lastPosition"),
+					result.getTimestamp("lastPosition"),
 					result.getDouble("lastLatitude"),
 					result.getDouble("lastLongitude")
 				);	
@@ -270,7 +277,7 @@ public class UserDao {
 					result.getInt("gender"),
 					result.getBoolean("firstVisit"),
 					result.getBoolean("isAdmin"),
-					result.getDate("lastPosition"),
+					result.getTimestamp("lastPosition"),
 					result.getDouble("lastLatitude"),
 					result.getDouble("lastLongitude")
 				));	
@@ -284,18 +291,18 @@ public class UserDao {
 	public static void main(String[] args)  {
 		try {
 			//One
-			User u = getUser(1);
-			System.out.println(u.getId()+" "+u.getLastname()+" "+u.getFirstname()+"\n");
+			User u = getUser(2);
+			System.out.println(u.getId()+" "+u.getLastname()+" "+u.getFirstname()+" "+u.getLastPosition()+"\n");
 			
 			//All
 			List<User> items = getAll();
 			System.out.println("Nb Users = "+ items.size());
 			for (User v : items) 
-				System.out.println(v.getId()+" "+v.getLastname()+" "+v.getFirstname());
+				System.out.println(v.getId()+" "+v.getLastname()+" "+v.getFirstname()+" "+v.getLastPosition());
 			System.out.println("");
 			
 			//Interests
-			String [] strings = new String[] {"Animaux", "Jeux vid√©o", "Informatique"};
+			String [] strings = new String[] {"Animaux", "Jeux vidéo", "Informatique"};
 			List<String> params = new ArrayList<String>();
 			for(String s : strings)
 				params.add(s);
