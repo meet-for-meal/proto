@@ -49,17 +49,13 @@ public class MessageDao {
 		 */
 		
 		String request = 
-			"SELECT M.id, M.createdDate, M.senderId sid, M.receiverId rid, M.content, " +
-				"S.firstname sfirstname, S.lastname slastname, S.email semail, " +
-				"R.firstname rfirstname, R.lastname rlastname, R.email remail "+
+			"SELECT M.id, M.createdDate, M.senderId sid, M.receiverId rid, M.content " +
 			"FROM (" +
 				"SELECT MAX(createdDate) AS createdDate "+
 				"FROM Message M "+
 				"WHERE "+senderId+" IN (senderId,receiverId) "+
 				"GROUP BY IF ("+senderId+" = senderId,receiverId,senderId)) AS latest "+
 			"LEFT JOIN Message M ON latest.createdDate = M.createdDate AND "+senderId+" IN (M.senderId, M.receiverId) "+
-			"INNER JOIN User S ON S.id = M.senderId "+
-			"INNER JOIN User R ON R.id = M.receiverId "+
 			"GROUP BY IF ("+senderId+" = M.senderId,M.receiverId,M.senderId)";
 		
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
@@ -71,21 +67,8 @@ public class MessageDao {
 	
 	//List Messages for a conversation between 2 User
 	public static List<Message> findListMessage(int userId1, int userId2) throws SQLException {
-		/*
-		  	SELECT M.createdDate, M.senderId sid, M.receiverId rid, M.content, S.firstname sfirstname, S.lastname slastname, S.email semail, R.firstname rfirstname, R.lastname rlastname, R.email remail
-			FROM Message M
-			INNER JOIN User S ON S.id = M.senderId
-			INNER JOIN User R ON R.id = M.receiverId
-			WHERE senderId =1 AND receiverId = 2
-            OR (senderId = 2 AND receiverId = 1)
-			ORDER BY M.createdDate ASC ;
-		*/
-		String request = "SELECT M.id, M.createdDate, M.senderId sid, M.receiverId rid, M.content, " +
-				"S.firstname sfirstname, S.lastname slastname, S.email semail, " +
-				"R.firstname rfirstname, R.lastname rlastname, R.email remail "+
+		String request = "SELECT M.id, M.createdDate, M.senderId sid, M.receiverId rid, M.content " +
 				"FROM Message M "+
-				"INNER JOIN User S ON S.id = M.senderId "+
-				"INNER JOIN User R ON R.id = M.receiverId "+
 				"WHERE senderId = "+userId1+" AND receiverId = "+userId2+" "+
 				"OR (senderId = "+userId2+" AND receiverId = "+userId1+") "+
 				"ORDER BY M.createdDate ASC;";
@@ -103,8 +86,8 @@ public class MessageDao {
 		try {
 			while (result.next()) {
 				Message msg = new Message(result.getInt("id"), result.getString("content"), result.getDate("createdDate"));	
-				msg.setSender(new User(result.getInt("sid"), result.getString("slastname"), result.getString("sfirstname"),	result.getString("semail")));
-				msg.setReceiver(new User(result.getInt("rid"), result.getString("rlastname"), result.getString("rfirstname"), result.getString("remail")));
+				msg.setSender(UserDao.getUser(result.getInt("sid")));
+				msg.setReceiver(UserDao.getUser(result.getInt("rid")));
 				messages.add(msg);	
 			}
 		} catch (SQLException e) { e.printStackTrace();	}
