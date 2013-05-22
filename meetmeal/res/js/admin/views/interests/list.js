@@ -3,7 +3,7 @@ define([
   'lodash',
   'backbone',
   'Util',
-  'text!admin/templates/users/list.html'
+  'text!admin/templates/interests/list.html'
 ], function ($, _, Backbone, Util, Template) {
 
   return Backbone.View.extend({
@@ -11,7 +11,7 @@ define([
     el: '#content',
 
     events: {
-      'click .delete': 'removeUser'
+      'click .delete': 'removeInterest'
     },
 
     initialize: function() {
@@ -19,27 +19,27 @@ define([
       this.render();
 
       // Bind from elements recently rendered
-      this.$list = this.$el.find('#users-list');
+      this.$list = this.$el.find('#interests-list');
       this.template = _.template(this.$el.find('#list-template').html());
 
       var success = function (res) {
         self.renderList(res);
       };
-      Util.apiRequest('/users', 'GET', null, null, success);
+      Util.apiRequest('/interests', 'GET', null, null, success);
     },
 
     render: function() {
       this.$el.html(Template);
     },
 
-    renderList: function (users) {
-      this.$list.html(this.template({ users: users }));
+    renderList: function (interests) {
+      this.$list.html(this.template({ interests: interests }));
     },
 
-    removeUser: function (e) {
+    removeInterest: function (e) {
       e.preventDefault();
-      var userId = $(e.currentTarget).data('id');
-      Util.apiRequest('/users/' + userId, 'DELETE', null, null, function (res) {
+      var interestId = $(e.currentTarget).data('id');
+      Util.apiRequest('/interests/' + interestId, 'DELETE', null, null, function (res) {
         if(res && res.status === 'ok') {
           document.location.reload(true);
         }

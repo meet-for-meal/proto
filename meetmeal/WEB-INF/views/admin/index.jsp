@@ -50,6 +50,11 @@
           <li class="nav-header">Annonces</li>
           <li><a href="<%= request.getContextPath() %>/admin#announcements">Liste</a></li>
         </ul>
+        <ul class="nav nav-list">
+          <li class="nav-header">Interets</li>
+          <li><a href="<%= request.getContextPath() %>/admin#interests">Liste</a></li>
+          <li><a href="<%= request.getContextPath() %>/admin#interests/new">Ajouter</a></li>
+        </ul>
       </div><!--/.well -->
     </div><!--/span-->
     <div id="content" class="span9"></div><!--/span-->

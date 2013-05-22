@@ -1,0 +1,30 @@
+<div id="main">
+  <h1>Liste des utilisateurs</h1>
+  <div id="interests-list"></div>
+</div>
+
+<script id="list-template" type="text/x-template">
+  <table class="table table-striped">
+    <tr>
+      <th>#</th>
+      <th>Label</th>
+      <th>Actions</th>
+    </tr>
+    <% _.map(interests, function (interest) { %>
+    <tr>
+      <td><%= interest.id %></td>
+      <td><%= interest.tag %></td>
+      <td>
+        <div class="btn-group">
+          <button data-toggle="dropdown" class="btn dropdown-toggle">
+            Action <i class="caret"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="delete" data-id="<%= interest.id %>"><a href="#">Supprimer</a></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% }); %>
+  </table>
+</script>

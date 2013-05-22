@@ -3,14 +3,16 @@ require(['jquery', 'bootstrap', 'backbone'], function ($, Bootstrap, Backbone) {
   var Router = Backbone.Router.extend({
 
     routes: {
-      '':                'index',           // #
-      'users':           'userList',        // #users
-      'users/:id/edit':  'userEdit',        // #users/:id/edit
-      'venues':          'venueList',       // #venues
-      'venues/:id':      'venueShow',       // #venues/:id
-      'venues/:id/edit': 'venueEdit',       // #venues/:id/edit
-      'partnerships':    'partnershipList', // #partnerships
-      'announcements':   'announcementList' // #announcements
+      '':                'index',            // #
+      'users':           'userList',         // #users
+      'users/:id/edit':  'userEdit',         // #users/:id/edit
+      'venues':          'venueList',        // #venues
+      'venues/:id':      'venueShow',        // #venues/:id
+      'venues/:id/edit': 'venueEdit',        // #venues/:id/edit
+      'partnerships':    'partnershipList',  // #partnerships
+      'announcements':   'announcementList', // #announcements
+      'interests':       'interestList',     // #interests
+      'interests/new':   'interestNew'       // #interests/new
     },
 
     index: function() {
@@ -70,6 +72,21 @@ require(['jquery', 'bootstrap', 'backbone'], function ($, Bootstrap, Backbone) {
     announcementList: function() {
       require(['admin/views/announcements/list'], function (announcementListView) {
         new announcementListView();
+      });
+    },
+
+
+    /* Interests */
+
+    interestList: function() {
+      require(['admin/views/interests/list'], function (interestListView) {
+        new interestListView();
+      });
+    },
+
+    interestNew: function() {
+      require(['admin/views/interests/new'], function (interestNewView) {
+        new interestNewView();
       });
     }
 
