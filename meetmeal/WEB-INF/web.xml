@@ -75,6 +75,10 @@
     	<servlet-class>org.essilab.servlet.CreateAnnounce</servlet-class>
 	</servlet>
 
+    <servlet>
+        <servlet-name>UserProfil</servlet-name>
+        <servlet-class>org.essilab.servlet.UserProfil</servlet-class>
+    </servlet>
 
 	<servlet-mapping>
       <servlet-name>default</servlet-name>
@@ -104,6 +108,7 @@
     	<servlet-name>SearchAnnounce</servlet-name>
     	<url-pattern>/announcementsearch</url-pattern>
 	</servlet-mapping>
+
 	
 	<servlet-mapping>
     	<servlet-name>CreateAnnounce</servlet-name>
@@ -111,6 +116,13 @@
 	</servlet-mapping>
 	
 	
+
+	<servlet-mapping>
+    	<servlet-name>UserProfil</servlet-name>
+    	<url-pattern>/mypage</url-pattern>
+	</servlet-mapping>
+
+
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
         <url-pattern>/register</url-pattern>

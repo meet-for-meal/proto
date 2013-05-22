@@ -51,7 +51,6 @@ public class FrontController extends HttpServlet {
 				response.sendRedirect( request.getContextPath() + "/homepage" );
 				return;
 			}
-			
 		}
 		request.setAttribute("url", url);
 
@@ -61,27 +60,27 @@ public class FrontController extends HttpServlet {
 			action.execute(request, response);
 		else {
 
-			/*try {
-				int slashIndex = url.lastIndexOf('/');
-				int endValue = Integer.parseInt(url.substring(slashIndex+1));
-				System.out.println(url);
+				try {
 	
-				if (endValue > 0) {
+					System.out.println(url);
 					if (url.contains("ajax/users/")) {
-						if (request.getMethod().equalsIgnoreCase("GET")) {
-							action = new UserGetAjax(endValue);
-						} else if (request.getMethod().equalsIgnoreCase("PUT")) {
-							action = new UserInsertAjax(endValue);
-						} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
-							action = new UserDeleteAjax(endValue);
+						int slashIndex = url.lastIndexOf('/');
+						int endValue = Integer.parseInt(url.substring(slashIndex+1));
+						if (endValue > 0) {
+							if (request.getMethod().equalsIgnoreCase("GET")) {
+								action = new UserGetAjax(endValue);
+							} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+								action = new UserInsertAjax(endValue);
+							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+								action = new UserDeleteAjax(endValue);
+							}
+							action.execute(request, response);
 						}
-						action.execute(request, response);
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}*/
-		}
+			}
 		
 		if (null == request.getAttribute("render")) {
 			if(url.substring(0,5).equals("admin")){
