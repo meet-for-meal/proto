@@ -27,7 +27,8 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		actions.put("ajax/users", new UserListAjax());
-		actions.put("ajax/interests", new InterestListAjax());
+		actions.put("ajax/interests", new InterestListAjax(true));
+		actions.put("ajax/interests/false", new InterestListAjax(false));
 		actions.put("user/display", new UserListDisplay());
 		actions.put("user/display.ajax", new UserListAjax());
 		actions.put("user/insert.ajax", new UserInsertAjax());

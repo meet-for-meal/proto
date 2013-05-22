@@ -369,8 +369,7 @@ public class UserDao {
 			update(u1);
 			
 			//Delete 
-//			delete(u1);
-			
+			delete(u1.getId());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

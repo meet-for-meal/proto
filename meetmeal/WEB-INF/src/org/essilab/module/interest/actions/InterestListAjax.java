@@ -16,16 +16,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class InterestListAjax implements IAction{
 	InterestService service = InterestService.getInstance();
 	ObjectMapper mapper = new ObjectMapper();
+	boolean withId = true;
+	
+	public InterestListAjax(boolean wi) {
+		this.withId = wi;
+	}
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		List<Interest> interests = service.interestList();
 		try {
-			response.setContentType("application/x-javascript;charset=UTF-8");
-			List<String> listInterest = new ArrayList<String>();
-			for (Interest i : interests)
-				listInterest.add(i.getTag());
-			mapper.writeValue(response.getOutputStream(), listInterest);
+			response.setContentType(HEADER_TYPE_JSON);
+			if (withId) {
+				mapper.writeValue(response.getOutputStream(), interests);
+			} else {
+				List<String> listInterest = new ArrayList<String>();
+				for (Interest i : interests)
+					listInterest.add(i.getTag());
+				mapper.writeValue(response.getOutputStream(), listInterest);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

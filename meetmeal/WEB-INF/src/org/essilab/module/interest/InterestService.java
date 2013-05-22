@@ -6,6 +6,7 @@ import java.util.List;
 import org.essilab.module.interest.model.Interest;
 import org.essilab.module.interest.model.InterestDao;
 import org.essilab.module.user.model.User;
+import org.essilab.module.user.model.UserDao;
 
 public class InterestService {
 
@@ -26,6 +27,32 @@ public class InterestService {
 		return null;
 	}
 	
+	public Interest interestSelect(int id) {
+		try {
+			return InterestDao.getInterest(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public boolean interestInsert(Interest interest) {
+		try {
+			return InterestDao.insert(interest);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean interestDelete(int id) {
+		try {
+			return InterestDao.delete(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	public static Interest getInterestByTag(String s){
 		try {
