@@ -25,7 +25,7 @@ public class UserDeleteAjax implements IAction{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			response.setContentType("text/x-javascript;charset=UTF-8");
+			response.setContentType("application/x-javascript;charset=UTF-8");
 			boolean ok = service.userDelete(id);
 			response.getWriter().print(ok ? RESPONSE_OK : RESPONSE_ERROR);
 		} catch (Exception e) {

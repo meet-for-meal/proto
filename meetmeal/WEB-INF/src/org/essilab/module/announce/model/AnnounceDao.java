@@ -118,11 +118,11 @@ public class AnnounceDao {
 	}
 	
 	//Near Announces with same Interests
-	public static List<Announce> findNearAnnouncesByInterests(int userId, List<Integer> interests) throws SQLException {
+	public static List<Announce> findNearAnnouncesByInterests(int userId, List<Integer> interests, int distance) throws SQLException {
 		HashMap<Integer, Announce> announcesMap = new HashMap<Integer, Announce>();
 		
 		for (Integer interest : interests) {
-			String request = "CALL nearAnnouncesByInterests("+userId+","+ interest.intValue() +", 10)";
+			String request = "CALL nearAnnouncesByInterests("+userId+","+ interest.intValue() +", "+distance+")";
 			
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 			ResultSet result = ps.executeQuery();
@@ -205,7 +205,7 @@ public class AnnounceDao {
 			
 			//Near Announce same Users
 			System.out.println("Near Announce same Users");
-			items = findNearAnnouncesByInterests(3, interests);
+			items = findNearAnnouncesByInterests(3, interests, 5);
 			for (Announce i : items) 
 				System.out.println(i.getCreatedDate()+" "+i.getCreator().getFirstname()+" "+i.getMessage()+" "+i.getDisponibilityDate());
 			System.out.println(items.size()+"\n");

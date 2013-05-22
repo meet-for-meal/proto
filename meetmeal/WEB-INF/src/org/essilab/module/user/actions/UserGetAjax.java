@@ -27,7 +27,7 @@ public class UserGetAjax implements IAction{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Get From Persistence Layer.
 		try {
-			response.setContentType("text/x-javascript;charset=UTF-8");
+			response.setContentType("application/x-javascript;charset=UTF-8");
 			User user = service.userSelect(id);
 			if (user != null) 
 				mapper.writeValue(response.getOutputStream(), user);
