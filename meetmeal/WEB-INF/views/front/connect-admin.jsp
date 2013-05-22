@@ -19,20 +19,6 @@
         </span>
         </c:if>
 
-        <c:if test="${!empty form.errors['password']}">
-        <span class="alert erreur">
-        <a class="close" href="#">x</a>
-        ${form.errors['password']}
-        </span>
-        </c:if>
-
-        <c:if test="${!empty form.errors['email']}">
-        <span class="alert erreur">
-        <a class="close" href="#">x</a>
-        ${form.errors['email']}
-        </span>
-        </c:if>
-
         <c:if test="${!empty sessionScope.sessionUser}">
         <span class="alert succes">
         <a class="close" href="#">x</a>
@@ -46,6 +32,7 @@
         Mauvais identifiant / mot de passe
         </span>
         </c:if>
+
     </div>
 
 </header>
@@ -78,10 +65,20 @@
                 <p>
                     <label for="email">Entrez votre email</label>
                     <input type="text" id="email" name="email" value="<c:out value="${user.email}"/>">
+                    <c:if test="${!empty form.errors['email']}">
+                    <span class="message erreur">
+                    ${form.errors['email']}
+                    </span>
+                    </c:if>
                 </p>
                 <p>
                     <label for="password">Entrez votre mot de passe</label>
                     <input type="password" id="password" name="password">
+                    <c:if test="${!empty form.errors['password']}">
+                    <span class="message erreur">
+                    ${form.errors['password']}
+                    </span>
+                    </c:if>
                 </p>
                 <p>
                     <input type="submit" value="Se connecter">

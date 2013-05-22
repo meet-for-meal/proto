@@ -7,6 +7,25 @@ mfm = {
 
 $(document).ready(function(){
 
+    // Home page
+
+    $('.close').click(function(e){
+        e.preventDefault();
+        $(this).parent('.alert').fadeOut(300);
+    });
+
+    $('.message.erreur').each(function(e){
+
+       $(this).siblings('input').css({
+           borderColor: '#ff524f',
+           boxShadow : 'inset 0 1px 10px #ff524f'
+       });
+
+    });
+
+
+    // General
+
     $('html').click(function() {
         //Hide the menus if visible
         $('#notifications').slideUp(200);
@@ -37,11 +56,6 @@ $(document).ready(function(){
             });
             $('#closest-users').fadeIn(250);
         }
-    });
-
-    $('.close').click(function(e){
-        e.preventDefault();
-        $(this).parent('.alert').fadeOut(300);
     });
 
     $("#interests").autocomplete({
