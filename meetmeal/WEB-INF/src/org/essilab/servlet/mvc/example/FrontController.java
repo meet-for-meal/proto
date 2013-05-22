@@ -13,7 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import org.essilab.module.error.actions.ErrorAction;
 import org.essilab.module.user.actions.MainMenu;
-import org.essilab.module.user.actions.UserAjax;
+import org.essilab.module.user.actions.UserDeleteAjax;
+import org.essilab.module.user.actions.UserGetAjax;
 import org.essilab.module.user.actions.UserInsert;
 import org.essilab.module.user.actions.UserListAjax;
 import org.essilab.module.user.actions.UserListDisplay;
@@ -51,7 +52,7 @@ public class FrontController extends HttpServlet {
 			}
 			
 		}
-
+//		System.out.println(request.getMethod());
 		request.setAttribute("url", url);
 
 		IAction action = actions.get(url);
@@ -66,7 +67,11 @@ public class FrontController extends HttpServlet {
 				if (url.contains("ajax/users/")) {
 					int endValue = Integer.parseInt(url.substring(slashIndex+1));
 					if (endValue > 0) {
-						action = new UserAjax(endValue);
+						if (request.getMethod().equalsIgnoreCase("GET")) {
+							action = new UserGetAjax(endValue);
+						} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+							action = new UserDeleteAjax(endValue);
+						}
 						action.execute(request, response);
 					}
 				}

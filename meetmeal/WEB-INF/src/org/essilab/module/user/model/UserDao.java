@@ -89,12 +89,16 @@ public class UserDao {
 	}
 	
 	//Delete
-	public static void delete(User user) throws SQLException{
-		String request = "DELETE FROM User WHERE id="+ user.getId();
-		System.out.println(request);
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean delete(int id) throws SQLException{
+		if (getUser(id) != null) {
+			String request = "DELETE FROM User WHERE id="+ id;
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			return true;
+		}
+		return false;
 	}
 
 	//All

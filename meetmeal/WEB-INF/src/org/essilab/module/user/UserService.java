@@ -43,6 +43,15 @@ public class UserService {
 		}
 	}
 	
+	public boolean userDelete(int id) {
+		try {
+			return UserDao.delete(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public User userAuthenticate(User u){
 		try {
 			 return UserDao.authenticateUser(u.getEmail(), u.getPassword());
