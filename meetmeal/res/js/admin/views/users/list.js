@@ -10,6 +10,10 @@ define([
 
     el: '#content',
 
+    events: {
+      'click .delete': 'removeUser'
+    },
+
     initialize: function() {
       var self = this;
       this.render();
@@ -30,6 +34,16 @@ define([
 
     renderList: function (users) {
       this.$list.html(this.template({ users: users }));
+    },
+
+    removeUser: function (e) {
+      e.preventDefault();
+      var userId = $(e.currentTarget).data('id');
+      Util.apiRequest('/users/1', 'DELETE', null, null, function (res) {
+        if(res && res.status === 'ok') {
+          document.location.reload(true);
+        }
+      });
     }
 
   });

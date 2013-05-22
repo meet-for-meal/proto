@@ -1,10 +1,10 @@
-define([], function() {
+define(['jquery'], function ($) {
 
   return (function() {
 
     return {
 
-      backUrl: 'http://localhost:3000',
+      backUrl: $('#require-js').data('params').applicationPath + '/ajax', // 'http://localhost:3000',
 
       queryString: (function() {
         // This function is anonymous, is executed immediately and
@@ -32,7 +32,7 @@ define([], function() {
       apiRequest: function (url, method, dataType, data, success, error) {
         url = url || '/';
         method = method || 'GET';
-        dataType = dataType || 'jsonp';
+        dataType = dataType || 'json'; // 'jsonp';
         data = data || {};
         success = success || function (){};
         error = error || function (err) {

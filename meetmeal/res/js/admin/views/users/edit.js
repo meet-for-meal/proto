@@ -14,8 +14,9 @@ define([
       'submit form': 'updateUser'
     },
 
-    initialize: function() {
+    initialize: function (params) {
       var self = this;
+      this.userId = params.userId;
       this.render();
 
       // Bind from elements recently rendered

@@ -1,0 +1,32 @@
+<div id="main">
+  <h1>Liste des annonces</h1>
+  <div id="announcements-list"></div>
+</div>
+
+<script id="list-template" type="text/x-template">
+  <table class="table table-striped">
+    <tr>
+      <th>#</th>
+      <th>CreatorId</th>
+      <th>Actions</th>
+    </tr>
+    <% _.each(announcements, function (announcement) { %>
+    <tr class="announcement-<%= announcement.id %>">
+      <td><%= announcement.id %></td>
+      <td><%= announcement.creatorId %></td>
+      <td>
+        <div class="btn-group">
+          <button data-toggle="dropdown" class="btn dropdown-toggle">
+            Action <i class="caret"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#/announcements/<%= announcement.id %>">Afficher</a></li>
+            <li><a href="#/announcements/<%= announcement.id %>/edit">Éditer</a></li>
+            <li><a class="delete" href="#/announcements/<%= announcement.id %>">Supprimer</a></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% }); %>
+  </table>
+</script>

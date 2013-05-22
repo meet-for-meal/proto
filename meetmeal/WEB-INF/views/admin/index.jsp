@@ -67,6 +67,6 @@
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script id="require-js" data-main="<%= request.getContextPath() %>/res/js/admin/init" src="<%= request.getContextPath() %>/res/js/require.js"></script>
+<script id="require-js" data-params='{"applicationPath": "<%= request.getContextPath() %>"}' data-main="<%= request.getContextPath() %>/res/js/admin/init" src="<%= request.getContextPath() %>/res/js/require.js"></script>
 </body>
 </html>
