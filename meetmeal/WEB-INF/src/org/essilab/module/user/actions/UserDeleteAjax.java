@@ -14,17 +14,20 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class UserListAjax implements IAction{
+public class UserDeleteAjax implements IAction{
 	UserService service = UserService.getInstance();
-	ObjectMapper mapper = new ObjectMapper();
+	int id;
+	
+	public UserDeleteAjax(int id) {
+		this.id = id;
+	}
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Get From Persistence Layer.
-		List<User> users = service.userList();
 		try {
 			response.setContentType("text/x-javascript;charset=UTF-8");
-			mapper.writeValue(response.getOutputStream(), users);
+			boolean ok = service.userDelete(id);
+			response.getWriter().print(ok ? RESPONSE_OK : RESPONSE_ERROR);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

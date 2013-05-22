@@ -1,30 +1,31 @@
-package org.essilab.module.user.actions;
+package org.essilab.module.interest.actions;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.essilab.module.interest.InterestService;
+import org.essilab.module.interest.model.Interest;
 import org.essilab.module.user.UserService;
-import org.essilab.module.user.model.User;
 import org.essilab.servlet.mvc.example.IAction;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class UserListAjax implements IAction{
-	UserService service = UserService.getInstance();
+public class InterestListAjax implements IAction{
+	InterestService service = InterestService.getInstance();
 	ObjectMapper mapper = new ObjectMapper();
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Get From Persistence Layer.
-		List<User> users = service.userList();
+		List<Interest> interests = service.interestList();
 		try {
 			response.setContentType("text/x-javascript;charset=UTF-8");
-			mapper.writeValue(response.getOutputStream(), users);
+			List<String> listInterest = new ArrayList<String>();
+			for (Interest i : interests)
+				listInterest.add(i.getTag());
+			mapper.writeValue(response.getOutputStream(), listInterest);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

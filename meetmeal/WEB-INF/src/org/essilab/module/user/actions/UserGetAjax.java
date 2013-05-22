@@ -14,17 +14,24 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class UserListAjax implements IAction{
+public class UserGetAjax implements IAction{
 	UserService service = UserService.getInstance();
 	ObjectMapper mapper = new ObjectMapper();
+	int id;
+	
+	public UserGetAjax(int id) {
+		this.id = id;
+	}
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Get From Persistence Layer.
-		List<User> users = service.userList();
 		try {
 			response.setContentType("text/x-javascript;charset=UTF-8");
-			mapper.writeValue(response.getOutputStream(), users);
+			User user = service.userSelect(id);
+			if (user != null) 
+				mapper.writeValue(response.getOutputStream(), user);
+			response.getWriter().print("{\"status\": \"error\"}");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
