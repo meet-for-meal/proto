@@ -24,7 +24,7 @@ public class MessageListConversationAjax implements IAction{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		List<Message> messages = service.messageListConversation(senderId);
 		try {
-			response.setContentType("application/x-javascript;charset=UTF-8");
+			response.setContentType(HEADER_TYPE_JSON);
 			mapper.writeValue(response.getOutputStream(), messages);
 		} catch (Exception e) {
 			e.printStackTrace();

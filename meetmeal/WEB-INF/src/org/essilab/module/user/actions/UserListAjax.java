@@ -22,7 +22,7 @@ public class UserListAjax implements IAction{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		List<User> users = service.userList();
 		try {
-			response.setContentType("application/x-javascript;charset=UTF-8");
+			response.setContentType(HEADER_TYPE_JSON);
 			mapper.writeValue(response.getOutputStream(), users);
 		} catch (Exception e) {
 			e.printStackTrace();
