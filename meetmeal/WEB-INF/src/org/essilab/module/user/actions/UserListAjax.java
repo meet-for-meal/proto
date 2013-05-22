@@ -23,6 +23,7 @@ public class UserListAjax implements IAction{
 		// TODO Get From Persistence Layer.
 		List<User> users = service.userList();
 		try {
+			response.setContentType("text/x-javascript;charset=UTF-8");
 			mapper.writeValue(response.getOutputStream(), users);
 		} catch (Exception e) {
 			e.printStackTrace();
