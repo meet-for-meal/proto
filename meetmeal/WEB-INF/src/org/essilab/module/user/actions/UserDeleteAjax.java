@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class UserDeleteAjax implements IAction{
 	UserService service = UserService.getInstance();
-	ObjectMapper mapper = new ObjectMapper();
 	int id;
 	
 	public UserDeleteAjax(int id) {

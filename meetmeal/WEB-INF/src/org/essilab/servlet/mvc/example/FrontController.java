@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.essilab.module.error.actions.ErrorAction;
+import org.essilab.module.interest.actions.InterestListAjax;
 import org.essilab.module.user.actions.MainMenu;
 import org.essilab.module.user.actions.UserDeleteAjax;
 import org.essilab.module.user.actions.UserGetAjax;
-import org.essilab.module.user.actions.UserInsert;
+import org.essilab.module.user.actions.UserInsertAjax;
 import org.essilab.module.user.actions.UserListAjax;
 import org.essilab.module.user.actions.UserListDisplay;
 
@@ -26,10 +27,10 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		actions.put("ajax/users", new UserListAjax());
-//		actions.put("ajax/users/*", new UserAjax(1));
+		actions.put("ajax/interests", new InterestListAjax());
 		actions.put("user/display", new UserListDisplay());
 		actions.put("user/display.ajax", new UserListAjax());
-		actions.put("user/insert.ajax", new UserInsert());
+		actions.put("user/insert.ajax", new UserInsertAjax());
 		actions.put("user/mainmenu.ajax", new MainMenu());
 		actions.put("error/error", new ErrorAction());
 	}
@@ -52,7 +53,6 @@ public class FrontController extends HttpServlet {
 			}
 			
 		}
-//		System.out.println(request.getMethod());
 		request.setAttribute("url", url);
 
 		IAction action = actions.get(url);
@@ -62,13 +62,15 @@ public class FrontController extends HttpServlet {
 		else {
 			try {
 				int slashIndex = url.lastIndexOf('/');
+				int endValue = Integer.parseInt(url.substring(slashIndex+1));
 				System.out.println(url);
 	
-				if (url.contains("ajax/users/")) {
-					int endValue = Integer.parseInt(url.substring(slashIndex+1));
-					if (endValue > 0) {
+				if (endValue > 0) {
+					if (url.contains("ajax/users/")) {
 						if (request.getMethod().equalsIgnoreCase("GET")) {
 							action = new UserGetAjax(endValue);
+						} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+							action = new UserInsertAjax(endValue);
 						} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
 							action = new UserDeleteAjax(endValue);
 						}
@@ -80,7 +82,7 @@ public class FrontController extends HttpServlet {
 			}
 		}
 		
-		if (null == request.getAttribute("render"))
+		if (null == request.getAttribute("render")) {
 			if(url.substring(0,5).equals("admin")){
 				request
 				.getRequestDispatcher("/WEB-INF/views/admin/index.jsp")
@@ -91,7 +93,7 @@ public class FrontController extends HttpServlet {
 				.getRequestDispatcher(url.endsWith(".ajax") ? "/WEB-INF/views/"+url+".jsp" : "/layout.jsp")
 				.include(request, response);				
 			}
-
+		}
 	}
 
 }

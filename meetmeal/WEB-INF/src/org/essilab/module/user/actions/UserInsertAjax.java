@@ -11,9 +11,15 @@ import org.essilab.servlet.mvc.example.IAction;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class UserInsert implements IAction{
+public class UserInsertAjax implements IAction{
 
 	UserService service = UserService.getInstance();
+	int id;
+	
+	public UserInsertAjax() {}
+	public UserInsertAjax(int id) {
+		this.id = id;
+	}
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
