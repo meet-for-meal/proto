@@ -75,8 +75,8 @@
 	</servlet>
 	
 	<servlet>
-    	<servlet-name>UserPage</servlet-name>
-    	<servlet-class>org.essilab.servlet.UserPage</servlet-class>
+    	<servlet-name>UserProfil</servlet-name>
+    	<servlet-class>org.essilab.servlet.UserProfil</servlet-class>
 	</servlet>
 
  
@@ -106,7 +106,7 @@
     	<url-pattern>/announcementsearch</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-    	<servlet-name>UserPage</servlet-name>
+    	<servlet-name>UserProfil</servlet-name>
     	<url-pattern>/mypage</url-pattern>
 	</servlet-mapping>
 
