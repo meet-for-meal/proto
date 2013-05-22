@@ -37,11 +37,9 @@ public class UserPage extends HttpServlet {
          request.setAttribute("url", url); 
 
         /* Préparation de l'objet formulaire */
-        UserForm form = new UserForm();
+        
 
         /* Traitement de la requête et récupération du bean en résultant */
-        List<Interest> interests = form.SearchInterest(request);
-        List<Category> categories = form.SearchCategory(request);
 
         /* Récupération de la session depuis la requête */
         HttpSession session = request.getSession();
@@ -52,7 +50,7 @@ public class UserPage extends HttpServlet {
          */
         User user = (User) session.getAttribute("sessionUser");
         
-        if ( form.getErrors().isEmpty() && user != null && interests != null) {
+        if (user != null ) {
 
             InterestService interestService = InterestService.getInstance();
             List<Interest>  interest = (List<Interest>) interestService.getInterestByUser(user);

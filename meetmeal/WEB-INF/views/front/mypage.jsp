@@ -76,7 +76,7 @@ User user = (User)session.getAttribute("sessionUser");
                 Age : <strong><% out.print(user.getAge()); %></strong>
             </p>
             <p>
-                Goûts culinaires : <a href="#">#italien</a> <a href="#">#japonais</a>
+                Goûts culinaires : 
                 <c:forEach items="${sessionScope.categories}" var="category">  
 					${category.name}				
 				</c:forEach>
