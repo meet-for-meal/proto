@@ -28,10 +28,27 @@ public class UserDao {
 	
 	//setFirstVisit
 	public static void setFirstVisit(int id) throws SQLException{
-		String request = "UPDATE user SET firstVisit=0 WHERE id= "+ id +"";
+		String request = "UPDATE User SET firstVisit=0 WHERE id= "+ id +"";
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ps.executeUpdate();
 		Connect.getConnection().close();
+	}
+	
+	//Change localization
+	public static boolean updateLocalization(int id, Date lastPos, double lat, double lng) throws SQLException{
+		boolean ok = false;
+		if (id > 0 && lastPos != null) {
+			String request = "UPDATE User SET " +
+					"lastPosition='"+new java.sql.Date(lastPos.getTime())+" "+new java.sql.Time(lastPos.getTime())+"', " +
+					"lastLatitude="+ lat +", " +
+					"lastLongitude="+ lng +" " +
+					"WHERE id= "+ id +"";
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			ok = true;
+		}
+		return ok;
 	}
 	
 	

@@ -1,6 +1,7 @@
 package org.essilab.module.user;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.essilab.module.user.model.User;
@@ -56,6 +57,15 @@ public class UserService {
 	public boolean userUpdate(User u){
 		try {
 			return UserDao.update(u, false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean userUpdateLocalization(int id, Date lastPos, double lat, double lng){
+		try {
+			return UserDao.updateLocalization(id, lastPos, lat, lng);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
