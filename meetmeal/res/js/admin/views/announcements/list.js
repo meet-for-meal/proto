@@ -10,6 +10,10 @@ define([
 
     el: '#content',
 
+    events: {
+      'click .delete': 'removeAnnouncement'
+    },
+
     initialize: function() {
       var self = this;
       this.render();
@@ -35,6 +39,16 @@ define([
 
     renderList: function (announcements) {
       this.$list.html(this.template({ announcements: announcements }));
+    },
+
+    removeAnnouncement: function (e) {
+      e.preventDefault();
+      var announcementId = $(e.currentTarget).data('id');
+      Util.apiRequest('/announce/' + announcementId, 'DELETE', null, null, function (res) {
+        if(res && res.status === 'ok') {
+          document.location.reload(true);
+        }
+      });
     }
 
   });
