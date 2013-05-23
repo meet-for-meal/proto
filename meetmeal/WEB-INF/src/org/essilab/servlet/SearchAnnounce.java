@@ -57,7 +57,7 @@ public class SearchAnnounce extends HttpServlet {
 	        if ( form.getErrors().isEmpty() && user != null && interests != null) {
 
 	            AnnounceService announceService = AnnounceService.getInstance();
-	            List<Announce>  announces = announceService.getAnnounces(user,interests);
+	            List<Announce>  announces = announceService.getNearAnnouncesByInterests(user,interests);
 	            session.setAttribute(ATT_SESSION_ANNOUNCES, announces);
 	            
 	        } else {

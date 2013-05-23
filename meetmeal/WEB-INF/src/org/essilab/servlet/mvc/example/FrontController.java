@@ -19,8 +19,8 @@ import org.essilab.module.interest.actions.InterestInsertAjax;
 import org.essilab.module.interest.actions.InterestListAjax;
 import org.essilab.module.restaurant.actions.RestaurantDeleteAjax;
 import org.essilab.module.restaurant.actions.RestaurantGetAjax;
-import org.essilab.module.restaurant.actions.RestaurantInsertAjax;
 import org.essilab.module.restaurant.actions.RestaurantListAjax;
+import org.essilab.module.restaurant.actions.RestaurantPostAjax;
 import org.essilab.module.user.actions.MainMenu;
 import org.essilab.module.user.actions.UserDeleteAjax;
 import org.essilab.module.user.actions.UserGetAjax;
@@ -73,7 +73,7 @@ public class FrontController extends HttpServlet {
 			action.execute(request, response);
 		else {
 			try {
-				if (url.contains("ajax/user")) {
+				if (url.contains("ajax/user")) {				//USER
 					if (request.getMethod().equalsIgnoreCase("POST")) {
 						action = new UserInsertAjax();
 					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
@@ -90,7 +90,7 @@ public class FrontController extends HttpServlet {
 						}
 					}
 					action.execute(request, response);
-				} else if (url.contains("ajax/interest")) {
+				} else if (url.contains("ajax/interest")) {		//INTEREST
 					if (request.getMethod().equalsIgnoreCase("POST")) {
 						action = new InterestInsertAjax();
 					} else {
@@ -105,9 +105,11 @@ public class FrontController extends HttpServlet {
 						}
 					}
 					action.execute(request, response);
-				} else if (url.contains("ajax/restaurant")) {
+				} else if (url.contains("ajax/restaurant")) {	//RESTAURANT
 					if (request.getMethod().equalsIgnoreCase("POST")) {
-						action = new RestaurantInsertAjax();
+						action = new RestaurantPostAjax(false);
+					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+						action = new RestaurantPostAjax(true);
 					} else {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));

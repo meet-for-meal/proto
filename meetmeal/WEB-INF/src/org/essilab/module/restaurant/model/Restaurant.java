@@ -14,32 +14,32 @@ public class Restaurant {
 	private Category category = null;
 	
 	//Constructor
-	Restaurant(){
+	public Restaurant(){
 		this.category = new Category();
 	}
-	Restaurant(int _id, String _n, long _lat, long _lon) {
+	public Restaurant(int _id, String _n, long _lat, long _lon) {
 		this();
 		id = _id;
 		name = _n;
 		latitude = _lat;
 		longitude = _lon;
 	}
-	Restaurant(int _id, String _n, long _lat, long _lon, String _f, int _p) {
+	public Restaurant(int _id, String _n, long _lat, long _lon, String _f, int _p) {
 		this(_id, _n, _lat, _lon);
 		this.foursquareId = _f;
 		this.partnership = _p;
 	}
-	Restaurant(int _id, String _n, long _lat, long _lon, String _f, int _p, Category _c) {
+	public Restaurant(int _id, String _n, long _lat, long _lon, String _f, int _p, Category _c) {
 		this(_id, _n, _lat, _lon, _f, _p);
 		category = _c;
 	}
-	Restaurant(int _id, String _n, long _lat, long _lon, String _f, int _p, String _u, String _t, String _d) {
+	public Restaurant(int _id, String _n, long _lat, long _lon, String _f, int _p, String _u, String _t, String _d) {
 		this(_id, _n, _lat, _lon, _f, _p);
 		this.urlImage = _u;
 		this.titleImage = _t;
 		this.descImage = _d;
 	}
-	Restaurant(int _id, String _n, long _lat, long _lon, String _f, int _p, Category _c, String _u, String _t, String _d) {
+	public Restaurant(int _id, String _n, long _lat, long _lon, String _f, int _p, Category _c, String _u, String _t, String _d) {
 		this(_id, _n, _lat, _lon, _f, _p, _c);
 		this.urlImage = _u;
 		this.titleImage = _t;
