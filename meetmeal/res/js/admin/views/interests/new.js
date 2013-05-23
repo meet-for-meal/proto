@@ -42,7 +42,7 @@ define([
       e.preventDefault();
       var self = this;
       var label = this.form.find('#tag').val();
-      Util.apiRequest('/interests', 'POST', null, { tag: label }, function (res) {
+      Util.apiRequest('/interest', 'POST', null, { tag: label }, function (res) {
         if(res && res.status === 'ok') {
           self.cleanContent('success');
         } else {

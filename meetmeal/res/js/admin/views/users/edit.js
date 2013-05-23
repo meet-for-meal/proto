@@ -25,7 +25,7 @@ define([
       this.$alertSuccess = this.$el.find('#alert-success'),
       this.$alertError = this.$el.find('#alert-error');
 
-      Util.apiRequest('/users/' + this.userId, 'GET', null, null, function (res) {
+      Util.apiRequest('/user/' + this.userId, 'GET', null, null, function (res) {
         self.renderUser(res);
       });
     },
@@ -51,7 +51,7 @@ define([
         gender:    $form.find('#gender').val(),
         password:  $form.find('#password').val()
       };
-      Util.apiRequest('/users/edit/' + this.userId, 'GET', null, data, function() {
+      Util.apiRequest('/user/' + this.userId, 'GET', null, data, function() {
         self.$alertSuccess.show();
       }, function() {
         self.$alertError.show();

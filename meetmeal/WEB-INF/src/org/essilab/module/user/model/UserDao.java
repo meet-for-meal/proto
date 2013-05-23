@@ -47,20 +47,26 @@ public class UserDao {
 	}
 	
 	//Insert
-	public static void insert(User user) throws SQLException{
-		String request = "INSERT INTO User VALUES (NULL, " +
-			" '"+ user.getFirstname() +"'," +
-			" '"+ user.getLastname() +"'," +
-			" "+ user.getAge() +"," +
-			" '"+ user.getEmail() +"'," +
-			" '"+ user.getPassword() +"'," +
-			" "+ user.getGender() +"," +
-			" "+ (user.getFirstVisit()? 1: 0) +"," +
-			" "+ (user.getIsAdmin() ? 1 : 0) +"," +
-			" NULL, NULL, NULL)";
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean insert(User user) throws SQLException{
+		boolean ok = false;
+		if (getIdByEmail(user.getEmail()) > 0) {
+			String request = "INSERT INTO User VALUES (NULL, " +
+				" '"+ user.getFirstname() +"'," +
+				" '"+ user.getLastname() +"'," +
+				" "+ user.getAge() +"," +
+				" '"+ user.getEmail() +"'," +
+				" '"+ user.getPassword() +"'," +
+				" "+ user.getGender() +"," +
+				" "+ (user.getFirstVisit()? 1: 0) +"," +
+				" "+ (user.getIsAdmin() ? 1 : 0) +"," +
+				" NULL, NULL, NULL)";
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			if (getIdByEmail(user.getEmail()) > 0)
+				ok = true;
+		}
+		return ok;
 	}
 	
 	//Update
