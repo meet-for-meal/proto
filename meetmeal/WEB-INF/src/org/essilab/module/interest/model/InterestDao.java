@@ -30,7 +30,8 @@ public class InterestDao {
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 			ps.executeUpdate();
 			Connect.getConnection().close();
-			ok = true;
+			if (getInterestByTag(i.getTag()) != null)
+				ok = true;
 		}
 		return ok;
 	}
@@ -93,9 +94,10 @@ public class InterestDao {
 	private static Interest createInterest(ResultSet result) {
 		Interest interest = new Interest();
 		try {
-			result.next(); 
-			if (result != null)
+			if (result != null && result.next())
 				interest = new Interest(result.getInt("id"), result.getString("tag"));	
+			else
+				return null;
 		} catch (SQLException e) { e.printStackTrace();	}
 		return interest;
 	}

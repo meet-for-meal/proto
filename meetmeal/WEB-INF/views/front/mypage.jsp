@@ -9,34 +9,6 @@ User user = (User)session.getAttribute("sessionUser");
 
 
 %>
-<header>
-
-    <div class="wrapper">
-
-        <a href="index" id="logo"><img src="/meetformeal/res/styles/default/img/logo-mini.png" alt=""></a>
-
-        <form id="search-form">
-            <input type="text" name="search" placeholder="Rechercher une personne ou un restaurant...">
-        </form>
-
-        <nav>
-            <ul>
-                <li><a href="#" class="no-text toggle-notif"><i class="icon-info-sign"></i><span class="notif">3</span></a></li>
-                <li><a href="index"><i class="icon-home"></i> Accueil</a></li>
-                <li><a href="restaurants"><i class="icon-map-marker"></i>Les restaurants</a></li>
-                <li class="current"><a href="mypage"><i class="icon-user"></i>Mon profil</a></li>
-                <li><a href="message" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
-                <li><a href="homepage" class="no-text"><i class="icon-off"></i></a></li>
-            </ul>
-        </nav>
-
-        <div id="notifications">
-            
-        </div>
-
-    </div>
-
-</header>
 
 <section id="container">
 
@@ -76,14 +48,14 @@ User user = (User)session.getAttribute("sessionUser");
                 Age : <strong><% out.print(user.getAge()); %></strong>
             </p>
             <p>
-                Goûts culinaires : 
+                Goï¿½ts culinaires : 
                 <c:forEach items="${sessionScope.categories}" var="category">  
 					${category.name}				
 				</c:forEach>
                 
             </p>
             <p>
-                Centres d'intérêts : 
+                Centres d'intï¿½rï¿½ts : 
 
 				<c:forEach items="${sessionScope.interests}" var="interest">  
 					${interest.tag}				
@@ -134,50 +106,3 @@ User user = (User)session.getAttribute("sessionUser");
     </div>
 
 </section>
-
-<footer>
-
-    <div class="wrapper">
-
-        <div class="col-left">
-            <h3>Ã€ propos de Meet For Meal</h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<br>
-                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            </p>
-        </div>
-
-        <div class="col-middle">
-            <h3>Contactez-nous</h3>
-            <p>
-                <strong>Meet For Meal</strong><br>
-                61 rue lafayette<br>
-                93100 Rue Rapatal<br>
-                FRANCE<br>
-                <a href="mailto:contact@meetformeal.com">contact@meetformeal.com</a>
-            </p>
-        </div>
-
-        <div class="col-right">
-
-            <h3>Suivez-nous</h3>
-
-            <div id="footer-menu-back-to-top">
-                <a href="#"></a>
-            </div>
-
-            <p>
-                Nos pages Facebook et Twitter seront bientÃ´t disponibles !
-            </p>
-
-        </div>
-
-        <div id="copyright">
-            <p>
-                &copy; 2013, Meet For Meal.
-            </p>
-        </div>
-
-    </div>
-
-</footer>

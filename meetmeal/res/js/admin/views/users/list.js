@@ -39,7 +39,7 @@ define([
     removeUser: function (e) {
       e.preventDefault();
       var userId = $(e.currentTarget).data('id');
-      Util.apiRequest('/users/' + userId, 'DELETE', null, null, function (res) {
+      Util.apiRequest('/user/' + userId, 'DELETE', null, null, function (res) {
         if(res && res.status === 'ok') {
           document.location.reload(true);
         }

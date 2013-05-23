@@ -35,12 +35,13 @@ public class UserService {
 		return null;
 	}
 	
-	public void userInsert(User u){
+	public boolean userInsert(User u){
 		try {
-			UserDao.insert(u);
+			return UserDao.insert(u);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 	public boolean userDelete(int id) {

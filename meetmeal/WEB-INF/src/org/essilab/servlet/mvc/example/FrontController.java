@@ -63,47 +63,42 @@ public class FrontController extends HttpServlet {
 		if (null != action)
 			action.execute(request, response);
 		else {
-
-				try {
-					if (url.contains("ajax/user/")) {
-						if (request.getMethod().equalsIgnoreCase("POST")) {
-							action = new InterestInsertAjax();
-						} else {
-							int slashIndex = url.lastIndexOf('/');
-							int endValue = Integer.parseInt(url.substring(slashIndex+1));
-							if (endValue > 0) {
-								if (request.getMethod().equalsIgnoreCase("GET")) {
-									action = new UserGetAjax(endValue);
-								} else if (request.getMethod().equalsIgnoreCase("PUT")) {
-									action = new UserInsertAjax(endValue);
-								} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
-									action = new UserDeleteAjax(endValue);
-								}
-								action.execute(request, response);
-							}
-						}
-					} else if (url.contains("ajax/interest")) {
-						if (request.getMethod().equalsIgnoreCase("POST")) {
-							action = new InterestInsertAjax();
-						} else {
-							int slashIndex = url.lastIndexOf('/');
-							int endValue = Integer.parseInt(url.substring(slashIndex+1));
-							if (endValue > 0) {
-								if (request.getMethod().equalsIgnoreCase("GET")) {
-									action = new InterestGetAjax(endValue);
-								} else if (request.getMethod().equalsIgnoreCase("PUT")) {
-									action = new InterestInsertAjax();
-								} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
-									action = new InterestDeleteAjax(endValue);
-								}
-								action.execute(request, response);
+			try {
+				if (url.contains("ajax/user")) {
+					if (request.getMethod().equalsIgnoreCase("POST")) {
+						action = new InterestInsertAjax();
+					} else {
+						int slashIndex = url.lastIndexOf('/');
+						int endValue = Integer.parseInt(url.substring(slashIndex+1));
+						if (endValue > 0) {
+							if (request.getMethod().equalsIgnoreCase("GET")) {
+								action = new UserGetAjax(endValue);
+							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+								action = new UserDeleteAjax(endValue);
 							}
 						}
 					}
-				} catch (Exception e) {
-					e.printStackTrace();
+					action.execute(request, response);
+				} else if (url.contains("ajax/interest")) {
+					if (request.getMethod().equalsIgnoreCase("POST")) {
+						action = new InterestInsertAjax();
+					} else {
+						int slashIndex = url.lastIndexOf('/');
+						int endValue = Integer.parseInt(url.substring(slashIndex+1));
+						if (endValue > 0) {
+							if (request.getMethod().equalsIgnoreCase("GET")) {
+								action = new InterestGetAjax(endValue);
+							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+								action = new InterestDeleteAjax(endValue);
+							}
+						}
+					}
+					action.execute(request, response);
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+		}
 		
 		if (null == request.getAttribute("render")) {
 			if(url.substring(0,5).equals("admin")){

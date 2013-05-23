@@ -47,12 +47,13 @@ public class AnnounceService {
 		return null;
 	}
 	
-	public void insertAnnounce(Announce a){
+	public boolean insertAnnounce(Announce a){
 		try {
-			AnnounceDao.insert(a);
+			return AnnounceDao.insert(a);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 

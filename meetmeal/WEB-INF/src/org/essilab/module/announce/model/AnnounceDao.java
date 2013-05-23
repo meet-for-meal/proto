@@ -27,19 +27,26 @@ public class AnnounceDao {
 	}
 		
 	//Insert
-	public static void insert(Announce a) throws SQLException{
-		String request = "INSERT INTO Announce VALUES (NULL" +
-			", "+ (a.getCreator() != null ? a.getCreator().getId()+"" : "NULL") +
-			", "+ (a.getCreatedDate() != null ? "'"+new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'" : "NULL") +
-			", "+ (a.getDisponibilityDate() != null ? "'"+new java.sql.Date(a.getDisponibilityDate().getTime())+" "+new java.sql.Time(a.getDisponibilityDate().getTime())+"'" : "NULL") +
-			", "+ (a.getIsOpen()? 1: 0) +"," +
-			" "+ a.getLatitude() +"," +
-			" "+ a.getLongitude() +"," +
-			" \""+ a.getMessage() +"\")";
-		System.out.println(request);
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+
+	public static boolean insert(Announce a) throws SQLException{
+		boolean ok = false;
+		if (a.getCreator() != null && getIdByCreatoridCreatedDate(a.getCreator().getId(), a.getCreatedDate()) > 0) {
+			String request = "INSERT INTO Announce VALUES (NULL" +
+				", "+ (a.getCreator() != null ? a.getCreator().getId()+"" : "NULL") +
+				", "+ (a.getCreatedDate() != null ? "'"+new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'" : "NULL") +
+				", "+ (a.getDisponibilityDate() != null ? "'"+new java.sql.Date(a.getDisponibilityDate().getTime())+" "+new java.sql.Time(a.getDisponibilityDate().getTime())+"'" : "NULL") +
+				", "+ (a.getIsOpen()? 1: 0) +"," +
+				" "+ a.getLatitude() +"," +
+				" "+ a.getLongitude() +"," +
+				" '"+ a.getMessage() +"')";
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			if (getIdByCreatoridCreatedDate(a.getCreator().getId(), a.getCreatedDate()) > 0)
+				ok = true;
+		}
+		return ok;
 	}
 	
 	//Update
@@ -63,12 +70,18 @@ public class AnnounceDao {
 	}
 	
 	//Delete
-	public static void delete(Announce a) throws SQLException{
-		String request = "DELETE FROM Announce WHERE id="+ a.getId();
-		System.out.println(request);
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean delete(int announceId) throws SQLException{
+		boolean ok = false;
+		if (getAnnounce(announceId) != null) {
+			String request = "DELETE FROM Announce WHERE id="+ announceId;
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			if (getAnnounce(announceId) == null) 
+				ok = true;
+			Connect.getConnection().close();
+		}
+		return ok;
 	}
 	
 	//Get AnnounceId by createdDate and creatorId
@@ -226,7 +239,7 @@ public class AnnounceDao {
 			update(a1);
 			
 			//Delete 
-			delete(a1);
+			delete(a1.getId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
