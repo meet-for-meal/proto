@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.essilab.module.announce.actions.AnnounceListAjax;
 import org.essilab.module.error.actions.ErrorAction;
 import org.essilab.module.interest.actions.InterestDeleteAjax;
 import org.essilab.module.interest.actions.InterestGetAjax;
@@ -29,6 +30,7 @@ import org.essilab.module.user.actions.UserListDisplay;
 
 public class FrontController extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
 	Map<String, IAction> actions = new HashMap<String, IAction>();
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -37,6 +39,7 @@ public class FrontController extends HttpServlet {
 		actions.put("ajax/interests", new InterestListAjax(true));
 		actions.put("ajax/interests/false", new InterestListAjax(false));
 		actions.put("ajax/restaurants", new RestaurantListAjax());
+		actions.put("ajax/announces", new AnnounceListAjax());
 		actions.put("user/display", new UserListDisplay());
 		actions.put("user/display.ajax", new UserListAjax());
 		actions.put("user/insert.ajax", new UserInsertAjax());

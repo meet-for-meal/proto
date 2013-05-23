@@ -243,7 +243,6 @@ public class UserDao {
 	//Create User
 	private static User createUser(ResultSet result) {
 		User user = new User();
-
 		try {
 			if(result != null && result.next()){ 
 				user = new User(
