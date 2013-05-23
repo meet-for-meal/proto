@@ -70,28 +70,32 @@ public class UserDao {
 	}
 	
 	//Update
-	public static void update(User user) throws SQLException{
-		String request = "UPDATE User SET" +
-			" firstname='"+ user.getFirstname() +"'," +
-			" lastname='"+ user.getLastname() +"'," +
-			" age="+ user.getAge() +"," +
-			" email='"+ user.getEmail() +"'," +
-			" password='"+ user.getPassword() +"'," +
-			" gender="+ user.getGender() +"," +
-			" firstVisit="+ (user.getFirstVisit()? 1: 0) +"," +
-			" isAdmin="+ (user.getIsAdmin()? 1: 0);
-			if (user.getLastPosition() != null) {
-			request += "," +
-			" lastPosition='"+new java.sql.Date(user.getLastPosition().getTime())+" "+new java.sql.Time(user.getLastPosition().getTime())+"'," +
-			" lastLatitude="+ user.getLastLat() +"," +
-			" lastLongitude="+ user.getLastLong();
-			}
-			request += " WHERE id="+ user.getId();
-
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-//		ps.setDate(1, ();
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean update(User user) throws SQLException{
+		boolean ok = false;
+		if (user.getId() > 0) {
+			String request = "UPDATE User SET" +
+				" firstname='"+ user.getFirstname() +"'," +
+				" lastname='"+ user.getLastname() +"'," +
+				" age="+ user.getAge() +"," +
+				" email='"+ user.getEmail() +"'," +
+				" password='"+ user.getPassword() +"'," +
+				" gender="+ user.getGender() +"," +
+				" firstVisit="+ (user.getFirstVisit()? 1: 0) +"," +
+				" isAdmin="+ (user.getIsAdmin()? 1: 0);
+				if (user.getLastPosition() != null) {
+				request += "," +
+				" lastPosition='"+new java.sql.Date(user.getLastPosition().getTime())+" "+new java.sql.Time(user.getLastPosition().getTime())+"'," +
+				" lastLatitude="+ user.getLastLat() +"," +
+				" lastLongitude="+ user.getLastLong();
+				}
+				request += " WHERE id="+ user.getId();
+	
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+	//		ps.setDate(1, ();
+			ps.executeUpdate();
+			Connect.getConnection().close();
+		}
+		return ok;
 	}
 	
 	//Delete

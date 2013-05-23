@@ -27,6 +27,7 @@ import org.essilab.module.user.actions.UserGetAjax;
 import org.essilab.module.user.actions.UserInsertAjax;
 import org.essilab.module.user.actions.UserListAjax;
 import org.essilab.module.user.actions.UserListDisplay;
+import org.essilab.module.user.actions.UserUpdateAjax;
 
 public class FrontController extends HttpServlet {
 
@@ -74,7 +75,9 @@ public class FrontController extends HttpServlet {
 			try {
 				if (url.contains("ajax/user")) {
 					if (request.getMethod().equalsIgnoreCase("POST")) {
-						action = new InterestInsertAjax();
+						action = new UserInsertAjax();
+					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+						action = new UserUpdateAjax();
 					} else {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));
