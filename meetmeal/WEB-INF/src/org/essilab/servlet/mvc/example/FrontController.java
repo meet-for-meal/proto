@@ -63,9 +63,8 @@ public class FrontController extends HttpServlet {
 		if (null != action)
 			action.execute(request, response);
 		else {
-
 				try {
-					if (url.contains("ajax/user/")) {
+					if (url.contains("ajax/user")) {
 						if (request.getMethod().equalsIgnoreCase("POST")) {
 							action = new InterestInsertAjax();
 						} else {
@@ -79,9 +78,9 @@ public class FrontController extends HttpServlet {
 								} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
 									action = new UserDeleteAjax(endValue);
 								}
-								action.execute(request, response);
 							}
 						}
+						action.execute(request, response);
 					} else if (url.contains("ajax/interest")) {
 						if (request.getMethod().equalsIgnoreCase("POST")) {
 							action = new InterestInsertAjax();
@@ -96,9 +95,9 @@ public class FrontController extends HttpServlet {
 								} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
 									action = new InterestDeleteAjax(endValue);
 								}
-								action.execute(request, response);
 							}
 						}
+						action.execute(request, response);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
