@@ -27,6 +27,7 @@ public class AnnounceDao {
 	}
 		
 	//Insert
+
 	public static boolean insert(Announce a) throws SQLException{
 		boolean ok = false;
 		if (a.getCreator() != null && getIdByCreatoridCreatedDate(a.getCreator().getId(), a.getCreatedDate()) > 0) {
