@@ -736,6 +736,7 @@ header #notifications p.notification-action a {
     border-radius: 3px;
     padding: 5px 10px;
     margin-bottom: 5px;
+    height: 75px
 }
 
 #conversations ul li a{
@@ -772,6 +773,11 @@ header #notifications p.notification-action a {
 
 #conversations .extract-conversation{
     margin:0px;
+}
+
+#conversations .no-style-block{
+	display: block;
+	text-decoration: none;
 }
 
 .single-msg {
