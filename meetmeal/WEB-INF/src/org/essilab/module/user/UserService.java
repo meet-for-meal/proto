@@ -26,6 +26,15 @@ public class UserService {
 		return null;
 	}
 	
+	public List<User> userFriends(User u) {
+		try {
+			return UserDao.findFriends(u.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public User userSelect(int id) {
 		try {
 			return UserDao.getUser(id);

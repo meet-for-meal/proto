@@ -15,13 +15,10 @@
 
             <form id="announcement-form" action="announcementcreate" method="post">
                 <p>
-<<<<<<< HEAD
+
                     <label for="time-start"><strong><i class="icon-time"></i> Vos disponibilités ? </strong></label>
                     Le <input type="text" id="time-start" name="dispo-date"> à <input type="text" id="time-start" name="dispo-hour">
-=======
-                    <label for="time-start"><strong><i class="icon-time"></i> Vos disponibilitï¿½s ? </strong></label>
-                    <input type="text" id="time-start" name="dispo">
->>>>>>> 387dd2345397281223e997a177df38c6b3d4e95a
+
                 </p>
                 <p>
                     <label for="description"><strong><i class="icon-pencil"></i> Description de l'annonce :</strong></label>

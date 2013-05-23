@@ -57,10 +57,18 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
                     <span class="red">Rémy Hannequin</span> souhaite devenir votre ami.<br>
+                    <p class="notification-action">
+                        <a href="#" class="btn mfm-action" data-action="accept-request">Accepter</a> <a href="#" class="btn mfm-action btn-neutral" data-action="ignore-request">Ignorer</a>
+                    </p>
                     <span class="message-date">28/02/2013 à 14h42</span>
-                    </a>
+                </li>
+                <li>
+                    <span class="red">Rémy Hannequin</span> souhaite devenir votre ami.<br>
+                    <p class="notification-action">
+                    <a href="#" class="btn mfm-action" data-action="accept-request">Accepter</a> <a href="#" class="btn mfm-action btn-neutral" data-action="ignore-request">Ignorer</a>
+                    </p>
+                    <span class="message-date">28/02/2013 à 14h42</span>
                 </li>
                 <li>
                     <a href="#">

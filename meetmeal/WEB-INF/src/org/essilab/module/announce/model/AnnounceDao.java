@@ -30,7 +30,9 @@ public class AnnounceDao {
 
 	public static boolean insert(Announce a) throws SQLException{
 		boolean ok = false;
-		if (a.getCreator() != null && getIdByCreatoridCreatedDate(a.getCreator().getId(), a.getCreatedDate()) > 0) {
+
+		if (a.getCreator() != null) {
+			System.out.println("in_request");
 			String request = "INSERT INTO Announce VALUES (NULL" +
 				", "+ (a.getCreator() != null ? a.getCreator().getId()+"" : "NULL") +
 				", "+ (a.getCreatedDate() != null ? "'"+new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'" : "NULL") +
@@ -39,7 +41,6 @@ public class AnnounceDao {
 				" "+ a.getLatitude() +"," +
 				" "+ a.getLongitude() +"," +
 				" '"+ a.getMessage() +"')";
-			System.out.println(request);
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 			ps.executeUpdate();
 			Connect.getConnection().close();

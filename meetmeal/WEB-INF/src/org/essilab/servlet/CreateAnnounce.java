@@ -44,10 +44,8 @@ public class CreateAnnounce  extends HttpServlet {
         HttpSession session = request.getSession();
         
         User user = (User) session.getAttribute("sessionUser");
-        
         /* Handle request */
         Announce announce = form.CreateAnnounce( request, user );
-
         /* Retrieve session */
         if ( form.getErrors().isEmpty() && user != null && announce != null) {
             

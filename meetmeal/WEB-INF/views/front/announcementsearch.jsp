@@ -24,7 +24,7 @@
 					  <li class="result-search">
 					  	<div class="user-interact">
 					  		<a href="announcement?announceid=${announce.id}" title="" class="btn see-profile"><i class="icon-eye-open"></i>En savoir plus</a>
-		                    <a href="#" title="" class="btn add-friend"><i class="icon-plus"></i>Inviter � manger</a>
+                            <a href="#" class="btn mfm-action" data-action="friend-request"><i class="icon-plus"></i>Inviter � manger</a>
 					  	</div>
 					  	<img src="/meetformeal/res/styles/default/img/users/default.png" width="40" height="40" class="avatar" alt="">
 					  	<a href="userpage">
