@@ -260,9 +260,8 @@ public class UserDao {
 					result.getDouble("lastLatitude"),
 					result.getDouble("lastLongitude")
 				);	
-			} else{
+			} else
 				return null;
-			}
 		} catch (SQLException e) { e.printStackTrace();	}
 		return user;
 	}

@@ -16,6 +16,10 @@ import org.essilab.module.interest.actions.InterestDeleteAjax;
 import org.essilab.module.interest.actions.InterestGetAjax;
 import org.essilab.module.interest.actions.InterestInsertAjax;
 import org.essilab.module.interest.actions.InterestListAjax;
+import org.essilab.module.restaurant.actions.RestaurantDeleteAjax;
+import org.essilab.module.restaurant.actions.RestaurantGetAjax;
+import org.essilab.module.restaurant.actions.RestaurantInsertAjax;
+import org.essilab.module.restaurant.actions.RestaurantListAjax;
 import org.essilab.module.user.actions.MainMenu;
 import org.essilab.module.user.actions.UserDeleteAjax;
 import org.essilab.module.user.actions.UserGetAjax;
@@ -32,6 +36,7 @@ public class FrontController extends HttpServlet {
 		actions.put("ajax/users", new UserListAjax());
 		actions.put("ajax/interests", new InterestListAjax(true));
 		actions.put("ajax/interests/false", new InterestListAjax(false));
+		actions.put("ajax/restaurants", new RestaurantListAjax());
 		actions.put("user/display", new UserListDisplay());
 		actions.put("user/display.ajax", new UserListAjax());
 		actions.put("user/insert.ajax", new UserInsertAjax());
@@ -90,6 +95,21 @@ public class FrontController extends HttpServlet {
 								action = new InterestGetAjax(endValue);
 							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
 								action = new InterestDeleteAjax(endValue);
+							}
+						}
+					}
+					action.execute(request, response);
+				} else if (url.contains("ajax/restaurant")) {
+					if (request.getMethod().equalsIgnoreCase("POST")) {
+						action = new RestaurantInsertAjax();
+					} else {
+						int slashIndex = url.lastIndexOf('/');
+						int endValue = Integer.parseInt(url.substring(slashIndex+1));
+						if (endValue > 0) {
+							if (request.getMethod().equalsIgnoreCase("GET")) {
+								action = new RestaurantGetAjax(endValue);
+							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+								action = new RestaurantDeleteAjax(endValue);
 							}
 						}
 					}
