@@ -52,8 +52,8 @@ public class UserPostAjax implements IAction{
         String lastname = getFieldValue(request, FIELD_LASTNAME);
         String email = getFieldValue(request, FIELD_EMAIL);
         String password = getFieldValue(request, FIELD_PASSWORD);
-        int age = Integer.parseInt(getFieldValue(request, FIELD_AGE));
-        int gender = Integer.parseInt(getFieldValue(request, FIELD_GENDER));
+        int age = (getFieldValue(request, FIELD_AGE) != null) ? Integer.parseInt(getFieldValue(request, FIELD_AGE)) : 0;
+        int gender = (getFieldValue(request, FIELD_GENDER) != null) ? Integer.parseInt(getFieldValue(request, FIELD_GENDER)) : 0;
         
         return new User(id,lastname,firstname,age,email,password,gender);
     }
