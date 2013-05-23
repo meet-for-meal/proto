@@ -107,6 +107,34 @@ $(document).ready(function(){
                     default:
                 }
             }
+        });
+
+    // TODO : Fix
+    $('.mfm-action').click(function(e){
+        e.preventDefault();
+        var self = $(this);
+        var actionType = $(this).attr('data-action');
+        if(typeof actionType !== 'undefined' && actionType.length !== 0){
+            switch (actionType) {
+                case 'accept-request':
+                    if(self.parent().hasClass('notification-action')){
+                        self.closest('li').slideUp(200);
+                    }
+                    mfm.actions.popAlert(actionType);
+                    break;
+                case 'ignore-request':
+                    if(self.parent().hasClass('notification-action')){
+                        self.closest('li').slideUp(200);
+                    }
+                    mfm.actions.popAlert(actionType);
+                    break;
+                case 'friend-request':
+                    mfm.actions.popAlert(actionType);
+                    self.html('Demande envoyée').addClass('btn-neutral');
+                    break;
+                default:
+            }
+        }
     });
 
     $('#toggle-map').click(function(){
@@ -145,7 +173,6 @@ $(document).ready(function(){
         $.getJSON('/'+mfm.host+'/ajax/users', function(data) {
 
             $.each(data, function(i) {
-                console.log(data[i]);
 
                 var user = '<li class="user">'+
                     '<a href="announcement">'+
