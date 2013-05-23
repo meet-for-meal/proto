@@ -27,9 +27,9 @@ define([
       this.editTemplate = _.template(this.$el.find('#edit-template').html());
       this.venueTemplate = _.template(this.$el.find('#venue-template').html());
 
-      Util.apiRequest('/venues/' + this.venueId, 'GET', null, null, function (res) {
+      Util.apiRequest('/restaurant/' + this.venueId, 'GET', null, null, function (res) {
         self.renderVenue(res);
-        self.renderFoursquareVenue(res.foursquare_id);
+        self.renderFoursquareVenue(res.foursquareId);
       });
     },
 
@@ -66,8 +66,10 @@ define([
         partnership: this.$el.find('#partnership').val(),
         foursquare_id: this.$el.find('#idFoursquare').val()
       };
-      Util.apiRequest('/venues/edit/' + this.venueId, 'GET', null, params, function() {
-        window.location = '#/venues';
+      Util.apiRequest('/restaurant/' + this.venueId, 'PUT', null, params, function (res) {
+        if(res && res.status === 'ok') {
+          window.location = '#/venues';
+        }
       });
     }
 

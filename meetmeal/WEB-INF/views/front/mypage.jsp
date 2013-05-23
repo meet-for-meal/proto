@@ -48,27 +48,28 @@ User user = (User)session.getAttribute("sessionUser");
                 Age : <strong><% out.print(user.getAge()); %></strong>
             </p>
             <p>
-                Goï¿½ts culinaires : 
+                Goûts culinaires : 
                 <c:forEach items="${sessionScope.categories}" var="category">  
-					${category.name}				
+					<a href="#">#${category.name} </a>				
 				</c:forEach>
                 
             </p>
             <p>
-                Centres d'intï¿½rï¿½ts : 
+                Centres d'intérêts : 
 
 				<c:forEach items="${sessionScope.interests}" var="interest">  
-					${interest.tag}				
+					<a href="#">#${interest.tag} </a>				
 				</c:forEach>
                 
             </p>
-            <p>
-                PrÃ©sentation : Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+            <!--  <p>
+                Préentation : Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
                 Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
             </p>
+            
             <p>
                 <i class="icon-eye-open"></i>Profil complÃ©tÃ© Ã  <strong>90%</strong>
-            </p>
+            </p>-->
             <p>
                 <a href="#" class="btn"><i class="icon-cog icon-plus"></i>Modifier votre profil</a>
             </p>
@@ -90,9 +91,11 @@ User user = (User)session.getAttribute("sessionUser");
             <hr>
 
             <h2>Mes amis</h2>
+			
+			<c:forEach items="${sessionScope.friends}" var="friend">  
+				<a href="userpage" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt=""></a>			
+			</c:forEach>
 
-            <a href="userpage" title="Pierre"><img src="/meetformeal/res/styles/default/img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage" title="Romain"><img src="/meetformeal/res/styles/default/img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
         </div>
 
         <div class="col-2">
