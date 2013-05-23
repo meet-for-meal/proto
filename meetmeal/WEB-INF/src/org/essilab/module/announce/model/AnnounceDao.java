@@ -35,7 +35,7 @@ public class AnnounceDao {
 			", "+ (a.getIsOpen()? 1: 0) +"," +
 			" "+ a.getLatitude() +"," +
 			" "+ a.getLongitude() +"," +
-			" '"+ a.getMessage() +"')";
+			" \""+ a.getMessage() +"\")";
 		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ps.executeUpdate();

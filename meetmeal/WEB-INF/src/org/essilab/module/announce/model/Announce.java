@@ -20,6 +20,17 @@ public class Announce {
 		this.creator = new User();
 	}
 	
+	public Announce(int _i, Date _cd, Date _dd, boolean _io, double _lat, double _lng, String _m, User _u) {
+		this.id = _i;
+		this.createdDate = _cd;
+		this.disponibilityDate = _dd;
+		this.isOpen = _io;
+		this.latitude = _lat;
+		this.longitude = _lng;
+		this.message = _m;
+		this.creator = _u;
+	}
+	
 	public Announce(int _i, Date _cd, Date _dd, boolean _io, double _lat, double _lng, String _m) {
 		this.id = _i;
 		this.createdDate = _cd;

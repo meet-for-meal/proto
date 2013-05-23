@@ -72,7 +72,7 @@
             <form id="announcement-form" action="announcementcreate" method="post">
                 <p>
                     <label for="time-start"><strong><i class="icon-time"></i> Vos disponibilités ? </strong></label>
-                    <input type="text" id="time-start" name="dispo">
+                    Le <input type="text" id="time-start" name="dispo-date"> à <input type="text" id="time-start" name="dispo-hour">
                 </p>
                 <p>
                     <label for="description"><strong><i class="icon-pencil"></i> Description de l'annonce :</strong></label>
