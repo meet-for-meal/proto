@@ -55,7 +55,8 @@ public class UserService {
 	
 	public boolean userUpdate(User u){
 		try {
-			return UserDao.update(u);
+			UserDao.update(u);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,8 +71,6 @@ public class UserService {
 		}
 		return false;
 	}
-	
-	
 	
 	public User userAuthenticate(User u){
 		try {

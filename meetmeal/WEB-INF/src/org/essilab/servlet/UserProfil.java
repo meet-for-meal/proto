@@ -17,6 +17,7 @@ import org.essilab.module.interest.model.Interest;
 import org.essilab.module.user.UserService;
 import org.essilab.module.user.model.User;
 
+@SuppressWarnings("serial")
 public class UserProfil extends HttpServlet {
     public static final String ATT_USER         = "user";
     public static final String ATT_SESSION_INTERESTS = "interests";
@@ -64,29 +65,31 @@ public class UserProfil extends HttpServlet {
      			.substring(request.getContextPath().length()+1);
          request.setAttribute("url", url); 
 
-        /* Préparation de l'objet formulaire */
+         HttpSession session = request.getSession();
+         
+         User user = (User) session.getAttribute("sessionUser");
+         UserForm userform = new UserForm();
+    	 User newuser= userform.GetUserUpdate(request);
+    	 
+         if ( userform.getErrors().isEmpty() ) {
+        	 
+        	 UserService userservice = UserService.getInstance();
+        	 userservice.userUpdate(newuser);
+        	 
+        	 InterestService interestService = InterestService.getInstance();
+             List<Interest>  interest = interestService.getInterestByUser(user);
+             
+             CategoryService categoryService = CategoryService.getInstance();
+             List<Category>  category = (List<Category>) categoryService.getCategoryByUser(user);
+             
+             List<User> friend = (List<User>) userservice.userFriends(user);
+             
+             session.setAttribute(ATT_SESSION_INTERESTS, interest);
+             session.setAttribute(ATT_SESSION_CATEGORIES, category);
+             session.setAttribute(ATT_SESSION_FRIENDS, friend);
+         
+         }
         
-
-        /* Traitement de la requête et récupération du bean en résultant */
-
-        /* Récupération de la session depuis la requête */
-        HttpSession session = request.getSession();
- 
-
-        User user = (User) session.getAttribute("sessionUser");
-        if (user != null ) {
-
-            InterestService interestService = InterestService.getInstance();
-            List<Interest>  interest = interestService.getInterestByUser(user);
-            CategoryService categoryService = CategoryService.getInstance();
-            List<Category>  category = categoryService.getCategoryByUser(user);
-            session.setAttribute(ATT_SESSION_INTERESTS, interest);
-            session.setAttribute(ATT_SESSION_CATEGORIES, category);
-            
-        } else {
-        	session.setAttribute(ATT_SESSION_INTERESTS, null);
-        	session.setAttribute(ATT_SESSION_CATEGORIES, null);
-        }
  
         /* store form error and data in request */
         request.setAttribute( ATT_USER, user );
