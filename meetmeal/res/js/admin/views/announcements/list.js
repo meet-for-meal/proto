@@ -19,9 +19,14 @@ define([
       this.template = _.template(this.$el.find('#list-template').html());
 
       var success = function (res) {
+        _.map(res, function (announcement, index) {
+          var date = new Date(announcement.createdDate),
+              createdDate = Util.dateToString(date) + ' à ' + Util.timeToString(date);
+          res[index].creationDate = createdDate;
+        });
         self.renderList(res);
       };
-      Util.apiRequest('/announcements', 'GET', null, null, success);
+      Util.apiRequest('/announces', 'GET', null, null, success);
     },
 
     render: function() {
