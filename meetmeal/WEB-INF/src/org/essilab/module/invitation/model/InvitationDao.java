@@ -49,21 +49,26 @@ public class InvitationDao {
 	}
 	
 	//Update
-	public static void update(Invitation i) throws SQLException{
-		String request = "UPDATE Invitation SET";
-			if (i.getSender() != null)
-			request += " senderId="+ i.getSender().getId();
-			if (i.getCreatedDate() != null)
-			request += ", createdDate='"+ new java.sql.Date(i.getCreatedDate().getTime())+" "+new java.sql.Time(i.getCreatedDate().getTime())+"'";
-			request += ", isAccepted="+ (i.getIsAccepted()? 1: 0) +"," +
-			" isConfirmed="+ (i.getIsConfirmed()? 1: 0) +"," +
-			" isOpen="+ (i.getIsOpen()? 1: 0) +"," +
-			" message='"+ i.getMessage() +"'" +
-			" WHERE id="+ i.getId();
-		System.out.println(request);
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean update(Invitation i) throws SQLException{
+		boolean ok = false;
+		if (i.getId() > 0) {
+			String request = "UPDATE Invitation SET";
+				if (i.getSender() != null)
+				request += " senderId="+ i.getSender().getId();
+				if (i.getCreatedDate() != null)
+				request += ", createdDate='"+ new java.sql.Date(i.getCreatedDate().getTime())+" "+new java.sql.Time(i.getCreatedDate().getTime())+"'";
+				request += ", isAccepted="+ (i.getIsAccepted()? 1: 0) +"," +
+				" isConfirmed="+ (i.getIsConfirmed()? 1: 0) +"," +
+				" isOpen="+ (i.getIsOpen()? 1: 0) +"," +
+				" message='"+ i.getMessage() +"'" +
+				" WHERE id="+ i.getId();
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			ok = true;
+		}
+		return ok;
 	}
 	
 	//Delete

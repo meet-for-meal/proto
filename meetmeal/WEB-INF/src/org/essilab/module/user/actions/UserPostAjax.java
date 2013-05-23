@@ -7,9 +7,10 @@ import org.essilab.module.user.UserService;
 import org.essilab.module.user.model.User;
 import org.essilab.servlet.mvc.example.IAction;
 
-public class UserInsertAjax implements IAction{
+public class UserPostAjax implements IAction{
 
 	UserService service = UserService.getInstance();
+	public final static String FIELD_ID = "id";
 	public final static String FIELD_FIRSTNAME = "firstname";
 	public final static String FIELD_LASTNAME = "lastname";
 	public final static String FIELD_EMAIL = "email";
@@ -17,14 +18,24 @@ public class UserInsertAjax implements IAction{
 	public final static String FIELD_AGE = "age";
 	public final static String FIELD_GENDER = "gender";
 	
+	boolean toUpdate = false;
+	
+	public UserPostAjax(boolean update) {
+		toUpdate = update;
+	}
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			boolean ok = false;
 			User u = readPost(request);
 			response.setContentType(HEADER_TYPE_JSON);
-			if (u != null)
-				ok = service.userInsert(u);
+			if (u != null) {
+				if (toUpdate)
+					ok = service.userUpdate(u);
+				else 
+					ok = service.userInsert(u);
+			}
 			response.getWriter().println(ok ? RESPONSE_OK : RESPONSE_ERROR);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -33,13 +44,14 @@ public class UserInsertAjax implements IAction{
 	}
 
 	public User readPost(HttpServletRequest request) {
+		int id = toUpdate ? Integer.parseInt(getFieldValue(request, FIELD_ID)) : 0;
         String firstname = getFieldValue(request, FIELD_FIRSTNAME);
         String lastname = getFieldValue(request, FIELD_LASTNAME);
         String email = getFieldValue(request, FIELD_EMAIL);
         String password = getFieldValue(request, FIELD_PASSWORD);
         int age = Integer.parseInt(getFieldValue(request, FIELD_AGE));
         int gender = Integer.parseInt(getFieldValue(request, FIELD_GENDER));
-       	User u = new User(0,lastname,firstname,age,email,password,gender,true,false);
+       	User u = new User(id,lastname,firstname,age,email,password,gender,true,false);
      
         return u;
     }

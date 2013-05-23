@@ -29,7 +29,7 @@ public class SingleAnnounce extends HttpServlet {
         
         int id_announce = Integer.parseInt(request.getParameter("announceid"));
         AnnounceService announceService = AnnounceService.getInstance();
-        Announce announce = announceService.getAnnounce(id_announce);
+        Announce announce = announceService.announceSelect(id_announce);
         request.setAttribute(ATT_SESSION_ANNOUNCE, announce);
 
         this.getServletContext().getRequestDispatcher("/layout.jsp" ).forward( request, response );
@@ -42,7 +42,7 @@ public class SingleAnnounce extends HttpServlet {
         request.setAttribute("url", url);
         int id_announce = Integer.parseInt(request.getParameter("announceid"));
         AnnounceService announceService = AnnounceService.getInstance();
-        Announce announce = announceService.getAnnounce(id_announce);
+        Announce announce = announceService.announceSelect(id_announce);
         request.setAttribute(ATT_SESSION_ANNOUNCE, announce);
         this.getServletContext().getRequestDispatcher("/layout.jsp" ).forward( request, response );
     	

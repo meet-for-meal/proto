@@ -43,6 +43,15 @@ public class RestaurantService {
 		return false;
 	}
 	
+	public boolean restaurantUpdate(Restaurant r){
+		try {
+			return RestaurantDao.update(r);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public boolean restaurantDelete(int id) {
 		try {
 			return RestaurantDao.delete(id);

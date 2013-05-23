@@ -54,7 +54,7 @@ public class CreateAnnounceForm {
 				user.getLastLong(),
 				description,
 				user);
-    	announceService.insertAnnounce(announce);
+    	announceService.announceInsert(announce);
     	return announce;
     }
 	

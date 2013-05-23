@@ -53,6 +53,15 @@ public class UserService {
 		return false;
 	}
 	
+	public boolean userUpdate(User u){
+		try {
+			return UserDao.update(u);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public boolean userDelete(int id) {
 		try {
 			return UserDao.delete(id);

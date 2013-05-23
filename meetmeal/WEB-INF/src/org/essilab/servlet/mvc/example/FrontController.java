@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.essilab.module.announce.actions.AnnounceDeleteAjax;
+import org.essilab.module.announce.actions.AnnounceGetAjax;
+import org.essilab.module.announce.actions.AnnounceListAjax;
 import org.essilab.module.error.actions.ErrorAction;
 import org.essilab.module.interest.actions.InterestDeleteAjax;
 import org.essilab.module.interest.actions.InterestGetAjax;
@@ -18,17 +21,18 @@ import org.essilab.module.interest.actions.InterestInsertAjax;
 import org.essilab.module.interest.actions.InterestListAjax;
 import org.essilab.module.restaurant.actions.RestaurantDeleteAjax;
 import org.essilab.module.restaurant.actions.RestaurantGetAjax;
-import org.essilab.module.restaurant.actions.RestaurantInsertAjax;
 import org.essilab.module.restaurant.actions.RestaurantListAjax;
+import org.essilab.module.restaurant.actions.RestaurantPostAjax;
 import org.essilab.module.user.actions.MainMenu;
 import org.essilab.module.user.actions.UserDeleteAjax;
 import org.essilab.module.user.actions.UserGetAjax;
-import org.essilab.module.user.actions.UserInsertAjax;
 import org.essilab.module.user.actions.UserListAjax;
 import org.essilab.module.user.actions.UserListDisplay;
+import org.essilab.module.user.actions.UserPostAjax;
 
 public class FrontController extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
 	Map<String, IAction> actions = new HashMap<String, IAction>();
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -37,9 +41,10 @@ public class FrontController extends HttpServlet {
 		actions.put("ajax/interests", new InterestListAjax(true));
 		actions.put("ajax/interests/false", new InterestListAjax(false));
 		actions.put("ajax/restaurants", new RestaurantListAjax());
+		actions.put("ajax/announces", new AnnounceListAjax());
 		actions.put("user/display", new UserListDisplay());
 		actions.put("user/display.ajax", new UserListAjax());
-		actions.put("user/insert.ajax", new UserInsertAjax());
+		actions.put("user/insert.ajax", new UserPostAjax(false));
 		actions.put("user/mainmenu.ajax", new MainMenu());
 		actions.put("error/error", new ErrorAction());
 	}
@@ -69,9 +74,11 @@ public class FrontController extends HttpServlet {
 			action.execute(request, response);
 		else {
 			try {
-				if (url.contains("ajax/user")) {
+				if (url.contains("ajax/user")) {				//USER
 					if (request.getMethod().equalsIgnoreCase("POST")) {
-						action = new InterestInsertAjax();
+						action = new UserPostAjax(false);
+					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+						action = new UserPostAjax(true);
 					} else {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));
@@ -84,7 +91,7 @@ public class FrontController extends HttpServlet {
 						}
 					}
 					action.execute(request, response);
-				} else if (url.contains("ajax/interest")) {
+				} else if (url.contains("ajax/interest")) {		//INTEREST
 					if (request.getMethod().equalsIgnoreCase("POST")) {
 						action = new InterestInsertAjax();
 					} else {
@@ -99,9 +106,11 @@ public class FrontController extends HttpServlet {
 						}
 					}
 					action.execute(request, response);
-				} else if (url.contains("ajax/restaurant")) {
+				} else if (url.contains("ajax/restaurant")) {	//RESTAURANT
 					if (request.getMethod().equalsIgnoreCase("POST")) {
-						action = new RestaurantInsertAjax();
+						action = new RestaurantPostAjax(false);
+					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+						action = new RestaurantPostAjax(true);
 					} else {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));
@@ -114,7 +123,25 @@ public class FrontController extends HttpServlet {
 						}
 					}
 					action.execute(request, response);
+				} else if (url.contains("ajax/announce")) {	//ANNOUNCE
+					if (request.getMethod().equalsIgnoreCase("POST")) {
+						action = new RestaurantPostAjax(false);
+					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+						action = new RestaurantPostAjax(true);
+					} else {
+						int slashIndex = url.lastIndexOf('/');
+						int endValue = Integer.parseInt(url.substring(slashIndex+1));
+						if (endValue > 0) {
+							if (request.getMethod().equalsIgnoreCase("GET")) {
+								action = new AnnounceGetAjax(endValue);
+							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+								action = new AnnounceDeleteAjax(endValue);
+							}
+						}
+					}
+					action.execute(request, response);
 				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
