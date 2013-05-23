@@ -10,10 +10,11 @@ import org.essilab.servlet.mvc.example.IAction;
 public class RestaurantPostAjax implements IAction{
 
 	RestaurantService service = RestaurantService.getInstance();
+	public final static String FIELD_ID = "id";
 	public final static String FIELD_NAME = "name";
 	public final static String FIELD_LATITUDE = "latitude";
 	public final static String FIELD_LONGITUDE = "longitude";
-	public final static String FIELD_FOURSQUARE = "foursquare";
+	public final static String FIELD_FOURSQUARE = "foursquare_id";
 	public final static String FIELD_PARTNERSHIP = "partnership";
 	public final static String FIELD_URLIMAGE = "urlImage";
 	public final static String FIELD_TITLEIMAGE = "titleImage";
@@ -45,6 +46,7 @@ public class RestaurantPostAjax implements IAction{
 	}
 
 	public Restaurant readPost(HttpServletRequest request) {
+		int id = toUpdate ? Integer.parseInt(getFieldValue(request, FIELD_ID)) : 0;
         String name = getFieldValue(request, FIELD_NAME);
         double lat = Double.parseDouble(getFieldValue(request, FIELD_LATITUDE));
         double lng = Double.parseDouble(getFieldValue(request, FIELD_LONGITUDE));
@@ -53,7 +55,7 @@ public class RestaurantPostAjax implements IAction{
         String url = getFieldValue(request, FIELD_URLIMAGE);
         String title = getFieldValue(request, FIELD_TITLEIMAGE);
         String desc = getFieldValue(request, FIELD_DESCIMAGE);
-       	Restaurant resto = new Restaurant(0,name,lat,lng,foursquare,partnership,url,title,desc);
+       	Restaurant resto = new Restaurant(id,name,lat,lng,foursquare,partnership,url,title,desc);
      
         return resto;
     }

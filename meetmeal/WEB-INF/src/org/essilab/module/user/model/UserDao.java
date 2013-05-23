@@ -94,6 +94,7 @@ public class UserDao {
 	//		ps.setDate(1, ();
 			ps.executeUpdate();
 			Connect.getConnection().close();
+			ok = true;
 		}
 		return ok;
 	}
