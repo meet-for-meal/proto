@@ -6,8 +6,6 @@
 
 <%
 User user = (User)session.getAttribute("sessionUser");
-
-
 %>
 
 <section id="container">
@@ -25,9 +23,9 @@ User user = (User)session.getAttribute("sessionUser");
 
         <div class="col-2">
             <h2>Informations sur votre profil</h2>
-            <img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
+            <img src="/meetformeal/res/styles/default/img/users/<%=user.getLastname() %>.jpg" width="64" height="64" class="avatar" alt="">           
             <p>
-                <i class="icon-user"></i><strong><% out.print(user.getLastname()); %></strong>
+                <i class="icon-user"></i><strong><% out.print(user.getLastname() + " " + user.getFirstname()); %></strong>
             </p>
             <p>
                 Sexe :
@@ -71,7 +69,7 @@ User user = (User)session.getAttribute("sessionUser");
                 <i class="icon-eye-open"></i>Profil complété à <strong>90%</strong>
             </p>-->
             <p>
-                <a href="#" class="btn"><i class="icon-cog icon-plus"></i>Modifier votre profil</a>
+                <a href="editmypage" class="btn"><i class="icon-cog icon-plus"></i>Modifier votre profil</a>
             </p>
         </div>
 
@@ -93,7 +91,7 @@ User user = (User)session.getAttribute("sessionUser");
             <h2>Mes amis</h2>
 			
 			<c:forEach items="${sessionScope.friends}" var="friend">  
-				<a href="userpage" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt=""></a>			
+				<a href="userpage" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/${friend.lastname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
 			</c:forEach>
 
         </div>

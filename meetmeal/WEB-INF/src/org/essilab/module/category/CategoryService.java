@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.essilab.module.category.model.Category;
 import org.essilab.module.category.model.CategoryDao;
+import org.essilab.module.interest.model.InterestDao;
 import org.essilab.module.user.model.User;
 
 public class CategoryService {
@@ -33,6 +34,24 @@ public class CategoryService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public boolean categoryInsertByUser(int userid, int tasteid) {
+		try {
+			return CategoryDao.insertByUser(userid, tasteid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean catgoryDeleteByUser(int userid) {
+		try {
+			return CategoryDao.deleteByUser(userid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }
