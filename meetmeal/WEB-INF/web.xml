@@ -79,6 +79,11 @@
         <servlet-name>UserProfil</servlet-name>
         <servlet-class>org.essilab.servlet.UserProfil</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>EditUserProfil</servlet-name>
+        <servlet-class>org.essilab.servlet.EditUserProfil</servlet-class>
+    </servlet>
 	
 	<servlet>
        <servlet-name>MessageController</servlet-name>
@@ -128,6 +133,11 @@
 	<servlet-mapping>
     	<servlet-name>UserProfil</servlet-name>
     	<url-pattern>/mypage</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    	<servlet-name>EditUserProfil</servlet-name>
+    	<url-pattern>/editmypage</url-pattern>
 	</servlet-mapping>
 
     <servlet-mapping>

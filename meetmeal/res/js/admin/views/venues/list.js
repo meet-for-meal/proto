@@ -43,9 +43,9 @@ define([
       for(var i = 0; i < len; i++) {
         var venue = venues[i];
         (function(v) {
+          var tr = $('tr.venue-' + v.id);
           Foursquare.request('venues/' + venue.foursquareId, { v: Foursquare.v }, function (res) {
             var foursquareVenue = res.response.venue;
-            var tr = $('tr.venue-' + v.id);
             var url = '<a href="' + foursquareVenue.canonicalUrl + '">' + foursquareVenue.name + '</a>';
             tr.find('.name').html(url);
           }, function(err) {

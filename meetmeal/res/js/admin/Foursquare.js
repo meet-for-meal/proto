@@ -9,9 +9,9 @@ define([], function() {
       foursquareOauthToken: 'CKTMK32OZVMXUXXHSHBUJXGLIV2AYFUN00SG5ICMET3B5TQN',
 
       request: function (url, params, success, error) {
-        if(!params) params = {};
-        if(!success) success = function(){};
-        if(!error) error = function(){};
+        if(!params)  { params = {}; }
+        if(!success) { success = function(){}; }
+        if(!error)   { error = function(){}; }
         params.oauth_token = this.foursquareOauthToken;
         var req = $.ajax({
           url: this.foursquareApiUrl + url,
@@ -31,7 +31,7 @@ define([], function() {
         return day + month + date.getFullYear().toString();
       })()
 
-    }
+    };
 
   })();
 

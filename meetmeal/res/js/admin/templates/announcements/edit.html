@@ -1,0 +1,52 @@
+<div id="main">
+  <div id="announcement">
+    <img src="res/styles/default/img/ajax-loader.gif" alt="loading" /> Loading...
+  </div>
+  <div class="google-map" id="map"></div>
+</div>
+
+<script id="edit-template" type="text/x-template">
+  <h1>Éditer une annonce</h1>
+  <p><strong>Créateur :</strong> <%= announcement.creator.firstname %> <%= announcement.creator.lastname %></p>
+
+  <form class="form-horizontal" action="" method="">
+    <div class="control-group">
+      <p><strong>Date de création :</strong> <%= announcement.crDate %></p>
+      <label class="control-label" for="createdDate">Date de création</label>
+      <div class="controls">
+        <input type="text" id="createdDate" value="<%= announcement.createdDate %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <p><strong>Date de disponibilité :</strong> <%= announcement.rdvDate %></p>
+      <label class="control-label" for="disponibilityDate">Date de disponibilité</label>
+      <div class="controls">
+        <input type="text" id="disponibilityDate" value="<%= announcement.disponibilityDate %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="message">Message</label>
+      <div class="controls">
+        <textarea id="message"><%= announcement.message %></textarea>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="latitude">Latitude</label>
+      <div class="controls">
+        <input type="text" id="latitude" value="<%= announcement.latitude %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="longitude">Longitude</label>
+      <div class="controls">
+        <input type="text" id="longitude" value="<%= announcement.longitude %>">
+        <button class="btn update-announcement">Mettre à jour la position</button>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" class="btn btn-primary" value="Enregistrer">
+      </div>
+    </div>
+  </form>
+</script>

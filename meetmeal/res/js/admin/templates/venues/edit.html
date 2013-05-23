@@ -13,8 +13,8 @@
       <label class="control-label" for="partnership">Partenariat</label>
       <div class="controls">
         <select id="partnership">
-        <% _.each(p, function (partnership) { %>
-          <option value="<%= partnership %>"<% if(partnership === m.partnership){ %> selected<% } %>>
+        <% _.map(p, function (partnership, index) { %>
+          <option value="<%= index + 1 %>"<% if(index+1 === m.partnership){ %> selected<% } %>>
             <%= partnership %>
           </option>
         <% }) %>

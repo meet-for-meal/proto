@@ -23,7 +23,7 @@ define(['jquery'], function ($) {
             queryString[pair[0]] = arr;
             // If third or later entry with this name
           } else {
-            query_string[pair[0]].push(pair[1]);
+            queryString[pair[0]].push(pair[1]);
           }
         }
         return queryString;
@@ -63,6 +63,23 @@ define(['jquery'], function ($) {
           title: markerName
         });
         marker.setMap(map);
+      },
+
+      dateToString: function (date) {
+        var month = parseInt(date.getMonth(), 10) + 1;
+        month = this.addZero(month);
+        return date.getDate() + '/' + month + '/' + date.getFullYear();
+      },
+
+      timeToString: function (date) {
+        var hours   = this.addZero(date.getHours()),
+            minutes = this.addZero(date.getMinutes()),
+            seconds = this.addZero(date.getSeconds());
+        return hours + ':' + minutes + ':' + seconds;
+      },
+
+      addZero: function (number) {
+        return number < 10 ? '0' + number : number;
       }
 
     };

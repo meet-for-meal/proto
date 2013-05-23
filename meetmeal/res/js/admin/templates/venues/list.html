@@ -15,7 +15,7 @@
     <tr class="venue-<%= venue.id %>">
       <td><%= venue.id %></td>
       <td class="name"><img src="res/styles/default/img/ajax-loader.gif" alt="loading" /></td>
-      <td><%= venue.partnership %></td>
+      <td><%= venue.partnership === 1 ? "medium" : "high" %></td>
       <td>
         <div class="btn-group">
           <button data-toggle="dropdown" class="btn dropdown-toggle">
