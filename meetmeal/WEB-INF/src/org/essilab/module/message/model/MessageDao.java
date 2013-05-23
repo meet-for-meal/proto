@@ -18,7 +18,7 @@ public class MessageDao {
 			String request = "INSERT INTO Message VALUES (NULL, "+
 				" "+ msg.getSender().getId() +"," +
 				" "+ msg.getReceiver().getId() +"," +
-				" '"+ msg.getContent() +"'," +
+				" \""+ msg.getContent() +"\"," +
 				" "+ (msg.getSentDate() != null ? "'"+new java.sql.Date(msg.getSentDate().getTime())+" "+new java.sql.Time(msg.getSentDate().getTime())+"'" : "NULL")+")";
 			System.out.println(request+"\n");
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
@@ -46,7 +46,7 @@ public class MessageDao {
 			"FROM (" +
 				"SELECT MAX(createdDate) AS createdDate "+
 				"FROM Message M "+
-				"WHERE "+senderId+" IN (senderId,receiverId) "+
+				"WHERE "+senderId+" IN (receiverId) "+
 				"GROUP BY IF ("+senderId+" = senderId,receiverId,senderId)) AS latest "+
 			"LEFT JOIN Message M ON latest.createdDate = M.createdDate AND "+senderId+" IN (M.senderId, M.receiverId) "+
 			"GROUP BY IF ("+senderId+" = M.senderId,M.receiverId,M.senderId)";

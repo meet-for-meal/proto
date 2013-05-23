@@ -79,7 +79,18 @@
         <servlet-name>UserProfil</servlet-name>
         <servlet-class>org.essilab.servlet.UserProfil</servlet-class>
     </servlet>
-
+	
+	<servlet>
+       <servlet-name>MessageController</servlet-name>
+       <servlet-class>org.essilab.servlet.MessageController</servlet-class>
+    </servlet>
+	
+	<servlet>
+       <servlet-name>MessageCreate</servlet-name>
+       <servlet-class>org.essilab.servlet.MessageCreate</servlet-class>
+    </servlet>
+	
+	
 	<servlet-mapping>
       <servlet-name>default</servlet-name>
       <url-pattern>/res/*</url-pattern>
@@ -108,26 +119,32 @@
     	<servlet-name>SearchAnnounce</servlet-name>
     	<url-pattern>/announcementsearch</url-pattern>
 	</servlet-mapping>
-
 	
 	<servlet-mapping>
     	<servlet-name>CreateAnnounce</servlet-name>
     	<url-pattern>/announcementcreate</url-pattern>
 	</servlet-mapping>
 	
-	
-
 	<servlet-mapping>
     	<servlet-name>UserProfil</servlet-name>
     	<url-pattern>/mypage</url-pattern>
 	</servlet-mapping>
 
-
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
-
+    
+	<servlet-mapping>
+      <servlet-name>MessageController</servlet-name>
+      <url-pattern>/message</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+      <servlet-name>MessageCreate</servlet-name>
+      <url-pattern>/messagecreate</url-pattern>
+    </servlet-mapping>
+	
     <servlet-mapping>
       <servlet-name>controller</servlet-name>
       <url-pattern>/</url-pattern>

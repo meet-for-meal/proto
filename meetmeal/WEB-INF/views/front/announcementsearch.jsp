@@ -24,7 +24,7 @@
 					  <li class="result-search">
 					  	<div class="user-interact">
 					  		<a href="announcement?announceid=${announce.id}" title="" class="btn see-profile"><i class="icon-eye-open"></i>En savoir plus</a>
-                            <a href="#" class="btn mfm-action" data-action="friend-request"><i class="icon-plus"></i>Inviter ï¿½ manger</a>
+                            <a href="messagecreate?id_user=${announce.creator.id}" class="btn mfm-action" data-action="friend-request"><i class="icon-plus"></i>Inviter à manger</a>
 					  	</div>
 					  	<img src="/meetformeal/res/styles/default/img/users/default.png" width="40" height="40" class="avatar" alt="">
 					  	<a href="userpage">
@@ -34,7 +34,7 @@
 	                        <p class="announce-msg">&laquo; ${announce.message} &raquo;<p>
 	                        <p>
 
-	                            <i class="icon-time"></i>Disponibilitï¿½ : <strong>Le <fmt:formatDate type="date" value="${announce.disponibilityDate}" /> ï¿½ <fmt:formatDate type="time" timeStyle="short" value="${announce.disponibilityDate}" /></strong><br>
+	                            <i class="icon-time"></i>Disponibilité : <strong>Le <fmt:formatDate type="date" value="${announce.disponibilityDate}" /> à <fmt:formatDate type="time" timeStyle="short" value="${announce.disponibilityDate}" /></strong><br>
 	                            <!-- <i class="icon-map-marker"></i>Localisation : <strong>Paris VÃ¨me</strong><br> -->
 	                            <!-- <i class="icon-heart"></i>Centres d'intï¿½rï¿½ts : <a href="#">#informatique</a> <a href="#">#chat</a><br> -->
 	                            <!-- <i class="icon-glass"></i>Prï¿½fï¿½rences culinaires : <a href="#">#chinois</a> <a href="#">#grec</a> <a href="#">#pizzeria</a>-->

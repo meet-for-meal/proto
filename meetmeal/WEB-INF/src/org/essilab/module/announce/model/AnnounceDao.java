@@ -41,6 +41,7 @@ public class AnnounceDao {
 				" "+ a.getLatitude() +"," +
 				" "+ a.getLongitude() +"," +
 				" '"+ a.getMessage() +"')";
+			System.out.println(request);
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 			ps.executeUpdate();
 			Connect.getConnection().close();

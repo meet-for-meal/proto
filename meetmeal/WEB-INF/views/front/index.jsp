@@ -46,8 +46,8 @@
 
             </div>
             <div id="current-user" class="col-1">
-                <img src="<%= request.getContextPath() %>/res/styles/default/img/users/herve.jpg" width="64" height="64" class="avatar" alt="">
-                <h3><a href="#" class="black">Hervé Tran</a></h3>
+                <img src="<%= request.getContextPath() %>/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
+                <h3><a href="mypage" class="black">Hervé Tran</a></h3>
                 <span class="user-tags"><a href="#">#multimedia</a> <a href="#">#guitare</a> <a href="#">#blues</a></span>
                 <span><a href="announcementcreate" class="btn"><i class="icon-pencil"></i> Poster une annonce</a></span>
             </div>

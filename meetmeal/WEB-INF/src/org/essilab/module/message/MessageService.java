@@ -36,7 +36,7 @@ public class MessageService {
 		return null;
 	}
 	
-	public void userInsert(Message m){
+	public void messageInsert(Message m){
 		try {
 			MessageDao.insert(m);
 		} catch (SQLException e) {

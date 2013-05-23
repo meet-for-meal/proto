@@ -143,6 +143,8 @@ public class UserDao {
 		
 		return createUsers(result);
 	}
+	
+	
 
 	//Find friends of an User
 	public static List<User> findFriends(int userId) throws SQLException {

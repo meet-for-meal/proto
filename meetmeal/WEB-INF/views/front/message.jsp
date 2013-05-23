@@ -1,5 +1,6 @@
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
 <section id="container">
@@ -16,63 +17,63 @@
     <div class="wrapper">
 
         <div class="col-2">
+			<c:choose>
+				<c:when test="${!empty sessionScope.messages}">
+					<h2>Conversation</h2>
+					<c:forEach items="${sessionScope.messages}" var="message">  
+					   <div class="single-msg">
+			                <img src="/meetformeal/res/styles/default/img/users/default.png" width="40" height="40" class="avatar" alt="">
+			                <p class="author-msg"><a href="userpage" title=""/>${message.sender.lastname} ${message.sender.firstname}</a></p>
+			                <p class="message-date">Le <fmt:formatDate type="date" value="${message.createdDate}" /> � <fmt:formatDate type="time" timeStyle="short" value="${message.createdDate}" /></p>
+			                <div class="content-msg">
+								<p>${message.content}</p>
+			                </div>
+			            </div>
+					</c:forEach>  
+			        
+			    </c:when>
+				<c:otherwise>
+					Vous pouvez consulter ici toutes vos messages.
+				</c:otherwise>
+			</c:choose>
+            
+           
 
-            <h2>Conversation avec Pierre</h2>
-            <div class="single-msg">
-                <img src="/meetformeal/res/styles/default/img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
-                <p class="author-msg"><a href="userpage" title=""/>Pierre Grimaud</a></p>
-                <p class="message-date">28/02/13 à 23h31</p>
-                <div class="content-msg">
-                    <p>
-                        Bonjour,
-                    </p>
-                    <p>
-                        Je suis passionné d'informatique tout comme vous, et je souhaiterais savoir si vous voudriez partager votre repas ce midi avec moi ? 
-                    </p>
-                </div>
-            </div>
-
-            <div class="single-msg">
-                <img src="/meetformeal/res/styles/default/img/users/herve.jpg" width="40" height="40" class="avatar" alt="">
-                <p class="author-msg"><a href="userpage" title=""/>Moi</a></p>
-                <p class="message-date">28/02/13 à 23h31</p>
-                <div class="content-msg">
-                    <p>
-                        Bonjour,
-                    </p>
-                    <p>
-                        Ca serait avec plaisir évidemment ! J'ai cru voir dans votre profil que vous aimiez les restaurants chinois et je vous avoue que ça fait longtemps que je n'ai pas été dans l'un de ceux-ci. Que diriez-vous de nous retrouver vers 13h devant celui du coin de la rue Legendre, avec l'enseigne rouge ?
-
-                    </p>
-                </div>
-            </div>
-            <div class="single-msg">
-                <img src="/meetformeal/res/styles/default/img/users/pierre.jpg" width="40" height="40" class="avatar" alt="">
-                <p class="author-msg"><a href="userpage" title=""/>Pierre Grimaud</a></p>
-                <p class="message-date">28/02/13 à 23h31</p>
-                <div class="content-msg">
-                    <p>
-                        Parfait pour moi ! A tout a l'heure !
-                    </p>
-                </div>
-            </div>
+            
         </div>
         <div id="conversations" class="col-1">
-            <h2>Mes autres conversations</h2>
-            <ul>
-                <li class="conversation current">
-                    <img src="/meetformeal/res/styles/default/img/users/pierre.jpg" width="64" height="64" class="avatar" alt="">
-                    <p class="name-conversation"><a href="#" title="">Pierre Grimaud</a></p>
-                    <p class="message-date">28/02/13 à 23h31</p>
-                    <p class="extract-conversation">Bonjour, je suis passionné d'informatique...</p>
-                </li>
-                <li class="conversation">
-                    <img src="/meetformeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
-                    <p class="name-conversation"><a href="#" title="">Alexandra Martin (1)</a></p>
-                    <p class="message-date">28/02/13 à 22h31</p>
-                    <p class="extract-conversation">Coucou ! Ca fait longtemps qu'on s'est pas...</p>
-                </li>
-            </ul>
+            <h2>Mes conversations</h2>
+            
+            <c:choose>
+				<c:when test="${!empty sessionScope.conversations}">
+					<ul>
+					<c:forEach items="${sessionScope.conversations}" var="conversation">  
+					  <li class="conversation">
+						<img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
+                    	<p class="name-conversation"><a href="#" title="">
+                    		<c:set var="unique" value="0"></c:set>
+                    		<c:forEach items="${sessionScope.users}" var="user"> 
+                    			<c:if test="${conversation.sender.id == user.id}">
+                    				<a href="message?id_conv=${conversation.sender.id}" class="no-style-block"/>${user.lastname} ${user.firstname}</a>
+                    				<c:set var="unique" value="1"></c:set>
+                    			</c:if>
+                    		</c:forEach>  
+                    	</a></p>
+                    	<p class="message-date">Le <fmt:formatDate type="date" value="${conversation.createdDate}" /> � <fmt:formatDate type="time" timeStyle="short" value="${conversation.createdDate}" /></p>
+                    	<p class="extract-conversation">${fn:substring(conversation.content, 0, 30)}...</p></a>
+					  </li>
+					</c:forEach>  
+					</ul>
+			        
+			    </c:when>
+				<c:otherwise>
+					Aucune conversation en cours
+				</c:otherwise>
+			</c:choose>
+            
+            
+            
+            
         </div>
 
         <div class="col-2">

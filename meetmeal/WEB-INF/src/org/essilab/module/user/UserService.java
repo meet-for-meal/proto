@@ -62,6 +62,8 @@ public class UserService {
 		return false;
 	}
 	
+	
+	
 	public User userAuthenticate(User u){
 		try {
 			 return UserDao.authenticateUser(u.getEmail(), u.getPassword());
