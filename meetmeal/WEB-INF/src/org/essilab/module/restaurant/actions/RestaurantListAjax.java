@@ -1,32 +1,26 @@
-package org.essilab.module.user.actions;
+package org.essilab.module.restaurant.actions;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.essilab.module.user.UserService;
-import org.essilab.module.user.model.User;
+import org.essilab.module.restaurant.RestaurantService;
+import org.essilab.module.restaurant.model.Restaurant;
 import org.essilab.servlet.mvc.example.IAction;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class UserGetAjax implements IAction{
-	UserService service = UserService.getInstance();
+public class RestaurantListAjax implements IAction{
+	RestaurantService service = RestaurantService.getInstance();
 	ObjectMapper mapper = new ObjectMapper();
-	int id;
-	
-	public UserGetAjax(int id) {
-		this.id = id;
-	}
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		List<Restaurant> restos = service.restaurantList();
 		try {
 			response.setContentType(HEADER_TYPE_JSON);
-			User user = service.userSelect(id);
-			if (user != null) 
-				mapper.writeValue(response.getOutputStream(), user);
-			else
-				response.getWriter().println(RESPONSE_ERROR);
+			mapper.writeValue(response.getOutputStream(), restos);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
