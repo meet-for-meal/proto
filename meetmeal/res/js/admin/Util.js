@@ -23,7 +23,7 @@ define(['jquery'], function ($) {
             queryString[pair[0]] = arr;
             // If third or later entry with this name
           } else {
-            query_string[pair[0]].push(pair[1]);
+            queryString[pair[0]].push(pair[1]);
           }
         }
         return queryString;

@@ -14,8 +14,7 @@ define([
       'submit form': 'createInterest'
     },
 
-    initialize: function (params) {
-      var self = this;
+    initialize: function () {
       this.render();
 
       // Bind from elements recently rendered
