@@ -27,7 +27,7 @@ require.config({
     	deps: ['jquery']
     },
     base: {
-        deps: ['jquery']
+        deps: ['jquery', 'jqueryUI', 'cycle']
     }
   },
   baseUrl: '/meetformeal/res/js/'

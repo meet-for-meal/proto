@@ -1,5 +1,5 @@
 mfm = {
-    host: '',
+    host: 'meetformeal',
     config: {
         debug: false
     }
@@ -58,9 +58,13 @@ $(document).ready(function(){
         }
     });
 
-    $("#interests").autocomplete({
-        source: '/ajax/interests',
-        appendTo: "#suggestions"
+    $.getJSON('/'+mfm.host+'/ajax/interests/false', function(data) {
+
+        $("#interests").autocomplete({
+            source: data,
+            appendTo: "#suggestions"
+        });
+
     });
 
     $('#featured-restaurants').after('<div id="nav">').cycle({
