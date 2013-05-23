@@ -46,8 +46,8 @@ public class RestaurantPostAjax implements IAction{
 
 	public Restaurant readPost(HttpServletRequest request) {
         String name = getFieldValue(request, FIELD_NAME);
-        long lat = Long.parseLong(getFieldValue(request, FIELD_LATITUDE));
-        long lng = Long.parseLong(getFieldValue(request, FIELD_LONGITUDE));
+        double lat = Double.parseDouble(getFieldValue(request, FIELD_LATITUDE));
+        double lng = Double.parseDouble(getFieldValue(request, FIELD_LONGITUDE));
         String foursquare = getFieldValue(request, FIELD_FOURSQUARE);
         int partnership = Integer.parseInt(getFieldValue(request, FIELD_PARTNERSHIP));
         String url = getFieldValue(request, FIELD_URLIMAGE);

@@ -3,18 +3,18 @@ package org.essilab.module.announce.actions;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.essilab.module.restaurant.RestaurantService;
-import org.essilab.module.restaurant.model.Restaurant;
+import org.essilab.module.announce.AnnounceService;
+import org.essilab.module.announce.model.Announce;
 import org.essilab.servlet.mvc.example.IAction;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class RestaurantGetAjax implements IAction{
-	RestaurantService service = RestaurantService.getInstance();
+public class AnnounceGetAjax implements IAction{
+	AnnounceService service = AnnounceService.getInstance();
 	ObjectMapper mapper = new ObjectMapper();
 	int id;
 	
-	public RestaurantGetAjax(int id) {
+	public AnnounceGetAjax(int id) {
 		this.id = id;
 	}
 	
@@ -22,9 +22,9 @@ public class RestaurantGetAjax implements IAction{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			response.setContentType(HEADER_TYPE_JSON);
-			Restaurant resto = service.restaurantSelect(id);
-			if (resto != null) 
-				mapper.writeValue(response.getOutputStream(), resto);
+			Announce announce = service.announceSelect(id);
+			if (announce != null) 
+				mapper.writeValue(response.getOutputStream(), announce);
 			else
 				response.getWriter().println(RESPONSE_ERROR);
 		} catch (Exception e) {

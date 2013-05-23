@@ -7,7 +7,7 @@ import org.essilab.module.user.UserService;
 import org.essilab.module.user.model.User;
 import org.essilab.servlet.mvc.example.IAction;
 
-public class UserUpdateAjax implements IAction{
+public class UserPostAjax implements IAction{
 
 	UserService service = UserService.getInstance();
 	public final static String FIELD_FIRSTNAME = "firstname";
@@ -17,14 +17,24 @@ public class UserUpdateAjax implements IAction{
 	public final static String FIELD_AGE = "age";
 	public final static String FIELD_GENDER = "gender";
 	
+	boolean toUpdate = false;
+	
+	public UserPostAjax(boolean update) {
+		toUpdate = update;
+	}
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			boolean ok = false;
 			User u = readPost(request);
 			response.setContentType(HEADER_TYPE_JSON);
-			if (u != null)
-				ok = service.userUpdate(u);
+			if (u != null) {
+				if (toUpdate)
+					ok = service.userUpdate(u);
+				else 
+					ok = service.userInsert(u);
+			}
 			response.getWriter().println(ok ? RESPONSE_OK : RESPONSE_ERROR);
 		} catch (Exception e) {
 			e.printStackTrace();

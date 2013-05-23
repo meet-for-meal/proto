@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.essilab.module.announce.actions.AnnounceDeleteAjax;
+import org.essilab.module.announce.actions.AnnounceGetAjax;
 import org.essilab.module.announce.actions.AnnounceListAjax;
 import org.essilab.module.error.actions.ErrorAction;
 import org.essilab.module.interest.actions.InterestDeleteAjax;
@@ -24,10 +26,9 @@ import org.essilab.module.restaurant.actions.RestaurantPostAjax;
 import org.essilab.module.user.actions.MainMenu;
 import org.essilab.module.user.actions.UserDeleteAjax;
 import org.essilab.module.user.actions.UserGetAjax;
-import org.essilab.module.user.actions.UserInsertAjax;
 import org.essilab.module.user.actions.UserListAjax;
 import org.essilab.module.user.actions.UserListDisplay;
-import org.essilab.module.user.actions.UserUpdateAjax;
+import org.essilab.module.user.actions.UserPostAjax;
 
 public class FrontController extends HttpServlet {
 
@@ -43,7 +44,7 @@ public class FrontController extends HttpServlet {
 		actions.put("ajax/announces", new AnnounceListAjax());
 		actions.put("user/display", new UserListDisplay());
 		actions.put("user/display.ajax", new UserListAjax());
-		actions.put("user/insert.ajax", new UserInsertAjax());
+		actions.put("user/insert.ajax", new UserPostAjax(false));
 		actions.put("user/mainmenu.ajax", new MainMenu());
 		actions.put("error/error", new ErrorAction());
 	}
@@ -75,9 +76,9 @@ public class FrontController extends HttpServlet {
 			try {
 				if (url.contains("ajax/user")) {				//USER
 					if (request.getMethod().equalsIgnoreCase("POST")) {
-						action = new UserInsertAjax();
+						action = new UserPostAjax(false);
 					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
-						action = new UserUpdateAjax();
+						action = new UserPostAjax(true);
 					} else {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));
@@ -122,7 +123,25 @@ public class FrontController extends HttpServlet {
 						}
 					}
 					action.execute(request, response);
+				} else if (url.contains("ajax/announce")) {	//ANNOUNCE
+					if (request.getMethod().equalsIgnoreCase("POST")) {
+						action = new RestaurantPostAjax(false);
+					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+						action = new RestaurantPostAjax(true);
+					} else {
+						int slashIndex = url.lastIndexOf('/');
+						int endValue = Integer.parseInt(url.substring(slashIndex+1));
+						if (endValue > 0) {
+							if (request.getMethod().equalsIgnoreCase("GET")) {
+								action = new AnnounceGetAjax(endValue);
+							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+								action = new AnnounceDeleteAjax(endValue);
+							}
+						}
+					}
+					action.execute(request, response);
 				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

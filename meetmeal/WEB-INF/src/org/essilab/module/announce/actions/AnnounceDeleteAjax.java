@@ -3,14 +3,14 @@ package org.essilab.module.announce.actions;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.essilab.module.restaurant.RestaurantService;
+import org.essilab.module.announce.AnnounceService;
 import org.essilab.servlet.mvc.example.IAction;
 
-public class RestaurantDeleteAjax implements IAction{
-	RestaurantService service = RestaurantService.getInstance();
+public class AnnounceDeleteAjax implements IAction{
+	AnnounceService service = AnnounceService.getInstance();
 	int id;
 	
-	public RestaurantDeleteAjax(int id) {
+	public AnnounceDeleteAjax(int id) {
 		this.id = id;
 	}
 	
@@ -18,7 +18,7 @@ public class RestaurantDeleteAjax implements IAction{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			response.setContentType(HEADER_TYPE_JSON);
-			boolean ok = service.restaurantDelete(id);
+			boolean ok = service.announceDelete(id);
 			response.getWriter().println(ok ? RESPONSE_OK : RESPONSE_ERROR);
 		} catch (Exception e) {
 			e.printStackTrace();

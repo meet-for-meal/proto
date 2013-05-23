@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.essilab.module.connect.Connect;
-import org.essilab.module.user.model.User;
 import org.essilab.module.user.model.UserDao;
 
 public class AnnounceDao {
@@ -31,7 +30,7 @@ public class AnnounceDao {
 	public static boolean insert(Announce a) throws SQLException{
 		boolean ok = false;
 
-		if (a.getCreator() != null) {
+		if (a != null && a.getCreator() != null) {
 			System.out.println("in_request");
 			String request = "INSERT INTO Announce VALUES (NULL" +
 				", "+ (a.getCreator() != null ? a.getCreator().getId()+"" : "NULL") +
@@ -51,23 +50,29 @@ public class AnnounceDao {
 	}
 	
 	//Update
-	public static void update(Announce a) throws SQLException{
-		String request = "UPDATE Announce SET";
-			if (a.getCreator() != null)
-			request += " creatorId="+ a.getCreator().getId();
-			if (a.getCreatedDate() != null)
-			request += ", createdDate='"+ new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'";
-			if (a.getDisponibilityDate() != null)
-			request += ", disponibilityDate='"+ new java.sql.Date(a.getDisponibilityDate().getTime())+" "+new java.sql.Time(a.getDisponibilityDate().getTime()) +"'";
-			request += ", isOpen="+ (a.getIsOpen()? 1: 0) +"," +
-			" latitude="+ a.getLatitude() +"," +
-			" longitude="+ a.getLongitude() +"," +
-			" message='"+ a.getMessage() +"'" +
-			" WHERE id="+ a.getId();
-		System.out.println(request);
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean update(Announce a) throws SQLException{
+		boolean ok = false;
+		if (a.getCreator() != null) {
+			String request = "UPDATE Announce SET";
+				if (a.getCreator() != null)
+				request += " creatorId="+ a.getCreator().getId();
+				if (a.getCreatedDate() != null)
+				request += ", createdDate='"+ new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'";
+				if (a.getDisponibilityDate() != null)
+				request += ", disponibilityDate='"+ new java.sql.Date(a.getDisponibilityDate().getTime())+" "+new java.sql.Time(a.getDisponibilityDate().getTime()) +"'";
+				request += ", isOpen="+ (a.getIsOpen()? 1: 0) +"," +
+				" latitude="+ a.getLatitude() +"," +
+				" longitude="+ a.getLongitude() +"," +
+				" message='"+ a.getMessage() +"'" +
+				" WHERE id="+ a.getId();
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			if (getIdByCreatoridCreatedDate(a.getCreator().getId(), a.getCreatedDate()) > 0)
+				ok = true;
+		}
+		return ok;
 	}
 	
 	//Delete

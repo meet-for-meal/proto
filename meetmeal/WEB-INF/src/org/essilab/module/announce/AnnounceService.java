@@ -62,6 +62,15 @@ public class AnnounceService {
 		return false;
 	}
 	
+	public boolean announceUpdate(Announce a){
+		try {
+			return AnnounceDao.update(a);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public boolean announceDelete(int id) {
 		try {
 			return AnnounceDao.delete(id);
