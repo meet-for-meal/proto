@@ -365,6 +365,7 @@ header #notifications p.notification-action a {
     z-index: 400;
     bottom: 40px;
     position: absolute;
+    display:none;
 }
 
 #closest-users h3 {
@@ -382,6 +383,13 @@ header #notifications p.notification-action a {
 
 #closest-users a:hover {
     color:#d55035;
+}
+
+#closest-users a.btn {
+    color:white;
+    line-height: 16px;
+    margin-top: 4px;
+    padding: 0px 5px;
 }
 
 #closest-users ul {

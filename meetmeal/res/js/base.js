@@ -80,30 +80,33 @@ $(document).ready(function(){
 
     });
 
-    $('.mfm-action').click(function(e){
-        e.preventDefault();
-        var self = $(this);
-        var actionType = $(this).attr('data-action');
-        if(typeof actionType !== 'undefined' && actionType.length !== 0){
-            switch (actionType) {
-                case 'accept-request':
-                    if(self.parent().hasClass('notification-action')){
-                        self.closest('li').slideUp(200);
-                    }
-                    mfm.actions.popAlert(actionType);
-                    break;
-                case 'ignore-request':
-                    if(self.parent().hasClass('notification-action')){
-                        self.closest('li').slideUp(200);
-                    }
-                    mfm.actions.popAlert(actionType);
-                    break;
-                case 'friend-request':
-                    mfm.actions.popAlert(actionType);
-                    break;
-                default:
+    $('body')
+        .off('click', '.mfm-action')
+        .on('click', '.mfm-action', function(e){
+            e.preventDefault();
+            var self = $(this);
+            var actionType = $(this).attr('data-action');
+            if(typeof actionType !== 'undefined' && actionType.length !== 0){
+                switch (actionType) {
+                    case 'accept-request':
+                        if(self.parent().hasClass('notification-action')){
+                            self.closest('li').slideUp(200);
+                        }
+                        mfm.actions.popAlert(actionType);
+                        break;
+                    case 'ignore-request':
+                        if(self.parent().hasClass('notification-action')){
+                            self.closest('li').slideUp(200);
+                        }
+                        mfm.actions.popAlert(actionType);
+                        break;
+                    case 'friend-request':
+                        mfm.actions.popAlert(actionType);
+                        self.html('Demande envoyée').addClass('btn-neutral');
+                        break;
+                    default:
+                }
             }
-        }
     });
 
     $('#toggle-map').click(function(){
@@ -127,14 +130,43 @@ $(document).ready(function(){
         }
     });
 
-    $.getJSON('/'+mfm.host+'/ajax/interests/false', function(data) {
+    if($('#interests').length !== 0){
+        $.getJSON('/'+mfm.host+'/ajax/interests/false', function(data) {
 
-        $("#interests").autocomplete({
-            source: data,
-            appendTo: "#suggestions"
+            $("#interests").autocomplete({
+                source: data,
+                appendTo: "#suggestions"
+            });
+
         });
+    }
 
-    });
+    if($('#closest-users').length !== 0){
+        $.getJSON('/'+mfm.host+'/ajax/users', function(data) {
+
+            $.each(data, function(i) {
+                console.log(data[i]);
+
+                var user = '<li class="user">'+
+                    '<a href="announcement">'+
+                        '<img src="/'+mfm.host+'/res/styles/default/img/users/'+data[i].lastname+'.jpg" width="40" height="40" class="avatar" alt="">'+
+                            '<span class="user-title">'+data[i].firstname+' '+data[i].lastname+'</span>'+
+                            '<a href="#" class="btn mfm-action" data-action="friend-request">Ajouter en ami</a>'+
+                            //'<span class="user-time">13H - 14H</span>'+
+                            //'<span class="user-tags">#informatique #chat</span>'+
+                        '</a>'+
+                    '</li>';
+
+                $('#closest-users-list').append(user);
+
+                return i<3;
+            });
+
+            $('#closest-users').fadeIn(500);
+
+        });
+    }
+
 
     $('#featured-restaurants').after('<div id="nav">').cycle({
         fx:     'fade',
