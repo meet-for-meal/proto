@@ -27,6 +27,7 @@ public class AnnounceDao {
 	}
 		
 	//Insert
+
 	public static boolean insert(Announce a) throws SQLException{
 		boolean ok = false;
 		if (a.getCreator() != null && getIdByCreatoridCreatedDate(a.getCreator().getId(), a.getCreatedDate()) > 0) {
@@ -156,8 +157,7 @@ public class AnnounceDao {
 	private static Announce createAnnounce(ResultSet result) {
 		Announce announce = new Announce();
 		try {
-			result.next(); 
-			if (result != null) {
+			if (result != null && result.next()) {
 				announce = new Announce(
 						result.getInt("id"),
 						result.getTimestamp("createdDate"), 
@@ -167,7 +167,8 @@ public class AnnounceDao {
 						result.getDouble("longitude"),
 						result.getString("message") );
 				announce.setCreator(UserDao.getUser(result.getInt("creatorId")));
-			}
+			} else
+				return null;
 		} catch (SQLException e) { e.printStackTrace();	}
 		return announce;
 	}

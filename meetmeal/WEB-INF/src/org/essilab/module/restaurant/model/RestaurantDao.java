@@ -24,51 +24,67 @@ public class RestaurantDao {
 	}
 	
 	//Insert
-	public static void insert(Restaurant resto) throws SQLException{
-		String request = "INSERT INTO Restaurant VALUES (NULL, " +
-			" '"+ resto.getName() +"'," +
-			" "+ resto.getLatitude() +"," +
-			" "+ resto.getLongitude() +",";
-			if (resto.getCategory() != null)
-				request += " "+ resto.getCategory().getId() +",";
-			request +=" '"+ resto.getFoursquareId() +"'," +
-			" "+ resto.getPartnership() +"," +
-			" '"+ resto.getUrlImage() +"'," +
-			" '"+ resto.getTitleImage() +"'," +
-			" '"+ resto.getDescImage() +"')";
-		System.out.println(request);
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean insert(Restaurant r) throws SQLException{
+		boolean ok = false;
+		if (getIdByFoursquareId(r.getFoursquareId()) > 0) {
+			String request = "INSERT INTO Restaurant VALUES (NULL, " +
+				" '"+ r.getName() +"'," +
+				" "+ r.getLatitude() +"," +
+				" "+ r.getLongitude() +"," +
+				" "+ ((r.getCategory() != null) ? r.getCategory().getId() : "NULL") +"," +
+				" '"+ r.getFoursquareId() +"'," +
+				" "+ r.getPartnership() +"," +
+				" '"+ r.getUrlImage() +"'," +
+				" '"+ r.getTitleImage() +"'," +
+				" '"+ r.getDescImage() +"')";
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			if (getIdByFoursquareId(r.getFoursquareId()) > 0)
+				ok = true;
+		}
+		return ok;
 	}
 	
 	//Update
-	public static void update(Restaurant resto) throws SQLException{
-		String request = "UPDATE Restaurant SET" +
-			" name='"+ resto.getName() +"'," +
-			" latitude="+ resto.getLatitude() +"," +
-			" longitude="+ resto.getLongitude() +",";
-			if (resto.getCategory() != null)
-				request += " categoryId="+ resto.getCategory().getId() +",";
-			request += " foursquareId='"+ resto.getFoursquareId() +"'," +
-			" partnership="+ resto.getPartnership() +"," +
-			" urlImage='"+ resto.getUrlImage() +"'," +
-			" titleImage='"+ resto.getTitleImage()+"'," +
-			" descImage='" + resto.getDescImage()+"'" +
-			" WHERE id="+ resto.getId() +";";
-		System.out.println(request);
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean update(Restaurant resto) throws SQLException{
+		boolean ok = false;
+		if (getIdByFoursquareId(resto.getFoursquareId()) > 0) {
+			String request = "UPDATE Restaurant SET" +
+				" name='"+ resto.getName() +"'," +
+				" latitude="+ resto.getLatitude() +"," +
+				" longitude="+ resto.getLongitude() +"," +
+				" "+ ((resto.getCategory() != null) ? resto.getCategory().getId() : "NULL") +"," +
+				" foursquareId='"+ resto.getFoursquareId() +"'," +
+				" partnership="+ resto.getPartnership() +"," +
+				" urlImage='"+ resto.getUrlImage() +"'," +
+				" titleImage='"+ resto.getTitleImage()+"'," +
+				" descImage='" + resto.getDescImage()+"'" +
+				" WHERE id="+ resto.getId() +";";
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			ok = true;
+		}
+		return ok;
 	}
 	
 	//Delete
-	public static void delete(Restaurant resto) throws SQLException{
-		String request = "DELETE FROM Restaurant WHERE id="+ resto.getId();
-		System.out.println(request);
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean delete(int id) throws SQLException{
+		boolean ok = false;
+		if (getRestaurant(id) != null) {
+			String request = "DELETE FROM Restaurant WHERE id="+ id;
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			if (getRestaurant(id) == null) 
+				ok = true;
+			Connect.getConnection().close();
+		}
+		return ok;
 	}
 	
 	//Get RestaurantId by foursquareId
@@ -96,11 +112,11 @@ public class RestaurantDao {
 	private static Restaurant createRestaurant(ResultSet result) {
 		Restaurant resto = new Restaurant();
 		try {
-			result.next(); 
-			if (result != null) {
+			if (result != null && result.next()) {
 				resto = new Restaurant(result.getInt("id"), result.getString("name"), result.getLong("latitude"), result.getLong("longitude"), result.getString("foursquareId"), result.getInt("partnership"), result.getString("urlImage"), result.getString("titleImage"), result.getString("descImage"));	
 				resto.setCategory(CategoryDao.getCategory(result.getInt("categoryId")));		
-			}
+			} else
+				return null;
 		} catch (SQLException e) { e.printStackTrace();	}
 		return resto;
 	}
@@ -147,7 +163,7 @@ public class RestaurantDao {
 			update(r1);
 			
 			//Delete 
-			delete(r1);
+			delete(r1.getId());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

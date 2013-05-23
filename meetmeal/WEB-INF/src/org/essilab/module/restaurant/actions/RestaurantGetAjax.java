@@ -1,32 +1,32 @@
-package org.essilab.module.interest.actions;
+package org.essilab.module.restaurant.actions;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.essilab.module.interest.InterestService;
-import org.essilab.module.interest.model.Interest;
+import org.essilab.module.restaurant.RestaurantService;
+import org.essilab.module.restaurant.model.Restaurant;
 import org.essilab.servlet.mvc.example.IAction;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class InterestGetAjax implements IAction{
-	InterestService service = InterestService.getInstance();
+public class RestaurantGetAjax implements IAction{
+	RestaurantService service = RestaurantService.getInstance();
 	ObjectMapper mapper = new ObjectMapper();
 	int id;
 	
-	public InterestGetAjax(int id) {
+	public RestaurantGetAjax(int id) {
 		this.id = id;
 	}
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		Interest interest = service.interestSelect(id);
 		try {
 			response.setContentType(HEADER_TYPE_JSON);
-			if (interest != null) 
-				mapper.writeValue(response.getOutputStream(), interest);
-			else 
-				response.getWriter().print(RESPONSE_ERROR);
+			Restaurant resto = service.restaurantSelect(id);
+			if (resto != null) 
+				mapper.writeValue(response.getOutputStream(), resto);
+			else
+				response.getWriter().println(RESPONSE_ERROR);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

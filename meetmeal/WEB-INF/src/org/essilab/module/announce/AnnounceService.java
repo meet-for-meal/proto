@@ -40,12 +40,20 @@ public class AnnounceService {
 	
 	public Announce getAnnounce(int id){
 		try {
-			 //return AnnounceDao.FindNearAnnouncesByTags(u.getId(), interests);
 			return AnnounceDao.getAnnounce(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public boolean insertAnnounce(Announce a){
+		try {
+			return AnnounceDao.insert(a);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 
