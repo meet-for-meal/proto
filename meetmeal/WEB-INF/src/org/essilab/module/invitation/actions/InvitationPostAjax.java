@@ -1,4 +1,4 @@
-package org.essilab.module.announce.actions;
+package org.essilab.module.invitation.actions;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -6,26 +6,28 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.essilab.module.announce.AnnounceService;
 import org.essilab.module.announce.model.Announce;
+import org.essilab.module.announce.model.AnnounceDao;
+import org.essilab.module.invitation.InvitationService;
+import org.essilab.module.invitation.model.Invitation;
 import org.essilab.module.user.model.UserDao;
 import org.essilab.servlet.mvc.example.IAction;
 
-public class AnnouncePostAjax implements IAction{
+public class InvitationPostAjax implements IAction{
 
-	AnnounceService service = AnnounceService.getInstance();
+	InvitationService service =InvitationService.getInstance();
 	public final static String FIELD_ID = "id";
-	public final static String FIELD_CREATOR = "creatorId";
+	public final static String FIELD_SENDER = "senderId";
+	public final static String FIELD_ANNOUNCE = "announceId";
 	public final static String FIELD_CREATEDDATE = "createdDate";
-	public final static String FIELD_DISPODATE = "disponibilityDate";
+	public final static String FIELD_ISACCEPTED = "isAccepted";
+	public final static String FIELD_ISCONFIRMED = "isConfirmed";
 	public final static String FIELD_ISOPEN = "isOpen";
-	public final static String FIELD_LATITUDE = "latitude";
-	public final static String FIELD_LONGITUDE = "longitude";
 	public final static String FIELD_MESSAGE = "message";
 	
 	boolean toUpdate = false;
 	
-	public AnnouncePostAjax(boolean update) {
+	public InvitationPostAjax(boolean update) {
 		toUpdate = update;
 	}
 	
@@ -33,13 +35,13 @@ public class AnnouncePostAjax implements IAction{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			boolean ok = false;
-			Announce a = readPost(request);
+			Invitation i = readPost(request);
 			response.setContentType(HEADER_TYPE_JSON);
-			if (a != null) {
-				if (!toUpdate)
-					ok = service.announceInsert(a);
+			if (i != null) {
+				if (toUpdate)
+					ok = service.invitationUpdate(i);
 				else
-					ok = service.announceUpdate(a);
+					ok = service.invitationInsert(i);
 			}
 			response.getWriter().println(ok ? RESPONSE_OK : RESPONSE_ERROR);
 		} catch (Exception e) {
@@ -48,23 +50,26 @@ public class AnnouncePostAjax implements IAction{
 		request.setAttribute("render", false);
 	}
 
-	public Announce readPost(HttpServletRequest request) {
+	public Invitation readPost(HttpServletRequest request) {
 		int id = (toUpdate && getFieldValue(request, FIELD_ID) != null) ? Integer.parseInt(getFieldValue(request, FIELD_ID)) : 0;
-        int creator = Integer.parseInt(getFieldValue(request, FIELD_CREATOR));
+        int sender = Integer.parseInt(getFieldValue(request, FIELD_SENDER));
+        int announce = Integer.parseInt(getFieldValue(request, FIELD_ANNOUNCE));
         Date created = new Date(getFieldValue(request, FIELD_CREATEDDATE));
-        Date dispo = new Date(getFieldValue(request, FIELD_DISPODATE));
+        boolean isAccepted = Boolean.parseBoolean(getFieldValue(request, FIELD_ISACCEPTED));
+        boolean isConfirmed = Boolean.parseBoolean(getFieldValue(request, FIELD_ISCONFIRMED));
         boolean isOpen = Boolean.parseBoolean(getFieldValue(request, FIELD_ISOPEN));
-        double lat = Double.parseDouble(getFieldValue(request, FIELD_LATITUDE));
-        double lng = Double.parseDouble(getFieldValue(request, FIELD_LONGITUDE));
+//        double lat = Double.parseDouble(getFieldValue(request, FIELD_LATITUDE));
+//        double lng = Double.parseDouble(getFieldValue(request, FIELD_LONGITUDE));
         String msg = getFieldValue(request, FIELD_MESSAGE);
-       	Announce announce = null;
+        
+       	Invitation invit = null;
 		try {
-			announce = new Announce(id,created,dispo,isOpen,lat,lng,msg,UserDao.getUser(creator));
+			invit = new Invitation(id,created,isAccepted,isConfirmed,isOpen,msg,UserDao.getUser(sender),AnnounceDao.getAnnounce(announce));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
      
-        return announce;
+        return invit;
     }
     
     /*

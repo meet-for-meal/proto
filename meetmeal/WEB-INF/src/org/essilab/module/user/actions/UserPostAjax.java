@@ -1,10 +1,13 @@
 package org.essilab.module.user.actions;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.essilab.module.user.UserService;
 import org.essilab.module.user.model.User;
+import org.essilab.module.user.model.UserDao;
 import org.essilab.servlet.mvc.example.IAction;
 
 public class UserPostAjax implements IAction{
@@ -44,16 +47,15 @@ public class UserPostAjax implements IAction{
 	}
 
 	public User readPost(HttpServletRequest request) {
-		int id = toUpdate ? Integer.parseInt(getFieldValue(request, FIELD_ID)) : 0;
+		int id = (toUpdate && getFieldValue(request, FIELD_ID) != null) ? Integer.parseInt(getFieldValue(request, FIELD_ID)) : 0;
         String firstname = getFieldValue(request, FIELD_FIRSTNAME);
         String lastname = getFieldValue(request, FIELD_LASTNAME);
         String email = getFieldValue(request, FIELD_EMAIL);
         String password = getFieldValue(request, FIELD_PASSWORD);
         int age = Integer.parseInt(getFieldValue(request, FIELD_AGE));
         int gender = Integer.parseInt(getFieldValue(request, FIELD_GENDER));
-       	User u = new User(id,lastname,firstname,age,email,password,gender,true,false);
-     
-        return u;
+        
+        return new User(id,lastname,firstname,age,email,password,gender);
     }
     
     /*

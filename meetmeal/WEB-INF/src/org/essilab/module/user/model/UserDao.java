@@ -70,7 +70,7 @@ public class UserDao {
 	}
 	
 	//Update
-	public static boolean update(User user) throws SQLException{
+	public static boolean update(User user, boolean bigUpdate) throws SQLException{
 		boolean ok = false;
 		if (user.getId() > 0) {
 			String request = "UPDATE User SET" +
@@ -79,14 +79,16 @@ public class UserDao {
 				" age="+ user.getAge() +"," +
 				" email='"+ user.getEmail() +"'," +
 				" password='"+ user.getPassword() +"'," +
-				" gender="+ user.getGender() +"," +
-				" firstVisit="+ (user.getFirstVisit()? 1: 0) +"," +
-				" isAdmin="+ (user.getIsAdmin()? 1: 0);
-				if (user.getLastPosition() != null) {
-				request += "," +
-				" lastPosition='"+new java.sql.Date(user.getLastPosition().getTime())+" "+new java.sql.Time(user.getLastPosition().getTime())+"'," +
-				" lastLatitude="+ user.getLastLat() +"," +
-				" lastLongitude="+ user.getLastLong();
+				" gender="+ user.getGender() +",";
+				if (bigUpdate) {
+					request += " firstVisit="+ (user.getFirstVisit()? 1: 0) +"," +
+					" isAdmin="+ (user.getIsAdmin()? 1: 0);
+					if (user.getLastPosition() != null) {
+					request += "," +
+					" lastPosition='"+new java.sql.Date(user.getLastPosition().getTime())+" "+new java.sql.Time(user.getLastPosition().getTime())+"'," +
+					" lastLatitude="+ user.getLastLat() +"," +
+					" lastLongitude="+ user.getLastLong();
+					}
 				}
 				request += " WHERE id="+ user.getId();
 	
@@ -376,7 +378,7 @@ public class UserDao {
 			u1.setIsAdmin(true);
 			u1.setFirstVisit(false);
 			u1.setLastPosition(new Date());
-			update(u1);
+			update(u1, true);
 			
 			//Delete 
 			delete(u1.getId());

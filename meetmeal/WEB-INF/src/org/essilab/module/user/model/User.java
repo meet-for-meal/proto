@@ -44,14 +44,18 @@ public class User {
 		this.email = _e;
 	}
 	public User(int _id, String _ln, String _fn, int _a, String _e, int _g, boolean _fv, boolean _ia) {
-		this(_id,_ln,_fn, _a, _e);
-		this.gender = _g;
+		this(_id,_ln,_fn, _a, _e, _g);
 		this.firstVisit = _fv;
 		this.isAdmin = _ia;
 	}
 	public User(int _id, String _ln, String _fn, int _a, String _e, int _g) {
 		this(_id,_ln,_fn,_a, _e);
 		this.gender = _g;
+	}
+	public User(int _id, String _ln, String _fn, int _a, String _e, String _p, int _g) {
+		this(_id,_ln,_fn,_a, _e);
+		this.gender = _g;
+		this.password = _p;
 	}
 	public User(int _id, String _ln, String _fn, int _a, String _e, String _p, int _g, boolean _fv, boolean _ia) {
 		this(_id,_ln,_fn, _a,_e,_g,_fv,_ia);

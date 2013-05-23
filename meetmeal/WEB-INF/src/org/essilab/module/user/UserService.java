@@ -55,7 +55,7 @@ public class UserService {
 	
 	public boolean userUpdate(User u){
 		try {
-			return UserDao.update(u);
+			return UserDao.update(u, false);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -85,7 +85,7 @@ public class UserService {
 	public void setFirstVisit(User u, boolean isFirstTime){
 		try {
 			 u.setFirstVisit(isFirstTime);
-			 UserDao.update(u);
+			 UserDao.update(u, true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -46,7 +46,7 @@ public class RestaurantPostAjax implements IAction{
 	}
 
 	public Restaurant readPost(HttpServletRequest request) {
-		int id = toUpdate ? Integer.parseInt(getFieldValue(request, FIELD_ID)) : 0;
+		int id = (toUpdate && getFieldValue(request, FIELD_ID) != null) ? Integer.parseInt(getFieldValue(request, FIELD_ID)) : 0;
         String name = getFieldValue(request, FIELD_NAME);
         double lat = Double.parseDouble(getFieldValue(request, FIELD_LATITUDE));
         double lng = Double.parseDouble(getFieldValue(request, FIELD_LONGITUDE));
