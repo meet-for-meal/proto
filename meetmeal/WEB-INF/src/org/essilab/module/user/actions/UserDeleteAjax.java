@@ -19,7 +19,7 @@ public class UserDeleteAjax implements IAction{
 		try {
 			response.setContentType(HEADER_TYPE_JSON);
 			boolean ok = service.userDelete(id);
-			response.getWriter().print(ok ? RESPONSE_OK : RESPONSE_ERROR);
+			response.getWriter().println(ok ? RESPONSE_OK : RESPONSE_ERROR);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

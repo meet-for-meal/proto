@@ -53,6 +53,7 @@ public class Invitation {
 	//Setters
 	public void setId(int _id) 				{ this.id = _id; }
 	public void setSender(User _u) 			{ this.sender = _u; }
+	public void setAnnounce(Announce _a)	{ this.announce = _a; }
 	public void setCreatedDate(Date _cd)	{ this.createdDate = _cd; }
 	public void setIsAccepted(boolean _ia) 	{ this.isAccepted = _ia; }
 	public void setIsConfirmed(boolean _ic)	{ this.isConfirmed = _ic; }

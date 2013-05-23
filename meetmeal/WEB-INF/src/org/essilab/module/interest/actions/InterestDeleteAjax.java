@@ -19,7 +19,7 @@ public class InterestDeleteAjax implements IAction{
 		try {
 			response.setContentType(HEADER_TYPE_JSON);
 			boolean ok = service.interestDelete(id);
-			response.getWriter().print(ok ? RESPONSE_OK : RESPONSE_ERROR);
+			response.getWriter().println(ok ? RESPONSE_OK : RESPONSE_ERROR);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

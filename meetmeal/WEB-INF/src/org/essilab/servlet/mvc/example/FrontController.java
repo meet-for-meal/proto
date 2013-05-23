@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.essilab.module.error.actions.ErrorAction;
+import org.essilab.module.interest.actions.InterestDeleteAjax;
+import org.essilab.module.interest.actions.InterestGetAjax;
+import org.essilab.module.interest.actions.InterestInsertAjax;
 import org.essilab.module.interest.actions.InterestListAjax;
 import org.essilab.module.user.actions.MainMenu;
 import org.essilab.module.user.actions.UserDeleteAjax;
@@ -62,19 +65,39 @@ public class FrontController extends HttpServlet {
 		else {
 
 				try {
-	
-					if (url.contains("ajax/users/")) {
-						int slashIndex = url.lastIndexOf('/');
-						int endValue = Integer.parseInt(url.substring(slashIndex+1));
-						if (endValue > 0) {
-							if (request.getMethod().equalsIgnoreCase("GET")) {
-								action = new UserGetAjax(endValue);
-							} else if (request.getMethod().equalsIgnoreCase("PUT")) {
-								action = new UserInsertAjax(endValue);
-							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
-								action = new UserDeleteAjax(endValue);
+					if (url.contains("ajax/user/")) {
+						if (request.getMethod().equalsIgnoreCase("POST")) {
+							action = new InterestInsertAjax();
+						} else {
+							int slashIndex = url.lastIndexOf('/');
+							int endValue = Integer.parseInt(url.substring(slashIndex+1));
+							if (endValue > 0) {
+								if (request.getMethod().equalsIgnoreCase("GET")) {
+									action = new UserGetAjax(endValue);
+								} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+									action = new UserInsertAjax(endValue);
+								} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+									action = new UserDeleteAjax(endValue);
+								}
+								action.execute(request, response);
 							}
-							action.execute(request, response);
+						}
+					} else if (url.contains("ajax/interest")) {
+						if (request.getMethod().equalsIgnoreCase("POST")) {
+							action = new InterestInsertAjax();
+						} else {
+							int slashIndex = url.lastIndexOf('/');
+							int endValue = Integer.parseInt(url.substring(slashIndex+1));
+							if (endValue > 0) {
+								if (request.getMethod().equalsIgnoreCase("GET")) {
+									action = new InterestGetAjax(endValue);
+								} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+									action = new InterestInsertAjax();
+								} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+									action = new InterestDeleteAjax(endValue);
+								}
+								action.execute(request, response);
+							}
 						}
 					}
 				} catch (Exception e) {

@@ -78,7 +78,7 @@ public class AnnounceDao {
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
 		Connect.getConnection().close();
-		return (result != null && result.next()) ? result.getInt("id") : null;
+		return (result != null && result.next()) ? result.getInt("id") : 0;
 	}
 	
 	//All
