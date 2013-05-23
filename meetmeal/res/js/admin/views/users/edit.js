@@ -51,7 +51,7 @@ define([
         gender:    $form.find('#gender').val(),
         password:  $form.find('#password').val()
       };
-      Util.apiRequest('/user/' + this.userId, 'GET', null, data, function() {
+      Util.apiRequest('/user/' + this.userId, 'POST', null, data, function() {
         self.$alertSuccess.show();
       }, function() {
         self.$alertError.show();

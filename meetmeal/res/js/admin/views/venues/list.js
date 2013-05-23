@@ -11,6 +11,10 @@ define([
 
     el: '#content',
 
+    events: {
+      'click .delete': 'removeVenue'
+    },
+
     initialize: function() {
       var self = this;
       this.render();
@@ -23,7 +27,7 @@ define([
         self.renderList(res);
         self.loadVenues(res);
       };
-      Util.apiRequest('/venues', 'GET', null, null, success);
+      Util.apiRequest('/restaurants', 'GET', null, null, success);
     },
 
     render: function() {
@@ -39,7 +43,7 @@ define([
       for(var i = 0; i < len; i++) {
         var venue = venues[i];
         (function(v) {
-          Foursquare.request('venues/' + venue.foursquare_id, { v: Foursquare.v }, function (res) {
+          Foursquare.request('venues/' + venue.foursquareId, { v: Foursquare.v }, function (res) {
             var foursquareVenue = res.response.venue;
             var tr = $('tr.venue-' + v.id);
             var url = '<a href="' + foursquareVenue.canonicalUrl + '">' + foursquareVenue.name + '</a>';
@@ -49,6 +53,16 @@ define([
           });
         })(venue);
       }
+    },
+
+    removeVenue: function (e) {
+      e.preventDefault();
+      var venueId = $(e.currentTarget).data('id');
+      Util.apiRequest('/restaurant/' + venueId, 'DELETE', null, null, function (res) {
+        if(res && res.status === 'ok') {
+          document.location.reload(true);
+        }
+      });
     }
 
   });

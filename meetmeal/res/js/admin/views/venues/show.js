@@ -20,7 +20,7 @@ define([
       this.venue = this.$el.find('#venue');
       this.template = _.template(this.$el.find('#show-template').html());
 
-      Util.apiRequest('/venues/' + this.venueId, 'GET', null, null, function (res) {
+      Util.apiRequest('/restaurant/' + this.venueId, 'GET', null, null, function (res) {
         self.renderVenue(res);
       });
     },
@@ -31,7 +31,7 @@ define([
 
     renderVenue: function (venue) {
       var self = this;
-      Foursquare.request('venues/' + venue.foursquare_id, { v: Foursquare.v }, function (res) {
+      Foursquare.request('venues/' + venue.foursquareId, { v: Foursquare.v }, function (res) {
         var foursquareVenue = res.response.venue;
         self.venue.html(self.template({ f: foursquareVenue, m: venue}));
         var location = foursquareVenue.location;
