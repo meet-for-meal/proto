@@ -1,13 +1,10 @@
 package org.essilab.module.user.actions;
 
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.essilab.module.user.UserService;
 import org.essilab.module.user.model.User;
-import org.essilab.module.user.model.UserDao;
 import org.essilab.servlet.IAction;
 
 public class UserPostAjax implements IAction{

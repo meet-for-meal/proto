@@ -58,9 +58,9 @@ public class RestaurantDao {
 //				" categoryId="+ ((resto.getCategory() != null) ? resto.getCategory().getId() : "NULL") +"," +
 				" foursquareId='"+ resto.getFoursquareId() +"'," +
 				" partnership="+ resto.getPartnership() +"," +
-				" urlImage='"+ resto.getUrlImage() +"'," +
-				" titleImage='"+ resto.getTitleImage()+"'," +
-				" descImage='" + resto.getDescImage()+"'" +
+//				" urlImage='"+ resto.getUrlImage() +"'," +
+//				" titleImage='"+ resto.getTitleImage()+"'," +
+//				" descImage='" + resto.getDescImage()+"'" +
 				" WHERE id="+ resto.getId() +";";
 			System.out.println(request);
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
