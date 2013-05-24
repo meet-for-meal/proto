@@ -142,7 +142,7 @@
 	
 	<servlet-mapping>
     	<servlet-name>UserPage</servlet-name>
-    	<url-pattern>/userpage</url-pattern>
+    	<url-pattern>/userpage/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
