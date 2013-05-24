@@ -139,16 +139,7 @@ User user = (User)session.getAttribute("sessionUser");
 
         <div class="col-1">
 
-            <h2>Nouvelles demandes d'ajout</h2>
-
-            <div class="user">
-                <img src="/meetformeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
-                <p>
-                    <a href="userpage" class="black"><strong>Alexandra Martin</strong></a><br>
-                    <a href="#">#communication</a> <a href="#">#musique</a> <a href="#">#badminton</a><br>
-                    <a href="#" class="btn"><i class="icon-ok"></i>Accepter</a> <a href="#" class="btn btn-neutral"><i class="icon-remove"></i>Ignorer</a>
-                </p>
-            </div>
+            
 
             <hr>
 
