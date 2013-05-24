@@ -121,6 +121,15 @@ public class UserService {
 		return user;
 	}
 	
+	public List<User> userFriends(int userId) {
+		try {
+			return UserDao.findFriends(userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public void setFirstVisit(User u, boolean isFirstTime){
 		try {
 			 u.setFirstVisit(isFirstTime);
