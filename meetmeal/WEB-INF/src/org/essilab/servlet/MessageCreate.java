@@ -19,7 +19,8 @@ public class MessageCreate extends HttpServlet {
     public static final String ATT_FORM         = "form";
     public static final String ATT_SESSION_SENDER = "sender";
     public static final String ATT_SESSION_MESSAGE = "message";
-
+    public static final String ATT_SESSION_SUCCESS = "success";
+    
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
     	String url = request
      			.getRequestURI()
@@ -46,11 +47,12 @@ public class MessageCreate extends HttpServlet {
         Message message = form.CreateMessage( request );
         /* Retrieve session */
         if ( form.getErrors().isEmpty() && user != null && message != null) {
-
+        	session.setAttribute(ATT_SESSION_SUCCESS, true);
         	session.setAttribute(ATT_SESSION_MESSAGE, message);
-        	response.sendRedirect( request.getContextPath() +  "/index");
-        	return;
+        	//response.sendRedirect( request.getContextPath() +  "/index");
+        	//return;
         } else {
+        	session.setAttribute(ATT_SESSION_SUCCESS, false);
         	session.setAttribute(ATT_SESSION_MESSAGE, null);
         }
         

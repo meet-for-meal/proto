@@ -1,5 +1,20 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <section id="container">
+<div id="alerts">
+<c:choose>
 
+	<c:when test="${sessionScope.success == true}">
+		<div class="alert succes" style="display: block;"><a class="close" href="#">x</a>Message envoyé avec succès.</div>
+	</c:when>
+	<c:when test="${sessionScope.success == false}">
+		<div class="alert erreur" style="display: block;"><a class="close" href="#">x</a>Erreur lors de l'envoi du message</div>
+	</c:when>
+	<c:otherwise>
+		
+	</c:otherwise>
+
+</c:choose>
+</div>
     <div id="large_bg_img" class="clearfix">
 
         <div id="large_bg_img_overlay"></div>

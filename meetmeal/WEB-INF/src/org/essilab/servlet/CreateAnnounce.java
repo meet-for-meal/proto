@@ -21,6 +21,7 @@ public class CreateAnnounce  extends HttpServlet {
     public static final String ATT_FORM         = "form";
     public static final String ATT_SESSION_USER = "sessionUser";
     public static final String ATT_SESSION_ANNOUNCES = "announces";
+    public static final String ATT_SESSION_SUCCESS = "success";
 
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         String url = request
@@ -48,8 +49,9 @@ public class CreateAnnounce  extends HttpServlet {
         Announce announce = form.CreateAnnounce( request, user );
         /* Retrieve session */
         if ( form.getErrors().isEmpty() && user != null && announce != null) {
-            
+        	session.setAttribute(ATT_SESSION_SUCCESS, true);
         } else {
+        	session.setAttribute(ATT_SESSION_SUCCESS, false);
         	session.setAttribute(ATT_SESSION_ANNOUNCES, null);
         }
  
