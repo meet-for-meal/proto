@@ -1,15 +1,40 @@
-define(['jquery', 'backbone', 'lodash'], function ($, Backbone, _) {
+define([
+  'jquery',
+  'backbone',
+  'lodash',
+  'handlebars',
+  'admin/Util'
+], function ($, Backbone, _, Handlebars, Util) {
   'use strict';
+
+  Handlebars.registerHelper('showIcon', function (venue) {
+    if(venue.categories && venue.categories.length) {
+      var len = venue.categories.length;
+      return venue.categories[len-1].icon;
+    }
+    return '';
+  });
+
+  Handlebars.registerHelper('showCategories', function (venue) {
+    if(venue.categories && venue.categories.length) {
+      var len = venue.categories.length;
+      return venue.categories[len-1].name;
+    }
+    return 'Pas de catégorie';
+  });
 
   var MainView = Backbone.View.extend({
 
     el: 'body',
     $categories: $('.categories'),
     $actions: $('.actions'),
+    $nearVenues: $('#near-venues'),
+    venueTemplate: Handlebars.compile($('#venues-template').html()),
     foursquareApiUrl: 'https://api.foursquare.com/v2/',
     foursquareOauthToken: 'CKTMK32OZVMXUXXHSHBUJXGLIV2AYFUN00SG5ICMET3B5TQN',
     params: $('#require-js').data('params'),
     map: null,
+    venues: [],
 
     events: {
       'click .find-venues': 'fireVenuesSearch',
@@ -18,6 +43,16 @@ define(['jquery', 'backbone', 'lodash'], function ($, Backbone, _) {
     },
 
     initialize: function () {
+      var self = this;
+      Util.apiRequest('/restaurants', null, null, null, function (res) {
+        _.map(res, function (venue) {
+          var foursquareId = venue.foursquareId;
+          // Check if the foursquareId has been init and is not already in this.venues
+          if(foursquareId.length && self.venues.indexOf(foursquareId) === -1) {
+            self.venues.push(foursquareId);
+          }
+        });
+      });
 
       var self = this;
       this.foursquareCategories = this.params.foursquareCategories;
@@ -126,8 +161,12 @@ define(['jquery', 'backbone', 'lodash'], function ($, Backbone, _) {
           radius: 5000, // 5000 meters around user's location
           categoryId: choices
         }).done(function (results) {
-          var items = results.response.groups[0].items;
-          self.showNearVenues(self.map, items);
+          var venues = results.response.groups[0].items;
+          _.map(venues, function (venue, index) {
+            venues[index].isPartner = self.venues.indexOf(venue.id) !== -1;
+          });
+          self.showNearVenues(self.map, venues);
+          self.$nearVenues.html(self.venueTemplate({ venues: venues }));
         });
       } else {
         alert('You must choose at least one category.');
