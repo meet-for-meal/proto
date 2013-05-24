@@ -4,26 +4,8 @@ mfm = {
         debug: false
     },
     actions: {
-        popAlert : function(req){
+        popAlert : function(text, type){
 
-            var type = '';
-            var text = '';
-
-            switch (req) {
-                case 'accept-request':
-                    type = 'succes';
-                    text = 'Félicitations ! La demande d\'amitié a été confirmée.';
-                    break;
-                case 'ignore-request':
-                    type = 'erreur';
-                    text = 'La demande d\'amitié a été ignorée.';
-                    break;
-                case 'friend-request':
-                    type = 'succes';
-                    text = 'Demande d\'amitié envoyée';
-                    break;
-                default:
-            }
             var alert = '<div class="alert '+type+'"><a class="close" href="#">x</a>'+text+'</div>';
 
             if($('#alerts').length !== 0){
@@ -92,17 +74,31 @@ $(document).ready(function(){
                         if(self.parent().hasClass('notification-action')){
                             self.closest('li').slideUp(200);
                         }
-                        mfm.actions.popAlert(actionType);
+                        mfm.actions.popAlert('Félicitations ! Vous avez un ami de plus.', 'succes');
                         break;
                     case 'ignore-request':
                         if(self.parent().hasClass('notification-action')){
                             self.closest('li').slideUp(200);
                         }
-                        mfm.actions.popAlert(actionType);
+                        mfm.actions.popAlert('La demande d\'amitié a été ignorée.', 'succes');
                         break;
                     case 'friend-request':
-                        mfm.actions.popAlert(actionType);
-                        self.html('Demande envoyée').addClass('btn-neutral');
+                        var userId = $(this).attr('data-user-id');
+                        var friendId = $(this).attr('data-friend-id');
+                        self.html('Chargement...').addClass('btn-neutral');
+                        $.ajax({
+                            type: 'POST',
+                            url: '/'+mfm.host+'/ajax/friend',
+                            data: { userId: userId, friendId: friendId },
+                            success: function () {
+                                mfm.actions.popAlert('Demande d\'amitié envoyée', 'succes');
+                                self.html('Demande envoyée').addClass('btn-neutral');
+                            },
+                            error: function () {
+                                mfm.actions.popAlert('Erreur, la demande n\'a pas été traitée', 'erreur');
+                                self.html('Erreur dans la demande').addClass('btn-neutral');
+                            }
+                        });
                         break;
                     default:
                 }
@@ -120,17 +116,31 @@ $(document).ready(function(){
                     if(self.parent().hasClass('notification-action')){
                         self.closest('li').slideUp(200);
                     }
-                    mfm.actions.popAlert(actionType);
+                    mfm.actions.popAlert('Félicitations ! Vous avez un ami de plus.', 'succes');
                     break;
                 case 'ignore-request':
                     if(self.parent().hasClass('notification-action')){
                         self.closest('li').slideUp(200);
                     }
-                    mfm.actions.popAlert(actionType);
+                    mfm.actions.popAlert('La demande d\'amitié a été ignorée.', 'succes');
                     break;
                 case 'friend-request':
-                    mfm.actions.popAlert(actionType);
-                    self.html('Demande envoyée').addClass('btn-neutral');
+                    var userId = $(this).attr('data-user-id');
+                    var friendId = $(this).attr('data-friend-id');
+                    self.html('Chargement...').addClass('btn-neutral');
+                    $.ajax({
+                        type: 'POST',
+                        url: '/'+mfm.host+'/ajax/friend',
+                        data: { userId: userId, friendId: friendId },
+                        success: function () {
+                            mfm.actions.popAlert('Demande d\'amitié envoyée', 'succes');
+                            self.html('Demande envoyée').addClass('btn-neutral');
+                        },
+                        error: function () {
+                            mfm.actions.popAlert('Erreur, la demande n\'a pas été traitée', 'erreur');
+                            self.html('Erreur dans la demande').addClass('btn-neutral');
+                        }
+                    });
                     break;
                 default:
             }
@@ -190,7 +200,7 @@ $(document).ready(function(){
                     '<a href="/'+mfm.host+'/userprofile?id='+data[i].id+'">'+
                         '<img src="/'+mfm.host+'/res/styles/default/img/users/'+data[i].lastname+'.jpg" width="40" height="40" class="avatar" alt="">'+
                             '<span class="user-title">'+data[i].firstname+' '+data[i].lastname+'</span>'+
-                            //'<a href="#" class="btn mfm-action" data-action="friend-request">Ajouter en ami</a>'+
+                            '<a href="#" class="btn mfm-action" data-action="friend-request" data-user-id="1" data-friend-id="3">Ajouter en ami</a>'+
                             //'<span class="user-time">13H - 14H</span>'+
                             '<span class="user-tags">'+interests+'</span>'+
                         '</a>'+

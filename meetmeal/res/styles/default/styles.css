@@ -554,9 +554,10 @@ header #notifications p.notification-action a {
 }
 
 #current-user span {
-    display:block;
-    font-size:12px;
-    line-height:25px;
+    display: block;
+    font-size: 12px;
+    margin: 5px 0px;
+    line-height: 14px;
 }
 
 /* User search form */
