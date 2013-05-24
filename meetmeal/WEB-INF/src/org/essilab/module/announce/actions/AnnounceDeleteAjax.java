@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.essilab.module.announce.AnnounceService;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 public class AnnounceDeleteAjax implements IAction{
 	AnnounceService service = AnnounceService.getInstance();

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.essilab.module.interest.InterestService;
 import org.essilab.module.interest.model.Interest;
 import org.essilab.module.user.UserService;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

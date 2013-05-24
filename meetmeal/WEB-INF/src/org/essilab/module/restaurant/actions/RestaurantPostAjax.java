@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.essilab.module.category.model.CategoryDao;
 import org.essilab.module.restaurant.RestaurantService;
 import org.essilab.module.restaurant.model.Restaurant;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 public class RestaurantPostAjax implements IAction{
 

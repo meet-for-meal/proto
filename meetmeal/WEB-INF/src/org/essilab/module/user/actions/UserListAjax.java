@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.essilab.module.user.UserService;
 import org.essilab.module.user.model.User;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;

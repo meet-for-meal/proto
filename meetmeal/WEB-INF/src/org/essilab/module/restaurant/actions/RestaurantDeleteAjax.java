@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.essilab.module.restaurant.RestaurantService;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 public class RestaurantDeleteAjax implements IAction{
 	RestaurantService service = RestaurantService.getInstance();

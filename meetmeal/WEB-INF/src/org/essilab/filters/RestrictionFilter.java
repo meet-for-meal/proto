@@ -27,11 +27,17 @@ public class RestrictionFilter implements Filter {
  
         /* Récupération de la session depuis la requête */
         HttpSession session = request.getSession();
- 
+        
+        String url = request
+    			.getRequestURI()
+    			.substring(request.getContextPath().length()+1);
+        request.setAttribute("url", url);
+        
         /**
-         * If sessionUser is null, then there is no valid session
+         * If sessionUser is null, there is no valid session
          */
-        if ( session.getAttribute( ATT_SESSION_USER ) == null ) {
+
+        if ( session.getAttribute( ATT_SESSION_USER ) == null && !url.equals("homepage") && !url.equals("register")) {
             /* Redirection vers la page publique */
             response.sendRedirect( request.getContextPath() +  HOME);
         } else {

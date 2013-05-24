@@ -11,17 +11,31 @@
 
   <form class="form-horizontal" action="" method="">
     <div class="control-group">
-      <p><strong>Date de création :</strong> <%= announcement.crDate %></p>
       <label class="control-label" for="createdDate">Date de création</label>
       <div class="controls">
-        <input type="text" id="createdDate" value="<%= announcement.createdDate %>">
+        <input type="text" id="created_day" value="<%= announcement.createdDate.day %>" class="input-mini">/
+        <input type="text" id="created_month" value="<%= announcement.createdDate.month %>" class="input-mini">/
+        <input type="text" id="created_year" value="<%= announcement.createdDate.year %>" class="input-mini"> à
+        <input type="text" id="created_hours" value="<%= announcement.createdDate.hours %>" class="input-mini">:
+        <input type="text" id="created_minutes" value="<%= announcement.createdDate.minutes %>" class="input-mini">:
+        <input type="text" id="created_seconds" value="<%= announcement.createdDate.seconds %>" class="input-mini">
       </div>
     </div>
     <div class="control-group">
-      <p><strong>Date de disponibilité :</strong> <%= announcement.rdvDate %></p>
       <label class="control-label" for="disponibilityDate">Date de disponibilité</label>
       <div class="controls">
-        <input type="text" id="disponibilityDate" value="<%= announcement.disponibilityDate %>">
+        <input type="text" id="disponibility_day" value="<%= announcement.disponibilityDate.day %>" class="input-mini">/
+        <input type="text" id="disponibility_month" value="<%= announcement.disponibilityDate.month %>" class="input-mini">/
+        <input type="text" id="disponibility_year" value="<%= announcement.disponibilityDate.year %>" class="input-mini"> à
+        <input type="text" id="disponibility_hours" value="<%= announcement.disponibilityDate.hours %>" class="input-mini">:
+        <input type="text" id="disponibility_minutes" value="<%= announcement.disponibilityDate.minutes %>" class="input-mini">:
+        <input type="text" id="disponibility_seconds" value="<%= announcement.disponibilityDate.seconds %>" class="input-mini">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="isOpen">Activée</label>
+      <div class="controls">
+        <input type="checkbox" id="isOpen" <% if(announcement.isOpen){ %>checked="checked"<% } %> />
       </div>
     </div>
     <div class="control-group">

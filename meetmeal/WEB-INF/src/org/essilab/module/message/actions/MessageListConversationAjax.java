@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.essilab.module.message.MessageService;
 import org.essilab.module.message.model.Message;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

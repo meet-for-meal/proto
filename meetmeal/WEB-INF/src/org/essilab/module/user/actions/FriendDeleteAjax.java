@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.essilab.module.user.UserService;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 public class FriendDeleteAjax implements IAction{
 	UserService service = UserService.getInstance();
