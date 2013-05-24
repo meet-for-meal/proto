@@ -22,14 +22,10 @@ public class RestaurantListAjax implements IAction{
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		List<Restaurant> restaurants = service.restaurantList();
+		List<Restaurant> restos = service.restaurantList();
 		try {
 			response.setContentType(HEADER_TYPE_JSON);
-			//List<String> listResto = new ArrayList<String>();
-			//for (Restaurant r : restaurants)
-			//	listResto.add(r.getFoursquareId());
-			//mapper.writeValue(response.getOutputStream(), listResto);
-			mapper.writeValue(response.getOutputStream(), restaurants);
+			mapper.writeValue(response.getOutputStream(), restos);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

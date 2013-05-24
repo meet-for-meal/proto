@@ -36,11 +36,12 @@ public class MessageService {
 		return null;
 	}
 	
-	public void userInsert(Message m){
+	public boolean messageInsert(Message m){
 		try {
-			MessageDao.insert(m);
+			return MessageDao.insert(m);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 }

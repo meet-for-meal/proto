@@ -25,7 +25,8 @@ public class UserGetAjax implements IAction{
 			User user = service.userSelect(id);
 			if (user != null) 
 				mapper.writeValue(response.getOutputStream(), user);
-			response.getWriter().println(RESPONSE_ERROR);
+			else
+				response.getWriter().println(RESPONSE_ERROR);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

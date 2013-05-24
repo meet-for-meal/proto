@@ -6,37 +6,7 @@
 
 <%
 User user = (User)session.getAttribute("sessionUser");
-
-
 %>
-<header>
-
-    <div class="wrapper">
-
-        <a href="index" id="logo"><img src="/meetformeal/res/styles/default/img/logo-mini.png" alt=""></a>
-
-        <form id="search-form">
-            <input type="text" name="search" placeholder="Rechercher une personne ou un restaurant...">
-        </form>
-
-        <nav>
-            <ul>
-                <li><a href="#" class="no-text toggle-notif"><i class="icon-info-sign"></i><span class="notif">3</span></a></li>
-                <li><a href="index"><i class="icon-home"></i> Accueil</a></li>
-                <li><a href="restaurants"><i class="icon-map-marker"></i>Les restaurants</a></li>
-                <li class="current"><a href="mypage"><i class="icon-user"></i>Mon profil</a></li>
-                <li><a href="message" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
-                <li><a href="homepage" class="no-text"><i class="icon-off"></i></a></li>
-            </ul>
-        </nav>
-
-        <div id="notifications">
-            
-        </div>
-
-    </div>
-
-</header>
 
 <section id="container">
 
@@ -53,9 +23,9 @@ User user = (User)session.getAttribute("sessionUser");
 
         <div class="col-2">
             <h2>Informations sur votre profil</h2>
-            <img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
+            <img src="/meetformeal/res/styles/default/img/users/<%=user.getLastname() %>.jpg" width="64" height="64" class="avatar" alt="">           
             <p>
-                <i class="icon-user"></i><strong><% out.print(user.getLastname()); %></strong>
+                <i class="icon-user"></i><strong><% out.print(user.getLastname() + " " + user.getFirstname()); %></strong>
             </p>
             <p>
                 Sexe :
@@ -65,10 +35,12 @@ User user = (User)session.getAttribute("sessionUser");
                 {
                 	out.print("Homme");
                 }
-                else 
+                else if(user.getGender() == 0)
                 {
                 	out.print("Femme");
                 }
+                else
+                	out.print("Non défini");
                 %>
                 </strong>	
             </p>
@@ -78,7 +50,7 @@ User user = (User)session.getAttribute("sessionUser");
             <p>
                 Goûts culinaires : 
                 <c:forEach items="${sessionScope.categories}" var="category">  
-					${category.name}				
+					<a href="#">#${category.name} </a>				
 				</c:forEach>
                 
             </p>
@@ -86,41 +58,54 @@ User user = (User)session.getAttribute("sessionUser");
                 Centres d'intérêts : 
 
 				<c:forEach items="${sessionScope.interests}" var="interest">  
-					${interest.tag}				
+					<a href="#">#${interest.tag} </a>				
 				</c:forEach>
                 
             </p>
-            <p>
-                PrÃ©sentation : Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+            <!--  <p>
+                Préentation : Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
                 Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
             </p>
+            
             <p>
                 <i class="icon-eye-open"></i>Profil complÃ©tÃ© Ã  <strong>90%</strong>
-            </p>
+            </p>-->
             <p>
-                <a href="#" class="btn"><i class="icon-cog icon-plus"></i>Modifier votre profil</a>
+                <a href="editmypage" class="btn"><i class="icon-cog icon-plus"></i>Modifier votre profil</a>
             </p>
         </div>
 
         <div class="col-1">
 
-            <h2>Nouvelles demandes d'ajout</h2>
+            <h2>Nouvelles demandes</h2>
+            <c:choose>
+				<c:when test="${!empty sessionScope.invitation}">
+					<div class="user">
+		                <img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
+		                <p>
+		                    <a href="userpage?uid=${sessionScope.invitation.sender.id}" class="black"><strong>${sessionScope.invitation.sender.firstname} ${sessionScope.invitation.sender.lastname}</strong></a><br>
+		                    <a href="#">#communication</a> <a href="#">#musique</a> <a href="#">#badminton</a><br>
+		                    <a href="mypage?accepted=true" class="btn"><i class="icon-ok"></i>Accepter</a> <a href="mypage?accepted=false" class="btn btn-neutral"><i class="icon-remove"></i>Ignorer</a>
+		                </p>
+		            </div>
+			        
+			    </c:when>
+				<c:otherwise>
+					Pas de demandes en cours
+				</c:otherwise>
+			</c:choose>
 
-            <div class="user">
-                <img src="/meetformeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
-                <p>
-                    <a href="userpage" class="black"><strong>Alexandra Martin</strong></a><br>
-                    <a href="#">#communication</a> <a href="#">#musique</a> <a href="#">#badminton</a><br>
-                    <a href="#" class="btn"><i class="icon-ok"></i>Accepter</a> <a href="#" class="btn btn-neutral"><i class="icon-remove"></i>Ignorer</a>
-                </p>
-            </div>
+	            
+
 
             <hr>
 
             <h2>Mes amis</h2>
-
-            <a href="userpage" title="Pierre"><img src="/meetformeal/res/styles/default/img/users/pierre.jpg" width="64" height="64" class="avatar" alt=""></a>
-            <a href="userpage" title="Romain"><img src="/meetformeal/res/styles/default/img/users/romain.jpg" width="64" height="64" class="avatar" alt=""></a>
+			<c:if test="${!empty sessionScope.friends}">
+				<c:forEach items="${sessionScope.friends}" var="friend">  
+					<a href="userpage" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/${friend.lastname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
+				</c:forEach>
+			</c:if>
         </div>
 
         <div class="col-2">
@@ -134,50 +119,3 @@ User user = (User)session.getAttribute("sessionUser");
     </div>
 
 </section>
-
-<footer>
-
-    <div class="wrapper">
-
-        <div class="col-left">
-            <h3>Ã€ propos de Meet For Meal</h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.<br>
-                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            </p>
-        </div>
-
-        <div class="col-middle">
-            <h3>Contactez-nous</h3>
-            <p>
-                <strong>Meet For Meal</strong><br>
-                61 rue lafayette<br>
-                93100 Rue Rapatal<br>
-                FRANCE<br>
-                <a href="mailto:contact@meetformeal.com">contact@meetformeal.com</a>
-            </p>
-        </div>
-
-        <div class="col-right">
-
-            <h3>Suivez-nous</h3>
-
-            <div id="footer-menu-back-to-top">
-                <a href="#"></a>
-            </div>
-
-            <p>
-                Nos pages Facebook et Twitter seront bientÃ´t disponibles !
-            </p>
-
-        </div>
-
-        <div id="copyright">
-            <p>
-                &copy; 2013, Meet For Meal.
-            </p>
-        </div>
-
-    </div>
-
-</footer>

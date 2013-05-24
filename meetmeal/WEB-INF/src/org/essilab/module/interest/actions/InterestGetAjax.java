@@ -25,7 +25,8 @@ public class InterestGetAjax implements IAction{
 			response.setContentType(HEADER_TYPE_JSON);
 			if (interest != null) 
 				mapper.writeValue(response.getOutputStream(), interest);
-			response.getWriter().print(RESPONSE_ERROR);
+			else 
+				response.getWriter().print(RESPONSE_ERROR);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

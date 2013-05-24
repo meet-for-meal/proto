@@ -280,8 +280,16 @@ header #notifications ul li a {
     color:#333;
 }
 
-header #notifications ul li a .red {
+header #notifications ul li a .red, header #notifications ul li .red {
     font-weight: bold;
+}
+
+header #notifications p.notification-action {
+    margin:5px 0px 10px 0px;
+}
+
+header #notifications p.notification-action a {
+    color:white;
 }
 
 /* Google maps
@@ -357,6 +365,7 @@ header #notifications ul li a .red {
     z-index: 400;
     bottom: 40px;
     position: absolute;
+    display:none;
 }
 
 #closest-users h3 {
@@ -374,6 +383,13 @@ header #notifications ul li a .red {
 
 #closest-users a:hover {
     color:#d55035;
+}
+
+#closest-users a.btn {
+    color:white;
+    line-height: 16px;
+    margin-top: 4px;
+    padding: 0px 5px;
 }
 
 #closest-users ul {
@@ -720,6 +736,7 @@ header #notifications ul li a .red {
     border-radius: 3px;
     padding: 5px 10px;
     margin-bottom: 5px;
+    height: 75px
 }
 
 #conversations ul li a{
@@ -756,6 +773,11 @@ header #notifications ul li a .red {
 
 #conversations .extract-conversation{
     margin:0px;
+}
+
+#conversations .no-style-block{
+	display: block;
+	text-decoration: none;
 }
 
 .single-msg {
@@ -970,6 +992,58 @@ footer #copyright {
 }
 
 #footer-menu-back-to-top a:hover {background-color: #aaa;}
+
+/* Alerts
+-------------------------------------------------------------- */
+
+#alerts {
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    z-index: 99999;
+}
+
+#alerts .alert {
+    text-align: center;
+    width: 700px;
+    margin: 0 auto;
+    font-size: 18px;
+    padding: 12px 35px 12px 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    -webkit-border-radius: 0px 0px 4px 4px;
+    -moz-border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 0px 4px 4px;
+    display:none;
+}
+
+#alerts .alert.erreur {
+    color: #b94a48;
+    background-color: #f2dede;
+    border:1px solid #eed3d7;
+}
+
+#alerts .alert.succes {
+    color: #468847;
+    background-color: #dff0d8;
+    border:1px solid #d6e9c6;
+}
+
+#alerts .alert .close {
+    position: relative;
+    top: 0;
+    right: -25px;
+}
+
+#alerts .close {
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 14px;
+    color: #000000;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
 
 
 /* Icons

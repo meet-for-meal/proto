@@ -20,6 +20,27 @@ public class CategoryDao {
 		return createCategory(result);
 	}
 	
+	public static boolean insertByUser(int userid, int tasteid) throws SQLException{
+		boolean ok = false;
+		String request = "INSERT INTO has_taste VALUES ('"+ userid +"', '"+ tasteid +"')";
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		Connect.getConnection().close();
+		
+		return true;
+	}
+	
+	public static boolean deleteByUser(int id) throws SQLException {
+		String request = "DELETE FROM has_taste WHERE userId="+ id;
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ps.executeUpdate();
+		
+		Connect.getConnection().close();
+		return true;
+	}
+	
 	//All
 	public static List<Category> getAll() throws SQLException {
 		String request = "SELECT * FROM Category";

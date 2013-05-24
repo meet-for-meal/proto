@@ -28,10 +28,27 @@ public class UserDao {
 	
 	//setFirstVisit
 	public static void setFirstVisit(int id) throws SQLException{
-		String request = "UPDATE user SET firstVisit=0 WHERE id= "+ id +"";
+		String request = "UPDATE User SET firstVisit=0 WHERE id= "+ id +"";
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ps.executeUpdate();
 		Connect.getConnection().close();
+	}
+	
+	//Change localization
+	public static boolean updateLocalization(int id, Date lastPos, double lat, double lng) throws SQLException{
+		boolean ok = false;
+		if (id > 0 && lastPos != null) {
+			String request = "UPDATE User SET " +
+					"lastPosition='"+new java.sql.Date(lastPos.getTime())+" "+new java.sql.Time(lastPos.getTime())+"', " +
+					"lastLatitude="+ lat +", " +
+					"lastLongitude="+ lng +" " +
+					"WHERE id= "+ id +"";
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			ok = true;
+		}
+		return ok;
 	}
 	
 	
@@ -70,28 +87,35 @@ public class UserDao {
 	}
 	
 	//Update
-	public static void update(User user) throws SQLException{
-		String request = "UPDATE User SET" +
-			" firstname='"+ user.getFirstname() +"'," +
-			" lastname='"+ user.getLastname() +"'," +
-			" age="+ user.getAge() +"," +
-			" email='"+ user.getEmail() +"'," +
-			" password='"+ user.getPassword() +"'," +
-			" gender="+ user.getGender() +"," +
-			" firstVisit="+ (user.getFirstVisit()? 1: 0) +"," +
-			" isAdmin="+ (user.getIsAdmin()? 1: 0);
-			if (user.getLastPosition() != null) {
-			request += "," +
-			" lastPosition='"+new java.sql.Date(user.getLastPosition().getTime())+" "+new java.sql.Time(user.getLastPosition().getTime())+"'," +
-			" lastLatitude="+ user.getLastLat() +"," +
-			" lastLongitude="+ user.getLastLong();
-			}
-			request += " WHERE id="+ user.getId();
-
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-//		ps.setDate(1, ();
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean update(User user, boolean bigUpdate) throws SQLException{
+		boolean ok = false;
+		if (user.getId() > 0) {
+			String request = "UPDATE User SET" +
+				" firstname='"+ user.getFirstname() +"'," +
+				" lastname='"+ user.getLastname() +"'," +
+				" age="+ user.getAge() +"," +
+				" email='"+ user.getEmail() +"'," +
+				" password='"+ user.getPassword() +"'," +
+				" gender="+ user.getGender() +",";
+				if (bigUpdate) {
+					request += " firstVisit="+ (user.getFirstVisit()? 1: 0) +"," +
+					" isAdmin="+ (user.getIsAdmin()? 1: 0);
+					if (user.getLastPosition() != null) {
+					request += "," +
+					" lastPosition='"+new java.sql.Date(user.getLastPosition().getTime())+" "+new java.sql.Time(user.getLastPosition().getTime())+"'," +
+					" lastLatitude="+ user.getLastLat() +"," +
+					" lastLongitude="+ user.getLastLong();
+					}
+				}
+				request += " WHERE id="+ user.getId();
+	
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+	//		ps.setDate(1, ();
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			ok = true;
+		}
+		return ok;
 	}
 	
 	//Delete
@@ -158,6 +182,34 @@ public class UserDao {
 		
 		return createUsers(result);
 	}
+	
+	//Insert Friend
+	public static boolean insertFriend(int userId, int friendId) throws SQLException{
+		boolean ok = false;
+		if (userId > 0 && friendId > 0) {
+			String request = "INSERT INTO Has_Friend (userId, friendId) VALUES ("+userId+","+friendId+");";
+				
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			ok = true;
+		}
+		return ok;
+	}
+	
+	//Delete Friend
+	public static boolean deleteFriend(int userId, int friendId) throws SQLException{
+		boolean ok = false;
+		if (userId > 0 && friendId > 0) {
+			String request = "DELETE FROM Has_Friend WHERE userId="+userId+" AND friendId="+friendId;
+				
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			ok = true;
+		}
+		return ok;
+		}
 	
 	//Find near Users
 	public static List<User> findNearUsers(int userId) throws SQLException {
@@ -260,9 +312,8 @@ public class UserDao {
 					result.getDouble("lastLatitude"),
 					result.getDouble("lastLongitude")
 				);	
-			} else{
+			} else
 				return null;
-			}
 		} catch (SQLException e) { e.printStackTrace();	}
 		return user;
 	}
@@ -371,7 +422,7 @@ public class UserDao {
 			u1.setIsAdmin(true);
 			u1.setFirstVisit(false);
 			u1.setLastPosition(new Date());
-			update(u1);
+			update(u1, true);
 			
 			//Delete 
 			delete(u1.getId());

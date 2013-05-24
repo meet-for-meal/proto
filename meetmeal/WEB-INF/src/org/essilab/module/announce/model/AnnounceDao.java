@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.essilab.module.connect.Connect;
-import org.essilab.module.user.model.User;
 import org.essilab.module.user.model.UserDao;
 
 public class AnnounceDao {
@@ -27,9 +26,12 @@ public class AnnounceDao {
 	}
 		
 	//Insert
+
 	public static boolean insert(Announce a) throws SQLException{
 		boolean ok = false;
-		if (a.getCreator() != null && getIdByCreatoridCreatedDate(a.getCreator().getId(), a.getCreatedDate()) > 0) {
+
+		if (a != null && a.getCreator() != null) {
+			System.out.println("in_request");
 			String request = "INSERT INTO Announce VALUES (NULL" +
 				", "+ (a.getCreator() != null ? a.getCreator().getId()+"" : "NULL") +
 				", "+ (a.getCreatedDate() != null ? "'"+new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'" : "NULL") +
@@ -49,23 +51,29 @@ public class AnnounceDao {
 	}
 	
 	//Update
-	public static void update(Announce a) throws SQLException{
-		String request = "UPDATE Announce SET";
-			if (a.getCreator() != null)
-			request += " creatorId="+ a.getCreator().getId();
-			if (a.getCreatedDate() != null)
-			request += ", createdDate='"+ new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'";
-			if (a.getDisponibilityDate() != null)
-			request += ", disponibilityDate='"+ new java.sql.Date(a.getDisponibilityDate().getTime())+" "+new java.sql.Time(a.getDisponibilityDate().getTime()) +"'";
-			request += ", isOpen="+ (a.getIsOpen()? 1: 0) +"," +
-			" latitude="+ a.getLatitude() +"," +
-			" longitude="+ a.getLongitude() +"," +
-			" message='"+ a.getMessage() +"'" +
-			" WHERE id="+ a.getId();
-		System.out.println(request);
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ps.executeUpdate();
-		Connect.getConnection().close();
+	public static boolean update(Announce a) throws SQLException{
+		boolean ok = false;
+		if (a.getCreator() != null) {
+			String request = "UPDATE Announce SET";
+				if (a.getCreator() != null)
+				request += " creatorId="+ a.getCreator().getId();
+				if (a.getCreatedDate() != null)
+				request += ", createdDate='"+ new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'";
+				if (a.getDisponibilityDate() != null)
+				request += ", disponibilityDate='"+ new java.sql.Date(a.getDisponibilityDate().getTime())+" "+new java.sql.Time(a.getDisponibilityDate().getTime()) +"'";
+				request += ", isOpen="+ (a.getIsOpen()? 1: 0) +"," +
+				" latitude="+ a.getLatitude() +"," +
+				" longitude="+ a.getLongitude() +"," +
+				" message=\""+ a.getMessage() +"\"" +
+				" WHERE id="+ a.getId();
+			System.out.println(request);
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			if (getIdByCreatoridCreatedDate(a.getCreator().getId(), a.getCreatedDate()) > 0)
+				ok = true;
+		}
+		return ok;
 	}
 	
 	//Delete
@@ -92,6 +100,17 @@ public class AnnounceDao {
 		Connect.getConnection().close();
 		return (result != null && result.next()) ? result.getInt("id") : 0;
 	}
+	
+	//Get AnnounceId and creatorId
+	public static int getIdByCreatorId(int creatorId) throws SQLException {
+		String request = "SELECT id FROM Announce WHERE creatorId = "+creatorId+" AND isOpen = 1";
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ResultSet result = ps.executeQuery();
+		Connect.getConnection().close();
+		return (result != null && result.next()) ? result.getInt("id") : 0;
+	}
+	
 	
 	//All
 	public static List<Announce> getAll() throws SQLException {
@@ -156,8 +175,7 @@ public class AnnounceDao {
 	private static Announce createAnnounce(ResultSet result) {
 		Announce announce = new Announce();
 		try {
-			result.next(); 
-			if (result != null) {
+			if (result != null && result.next()) {
 				announce = new Announce(
 						result.getInt("id"),
 						result.getTimestamp("createdDate"), 
@@ -167,7 +185,8 @@ public class AnnounceDao {
 						result.getDouble("longitude"),
 						result.getString("message") );
 				announce.setCreator(UserDao.getUser(result.getInt("creatorId")));
-			}
+			} else
+				return null;
 		} catch (SQLException e) { e.printStackTrace();	}
 		return announce;
 	}

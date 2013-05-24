@@ -13,18 +13,21 @@ import org.essilab.module.user.model.UserDao;
 public class MessageDao {
 
 	//Insert
-	public static void insert(Message msg) throws SQLException{
+	public static boolean insert(Message msg) throws SQLException{
+		boolean ok = false;
 		if (msg != null && msg.getSender() != null && msg.getReceiver() != null) {
 			String request = "INSERT INTO Message VALUES (NULL, "+
 				" "+ msg.getSender().getId() +"," +
 				" "+ msg.getReceiver().getId() +"," +
-				" '"+ msg.getContent() +"'," +
+				" \""+ msg.getContent() +"\"," +
 				" "+ (msg.getSentDate() != null ? "'"+new java.sql.Date(msg.getSentDate().getTime())+" "+new java.sql.Time(msg.getSentDate().getTime())+"'" : "NULL")+")";
 			System.out.println(request+"\n");
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 			ps.executeUpdate();
 			Connect.getConnection().close();
+			ok = true;
 		}
+		return ok;
 	}
 	
 	//List conversation with people for an User
@@ -46,7 +49,7 @@ public class MessageDao {
 			"FROM (" +
 				"SELECT MAX(createdDate) AS createdDate "+
 				"FROM Message M "+
-				"WHERE "+senderId+" IN (senderId,receiverId) "+
+				"WHERE "+senderId+" IN (receiverId) "+
 				"GROUP BY IF ("+senderId+" = senderId,receiverId,senderId)) AS latest "+
 			"LEFT JOIN Message M ON latest.createdDate = M.createdDate AND "+senderId+" IN (M.senderId, M.receiverId) "+
 			"GROUP BY IF ("+senderId+" = M.senderId,M.receiverId,M.senderId)";

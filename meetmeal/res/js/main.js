@@ -24,18 +24,18 @@ require.config({
       exports: 'Backbone'
     },
     cycle: {
-    	deps: ['jquery']
+      deps: ['jquery']
     },
     base: {
-        deps: ['jquery', 'jqueryUI', 'cycle']
+      deps: ['jquery', 'jqueryUI', 'cycle']
     }
   },
   baseUrl: '/meetformeal/res/js/'
 });
 
-require(['app', 'jquery', 'jqueryUI', 'cycle', 'bootstrap', 'base'], function (MainView, $) {
+require(['app', 'jquery', 'jqueryUI', 'cycle', 'bootstrap', 'base'], function (MainView) {
   'use strict';
 
-  var mainView = new MainView();
+  new MainView();
 
 });

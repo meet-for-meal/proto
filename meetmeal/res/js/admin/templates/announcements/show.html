@@ -1,0 +1,17 @@
+<div id="main">
+  <div id="announcement">
+    <img src="res/styles/default/img/ajax-loader.gif" alt="loading" /> Loading...
+  </div>
+  <div class="google-map" id="map"></div>
+</div>
+
+<script id="show-template" type="text/x-template">
+  <h1>Annonce</h1>
+  <p><strong>Créateur :</strong> <%= announcement.creator.firstname %> <%= announcement.creator.lastname %></p>
+  <p><strong>Date de création :</strong> <%= announcement.crDate %></p>
+  <p><strong>Date de disponibilité :</strong> <%= announcement.rdvDate %></p>
+  <p><strong>Message :</strong> <%= announcement.message %></p>
+  <a href="#/announcement/<%= announcement.id %>/edit">
+    <button class="btn btn-primary">Modifier l'annonce</button>
+  </a>
+</script>

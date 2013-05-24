@@ -1,4 +1,4 @@
-define(['jquery', 'backbone'], function ($, Backbone) {
+define(['jquery', 'backbone', 'lodash'], function ($, Backbone, _) {
   'use strict';
 
   var MainView = Backbone.View.extend({
@@ -18,7 +18,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
     },
 
     initialize: function () {
-    	
+
       var self = this;
       this.foursquareCategories = this.params.foursquareCategories;
       if (this.geolocIsAvailable()) {
@@ -63,30 +63,30 @@ define(['jquery', 'backbone'], function ($, Backbone) {
       var position = new google.maps.LatLng(this.userLatitude, this.userLongitude);
       var customMarker = this.greenMarker();
       var marker = this.addMarker(map, 'users', position, 'You are here!', { icon: customMarker[0], shadow: customMarker[1] });
-      var infowindow = this.addInfoWindow (map, marker, {label: 'You are here!'});
+      this.addInfoWindow (map, marker, {label: 'You are here!'});
       this.renderFriendsLocation(map);
     },
 
     // Create markers to close friends' location
     renderFriendsLocation: function (map) {
       var self = this;
-      
-      $.ajax({
-    	  url: '/meetformeal/user/display.ajax',
-    	  type: 'GET',
-    	  dataType: 'json',
-    	  success: function (friends) {
-    		  var customMarker = {icon: '/meetformeal/res/styles/default/img/logo-marker.png'};
-    	      for(var i in friends) {
-    	        var friend = friends[i];
-    	        var position = new google.maps.LatLng(friend.lastLatitude, friend.lastLongitude);
-    	        var marker = self.addMarker(map, 'users', position, friend.firstname + ' ' + friend.lastname, customMarker);
 
-    	        (function(marker, friend) {
-    	          var infowindow = self.addInfoWindow(map, marker, {id: friend.id, label: friend.firstname + ' ' + friend.lastname});
-    	        }(marker, friend));
-    	      }
-    	  }
+      $.ajax({
+        url: '/meetformeal/user/display.ajax',
+        type: 'GET',
+        dataType: 'json',
+        success: function (friends) {
+          var customMarker = {icon: '/meetformeal/res/styles/default/img/logo-marker.png'};
+          for(var i in friends) {
+            var friend = friends[i];
+            var position = new google.maps.LatLng(friend.lastLatitude, friend.lastLongitude);
+            var marker = self.addMarker(map, 'users', position, friend.firstname + ' ' + friend.lastname, customMarker);
+
+            (function(marker, friend) {
+              self.addInfoWindow(map, marker, {id: friend.id, label: friend.firstname + ' ' + friend.lastname});
+            }(marker, friend));
+          }
+        }
       });
     },
 
@@ -98,7 +98,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
 
     // Foursquare API Request maker
     foursquareRequest: function (url, params) {
-      var params = params || {};
+      params = params || {};
       params.oauth_token = this.foursquareOauthToken;
       return $.ajax({
         url: this.foursquareApiUrl + url,
@@ -109,8 +109,8 @@ define(['jquery', 'backbone'], function ($, Backbone) {
     },
 
     // Handle venues request
-    fireVenuesSearch: function (e) {
-      var choices = []
+    fireVenuesSearch: function () {
+      var choices = [],
           self = this;
       var inputs = this.$categories.find('input:checked');
       if(inputs.length > 0) {
@@ -119,7 +119,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
         });
         choices = choices.join(',');
 
-        var venuesRequest = this.foursquareRequest('venues/search', {
+        this.foursquareRequest('venues/search', {
           ll: this.userLatitude + ',' + this.userLongitude,
           intent: 'browse',
           limit: 50,
@@ -164,7 +164,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
     checkAllCategories: function (e) {
       e.preventDefault();
       this.$categories.find('input').each(function (k, input) {
-        $(input).prop('checked', true)
+        $(input).prop('checked', true);
       });
     },
 

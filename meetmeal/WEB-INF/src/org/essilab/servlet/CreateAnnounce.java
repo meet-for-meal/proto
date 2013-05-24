@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.essilab.forms.CreateAnnounceForm;
 import org.essilab.forms.SearchAnnounceForm;
 import org.essilab.module.announce.AnnounceService;
 import org.essilab.module.announce.model.Announce;
@@ -36,30 +37,20 @@ public class CreateAnnounce  extends HttpServlet {
      			.substring(request.getContextPath().length()+1);
          request.setAttribute("url", url); 
 
-        /* Préparation de l'objet formulaire */
-        SearchAnnounceForm form = new SearchAnnounceForm();
+        /* Prï¿½paration de l'objet formulaire */
+        CreateAnnounceForm form = new CreateAnnounceForm();
 
-        /* Traitement de la requête et récupération du bean en résultant */
-        List<Interest> interests = form.SearchAnnounce( request );
-
-        /* Récupération de la session depuis la requête */
+        
         HttpSession session = request.getSession();
- 
-        /**
-         * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
-         * User à la session, sinon suppression du bean de la session.
-         */
+        
         User user = (User) session.getAttribute("sessionUser");
-
-        if ( form.getErrors().isEmpty() && user != null && interests != null) {
-
-            AnnounceService announceService = AnnounceService.getInstance();
-            List<Announce>  announces = announceService.getAnnounces(user,interests);
-            session.setAttribute(ATT_SESSION_ANNOUNCES, announces);
+        /* Handle request */
+        Announce announce = form.CreateAnnounce( request, user );
+        /* Retrieve session */
+        if ( form.getErrors().isEmpty() && user != null && announce != null) {
             
         } else {
         	session.setAttribute(ATT_SESSION_ANNOUNCES, null);
-            session.setAttribute( ATT_SESSION_USER, null );
         }
  
         /* store form error and data in request */

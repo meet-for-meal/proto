@@ -13,8 +13,8 @@
       <label class="control-label" for="partnership">Partenariat</label>
       <div class="controls">
         <select id="partnership">
-        <% _.each(p, function (partnership) { %>
-          <option value="<%= partnership %>"<% if(partnership === m.partnership){ %> selected<% } %>>
+        <% _.map(p, function (partnership, index) { %>
+          <option value="<%= index + 1 %>"<% if(index+1 === m.partnership){ %> selected<% } %>>
             <%= partnership %>
           </option>
         <% }) %>
@@ -24,7 +24,7 @@
     <div class="control-group">
       <label class="control-label" for="idFoursquare">ID Foursquare</label>
       <div class="controls">
-        <input type="text" id="idFoursquare" value="<%= m.foursquare_id %>">
+        <input type="text" id="idFoursquare" value="<%= m.foursquareId %>">
         <button class="btn update-venue">Mettre à jour les informations</button>
       </div>
     </div>

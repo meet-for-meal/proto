@@ -3,16 +3,18 @@ require(['jquery', 'bootstrap', 'backbone'], function ($, Bootstrap, Backbone) {
   var Router = Backbone.Router.extend({
 
     routes: {
-      '':                'index',            // #
-      'users':           'userList',         // #users
-      'users/:id/edit':  'userEdit',         // #users/:id/edit
-      'venues':          'venueList',        // #venues
-      'venues/:id':      'venueShow',        // #venues/:id
-      'venues/:id/edit': 'venueEdit',        // #venues/:id/edit
-      'partnerships':    'partnershipList',  // #partnerships
-      'announcements':   'announcementList', // #announcements
-      'interests':       'interestList',     // #interests
-      'interests/new':   'interestNew'       // #interests/new
+      '':                       'index',            // #
+      'users':                  'userList',         // #users
+      'users/:id/edit':         'userEdit',         // #users/:id/edit
+      'venues':                 'venueList',        // #venues
+      'venues/:id':             'venueShow',        // #venues/:id
+      'venues/:id/edit':        'venueEdit',        // #venues/:id/edit
+      'partnerships':           'partnershipList',  // #partnerships
+      'announcements':          'announcementList', // #announcements
+      'announcements/:id':      'announcementShow', // #announcement/:id
+      'announcements/:id/edit': 'announcementEdit', // #announcements/:id/edit
+      'interests':              'interestList',     // #interests
+      'interests/new':          'interestNew'       // #interests/new
     },
 
     index: function() {
@@ -72,6 +74,18 @@ require(['jquery', 'bootstrap', 'backbone'], function ($, Bootstrap, Backbone) {
     announcementList: function() {
       require(['admin/views/announcements/list'], function (announcementListView) {
         new announcementListView();
+      });
+    },
+
+    announcementShow: function (id) {
+      require(['admin/views/announcements/show'], function (announcementShowView) {
+        new announcementShowView({ announcementId: id });
+      });
+    },
+
+    announcementEdit: function (id) {
+      require(['admin/views/announcements/edit'], function (announcementEditView) {
+        new announcementEditView({ announcementId: id });
       });
     },
 

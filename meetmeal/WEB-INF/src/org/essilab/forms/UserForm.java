@@ -6,13 +6,22 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.essilab.module.category.CategoryService;
 import org.essilab.module.category.model.Category;
+import org.essilab.module.interest.InterestService;
 import org.essilab.module.interest.model.Interest;
+import org.essilab.module.user.model.User;
 
 public class UserForm {
-	private static final String INTERESTS   = "interests";
-	private static final String CATEGORIES   = "categories";
+	private static final String FIRSTNAME   = "firstname";
+	private static final String LASTNAME   = "lastname";
+	private static final String GENDER   = "gender";
+	private static final String AGE   = "age";
+	private static final String INTEREST   = "interest";
+	private static final String CATEGORY   = "category";
+
     private String              result;
     private Map<String, String> errors      = new HashMap<String, String>();
 
@@ -26,39 +35,41 @@ public class UserForm {
     }
     
     
-    public List<Interest> SearchInterest( HttpServletRequest request ) {
-    	String interests = getFieldValue( request, INTERESTS );
-    	if(interests != null){
-    		List<Interest> list = new ArrayList<Interest>();
-    		String str[]=interests.split(",");
-    		for(String s : str){
-    			Interest in = new Interest(s);
-    			list.add(in);
-    		}
-    		return list;
-    	}
-    	else{
-    		System.out.println("UserForm.java");
-    	}
-    	return null;
+    public User GetUserUpdate( HttpServletRequest request ) {
+    	
+    	HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("sessionUser");
+        InterestService interestservice = InterestService.getInstance();
+        CategoryService categoryservice = CategoryService.getInstance();
+        
+    	
+    	String firstname = getValeurChamp( request, FIRSTNAME );
+        String lastname = getValeurChamp( request, LASTNAME );
+        String gender = getValeurChamp( request, GENDER );
+        String age = getValeurChamp( request, AGE );
+        String[] si = request.getParameterValues(INTEREST);
+        String[] sc = request.getParameterValues(CATEGORY);
+        
+        
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setGender(Integer.parseInt(gender));
+        user.setAge(Integer.parseInt(age));
+        interestservice.interestDeleteByUser(user.getId());
+        categoryservice.catgoryDeleteByUser(user.getId());
+        for(int i = 0; i < si.length; i++)
+        {
+        	interestservice.interestInsertByUser(user.getId(), Integer.parseInt(si[i]));
+        }
+        for(int i = 0; i < sc.length; i++)
+        {
+        	categoryservice.categoryInsertByUser(user.getId(), Integer.parseInt(sc[i]));
+        }
+        
+        return user;
     }
 	
-    public List<Category> SearchCategory( HttpServletRequest request ) {
-    	String categories = getFieldValue( request, CATEGORIES );
-    	if(categories != null){
-    		List<Category> list = new ArrayList<Category>();
-    		String str[]=categories.split(",");
-    		for(String s : str){
-    			Category in = new Category(s);
-    			list.add(in);
-    		}
-    		return list;
-    	}
-    	else{
-    		System.out.println("UserForm.java");
-    	}
-    	return null;
-    }
+   
     
     
     /*
@@ -72,12 +83,18 @@ public class UserForm {
     /*
      * Return field value or null
      */
-    private static String getFieldValue( HttpServletRequest request, String fieldName ) {
-        String valeur = request.getParameter( fieldName );
+    /*
+     * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
+     * sinon.
+     */
+    private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
+        String valeur = request.getParameter( nomChamp );
         if ( valeur == null || valeur.trim().length() == 0 ) {
             return null;
         } else {
-            return valeur.trim();
+            return valeur;
         }
     }
+    
+    
 }
