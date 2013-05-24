@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.essilab.module.invitation.InvitationService;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 public class InvitationDeleteAjax implements IAction{
 	InvitationService service = InvitationService.getInstance();

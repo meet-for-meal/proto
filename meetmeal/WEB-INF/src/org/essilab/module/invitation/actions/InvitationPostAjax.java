@@ -11,7 +11,7 @@ import org.essilab.module.announce.model.AnnounceDao;
 import org.essilab.module.invitation.InvitationService;
 import org.essilab.module.invitation.model.Invitation;
 import org.essilab.module.user.model.UserDao;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 public class InvitationPostAjax implements IAction{
 

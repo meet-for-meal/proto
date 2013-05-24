@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.essilab.module.announce.AnnounceService;
 import org.essilab.module.announce.model.Announce;
 import org.essilab.module.user.model.UserDao;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 public class AnnouncePostAjax implements IAction{
 

@@ -10,7 +10,7 @@ import org.essilab.module.announce.model.Announce;
 import org.essilab.module.message.MessageService;
 import org.essilab.module.message.model.Message;
 import org.essilab.module.user.model.UserDao;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 public class MessageInsertAjax implements IAction{
 

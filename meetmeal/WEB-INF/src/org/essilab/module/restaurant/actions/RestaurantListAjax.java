@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.essilab.module.interest.model.Interest;
 import org.essilab.module.restaurant.RestaurantService;
 import org.essilab.module.restaurant.model.Restaurant;
-import org.essilab.servlet.mvc.example.IAction;
+import org.essilab.servlet.IAction;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
