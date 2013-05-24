@@ -1,13 +1,2 @@
 eclipse.preferences.version=1
-encoding//WEB-INF/views/user/announcementcreate.jsp=UTF-8
-encoding//WEB-INF/views/user/announcementsearch.jsp=UTF-8
-encoding//WEB-INF/views/user/display.jsp=UTF-8
-encoding//WEB-INF/views/user/homepage.jsp=UTF-8
-encoding//WEB-INF/views/user/index.jsp=UTF-8
-encoding//WEB-INF/views/user/message.jsp=UTF-8
-encoding//WEB-INF/views/user/mypage.jsp=UTF-8
-encoding//WEB-INF/views/user/register.jsp=UTF-8
-encoding//WEB-INF/views/user/restaurants.jsp=UTF-8
-encoding//WEB-INF/views/user/userpage.jsp=UTF-8
-encoding//WEB-INF/views/user/usersearch.jsp=UTF-8
 encoding/layout.jsp=UTF-8

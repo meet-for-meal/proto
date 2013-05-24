@@ -170,17 +170,22 @@ $(document).ready(function(){
     }
 
     if($('#closest-users').length !== 0){
-        $.getJSON('/'+mfm.host+'/ajax/users', function(data) {
+        $.getJSON('/'+mfm.host+'/ajax/users/near/1', function(data) {
 
             $.each(data, function(i) {
 
+                var interests = '';
+                for(j=0; j<data[i].interests.length;j++){
+                    interests = interests +'#'+data[i].interests[j].tag.toLowerCase()+' ';
+                }
+
                 var user = '<li class="user">'+
-                    '<a href="announcement">'+
+                    '<a href="/'+mfm.host+'/userprofile?id='+data[i].id+'">'+
                         '<img src="/'+mfm.host+'/res/styles/default/img/users/'+data[i].lastname+'.jpg" width="40" height="40" class="avatar" alt="">'+
                             '<span class="user-title">'+data[i].firstname+' '+data[i].lastname+'</span>'+
-                            '<a href="#" class="btn mfm-action" data-action="friend-request">Ajouter en ami</a>'+
+                            //'<a href="#" class="btn mfm-action" data-action="friend-request">Ajouter en ami</a>'+
                             //'<span class="user-time">13H - 14H</span>'+
-                            //'<span class="user-tags">#informatique #chat</span>'+
+                            '<span class="user-tags">'+interests+'</span>'+
                         '</a>'+
                     '</li>';
 

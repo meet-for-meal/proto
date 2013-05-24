@@ -139,7 +139,7 @@
     	<servlet-name>UserProfil</servlet-name>
     	<url-pattern>/userprofile</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
     	<servlet-name>EditUserProfil</servlet-name>
     	<url-pattern>/editmypage</url-pattern>
