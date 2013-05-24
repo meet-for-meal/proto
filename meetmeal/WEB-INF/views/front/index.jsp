@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="org.essilab.module.user.model.User"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <section id="container">
 <c:if test="${!empty sessionScope.message}">
 <script>mfm.actions.popAlert('create-message')</script>
@@ -52,7 +52,7 @@
                 	<c:choose>
 						<c:when test="${!empty sessionScope.interests}">
 							<c:forEach items="${sessionScope.interests}" var="interest">  
-								<a href="#">#${interest.tag} </a>				
+								<a href="#">#${fn:toLowerCase(interest.tag)} </a>				
 							</c:forEach>
 					        
 					    </c:when>
