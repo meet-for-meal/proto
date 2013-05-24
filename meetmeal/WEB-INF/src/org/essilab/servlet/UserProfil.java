@@ -60,6 +60,7 @@ public class UserProfil extends HttpServlet {
 
         	//Check if invitations are waiting
         	id_announce = announceService.getIdByCreatorId(user.getId());
+        	System.out.println(id_announce);
         	if(id_announce != 0){
         		Invitation invit = invitationService.findInvitationsByAnnounceid(id_announce);
         		session.setAttribute(ATT_SESSION_INVITATION, invit);
@@ -87,7 +88,7 @@ public class UserProfil extends HttpServlet {
         	else{
         		session.removeAttribute(ATT_SESSION_MEAL);
         	}
-        	
+        	System.out.println("test");
         	// Handle invitation to eat (for receiver)
         	if(request.getParameter("accepted") != null){
         		Invitation invit = (Invitation) session.getAttribute(ATT_SESSION_INVITATION);

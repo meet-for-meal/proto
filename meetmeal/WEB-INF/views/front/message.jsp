@@ -30,7 +30,14 @@
 			                </div>
 			            </div>
 					</c:forEach>  
-
+					<c:set var="unique" value="0"></c:set>
+					<c:forEach items="${sessionScope.messages}" var="message">
+						<c:if test="${sessionScope.sessionUser.id != message.sender.id && unique == 0}">
+               				<a href="messagecreate?id_user=${message.sender.id}" class="btn" ><i class="icon-pencil"></i>Ecrire un message à ${message.sender.firstname }</a>
+               				<c:set var="unique" value="1"></c:set>
+                    	</c:if>
+						
+					</c:forEach>
 			    </c:when>
 				<c:otherwise>
 					Vous pouvez consulter ici toutes vos messages.

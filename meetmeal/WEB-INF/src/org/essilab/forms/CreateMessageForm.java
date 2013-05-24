@@ -53,8 +53,10 @@ public class CreateMessageForm {
     	messageService.messageInsert(message);
     	
     	Invitation invit = new Invitation();
-		if(ask != null)
+		if(!ask.equals("null")){
+			System.out.println(ask);
     		invit = CreateInvitation(request, userSender,  content, ask);
+		}
     		
     	return message;
     }

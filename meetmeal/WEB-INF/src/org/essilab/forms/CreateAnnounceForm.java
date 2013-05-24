@@ -40,12 +40,12 @@ public class CreateAnnounceForm {
     	AnnounceService announceService = AnnounceService.getInstance();
     	
     	Announce announce = null;
-    	String [] split = dispo_date.split("-");
+    	String [] split = dispo_date.split("/");
     	String [] split_hour = dispo_hour.split(":");
     	if (split.length == 3 && split_hour.length == 2) {
 	    	Calendar calendar = Calendar.getInstance();
 	    	Calendar current = Calendar.getInstance();
-	    	calendar.set(Integer.parseInt(split[2])+2000,Integer.parseInt(split[0]),Integer.parseInt(split[1]),Integer.parseInt(split_hour[0]),Integer.parseInt(split_hour[1]));
+	    	calendar.set(Integer.parseInt(split[2]),Integer.parseInt(split[1]),Integer.parseInt(split[0]),Integer.parseInt(split_hour[0]),Integer.parseInt(split_hour[1]));
 	    	Date mydispo_date = calendar.getTime();
 	    	Date created_date = new Date();
 	    	
