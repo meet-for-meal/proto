@@ -90,7 +90,18 @@ User user = (User)session.getAttribute("sessionUser");
 			        
 			    </c:when>
 				<c:otherwise>
-					Pas de demandes en cours
+					<c:choose>
+						<c:when test="${!empty sessionScope.meal && sessionScope.accepted.id != null}">
+									<p>Votre invitation a été acceptée pour votre prochain repas.</p>				        
+										        
+					    </c:when>
+						<c:when test="${!empty sessionScope.meal && sessionScope.accepted.id == null}">
+						        <p>Vous avez accepté une invitation pour votre prochain repas</p>
+					    </c:when>					    
+						<c:otherwise>
+							<p>Pas de demandes en cours</p>
+						</c:otherwise>
+					</c:choose>
 				</c:otherwise>
 			</c:choose>
 

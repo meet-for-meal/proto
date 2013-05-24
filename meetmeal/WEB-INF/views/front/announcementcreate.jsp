@@ -16,8 +16,8 @@
             <form id="announcement-form" action="announcementcreate" method="post">
                 <p>
 
-                    <label for="time-start"><strong><i class="icon-time"></i> Vos disponibilités ? </strong></label>
-                    Le <input type="text" id="time-start" name="dispo-date"> à <input type="text" id="time-start" name="dispo-hour">
+                    <label for="time-start"><strong><i class="icon-time"></i> Vos disponibilitï¿½s ? </strong></label>
+                    Le <input type="text" id="date-start" name="dispo-date"> ï¿½ <input type="text" id="time-start" name="dispo-hour">
 
                 </p>
                 <p>

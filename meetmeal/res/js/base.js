@@ -194,6 +194,26 @@ $(document).ready(function(){
         });
     }
 
+    if($('#date-start').length !== 0){
+        $('#date-start').datepicker({
+            dateFormat: "dd/mm/yy",
+            dayNames: [ "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi" ],
+            dayNamesMin: [ "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa" ],
+            monthNames: [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ]
+        });
+    }
+
+    if($('#time-start').length !== 0){
+        $('#time-start').timepicker({
+            currentText: 'Maintenant',
+            closeText: 'Valider',
+            timeOnlyTitle: 'Sélectionnez l\'heure',
+            timeText: 'Temps',
+            hourText: 'Heure',
+            minuteText: 'Minute',
+            showTime: false
+        });
+    }
 
     $('#featured-restaurants').after('<div id="nav">').cycle({
         fx:     'fade',
