@@ -56,7 +56,6 @@ define([
         });
       });
 
-      var self = this;
       this.foursquareCategories = this.params.foursquareCategories;
       if (this.geolocIsAvailable()) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -100,7 +99,16 @@ define([
     renderUserLocation: function (map) {
       var position = new this.GMaps.LatLng(this.userLatitude, this.userLongitude);
       var customMarker = this.coloredMarker('37c855');
-      var marker = this.addMarker(map, 'users', position, 'You are here!', { icon: customMarker[0], shadow: customMarker[1] });
+      var marker = this.addMarker(
+        map,
+        'users',
+        position,
+        'You are here!',
+        {
+          icon: customMarker[0],
+          shadow: customMarker[1]
+        }
+      );
       this.addInfoWindow(map, marker, {label: 'You are here!'}, 'users');
       this.renderFriendsLocation(map);
     },
@@ -116,12 +124,24 @@ define([
         success: function (friends) {
           var customMarker = {icon: '/meetformeal/res/styles/default/img/logo-marker.png'};
           for(var i in friends) {
-            var friend = friends[i];
-            var position = new self.GMaps.LatLng(friend.lastLat, friend.lastLong);
-            var marker = self.addMarker(map, 'users', position, friend.firstname + ' ' + friend.lastname, customMarker);
+            var friend = friends[i],
+                position = new self.GMaps.LatLng(friend.lastLat, friend.lastLong),
+                marker = self.addMarker(
+                  map,
+                  'users',
+                  position, friend.firstname + ' ' + friend.lastname, customMarker
+                );
 
             (function(marker, friend) {
-              self.addInfoWindow(map, marker, {id: friend.id, label: friend.firstname + ' ' + friend.lastname}, 'users');
+              self.addInfoWindow(
+                map,
+                marker,
+                {
+                  id: friend.id,
+                  label: friend.firstname + ' ' + friend.lastname
+                },
+                'users'
+              );
             }(marker, friend));
           }
         }
@@ -188,8 +208,14 @@ define([
           var customMarker = this.coloredMarker('f6910a');
           layout = { icon: customMarker[0], shadow: customMarker[1] };
         }
-        var marker = this.addMarker(map, 'venues', new this.GMaps.LatLng(location.lat, location.lng), item.name, layout);
-        var infowindow = this.addInfoWindow(map, marker, {label: item.name}, 'venues');
+        var marker = this.addMarker(
+          map,
+          'venues',
+          new this.GMaps.LatLng(location.lat, location.lng),
+          item.name,
+          layout
+        );
+        this.addInfoWindow(map, marker, {label: item.name}, 'venues');
       }
     },
 
@@ -198,7 +224,8 @@ define([
       var inputs = '';
       for(var i in categories) {
         var category = categories[i];
-        inputs += '<label><input type="checkbox" name="' + category.id + '" checked /> ' + category.name + '</label>';
+        inputs += '<label><input type="checkbox" name="' +
+                  category.id + '" checked /> ' + category.name + '</label>';
       }
       this.$actions.show();
       this.$categories.append(inputs);
@@ -256,15 +283,16 @@ define([
       map.infowindows[type] = map.infowindows[type] || [];
       map.infowindows[type].push(infowindow);
       GMaps.event.addListener(marker, 'click', function() {
+        var mapinfowindow;
         if(typeof map.infowindows.venues !== 'undefined') {
           for(var j in map.infowindows.venues) {
-            var mapinfowindow = map.infowindows.venues[j];
+            mapinfowindow = map.infowindows.venues[j];
             mapinfowindow.close();
           }
         }
         if(typeof map.infowindows.users !== 'undefined') {
-          for(var j in map.infowindows.users) {
-            var mapinfowindow = map.infowindows.users[j];
+          for(var h in map.infowindows.users) {
+            mapinfowindow = map.infowindows.users[h];
             mapinfowindow.close();
           }
         }
@@ -292,14 +320,16 @@ define([
     coloredMarker: function (color) {
       // User's location marker
       // Credit: http://stackoverflow.com/users/3800/jack-b-nimble
-      var pinColor = color;
-      var GMaps = this.GMaps;
-      var pinImage = new GMaps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+      var pinColor = color,
+          GMaps    = this.GMaps;
+      var pinImage = new GMaps.MarkerImage(
+        "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
         new GMaps.Size(21, 34),
         new GMaps.Point(0, 0),
         new GMaps.Point(10, 34)
       );
-      var pinShadow = new GMaps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+      var pinShadow = new GMaps.MarkerImage(
+        "http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
         new GMaps.Size(40, 37),
         new GMaps.Point(0, 0),
         new GMaps.Point(12, 35)
@@ -308,10 +338,10 @@ define([
     },
 
     centerVenue: function (e) {
-      var venueId = $(e.currentTarget).data('venueid');
-      var marker = this.map.markers.venues[venueId];
-      var infowindow = this.map.infowindows.venues[venueId];
-      var latLng = marker.getPosition();
+      var venueId    = $(e.currentTarget).data('venueid'),
+          marker     = this.map.markers.venues[venueId],
+          infowindow = this.map.infowindows.venues[venueId],
+          latLng     = marker.getPosition();
       // Center map to the marker
       this.map.setCenter(latLng);
       // Open its infowindow
