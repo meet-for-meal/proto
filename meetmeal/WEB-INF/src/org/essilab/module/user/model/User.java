@@ -85,6 +85,8 @@ public class User {
 	public boolean getFirstVisit()			{ return this.firstVisit; }
 	public boolean getIsAdmin()				{ return this.isAdmin; }
 	public List<User> getFriends() 			{ return this.friends; }
+	public List<Interest> getInterests() 	{ return this.interests; }
+	public List<Category> getTastes() 		{ return this.tastes; }
 	public Date getLastPosition() 			{ return this.lastPosition; }
 	public double getLastLat()				{ return this.lastLat; }
 	public double getLastLong()				{ return this.lastLong; }
@@ -99,6 +101,8 @@ public class User {
 	public void setFirstVisit(boolean _fv)	{ this.firstVisit = _fv; }
 	public void setIsAdmin(boolean _ia)		{ this.isAdmin = _ia; }
 	public void setFriends(List<User> _f) 	{ this.friends = _f; }
+	public void setInterests(List<Interest> _i) { this.interests = _i; }
+	public void setTastes(List<Category> _c) 	{ this.tastes = _c; }
 	public void setLastPosition(Date _lp) 	{ this.lastPosition = _lp; }
 	public void setLastLat(double _llat)	{ this.lastLat = _llat; }
 	public void setLastLong(double _llng)	{ this.lastLong = _llng; }

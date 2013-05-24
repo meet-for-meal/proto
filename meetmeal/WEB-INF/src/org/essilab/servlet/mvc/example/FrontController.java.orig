@@ -21,8 +21,11 @@ import org.essilab.module.interest.actions.InterestDeleteAjax;
 import org.essilab.module.interest.actions.InterestGetAjax;
 import org.essilab.module.interest.actions.InterestInsertAjax;
 import org.essilab.module.interest.actions.InterestListAjax;
-import org.essilab.module.interest.model.Interest;
+<<<<<<< HEAD
 import org.essilab.module.message.actions.MessageInsertAjax;
+=======
+import org.essilab.module.interest.model.Interest;
+>>>>>>> df5349b524c227f39803bd1696078b2eb4d31134
 import org.essilab.module.restaurant.actions.RestaurantDeleteAjax;
 import org.essilab.module.restaurant.actions.RestaurantGetAjax;
 import org.essilab.module.restaurant.actions.RestaurantListAjax;
@@ -34,10 +37,8 @@ import org.essilab.module.user.actions.UserDeleteAjax;
 import org.essilab.module.user.actions.UserGetAjax;
 import org.essilab.module.user.actions.UserListAjax;
 import org.essilab.module.user.actions.UserListDisplay;
-import org.essilab.module.user.actions.UserListNearInterestsAjax;
 import org.essilab.module.user.actions.UserPostAjax;
 import org.essilab.module.user.model.User;
-//import org.essilab.module.user.actions.UserInsertAjax;
 
 public class FrontController extends HttpServlet {
 	public static final String ATT_SESSION_INTERESTS = "interests";
@@ -53,8 +54,6 @@ public class FrontController extends HttpServlet {
 		actions.put("ajax/announces", new AnnounceListAjax());
 		actions.put("user/display", new UserListDisplay());
 		actions.put("user/display.ajax", new UserListAjax());
-		actions.put("restaurant/display.ajax", new RestaurantListAjax());
-		//actions.put("user/insert.ajax", new UserInsertAjax());
 		actions.put("user/insert.ajax", new UserPostAjax(false));
 		actions.put("user/mainmenu.ajax", new MainMenu());
 		actions.put("error/error", new ErrorAction());
@@ -103,9 +102,7 @@ public class FrontController extends HttpServlet {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));
 						if (endValue > 0) {
-							if (url.contains("ajax/users/near")) {		
-								action = new UserListNearInterestsAjax(endValue);
-							} else if (request.getMethod().equalsIgnoreCase("GET")) {
+							if (request.getMethod().equalsIgnoreCase("GET")) {
 								action = new UserGetAjax(endValue);
 							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
 								action = new UserDeleteAjax(endValue);

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import org.essilab.module.interest.model.InterestDao;
 import org.essilab.module.user.model.User;
 import org.essilab.module.user.model.UserDao;
 
@@ -88,6 +89,25 @@ public class UserService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public List<User> nearUsers(int userId) {
+		try {
+			return UserDao.findNearUsers(userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public User userInterests(User user) {
+		try {
+			if (user != null)
+				user.setInterests(InterestDao.findInterestsUser(user.getId()));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 	
 	public void setFirstVisit(User u, boolean isFirstTime){
