@@ -44,7 +44,7 @@
                 <li><a href="restaurants"><i class="icon-map-marker"></i>Les restaurants</a></li>
                 <li><a href="mypage"><i class="icon-user"></i>Mon profil</a></li>
                 <li><a href="message" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
-                <li><a href="homepage" class="no-text"><i class="icon-off"></i></a></li>
+                <li><a href="logout" class="no-text"><i class="icon-off"></i></a></li>
             </ul>
         </nav>
 
