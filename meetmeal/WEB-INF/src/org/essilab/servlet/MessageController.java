@@ -71,7 +71,7 @@ public class MessageController  extends HttpServlet {
         else{
         	System.out.println("echec requete");
         }
-
+        request.setAttribute("title",url);
         this.getServletContext().getRequestDispatcher("/layout.jsp" ).forward( request, response );
     }
 }

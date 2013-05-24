@@ -189,6 +189,7 @@ public class FrontController extends HttpServlet {
 				.include(request, response);
 			}
 			else{
+				request.setAttribute("title",url);
 				request
 				.getRequestDispatcher(url.endsWith(".ajax") ? "/WEB-INF/views/"+url+".jsp" : "/layout.jsp")
 				.include(request, response);				

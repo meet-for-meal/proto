@@ -134,7 +134,7 @@ public class UserProfil extends HttpServlet {
         	session.setAttribute(ATT_SESSION_FRIENDS, null);
         }
         
-        
+        request.setAttribute("title",url);
         this.getServletContext().getRequestDispatcher("/layout.jsp" ).forward( request, response );
     }
  
@@ -173,7 +173,8 @@ public class UserProfil extends HttpServlet {
  
         /* store form error and data in request */
         request.setAttribute( ATT_USER, user );
-        
+
+        request.setAttribute("title",url);
         this.getServletContext().getRequestDispatcher( "/layout.jsp" ).forward( request, response );
     }
 }
