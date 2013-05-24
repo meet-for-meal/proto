@@ -91,7 +91,7 @@ $(document).ready(function(){
                             url: '/'+mfm.host+'/ajax/friend',
                             data: { userId: userId, friendId: friendId },
                             success: function () {
-                                mfm.actions.popAlert('Demande d\'amitié envoyée', 'succes');
+                                mfm.actions.popAlert('Ami ajout�', 'succes');
                                 self.html('Demande envoyée').addClass('btn-neutral');
                             },
                             error: function () {

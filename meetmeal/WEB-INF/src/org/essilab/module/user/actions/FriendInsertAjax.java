@@ -21,7 +21,8 @@ public class FriendInsertAjax implements IAction{
 			readPost(request);
 			response.setContentType(HEADER_TYPE_JSON);
 			ok = service.friendInsert(uId, fId);
-			
+
+
 			response.getWriter().println(ok ? RESPONSE_OK : RESPONSE_ERROR);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,7 +40,7 @@ public class FriendInsertAjax implements IAction{
      */
     private static String getFieldValue( HttpServletRequest request, String fieldName ) {
         String valeur = request.getParameter( fieldName );
-        System.out.println(valeur);
+
         if ( valeur == null || valeur.trim().length() == 0 ) {
             return null;
         } else {

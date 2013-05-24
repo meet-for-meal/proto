@@ -26,7 +26,7 @@
 	</filter>
 	<filter-mapping>
     	<filter-name>RestrictionFilter</filter-name>
-    	<url-pattern>/*</url-pattern>
+    	<url-pattern>/WEB-INF/*</url-pattern>
 	</filter-mapping>
     
     <filter>

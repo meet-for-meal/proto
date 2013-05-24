@@ -170,6 +170,7 @@ public class FrontController extends HttpServlet {
 					action.execute(request, response);
 				} else if (url.contains("ajax/friend")) {		//FRIEND
 					if (request.getMethod().equalsIgnoreCase("POST")) {
+						System.out.println("pro");
 						action = new FriendInsertAjax();
 					} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
 						action = new FriendDeleteAjax();
