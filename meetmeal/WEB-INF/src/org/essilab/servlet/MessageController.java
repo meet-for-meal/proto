@@ -21,8 +21,10 @@ import org.essilab.module.user.model.User;
 
 public class MessageController  extends HttpServlet {
 	public static final String ATT_SESSION_CONVERSATIONS = "conversations";
+	public static final String ATT_SESSION_CONV = "conv";
 	public static final String ATT_SESSION_MESSAGES = "messages";
 	public static final String ATT_SESSION_SENDERS = "users";
+	
     public void service( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         String url = request
     			.getRequestURI()
@@ -47,11 +49,8 @@ public class MessageController  extends HttpServlet {
 
         if(id_conv != 0){
         	List<Message> messages = messageService.messageListMessages(id_conv, user.getId());
-        	
+        	session.setAttribute(ATT_SESSION_CONV, id_conv);
         	session.setAttribute(ATT_SESSION_MESSAGES, messages);
-        	
-
-        	
         }
         else{
         	session.setAttribute(ATT_SESSION_MESSAGES, null);

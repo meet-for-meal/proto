@@ -53,16 +53,26 @@
             
             <c:choose>
 				<c:when test="${!empty sessionScope.conversations}">
+				
 					<ul>
-					<c:forEach items="${sessionScope.conversations}" var="conversation">  
-					  <li class="conversation">
+					<c:forEach items="${sessionScope.conversations}" var="conversation"> 
+
+					  <c:choose>
+						<c:when test="${conversation.sender.id == sessionScope.conv}">
+					  	<li class="conversation current">
+					  	</c:when>
+					  	<c:otherwise>
+					  	<li class="conversation">
+					  	</c:otherwise>
+					  </c:choose>
 						<img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
                     	<p class="name-conversation"><a href="#" title="">
                     		<c:set var="unique" value="0"></c:set>
                     		<c:forEach items="${sessionScope.users}" var="user"> 
-                    			<c:if test="${conversation.sender.id == user.id}">
+                    			<c:if test="${conversation.sender.id == user.id && unique == 0}">		
                     				<a href="message?id_conv=${conversation.sender.id}" class="no-style-block"/>${user.lastname} ${user.firstname}</a>
                     				<c:set var="unique" value="1"></c:set>
+
                     			</c:if>
                     		</c:forEach>  
                     	</a></p>
