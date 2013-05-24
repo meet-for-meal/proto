@@ -79,11 +79,6 @@
         <servlet-name>UserProfil</servlet-name>
         <servlet-class>org.essilab.servlet.UserProfil</servlet-class>
     </servlet>
-
-    <servlet>
-        <servlet-name>UserPage</servlet-name>
-        <servlet-class>org.essilab.servlet.UserPage</servlet-class>
-    </servlet>
     
     <servlet>
         <servlet-name>EditUserProfil</servlet-name>
@@ -141,8 +136,8 @@
 	</servlet-mapping>
 	
 	<servlet-mapping>
-    	<servlet-name>UserPage</servlet-name>
-    	<url-pattern>/userpage</url-pattern>
+    	<servlet-name>UserProfil</servlet-name>
+    	<url-pattern>/userprofile</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>

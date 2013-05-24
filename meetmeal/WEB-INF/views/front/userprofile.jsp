@@ -5,7 +5,7 @@
 <%@page import="java.util.ArrayList"%>
 
 <%
-User user = (User)session.getAttribute("user");
+User userprofile = (User)session.getAttribute("userprofile");
 %>
 
 <section id="container">
@@ -15,66 +15,63 @@ User user = (User)session.getAttribute("user");
         <div id="large_bg_img_overlay"></div>
         <img src="/meetformeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
 
-        <h1>Profil de <%=user.getFirstname() + user.getLastname() %></h1>
+        <h1>Profil de <% out.print(userprofile.getLastname() + " " + userprofile.getFirstname()); %></h1>
 
     </div>
 
     <div class="wrapper userpage">
 
         <div class="col-2">
-            <h2>Informations sur l'utilisateur</h2>
-            <img src="/meetformeal/res/styles/default/img/users/romain.jpg" width="64" height="64" class="avatar" alt="">
+            <h2>Informations du profil</h2>
+            <img src="/meetformeal/res/styles/default/img/users/<%=userprofile.getLastname() %>.jpg" width="64" height="64" class="avatar" alt="">           
             <p>
-                <i class="icon-user"></i><strong>${sessionScope.user.Firstname } ${sessionScope.user.Lastname }</strong>
+                <i class="icon-user"></i><strong><% out.print(userprofile.getLastname() + " " + userprofile.getFirstname()); %></strong>
             </p>
             <p>
-                Sexe : 
-				<strong> 
+                Sexe :
+                <strong> 
                 <% 
-                if(user.getGender() == 1)
+                if(userprofile.getGender() == 1)
                 {
                 	out.print("Homme");
                 }
-                else if(user.getGender() == 0)
+                else if(userprofile.getGender() == 0)
                 {
                 	out.print("Femme");
                 }
                 else
                 	out.print("Non défini");
                 %>
-                </strong>
+                </strong>	
+            </p>
+           	<p>
+                Age : <strong><% out.print(userprofile.getAge()); %></strong>
             </p>
             <p>
-                Age : <strong><% out.print(user.getAge()); %></strong>
-            </p>
-            <p>
-                Gouts culinaires : 
+                Goûts culinaires : 
                 <c:forEach items="${sessionScope.categories}" var="category">  
 					<a href="#">#${category.name} </a>				
 				</c:forEach>
+                
             </p>
             <p>
                 Centres d'intérêts : 
-                <c:forEach items="${sessionScope.interests}" var="interest">  
+
+				<c:forEach items="${sessionScope.interests}" var="interest">  
 					<a href="#">#${interest.tag} </a>				
 				</c:forEach>
+                
             </p>
             
-            <p>
-                <a href="#" class="btn"><i class="icon-envelope icon-plus"></i>Ajouter en ami</a>
-            </p>
+            <a href="add?id_user=<%=userprofile.getId() %>" class="btn mfm-action" data-action="friend-request"><i class="icon-plus"></i>Ajouter comme ami</a>
+            <a href="messagecreate?id_user=<%=userprofile.getId() %>" class="btn" ><i class="icon-pencil"></i>Ecrire un message</a>
+            
         </div>
-
+		
         <div class="col-1">
+			
 
-            <h2>Amis</h2>
-			<c:if test="${!empty sessionScope.friends}">
-				<c:forEach items="${sessionScope.friends}" var="friend">  
-					<a href="userpage?id=${friend.id }" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/${friend.lastname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
-				</c:forEach>
-			</c:if>
-            
-		</div>
+        </div>
 
         <div class="col-2">
 

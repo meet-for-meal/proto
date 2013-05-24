@@ -34,6 +34,7 @@ import org.essilab.module.user.actions.UserDeleteAjax;
 import org.essilab.module.user.actions.UserGetAjax;
 import org.essilab.module.user.actions.UserListAjax;
 import org.essilab.module.user.actions.UserListDisplay;
+import org.essilab.module.user.actions.UserListFriendsAjax;
 import org.essilab.module.user.actions.UserListNearInterestsAjax;
 import org.essilab.module.user.actions.UserPostAjax;
 import org.essilab.module.user.model.User;
@@ -104,6 +105,8 @@ public class FrontController extends HttpServlet {
 						if (endValue > 0) {
 							if (url.contains("ajax/users/near")) {		
 								action = new UserListNearInterestsAjax(endValue);
+							} else if (url.contains("ajax/users/friends")) {		
+								action = new UserListFriendsAjax(endValue);
 							} else if (request.getMethod().equalsIgnoreCase("GET")) {
 								action = new UserGetAjax(endValue);
 							} else if (request.getMethod().equalsIgnoreCase("DELETE")) {

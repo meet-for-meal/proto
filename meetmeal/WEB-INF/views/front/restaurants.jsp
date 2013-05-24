@@ -3,6 +3,7 @@
 <%@page import="org.essilab.module.restaurant.model.Restaurant"%>
 <%@page import="java.util.ArrayList"%>
 
+
 <section id="container">
 
     <!-- start: Map -->

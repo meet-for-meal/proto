@@ -22,16 +22,17 @@ public class UserPage extends HttpServlet {
     public static final String ATT_SESSION_INTERESTS = "interests";
     public static final String ATT_SESSION_CATEGORIES = "categories";
     public static final String ATT_SESSION_FRIENDS = "friends";
-    private static final String ID   = "id";
+
 
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         String url = request
-    			.getRequestURI()
-    			.substring(request.getContextPath().length()+1);
+    			.getRequestURI();
+    			//.substring(request.getContextPath().length()+1);
         request.setAttribute("url", url);
         HttpSession session = request.getSession();
         
-        String id = getValeurChamp( request, ID );
+        String id = request.getParameter("id");
+        
         UserService userservice = UserService.getInstance();
         User user = userservice.userSelect(Integer.parseInt(id));
         if (id != null ) {
@@ -64,21 +65,12 @@ public class UserPage extends HttpServlet {
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 
     	String url = request
-     			.getRequestURI()
-     			.substring(request.getContextPath().length()+1);
-         request.setAttribute("url", url); 
-
-         
+    			.getRequestURI()
+    			.substring(request.getContextPath().length()+1);
+        request.setAttribute("url", url);
         
-        this.getServletContext().getRequestDispatcher( "/layout.jsp" ).forward( request, response );
-    }
-    
-    private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
-        String valeur = request.getParameter( nomChamp );
-        if ( valeur == null || valeur.trim().length() == 0 ) {
-            return null;
-        } else {
-            return valeur;
-        }
+    	
+        
+        this.getServletContext().getRequestDispatcher("/layout.jsp" ).forward( request, response );
     }
 }
