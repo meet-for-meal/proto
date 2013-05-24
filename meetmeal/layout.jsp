@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
     <link rel="icon" type="image/png" href="<%=request.getContextPath()%>/res/styles/default/img/favicon.png">
     <%
-        boolean isHomepage = (request.getAttribute("url").equals("homepage") || request.getAttribute("url").equals("register") || request.getAttribute("url").equals("connect-admin"));
+        boolean isHomepage = (request.getAttribute("url").equals("homepage") || request.getAttribute("url").equals("register") || request.getAttribute("url").equals("contact") || request.getAttribute("url").equals("connect-admin"));
 
 	 	if(isHomepage){
 	 		out.println("<link href=\"" + request.getContextPath() +"/res/styles/default/homepage.css\" rel=\"stylesheet\">");
