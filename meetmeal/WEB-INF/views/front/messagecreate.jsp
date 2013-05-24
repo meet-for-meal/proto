@@ -16,6 +16,7 @@
             <form id="announcement-form" action="messagecreate" method="post">
             	<input type="hidden" name="receiver" value="<%= request.getParameter("id_user") %>"/>
 				<input type="hidden" name="sender" value="${sessionScope.sessionUser.id}"/>
+				<input type="hidden" name="ask" value="<%= request.getParameter("ask") %>"/>
                 <p>
                     <label for="message"><strong><i class="icon-pencil"></i> Votre message :</strong></label>
                     <textarea id="description" name="message" cols="30" rows="10"></textarea>

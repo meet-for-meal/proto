@@ -1,8 +1,11 @@
 <%@page import="java.util.List"%>
 <%@page import="org.essilab.module.user.model.User"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <section id="container">
-
+<c:if test="${!empty sessionScope.message}">
+<script>mfm.actions.popAlert('create-message')</script>
+</c:if>
     <!-- start: Map -->
     <div id="meetformealmap" class="deployed">
 
@@ -32,23 +35,36 @@
             <div class="col-2">
                 <h2>Recherche avancée</h2>
                 <form id="user-search-form" action="announcementsearch" method="post">
-                    <p>
-                        <label for="time-start"><strong><i class="icon-time"></i> Quand ? </strong></label>
-                        De <input type="text" id="time-start"> à <input type="text" id="time-end" >
-                        <input type="submit" class="btn" value="Trouver">
-                    </p>
+ 
                     <p>
                         <label for="interests"><strong><i class="icon-heart"></i> Goûts / Intérêts</strong></label>
                         <input type="text" id="interests" name="interests">
                         <span id="suggestions"></span>
+                        <input type="submit" class="btn" value="Trouver">
                     </p>
                 </form>
 
             </div>
             <div id="current-user" class="col-1">
                 <img src="<%= request.getContextPath() %>/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
-                <h3><a href="mypage" class="black">Hervé Tran</a></h3>
-                <span class="user-tags"><a href="#">#multimedia</a> <a href="#">#guitare</a> <a href="#">#blues</a></span>
+                <h3><a href="mypage" class="black">${sessionScope.sessionUser.firstname} ${sessionScope.sessionUser.lastname}</a></h3>
+                <span class="user-tags">
+                	<c:choose>
+						<c:when test="${!empty sessionScope.interests}">
+							<c:forEach items="${sessionScope.interests}" var="interest">  
+								<a href="#">#${interest.tag} </a>				
+							</c:forEach>
+					        
+					    </c:when>
+						<c:otherwise>
+							
+						</c:otherwise>
+					</c:choose>
+                
+                
+                
+	                
+				</span>
                 <span><a href="announcementcreate" class="btn"><i class="icon-pencil"></i> Poster une annonce</a></span>
             </div>
         </div>
