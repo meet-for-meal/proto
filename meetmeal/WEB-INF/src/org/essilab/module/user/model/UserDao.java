@@ -96,10 +96,10 @@ public class UserDao {
 				" age="+ user.getAge() +"," +
 				" email='"+ user.getEmail() +"'," +
 				" password='"+ user.getPassword() +"'," +
-				" gender="+ user.getGender() +",";
+				" gender="+ user.getGender() +"," +
+				" isAdmin="+ (user.getIsAdmin()? 1: 0)+" ";
 				if (bigUpdate) {
-					request += " firstVisit="+ (user.getFirstVisit()? 1: 0) +"," +
-					" isAdmin="+ (user.getIsAdmin()? 1: 0);
+					request += ", firstVisit="+ (user.getFirstVisit()? 1: 0) +" ";
 					if (user.getLastPosition() != null) {
 					request += "," +
 					" lastPosition='"+new java.sql.Date(user.getLastPosition().getTime())+" "+new java.sql.Time(user.getLastPosition().getTime())+"'," +
@@ -108,7 +108,7 @@ public class UserDao {
 					}
 				}
 				request += " WHERE id="+ user.getId();
-	
+			System.out.println(request);
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 	//		ps.setDate(1, ();
 			ps.executeUpdate();

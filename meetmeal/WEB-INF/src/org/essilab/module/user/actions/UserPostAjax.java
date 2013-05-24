@@ -20,6 +20,7 @@ public class UserPostAjax implements IAction{
 	public final static String FIELD_PASSWORD = "password";
 	public final static String FIELD_AGE = "age";
 	public final static String FIELD_GENDER = "gender";
+	public final static String FIELD_ISADMIN = "isAdmin";
 	
 	boolean toUpdate = false;
 	
@@ -55,8 +56,9 @@ public class UserPostAjax implements IAction{
         String password = getFieldValue(request, FIELD_PASSWORD);
         int age = (getFieldValue(request, FIELD_AGE) != null) ? Integer.parseInt(getFieldValue(request, FIELD_AGE)) : 0;
         int gender = (getFieldValue(request, FIELD_GENDER) != null) ? Integer.parseInt(getFieldValue(request, FIELD_GENDER)) : 0;
+        boolean isAdmin = (getFieldValue(request, FIELD_ISADMIN) != null) ? Boolean.parseBoolean(getFieldValue(request, FIELD_ISADMIN)) : false;
         
-        return new User(id,lastname,firstname,age,email,password,gender);
+        return new User(id,lastname,firstname,age,email,password,gender, false, isAdmin);
     }
     
     /*

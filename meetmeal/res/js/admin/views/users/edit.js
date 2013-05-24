@@ -44,6 +44,7 @@ define([
       var self = this,
           $form = $(e.currentTarget),
           data = {
+    	id:		   this.userId,
         firstname: $form.find('#firstname').val(),
         lastname:  $form.find('#lastname').val(),
         email:     $form.find('#email').val(),
@@ -51,7 +52,7 @@ define([
         gender:    $form.find('#gender').val(),
         password:  $form.find('#password').val()
       };
-      Util.apiRequest('/user/' + this.userId, 'PUT', null, data, function() {
+      Util.apiRequest('/user/update/' + this.userId, 'POST', null, data, function() {
         self.$alertSuccess.show();
       }, function() {
         self.$alertError.show();
