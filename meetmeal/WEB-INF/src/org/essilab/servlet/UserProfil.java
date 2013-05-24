@@ -28,7 +28,9 @@ public class UserProfil extends HttpServlet {
     public static final String ATT_SESSION_CATEGORIES = "categories";
     public static final String ATT_SESSION_FRIENDS = "friends";
     public static final String ATT_SESSION_INVITATION = "invitation";
-
+    public static final String ATT_SESSION_INVITATION_ACCEPTED = "accepted";
+    public static final String ATT_SESSION_MEAL = "meal";
+    
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         String url = request
     			.getRequestURI()
@@ -39,23 +41,41 @@ public class UserProfil extends HttpServlet {
         User user = (User) session.getAttribute("sessionUser");
         AnnounceService announceService = AnnounceService.getInstance();
         InvitationService invitationService = InvitationService.getInstance();
-        
-        
-        
-
-    	
     	
         if (user != null ) {
         	int id_announce = 0;	
+
+        	//Check if invitations are waiting
         	id_announce = announceService.getIdByCreatorId(user.getId());
-        	
         	if(id_announce != 0){
-        		
         		Invitation invit = invitationService.findInvitationsByAnnounceid(id_announce);
         		session.setAttribute(ATT_SESSION_INVITATION, invit);
         	}
         	
-        	// Handle invitation to eat
+        	//Check if invitation is_accepted (for sender)
+        	List<Invitation> list_invit = invitationService.findInvitationsByUserid(user.getId());
+        	if(list_invit != null){
+        		Invitation is_accepted = null;
+	        	for(Invitation in : list_invit){
+	        		if(in.getIsAccepted() == true){
+	        			is_accepted = in;
+	        		}
+	        	}
+	        	if(is_accepted == null){
+	        		
+	        		session.removeAttribute(ATT_SESSION_INVITATION_ACCEPTED);
+	        		session.removeAttribute(ATT_SESSION_MEAL);
+	        	}
+	        	else{
+		        	session.setAttribute(ATT_SESSION_MEAL, true);
+	        		session.setAttribute(ATT_SESSION_INVITATION_ACCEPTED, is_accepted);
+	        	}
+        	}
+        	else{
+        		session.removeAttribute(ATT_SESSION_MEAL);
+        	}
+        	
+        	// Handle invitation to eat (for receiver)
         	if(request.getParameter("accepted") != null){
         		Invitation invit = (Invitation) session.getAttribute(ATT_SESSION_INVITATION);
         		Announce announce = announceService.announceSelect(id_announce);
@@ -66,14 +86,17 @@ public class UserProfil extends HttpServlet {
             		session.removeAttribute(ATT_SESSION_INVITATION);
             		announce.setIsOpen(false);
             		boolean update_announce = announceService.announceUpdate(announce);
+            		session.setAttribute(ATT_SESSION_MEAL, true);
+
             	}
             	else{
             		invit.setIsOpen(false);
             		boolean update = invitationService.invitationUpdate(invit);
             		session.removeAttribute(ATT_SESSION_INVITATION);
-            		
+            		session.removeAttribute(ATT_SESSION_MEAL);
             		announce.setIsOpen(true);
             		boolean update_announce = announceService.announceUpdate(announce);
+
             	}
             	
             }
