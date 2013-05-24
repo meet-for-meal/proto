@@ -61,57 +61,74 @@ User user = (User)session.getAttribute("sessionUser");
                         <input type="text" name="age" id="age" value="<%=user.getAge() %>">
                     </p>
                     <p>
-                        <label for="taste"><strong>Goûts culinaires : </strong></label><br/><br/>
-                        <% Boolean b = false; %>
+                        <label for="taste"><strong>Goûts culinaires : </strong></label><br/>
+                        <table style="font-size:12px;">
+                        <% Boolean b = false; int t = 0;%>
                         <c:forEach items="${sessionScope.allcategories}" var="allcat">  
 							<c:forEach items="${sessionScope.usercategories}" var="usercat">  
 								<c:if test="${usercat.id == allcat.id}"><% b = true; %></c:if>									
 							</c:forEach>
 							<%
+							if(t == 0) out.print("<tr>");
 							if(b == true)
 							{
 								%>
-								<input type="checkbox" name="category" id="${allcat.id}" value="${allcat.id}" checked="checked">
-								${allcat.name}
+								<td><input type="checkbox" name="category" id="${allcat.id}" value="${allcat.id}" checked="checked">
+								${allcat.name}</td>
 								<%
 							}
 							else
 							{
 								%>
-								<input type="checkbox" name="category" id="${allcat.id}" value="${allcat.id}">
-								${allcat.name}
+								<td><input type="checkbox" name="category" id="${allcat.id}" value="${allcat.id}">
+								${allcat.name}</td>
 								<%
 							}
 							b = false;
+							t++;
+							if(t == 3) 
+							{
+								out.print("</tr>"); 
+								t = 0;
+							}
 							%>			
 						</c:forEach>
-                        
+                        </table>
                     </p>
                     <p>
-                        <label for="interest"><strong>Centres d'intérêts : </strong></label><br/><br/>
-                        <% Boolean b2 = false; %>
+                        <label for="interest"><strong>Centres d'intérêts : </strong></label><br/>
+                        <table style="font-size:12px;">
+                        <% Boolean b2 = false; int t2 = 0; %>
                         <c:forEach items="${sessionScope.allinterests}" var="allint">  
 							<c:forEach items="${sessionScope.userinterests}" var="userint">  
 								<c:if test="${userint.id == allint.id}"><% b2 = true; %></c:if>									
 							</c:forEach>
 							<%
+							if(t2 == 0) out.print("<tr>");
 							if(b2 == true)
 							{
 								%>
-								<input type="checkbox" name="interest" id="${allint.id}" value="${allint.id}" checked="checked">
-								${allint.tag}
+								<td><input type="checkbox" name="interest" id="${allint.id}" value="${allint.id}" checked="checked">
+								${allint.tag}</td>
 								<%
 							}
 							else
 							{
 								%>
-								<input type="checkbox" name="interest" id="${allint.id}" value="${allint.id}">
-								${allint.tag}
+								<td><input type="checkbox" name="interest" id="${allint.id}" value="${allint.id}">
+								${allint.tag}</td>
 								<%
 							}
 							b2 = false;
+							t2++;
+							if(t2 == 6) 
+							{
+								out.print("</tr>"); 
+								t2 = 0;
+							}
 							%>			
 						</c:forEach>
+						</table>
                     </p>
                     <br/>
                     <p>
