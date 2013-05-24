@@ -64,7 +64,7 @@ public class AnnounceDao {
 				request += ", isOpen="+ (a.getIsOpen()? 1: 0) +"," +
 				" latitude="+ a.getLatitude() +"," +
 				" longitude="+ a.getLongitude() +"," +
-				" message='"+ a.getMessage() +"'" +
+				" message=\""+ a.getMessage() +"\"" +
 				" WHERE id="+ a.getId();
 			System.out.println(request);
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
@@ -100,6 +100,17 @@ public class AnnounceDao {
 		Connect.getConnection().close();
 		return (result != null && result.next()) ? result.getInt("id") : 0;
 	}
+	
+	//Get AnnounceId and creatorId
+	public static int getIdByCreatorId(int creatorId) throws SQLException {
+		String request = "SELECT id FROM Announce WHERE creatorId = "+creatorId+" AND isOpen = 1";
+		System.out.println(request);
+		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+		ResultSet result = ps.executeQuery();
+		Connect.getConnection().close();
+		return (result != null && result.next()) ? result.getInt("id") : 0;
+	}
+	
 	
 	//All
 	public static List<Announce> getAll() throws SQLException {

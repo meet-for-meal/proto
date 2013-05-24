@@ -80,4 +80,15 @@ public class AnnounceService {
 		return false;
 	}
 	
+	
+	public int getIdByCreatorId(int id) {
+		try {
+			return AnnounceDao.getIdByCreatorId(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	
 }

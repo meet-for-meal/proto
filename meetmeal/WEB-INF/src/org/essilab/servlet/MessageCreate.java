@@ -45,10 +45,11 @@ public class MessageCreate extends HttpServlet {
         /* Handle request */
         Message message = form.CreateMessage( request );
         /* Retrieve session */
-        System.out.println("try");
         if ( form.getErrors().isEmpty() && user != null && message != null) {
-        	System.out.println("success");
+
         	session.setAttribute(ATT_SESSION_MESSAGE, message);
+        	response.sendRedirect( request.getContextPath() +  "/index");
+        	return;
         } else {
         	session.setAttribute(ATT_SESSION_MESSAGE, null);
         }

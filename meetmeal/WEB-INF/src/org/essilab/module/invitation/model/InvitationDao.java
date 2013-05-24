@@ -32,11 +32,13 @@ public class InvitationDao {
 			if (getIdBySameInvitation(i.getSender().getId(), i.getCreatedDate(), i.getAnnounce().getId()) <= 0) {
 				String request = "INSERT INTO Invitation VALUES (NULL" +
 					", "+ (i.getSender() != null ? i.getSender().getId()+"" : "NULL") +
+					", "+ (i.getAnnounce().getId()) +
 					", "+ (i.getCreatedDate() != null ? "'"+new java.sql.Date(i.getCreatedDate().getTime())+" "+new java.sql.Time(i.getCreatedDate().getTime())+"'" : "NULL") +
 					", "+ (i.getIsAccepted()? 1: 0) +
 					", "+ (i.getIsConfirmed()? 1: 0) +
+					", 0, 0" + (i.getIsConfirmed()? 1: 0) +
 					", "+ (i.getIsOpen()? 1: 0) +"," +
-					" '"+ i.getMessage() +"')";
+					" \""+ i.getMessage() +"\")";
 				System.out.println(request);
 				PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 				ps.executeUpdate();
@@ -60,7 +62,7 @@ public class InvitationDao {
 				request += ", isAccepted="+ (i.getIsAccepted()? 1: 0) +"," +
 				" isConfirmed="+ (i.getIsConfirmed()? 1: 0) +"," +
 				" isOpen="+ (i.getIsOpen()? 1: 0) +"," +
-				" message='"+ i.getMessage() +"'" +
+				" message=\""+ i.getMessage() +"\"" +
 				" WHERE id="+ i.getId();
 			System.out.println(request);
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
@@ -113,39 +115,48 @@ public class InvitationDao {
 	}
 	
 	//Invitations by Announce
-	public static List<Invitation> findInvitationsByAnnounceid(int announceId) throws SQLException {
+	public static Invitation findInvitationsByAnnounceid(int announceId) throws SQLException {
 		String request = "SELECT id, senderId, announceId, createdDate, isAccepted, isConfirmed, isOpen, message " +
 				"FROM Invitation I " +
-				"WHERE announceId = "+announceId;
+				"WHERE announceId = "+announceId+
+				" AND I.isOpen = 1";
 		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
 		Connect.getConnection().close();
 		
-		return createInvitations(result);
+		return createInvitation(result);
 	}
 	
 	
 	//Create Invitation
 	private static Invitation createInvitation(ResultSet result) {
 		Invitation invit = new Invitation();
-		try {
-			result.next(); 
-			if (result != null) {
-				invit = new Invitation(
-						result.getInt("id"),
-						result.getTimestamp("createdDate"), 
-						result.getBoolean("isAccepted"),
-						result.getBoolean("isConfirmed"),
-						result.getBoolean("isOpen"),
-//						result.getDouble("latitude"),
-//						result.getDouble("longitude"),
-						result.getString("message") );
-				invit.setSender(UserDao.getUser(result.getInt("senderId")));
-				invit.setAnnounce(AnnounceDao.getAnnounce(result.getInt("announceId")));
-			}
-		} catch (SQLException e) { e.printStackTrace();	}
-		return invit;
+		if (result != null) {
+			try {
+				 
+				if (result.next()) {
+					invit = new Invitation(
+							result.getInt("id"),
+							result.getTimestamp("createdDate"), 
+							result.getBoolean("isAccepted"),
+							result.getBoolean("isConfirmed"),
+							result.getBoolean("isOpen"),
+	//						result.getDouble("latitude"),
+	//						result.getDouble("longitude"),
+							result.getString("message") );
+					invit.setSender(UserDao.getUser(result.getInt("senderId")));
+					invit.setAnnounce(AnnounceDao.getAnnounce(result.getInt("announceId")));
+				}
+				else{
+					return null;
+				}
+			} catch (SQLException e) { e.printStackTrace();	}
+			return invit;
+		}
+		else{
+			return null;
+		}
 	}
 		
 	//Create Invitations

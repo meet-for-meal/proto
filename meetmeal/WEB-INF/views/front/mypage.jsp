@@ -35,10 +35,12 @@ User user = (User)session.getAttribute("sessionUser");
                 {
                 	out.print("Homme");
                 }
-                else 
+                else if(user.getGender() == 0)
                 {
                 	out.print("Femme");
                 }
+                else
+                	out.print("Non défini");
                 %>
                 </strong>	
             </p>
@@ -75,25 +77,35 @@ User user = (User)session.getAttribute("sessionUser");
 
         <div class="col-1">
 
-            <h2>Nouvelles demandes d'ajout</h2>
+            <h2>Nouvelles demandes</h2>
+            <c:choose>
+				<c:when test="${!empty sessionScope.invitation}">
+					<div class="user">
+		                <img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
+		                <p>
+		                    <a href="userpage?uid=${sessionScope.invitation.sender.id}" class="black"><strong>${sessionScope.invitation.sender.firstname} ${sessionScope.invitation.sender.lastname}</strong></a><br>
+		                    <a href="#">#communication</a> <a href="#">#musique</a> <a href="#">#badminton</a><br>
+		                    <a href="mypage?accepted=true" class="btn"><i class="icon-ok"></i>Accepter</a> <a href="mypage?accepted=false" class="btn btn-neutral"><i class="icon-remove"></i>Ignorer</a>
+		                </p>
+		            </div>
+			        
+			    </c:when>
+				<c:otherwise>
+					Pas de demandes en cours
+				</c:otherwise>
+			</c:choose>
 
-            <div class="user">
-                <img src="/meetformeal/res/styles/default/img/users/alexandra.jpg" width="64" height="64" class="avatar" alt="">
-                <p>
-                    <a href="userpage" class="black"><strong>Alexandra Martin</strong></a><br>
-                    <a href="#">#communication</a> <a href="#">#musique</a> <a href="#">#badminton</a><br>
-                    <a href="#" class="btn"><i class="icon-ok"></i>Accepter</a> <a href="#" class="btn btn-neutral"><i class="icon-remove"></i>Ignorer</a>
-                </p>
-            </div>
+	            
+
 
             <hr>
 
             <h2>Mes amis</h2>
-			
-			<c:forEach items="${sessionScope.friends}" var="friend">  
-				<a href="userpage" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/${friend.lastname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
-			</c:forEach>
-
+			<c:if test="${!empty sessionScope.friends}">
+				<c:forEach items="${sessionScope.friends}" var="friend">  
+					<a href="userpage" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/${friend.lastname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
+				</c:forEach>
+			</c:if>
         </div>
 
         <div class="col-2">

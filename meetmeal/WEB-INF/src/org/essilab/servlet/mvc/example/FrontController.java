@@ -2,6 +2,7 @@ package org.essilab.servlet.mvc.example;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletConfig;
@@ -15,11 +16,13 @@ import org.essilab.module.announce.actions.AnnounceDeleteAjax;
 import org.essilab.module.announce.actions.AnnounceGetAjax;
 import org.essilab.module.announce.actions.AnnounceListAjax;
 import org.essilab.module.error.actions.ErrorAction;
+import org.essilab.module.interest.InterestService;
 import org.essilab.module.interest.actions.InterestDeleteAjax;
 import org.essilab.module.interest.actions.InterestGetAjax;
 import org.essilab.module.interest.actions.InterestInsertAjax;
 import org.essilab.module.interest.actions.InterestListAjax;
 import org.essilab.module.message.actions.MessageInsertAjax;
+import org.essilab.module.interest.model.Interest;
 import org.essilab.module.restaurant.actions.RestaurantDeleteAjax;
 import org.essilab.module.restaurant.actions.RestaurantGetAjax;
 import org.essilab.module.restaurant.actions.RestaurantListAjax;
@@ -32,9 +35,10 @@ import org.essilab.module.user.actions.UserGetAjax;
 import org.essilab.module.user.actions.UserListAjax;
 import org.essilab.module.user.actions.UserListDisplay;
 import org.essilab.module.user.actions.UserPostAjax;
+import org.essilab.module.user.model.User;
 
 public class FrontController extends HttpServlet {
-
+	public static final String ATT_SESSION_INTERESTS = "interests";
 	private static final long serialVersionUID = 1L;
 	Map<String, IAction> actions = new HashMap<String, IAction>();
 	@Override
@@ -58,8 +62,16 @@ public class FrontController extends HttpServlet {
 		String url = request.getRequestURI().substring(request.getContextPath().length()+1);
 
 		HttpSession session = request.getSession();
+		if(session.getAttribute("sessionUser") != null){
+			InterestService interestService = InterestService.getInstance();
+			User user = (User) session.getAttribute("sessionUser");
+	        List<Interest>  interest = interestService.getInterestByUser(user);
+	        
+	        session.setAttribute(ATT_SESSION_INTERESTS, interest);
+		}
 		if (url.trim().isEmpty()){
 			if(session.getAttribute("sessionUser") != null){
+
 				response.sendRedirect( request.getContextPath() + "/index" );
 				return;
 			}else{
@@ -71,6 +83,8 @@ public class FrontController extends HttpServlet {
 
 		IAction action = actions.get(url);
 		
+		
+		/* Handle ajax */
 		if (null != action)
 			action.execute(request, response);
 		else {
