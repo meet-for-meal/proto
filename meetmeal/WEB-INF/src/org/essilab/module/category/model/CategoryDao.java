@@ -22,7 +22,7 @@ public class CategoryDao {
 	
 	public static boolean insertByUser(int userid, int tasteid) throws SQLException{
 		boolean ok = false;
-		String request = "INSERT INTO has_taste VALUES ('"+ userid +"', '"+ tasteid +"')";
+		String request = "INSERT INTO Has_Taste VALUES ("+ userid +", "+ tasteid +")";
 		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ps.executeUpdate();
@@ -32,7 +32,7 @@ public class CategoryDao {
 	}
 	
 	public static boolean deleteByUser(int id) throws SQLException {
-		String request = "DELETE FROM has_taste WHERE userId="+ id;
+		String request = "DELETE FROM Has_Taste WHERE userId="+ id;
 		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ps.executeUpdate();

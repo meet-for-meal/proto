@@ -50,19 +50,18 @@ public class UserForm {
         String[] si = request.getParameterValues(INTEREST);
         String[] sc = request.getParameterValues(CATEGORY);
         
-        
         user.setFirstname(firstname);
         user.setLastname(lastname);
-        user.setGender(Integer.parseInt(gender));
-        user.setAge(Integer.parseInt(age));
+        if (gender != null)
+        	user.setGender(Integer.parseInt(gender));
+        if (age != null)
+        	user.setAge(Integer.parseInt(age));
         interestservice.interestDeleteByUser(user.getId());
         categoryservice.catgoryDeleteByUser(user.getId());
-        for(int i = 0; i < si.length; i++)
-        {
+        for(int i = 0; i < si.length; i++) {
         	interestservice.interestInsertByUser(user.getId(), Integer.parseInt(si[i]));
         }
-        for(int i = 0; i < sc.length; i++)
-        {
+        for(int i = 0; i < sc.length; i++) {
         	categoryservice.categoryInsertByUser(user.getId(), Integer.parseInt(sc[i]));
         }
         

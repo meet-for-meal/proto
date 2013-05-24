@@ -38,7 +38,7 @@ public class InterestDao {
 	
 	public static boolean insertByUser(int userid, int interestid) throws SQLException{
 		boolean ok = false;
-		String request = "INSERT INTO has_interest VALUES ('"+ userid +"', '"+ interestid +"')";
+		String request = "INSERT INTO Has_Interest VALUES ('"+ userid +"', '"+ interestid +"')";
 		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ps.executeUpdate();
@@ -65,7 +65,7 @@ public class InterestDao {
 	public static boolean deleteByUser(int id) throws SQLException {
 		boolean ok = false;
 		if (getInterest(id) != null) {
-			String request = "DELETE FROM has_interest WHERE userId="+ id;
+			String request = "DELETE FROM Has_Interest WHERE userId="+ id;
 			System.out.println(request);
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 			ps.executeUpdate();
