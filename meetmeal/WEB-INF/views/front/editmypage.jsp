@@ -24,7 +24,7 @@ User user = (User)session.getAttribute("sessionUser");
 
         <div class="col-2">
             <h2>Informations sur votre profil</h2>
-            <img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
+            <img src="/meetformeal/res/styles/default/img/users/<%=user.getLastname() %>.jpg" width="64" height="64" class="avatar" alt="">
             <br/><br/><br/><br/>
             <form id="user-search-form" action="mypage" method="post">
                     <p>
@@ -155,7 +155,7 @@ User user = (User)session.getAttribute("sessionUser");
             <h2>Mes amis</h2>
 			
 			<c:forEach items="${sessionScope.friends}" var="friend">  
-				<a href="userpage" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt=""></a>			
+				<a href="userpage" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/${friend.lastname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
 			</c:forEach>
 
         </div>
