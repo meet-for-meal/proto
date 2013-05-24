@@ -52,10 +52,10 @@ public class RestaurantDao {
 		boolean ok = false;
 		if (getIdByFoursquareId(resto.getFoursquareId()) > 0) {
 			String request = "UPDATE Restaurant SET" +
-				" name='"+ resto.getName() +"'," +
-				" latitude="+ resto.getLatitude() +"," +
-				" longitude="+ resto.getLongitude() +"," +
-				" "+ ((resto.getCategory() != null) ? resto.getCategory().getId() : "NULL") +"," +
+//				" name='"+ resto.getName() +"'," +
+//				" latitude="+ resto.getLatitude() +"," +
+//				" longitude="+ resto.getLongitude() +"," +
+//				" categoryId="+ ((resto.getCategory() != null) ? resto.getCategory().getId() : "NULL") +"," +
 				" foursquareId='"+ resto.getFoursquareId() +"'," +
 				" partnership="+ resto.getPartnership() +"," +
 				" urlImage='"+ resto.getUrlImage() +"'," +
@@ -89,12 +89,15 @@ public class RestaurantDao {
 	
 	//Get RestaurantId by foursquareId
 	public static int getIdByFoursquareId(String fsqId) throws SQLException {
-		String request = "SELECT id FROM Restaurant WHERE foursquareId = '"+fsqId+"'";
-		
-		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
-		ResultSet result = ps.executeQuery();
-		Connect.getConnection().close();
-		return (result != null && result.next()) ? result.getInt("id") : null;
+		if (fsqId != null && fsqId.length() > 0) {
+			String request = "SELECT id FROM Restaurant WHERE foursquareId = '"+fsqId+"'";
+			
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ResultSet result = ps.executeQuery();
+			Connect.getConnection().close();
+			return (result != null && result.next()) ? result.getInt("id") : 0;
+		}
+		return 0;
 	}
 	
 	//All

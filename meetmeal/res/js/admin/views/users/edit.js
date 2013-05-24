@@ -50,7 +50,7 @@ define([
         email:     $form.find('#email').val(),
         age:       $form.find('#age').val(),
         gender:    $form.find('#gender').val(),
-        isAdmin:   $form.find('#isAdmin').val() === 'on',
+        isAdmin:   $form.find('#isAdmin').prop('checked'),
         password:  $form.find('#password').val()
       };
       Util.apiRequest('/user/update/' + this.userId, 'POST', null, data, function() {
