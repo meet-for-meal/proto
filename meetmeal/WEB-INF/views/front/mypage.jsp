@@ -3,7 +3,7 @@
 <%@page import="org.essilab.module.user.model.User"%>
 <%@page import="org.essilab.module.interest.model.Interest"%>
 <%@page import="java.util.ArrayList"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
 User user = (User)session.getAttribute("sessionUser");
 %>
@@ -50,14 +50,14 @@ User user = (User)session.getAttribute("sessionUser");
             <p>
                 Goûts culinaires : 
                 <c:forEach items="${sessionScope.categories}" var="category">  
-					<a href="#">#${category.name} </a>				
+					<a href="#">#${fn:toLowerCase(category.name)} </a>				
 				</c:forEach>
                 
             </p>
             <p>
                 Centres d'intérêts : 
 				<c:forEach items="${sessionScope.interests}" var="interest">  
-					<a href="#">#${interest.tag} </a>				
+					<a href="#">#${fn:toLowerCase(interest.tag)} </a>				
 				</c:forEach>
                 
             </p>

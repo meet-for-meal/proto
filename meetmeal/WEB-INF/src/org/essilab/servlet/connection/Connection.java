@@ -22,6 +22,7 @@ public class Connection extends HttpServlet {
     			.getRequestURI()
     			.substring(request.getContextPath().length()+1);
         request.setAttribute("url", url);
+        request.setAttribute("title",url);
         /* Affichage de la page de connexion */
         this.getServletContext().getRequestDispatcher( "/layout.jsp" ).forward( request, response );
     }
@@ -73,7 +74,7 @@ public class Connection extends HttpServlet {
         /* store form error and data in request */
         request.setAttribute( ATT_FORM, form );
         request.setAttribute( ATT_USER, user );
-        
+        request.setAttribute("title",url);
         this.getServletContext().getRequestDispatcher( "/layout.jsp" ).forward( request, response );
     }
 }
