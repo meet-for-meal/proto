@@ -54,13 +54,14 @@ define([
     updateAnnouncement: function (e) {
       e.preventDefault();
       var params = {
+    	id:				   this.announcementId,
         createdDate:       this.$el.find('#createdDate').val(),
         disponibilityDate: this.$el.find('#disponibilityDate').val(),
         latitude:          this.$el.find('#latitude').val(),
         longitude:         this.$el.find('#longitude').val(),
         message:           this.$el.find('#message').val(),
       };
-      Util.apiRequest('/announce/' + this.announcementId, 'PUT', null, params, function (res) {
+      Util.apiRequest('/announce/update/'+ this.announcementId, 'POST', null, params, function (res) {
         if(res && res.status === 'ok') {
           window.location = '#/announcements';
         }

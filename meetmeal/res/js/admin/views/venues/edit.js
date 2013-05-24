@@ -63,10 +63,11 @@ define([
     updateVenue: function (e) {
       e.preventDefault();
       var params = {
-        partnership: this.$el.find('#partnership').val(),
-        foursquare_id: this.$el.find('#idFoursquare').val()
+    	id:				this.venueId,
+        partnership: 	this.$el.find('#partnership').val(),
+        foursquare_id: 	this.$el.find('#idFoursquare').val()
       };
-      Util.apiRequest('/restaurant/' + this.venueId, 'PUT', null, params, function (res) {
+      Util.apiRequest('/restaurant/update/' + this.venueId, 'POST', null, params, function (res) {
         if(res && res.status === 'ok') {
           window.location = '#/venues';
         }

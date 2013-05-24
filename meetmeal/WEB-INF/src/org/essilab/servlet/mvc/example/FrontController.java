@@ -93,7 +93,7 @@ public class FrontController extends HttpServlet {
 			action.execute(request, response);
 		else {
 			try {
-				System.out.println(request.getMethod());
+				System.out.println(request.getMethod()+ " : "+url);
 				if (url.contains("ajax/user")) {				//USER
 					if (url.contains("ajax/user/update") || request.getMethod().equalsIgnoreCase("PUT")) {		
 						action = new UserPostAjax(true);
