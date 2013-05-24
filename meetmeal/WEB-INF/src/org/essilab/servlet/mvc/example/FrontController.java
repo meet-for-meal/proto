@@ -32,7 +32,7 @@ import org.essilab.module.user.actions.FriendInsertAjax;
 import org.essilab.module.user.actions.MainMenu;
 import org.essilab.module.user.actions.UserDeleteAjax;
 import org.essilab.module.user.actions.UserGetAjax;
-import org.essilab.module.user.actions.UserInsertAjax;
+//import org.essilab.module.user.actions.UserInsertAjax;
 import org.essilab.module.user.actions.UserListAjax;
 import org.essilab.module.user.actions.UserListDisplay;
 import org.essilab.module.user.actions.UserPostAjax;
@@ -53,7 +53,7 @@ public class FrontController extends HttpServlet {
 		actions.put("user/display", new UserListDisplay());
 		actions.put("user/display.ajax", new UserListAjax());
 		actions.put("restaurant/display.ajax", new RestaurantListAjax());
-		actions.put("user/insert.ajax", new UserInsertAjax());
+		//actions.put("user/insert.ajax", new UserInsertAjax());
 		actions.put("user/insert.ajax", new UserPostAjax(false));
 		actions.put("user/mainmenu.ajax", new MainMenu());
 		actions.put("error/error", new ErrorAction());
