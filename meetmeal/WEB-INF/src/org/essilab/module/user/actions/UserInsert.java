@@ -1,15 +1,10 @@
 package org.essilab.module.user.actions;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.essilab.module.user.UserService;
-import org.essilab.module.user.model.User;
 import org.essilab.servlet.IAction;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class UserInsert implements IAction{
 

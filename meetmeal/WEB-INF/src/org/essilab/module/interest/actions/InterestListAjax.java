@@ -32,7 +32,7 @@ public class InterestListAjax implements IAction{
 			} else {
 				List<String> listInterest = new ArrayList<String>();
 				for (Interest i : interests)
-					listInterest.add(i.getTag());
+					listInterest.add(i.getTag().toLowerCase());
 				mapper.writeValue(response.getOutputStream(), listInterest);
 			}
 		} catch (Exception e) {

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.essilab.module.announce.actions.AnnounceDeleteAjax;
 import org.essilab.module.announce.actions.AnnounceGetAjax;
 import org.essilab.module.announce.actions.AnnounceListAjax;
+import org.essilab.module.announce.actions.AnnouncePostAjax;
 import org.essilab.module.error.actions.ErrorAction;
 import org.essilab.module.interest.InterestService;
 import org.essilab.module.interest.actions.InterestDeleteAjax;
@@ -149,9 +150,9 @@ public class FrontController extends HttpServlet {
 					action.execute(request, response);
 				} else if (url.contains("ajax/announce")) {		//ANNOUNCE
 					if (url.contains("ajax/announce/update") || request.getMethod().equalsIgnoreCase("PUT")) {
-						action = new RestaurantPostAjax(true);
+						action = new AnnouncePostAjax(true);
 					} else if (request.getMethod().equalsIgnoreCase("POST")) {
-						action = new RestaurantPostAjax(false);
+						action = new AnnouncePostAjax(false);
 					} else {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));

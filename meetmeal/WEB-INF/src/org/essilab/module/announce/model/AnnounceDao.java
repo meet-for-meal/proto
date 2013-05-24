@@ -58,7 +58,7 @@ public class AnnounceDao {
 //				if (a.getCreator() != null)
 //				request += " creatorId="+ a.getCreator().getId();
 				if (a.getCreatedDate() != null)
-				request += ", createdDate='"+ new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'";
+				request += " createdDate='"+ new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'";
 				if (a.getDisponibilityDate() != null)
 				request += ", disponibilityDate='"+ new java.sql.Date(a.getDisponibilityDate().getTime())+" "+new java.sql.Time(a.getDisponibilityDate().getTime()) +"'";
 				request += ", isOpen="+ (a.getIsOpen()? 1: 0) +"," +

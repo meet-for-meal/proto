@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.essilab.module.message.model.Message;
 import org.essilab.module.message.model.MessageDao;
-import org.essilab.module.user.model.User;
-import org.essilab.module.user.model.UserDao;
 
 public class MessageService {
 

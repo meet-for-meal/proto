@@ -89,6 +89,9 @@
             <p id="extra-form">
                 <a href="register">Cliquez ici pour ouvrir un compte Meet for Meal</a>
             </p>
+            <p id="extra-form">
+                <a href="contact">Cliquez ici pour nous contacter par mail</a>
+            </p>
 
         </div>
 

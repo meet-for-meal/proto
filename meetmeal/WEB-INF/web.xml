@@ -56,6 +56,10 @@
         <servlet-class>org.essilab.servlet.connection.Inscription</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Contact</servlet-name>
+        <servlet-class>org.essilab.servlet.Contact</servlet-class>
+    </servlet>
+    <servlet>
     	<servlet-name>Connection</servlet-name>
     	<servlet-class>org.essilab.servlet.connection.Connection</servlet-class>
 	</servlet>
@@ -148,6 +152,11 @@
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+<servlet-mapping>
+        <servlet-name>Contact</servlet-name>
+        <url-pattern>/contact</url-pattern>
     </servlet-mapping>
     
 	<servlet-mapping>

@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.essilab.module.category.model.Category;
 import org.essilab.module.category.model.CategoryDao;
-import org.essilab.module.interest.model.InterestDao;
 import org.essilab.module.user.model.User;
 
 public class CategoryService {
