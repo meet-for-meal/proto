@@ -1045,6 +1045,12 @@ footer #copyright {
     filter: alpha(opacity=20);
 }
 
+/* Datepicker
+-------------------------------------------------------------- */
+
+.ui_tpicker_time_label, .ui_tpicker_hour_label {
+   margin-top:10px;
+}
 
 /* Icons
 -------------------------------------------------------------- */

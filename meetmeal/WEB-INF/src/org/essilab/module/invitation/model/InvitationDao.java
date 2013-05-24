@@ -36,9 +36,7 @@ public class InvitationDao {
 					", "+ (i.getCreatedDate() != null ? "'"+new java.sql.Date(i.getCreatedDate().getTime())+" "+new java.sql.Time(i.getCreatedDate().getTime())+"'" : "NULL") +
 					", "+ (i.getIsAccepted()? 1: 0) +
 					", "+ (i.getIsConfirmed()? 1: 0) +
-					", 0, 0" + (i.getIsConfirmed()? 1: 0) +
-					", "+ (i.getIsOpen()? 1: 0) +"," +
-					" \""+ i.getMessage() +"\")";
+					",1, 0, 0, \""+ i.getMessage() +"\")";
 				System.out.println(request);
 				PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 				ps.executeUpdate();
@@ -105,7 +103,7 @@ public class InvitationDao {
 	public static List<Invitation> findInvitationsByUserid(int userId) throws SQLException {
 		String request = "SELECT id, senderId, announceId, createdDate, isAccepted, isConfirmed, isOpen, message " +
 				"FROM Invitation I " +
-				"WHERE senderId = "+userId;
+				"WHERE senderId = "+userId+" AND isOpen=1";
 		System.out.println(request);
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
