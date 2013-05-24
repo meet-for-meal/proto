@@ -200,7 +200,7 @@ $(document).ready(function(){
                     '<a href="/'+mfm.host+'/userprofile?id='+data[i].id+'">'+
                         '<img src="/'+mfm.host+'/res/styles/default/img/users/'+data[i].lastname+'.jpg" width="40" height="40" class="avatar" alt="">'+
                             '<span class="user-title">'+data[i].firstname+' '+data[i].lastname+'</span>'+
-                            '<a href="#" class="btn mfm-action" data-action="friend-request" data-user-id="1" data-friend-id="3">Ajouter en ami</a>'+
+                            //'<a href="#" class="btn mfm-action" data-action="friend-request" data-user-id="1" data-friend-id="3">Ajouter en ami</a>'+
                             //'<span class="user-time">13H - 14H</span>'+
                             '<span class="user-tags">'+interests+'</span>'+
                         '</a>'+
