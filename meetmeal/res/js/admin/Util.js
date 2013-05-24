@@ -78,6 +78,22 @@ define(['jquery'], function ($) {
         return hours + ':' + minutes + ':' + seconds;
       },
 
+      splitDate: function (date) {
+        var hours   = this.addZero(date.getHours()),
+            minutes = this.addZero(date.getMinutes()),
+            seconds = this.addZero(date.getSeconds()),
+            month   = parseInt(date.getMonth(), 10) + 1;
+        month = this.addZero(month);
+        return {
+          year:    date.getFullYear(),
+          month:   month,
+          day:     date.getDate(),
+          hours:   hours,
+          minutes: minutes,
+          seconds: seconds
+        };
+      },
+
       addZero: function (number) {
         return number < 10 ? '0' + number : number;
       }

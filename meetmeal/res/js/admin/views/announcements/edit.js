@@ -27,12 +27,8 @@ define([
 
       Util.apiRequest('/announce/' + this.announcementId, 'GET', null, null, function (res) {
         self.announcement = res;
-        var disponibilityDate = new Date(res.disponibilityDate),
-            createdDate       = new Date(res.createdDate),
-            disponibilityStr  = Util.dateToString(disponibilityDate) + ' à ' + Util.timeToString(disponibilityDate),
-            createdStr        = Util.dateToString(createdDate) + ' à ' + Util.timeToString(createdDate);
-        res.rdvDate = disponibilityStr;
-        res.crDate = createdStr;
+        res.disponibilityDate = Util.splitDate(new Date(res.disponibilityDate));
+        res.createdDate = Util.splitDate(new Date(res.createdDate));
         self.renderAnnouncement(res);
       });
     },
@@ -53,14 +49,29 @@ define([
 
     updateAnnouncement: function (e) {
       e.preventDefault();
+      var createdDate       = this.$el.find('#created_year').val() + '-' +
+                              this.$el.find('#created_month').val() + '-' +
+                              this.$el.find('#created_day').val() + ' ' +
+                              this.$el.find('#created_hours').val() + ':' +
+                              this.$el.find('#created_minutes').val() + ':' +
+                              this.$el.find('#created_seconds').val();
+      var disponibilityDate = this.$el.find('#disponibility_year').val() + '-' +
+                              this.$el.find('#disponibility_month').val() + '-' +
+                              this.$el.find('#disponibility_day').val() + ' ' +
+                              this.$el.find('#disponibility_hours').val() + ':' +
+                              this.$el.find('#disponibility_minutes').val() + ':' +
+                              this.$el.find('#disponibility_seconds').val();
+
       var params = {
-    	id:				   this.announcementId,
-        createdDate:       this.$el.find('#createdDate').val(),
-        disponibilityDate: this.$el.find('#disponibilityDate').val(),
+        id:                this.announcementId,
+        createdDate:       createdDate,
+        disponibilityDate: disponibilityDate,
         latitude:          this.$el.find('#latitude').val(),
         longitude:         this.$el.find('#longitude').val(),
         message:           this.$el.find('#message').val(),
+        isOpen:            this.$el.find('#isOpen').prop('checked')
       };
+
       Util.apiRequest('/announce/update/'+ this.announcementId, 'POST', null, params, function (res) {
         if(res && res.status === 'ok') {
           window.location = '#/announcements';
