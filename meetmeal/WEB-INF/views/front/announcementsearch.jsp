@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <section id="container">
 
     <div id="large_bg_img" class="clearfix">
@@ -36,8 +36,19 @@
 
 	                            <i class="icon-time"></i>Disponibilité : <strong>Le <fmt:formatDate type="date" value="${announce.disponibilityDate}" /> à <fmt:formatDate type="time" timeStyle="short" value="${announce.disponibilityDate}" /></strong><br>
 	                            <!-- <i class="icon-map-marker"></i>Localisation : <strong>Paris VÃ¨me</strong><br> -->
-	                            <!-- <i class="icon-heart"></i>Centres d'intérêts : <a href="#">#informatique</a> <a href="#">#chat</a><br> -->
-	                            <!-- <i class="icon-glass"></i>Préférences culinaires : <a href="#">#chinois</a> <a href="#">#grec</a> <a href="#">#pizzeria</a>-->
+	                            <i class="icon-heart"></i>Centres d'intérêts : 
+	                            <c:forEach items="${sessionScope.interests}" var="interest_list" varStatus="loop">  
+	                            	<c:forEach items="${interest_list}" var="interest"> 
+	                            		<a href="#" title=""/>#${fn:toLowerCase(interest.tag)}</a>
+	                            	</c:forEach>
+	                            </c:forEach>
+	                            <br>
+	                            <i class="icon-glass"></i>Préférences culinaires : 
+   	                            <c:forEach items="${sessionScope.categories}" var="category_list" varStatus="loop">  
+	                            	<c:forEach items="${category_list}" var="category"> 
+	                            		<a href="#" title=""/>#${fn:toLowerCase(category.name)}</a>
+	                            	</c:forEach>
+	                            </c:forEach>
 	                        </p>
 	                    </div>
 					  <li>

@@ -40,7 +40,6 @@ public class FriendInsertAjax implements IAction{
      */
     private static String getFieldValue( HttpServletRequest request, String fieldName ) {
         String valeur = request.getParameter( fieldName );
-
         if ( valeur == null || valeur.trim().length() == 0 ) {
             return null;
         } else {

@@ -106,7 +106,7 @@ $(document).ready(function(){
         });
 
     // TODO : Fix
-    $('.mfm-action').click(function(e){
+    /*$('.mfm-action').click(function(e){
         e.preventDefault();
         var self = $(this);
         var actionType = $(this).attr('data-action');
@@ -145,7 +145,7 @@ $(document).ready(function(){
                 default:
             }
         }
-    });
+    });*/
 
     if(!$('.alert').is(':visible')){
         $('.alert').slideDown(300);

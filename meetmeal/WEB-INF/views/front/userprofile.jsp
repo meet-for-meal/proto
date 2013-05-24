@@ -63,7 +63,7 @@ User userprofile = (User)session.getAttribute("userprofile");
                 
             </p>
             
-            <a href="add?id_user=<%=userprofile.getId() %>" class="btn mfm-action" data-action="friend-request"><i class="icon-plus"></i>Ajouter comme ami</a>
+            <a href="#" class="btn mfm-action" data-action="friend-request" data-user-id="${sessionScope.sessionUser.id }" data-friend-id="<%=userprofile.getId() %>">Ajouter en ami</a>
             <a href="messagecreate?id_user=<%=userprofile.getId() %>" class="btn" ><i class="icon-pencil"></i>Ecrire un message</a>
             
         </div>
