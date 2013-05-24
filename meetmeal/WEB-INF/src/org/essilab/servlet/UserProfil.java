@@ -24,6 +24,7 @@ import org.essilab.module.user.model.User;
 @SuppressWarnings("serial")
 public class UserProfil extends HttpServlet {
     public static final String ATT_USER         = "user";
+    public static final String ATT_USER_PROFILE = "userprofile";
     public static final String ATT_SESSION_INTERESTS = "interests";
     public static final String ATT_SESSION_CATEGORIES = "categories";
     public static final String ATT_SESSION_FRIENDS = "friends";
@@ -39,8 +40,20 @@ public class UserProfil extends HttpServlet {
         HttpSession session = request.getSession();
         
         User user = (User) session.getAttribute("sessionUser");
+        UserService userService = UserService.getInstance();
         AnnounceService announceService = AnnounceService.getInstance();
         InvitationService invitationService = InvitationService.getInstance();
+    	if(!url.substring(0,6).equals("mypage")){
+
+    		if(request.getParameter("id") != null){
+	    		user = userService.userSelect(Integer.parseInt(request.getParameter("id")));
+	            request.setAttribute( ATT_USER_PROFILE, user );
+	            session.setAttribute( ATT_USER_PROFILE, user );
+    		}
+    	}
+    	else{
+    		request.setAttribute( ATT_USER, user );
+    	}
     	
         if (user != null ) {
         	int id_announce = 0;	
@@ -101,8 +114,6 @@ public class UserProfil extends HttpServlet {
             	
             }
         	
-        	
-        	
             InterestService interestService = InterestService.getInstance();
             List<Interest>  interest = interestService.getInterestByUser(user);
             
@@ -123,8 +134,6 @@ public class UserProfil extends HttpServlet {
         }
         
         
-        /* store form error and data in request */
-        request.setAttribute( ATT_USER, user );
         this.getServletContext().getRequestDispatcher("/layout.jsp" ).forward( request, response );
     }
  
