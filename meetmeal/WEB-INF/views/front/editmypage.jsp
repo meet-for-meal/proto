@@ -24,16 +24,16 @@ User user = (User)session.getAttribute("sessionUser");
 
         <div class="col-2">
             <h2>Informations sur votre profil</h2>
-            <img src="/meetformeal/res/styles/default/img/users/<%=user.getLastname() %>.jpg" width="64" height="64" class="avatar" alt="">
+            <img src="/meetformeal/res/styles/default/img/users/<%=user.getFirstname() %>.jpg" width="64" height="64" class="avatar" alt="">
             <br/><br/><br/><br/>
-            <form id="user-search-form" action="mypage" method="post">
+            <form id="user-search-form" action="mypage" method="post">                   
                     <p>
-                        <label for="lastname"><strong>Prénom : </strong></label>
-                        <input type="text" name="lastname" id="lastname" value="<%=user.getLastname() %>">
+                        <label for="firstname"><strong>Prénom : </strong></label>
+                        <input type="text" name="firstname" id="firstname" value="<%=user.getFirstname() %>">
                     </p>
                     <p>
-                        <label for="firstname"><strong>Nom : </strong></label>
-                        <input type="text" name="firstname" id="firstname" value="<%=user.getFirstname() %>">
+                        <label for="lastname"><strong>Nom : </strong></label>
+                        <input type="text" name="lastname" id="lastname" value="<%=user.getLastname() %>">
                     </p>
                     <p>
                         <label for="gender"><strong>Sexe : </strong></label>
@@ -175,7 +175,7 @@ User user = (User)session.getAttribute("sessionUser");
             <h2>Mes amis</h2>
 			
 			<c:forEach items="${sessionScope.friends}" var="friend">  
-				<a href="userpage" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/${friend.lastname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
+				<a href="userpage" title="${friend.firstname }"><img src="/meetformeal/res/styles/default/img/users/${friend.firstname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
 			</c:forEach>
 
         </div>

@@ -15,7 +15,7 @@ User userprofile = (User)session.getAttribute("userprofile");
         <div id="large_bg_img_overlay"></div>
         <img src="/meetformeal/res/styles/default/img/bg2.jpg" id="image" class="big" alt="" />
 
-        <h1>Profil de <% out.print(userprofile.getLastname() + " " + userprofile.getFirstname()); %></h1>
+        <h1>Profil de <% out.print(userprofile.getFirstname() + " " + userprofile.getLastname()); %></h1>
 
     </div>
 
@@ -23,9 +23,9 @@ User userprofile = (User)session.getAttribute("userprofile");
 
         <div class="col-2">
             <h2>Informations du profil</h2>
-            <img src="/meetformeal/res/styles/default/img/users/<%=userprofile.getLastname() %>.jpg" width="64" height="64" class="avatar" alt="">           
+            <img src="/meetformeal/res/styles/default/img/users/<%=userprofile.getFirstname() %>.jpg" width="64" height="64" class="avatar" alt="">           
             <p>
-                <i class="icon-user"></i><strong><% out.print(userprofile.getLastname() + " " + userprofile.getFirstname()); %></strong>
+                <i class="icon-user"></i><strong><% out.print(userprofile.getFirstname() + " " + userprofile.getLastname()); %></strong>
             </p>
             <p>
                 Sexe :

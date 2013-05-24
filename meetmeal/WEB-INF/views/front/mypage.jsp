@@ -23,9 +23,9 @@ User user = (User)session.getAttribute("sessionUser");
 
         <div class="col-2">
             <h2>Informations sur votre profil</h2>
-            <img src="/meetformeal/res/styles/default/img/users/<%=user.getLastname() %>.jpg" width="64" height="64" class="avatar" alt="">           
+            <img src="/meetformeal/res/styles/default/img/users/<%=user.getFirstname() %>.jpg" width="64" height="64" class="avatar" alt="">           
             <p>
-                <i class="icon-user"></i><strong><% out.print(user.getLastname() + " " + user.getFirstname()); %></strong>
+                <i class="icon-user"></i><strong><% out.print(user.getFirstname() + " " + user.getLastname()); %></strong>
             </p>
             <p>
                 Sexe :
@@ -112,7 +112,7 @@ User user = (User)session.getAttribute("sessionUser");
             <h2>Mes amis</h2>
 			<c:if test="${!empty sessionScope.friends}">
 				<c:forEach items="${sessionScope.friends}" var="friend">  
-					<a href="userprofile?id=${friend.id }" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/${friend.lastname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
+					<a href="userprofile?id=${friend.id }" title="${friend.firstname }"><img src="/meetformeal/res/styles/default/img/users/${friend.firstname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
 				</c:forEach>
 			</c:if>
         </div>

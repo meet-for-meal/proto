@@ -30,7 +30,6 @@ public class UserPostAjax implements IAction{
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		 System.out.println(request.getMethod());
 		try {
 			boolean ok = false;
 			User u = readPost(request);

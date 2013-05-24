@@ -46,7 +46,7 @@
 
             </div>
             <div id="current-user" class="col-1">
-                <img src="<%= request.getContextPath() %>/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
+                <img src="<%= request.getContextPath() %>/res/styles/default/img/users/${sessionScope.sessionUser.firstname}.jpg" width="64" height="64" class="avatar" alt="">
                 <h3><a href="mypage" class="black">${sessionScope.sessionUser.firstname} ${sessionScope.sessionUser.lastname}</a></h3>
                 <span class="user-tags">
                 	<c:choose>

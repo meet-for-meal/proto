@@ -287,7 +287,7 @@ public class UserDao {
 		List<User> users = new ArrayList<User>();
 		try {
 			while (result.next()) 
-				users.add(new User(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getInt("age"), result.getString("email"), result.getInt("gender"), result.getBoolean("firstVisit"), result.getBoolean("isAdmin")));	
+				users.add(new User(result.getInt("id"), result.getString("lastname"), result.getString("firstname"), result.getInt("age"), result.getString("email"), result.getInt("gender"), result.getBoolean("firstVisit"), result.getBoolean("isAdmin")));	
 		} catch (SQLException e) { e.printStackTrace();	}
 		return users;
 	}
@@ -300,8 +300,8 @@ public class UserDao {
 			if(result != null && result.next()){ 
 				user = new User(
 					result.getInt("id"),
-					result.getString("firstname"), 
 					result.getString("lastname"),
+					result.getString("firstname"), 
 					result.getInt("age"),
 					result.getString("email"),
 					result.getString("password"),
@@ -325,8 +325,8 @@ public class UserDao {
 			while (result.next()) {
 				users.add(new User(
 					result.getInt("id"),
-					result.getString("firstname"), 
 					result.getString("lastname"),
+					result.getString("firstname"), 
 					result.getInt("age"),
 					result.getString("email"),
 					result.getString("password"),
