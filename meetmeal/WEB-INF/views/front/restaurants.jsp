@@ -34,18 +34,9 @@
             <div id="near-venues"></div>
         </div>
 
-        <div class="col-1">
-
-        </div>
-
-        <div class="col-2">
-
-        </div>
-
-        <div class="col-1">
-
-        </div>
-
+        <div class="col-1"></div>
+        <div class="col-2"></div>
+        <div class="col-1"></div>
     </div>
 
 </section>
@@ -53,7 +44,7 @@
 <script type="text/x-template" id="venues-template">
 <ul id="search-result">
 {{#each venues}}
-    <li class="featured">
+    <li {{#if isPartner}}class="featured"{{/if}}>
         <img src="{{ showIcon this }}" class="restaurant-category">
         <p class="restaurant-description">
             <span><strong class="title red">{{ name }}</strong></span><br>
@@ -64,3 +55,4 @@
     </li>
 {{/each}}
 </ul>
+</script>

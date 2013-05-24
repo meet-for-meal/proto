@@ -35,6 +35,7 @@ define([
     params: $('#require-js').data('params'),
     map: null,
     venues: [],
+    GMaps: google.maps,
 
     events: {
       'click .find-venues': 'fireVenuesSearch',
@@ -79,24 +80,25 @@ define([
 
     // Display Google Maps
     renderMap: function (position) {
+      var Gmaps = this.GMaps;
       // User's location
       this.userLatitude = position.coords.latitude;
       this.userLongitude = position.coords.longitude;
 
-      var center = new google.maps.LatLng(this.userLatitude, this.userLongitude);
+      var center = new Gmaps.LatLng(this.userLatitude, this.userLongitude);
       var mapOptions = {
         center: center,
         zoom: 14,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: Gmaps.MapTypeId.ROADMAP
       };
-      this.map = new google.maps.Map(document.getElementById('googlemaps'), mapOptions);
+      this.map = new Gmaps.Map(document.getElementById('googlemaps'), mapOptions);
       this.renderUserLocation(this.map);
     },
 
     // Create marker to display user's location
     renderUserLocation: function (map) {
-      var position = new google.maps.LatLng(this.userLatitude, this.userLongitude);
-      var customMarker = this.greenMarker();
+      var position = new this.GMaps.LatLng(this.userLatitude, this.userLongitude);
+      var customMarker = this.coloredMarker('37c855');
       var marker = this.addMarker(map, 'users', position, 'You are here!', { icon: customMarker[0], shadow: customMarker[1] });
       this.addInfoWindow (map, marker, {label: 'You are here!'});
       this.renderFriendsLocation(map);
@@ -114,7 +116,7 @@ define([
           var customMarker = {icon: '/meetformeal/res/styles/default/img/logo-marker.png'};
           for(var i in friends) {
             var friend = friends[i];
-            var position = new google.maps.LatLng(friend.lastLatitude, friend.lastLongitude);
+            var position = new self.GMaps.LatLng(friend.lastLatitude, friend.lastLongitude);
             var marker = self.addMarker(map, 'users', position, friend.firstname + ' ' + friend.lastname, customMarker);
 
             (function(marker, friend) {
@@ -179,7 +181,12 @@ define([
       for(var k in items) {
         var item = items[k];
         var location = item.location;
-        this.addMarker(map, 'venues', new google.maps.LatLng(location.lat, location.lng), item.name);
+        var layout = undefined;
+        if(item.isPartner) {
+          var customMarker = this.coloredMarker('f6910a');
+          layout = { icon: customMarker[0], shadow: customMarker[1] };
+        }
+        this.addMarker(map, 'venues', new this.GMaps.LatLng(location.lat, location.lng), item.name, layout);
       }
     },
 
@@ -231,7 +238,7 @@ define([
       if(typeof layout !== 'undefined') {
         params = _.extend(params, layout);
       }
-      var marker = new google.maps.Marker(params);
+      var marker = new this.GMaps.Marker(params);
       map.markers[type].push(marker);
       marker.setMap(map);
       return marker;
@@ -239,11 +246,12 @@ define([
 
     // Add one infowindow to a marker from a map
     addInfoWindow: function (map, marker, label) {
+      var GMaps = this.GMaps;
       var contentString = label.hasOwnProperty('id') ? '<h2><img width="70" src="/meetformeal/res/styles/default/img/' + label.id + '.jpg" alt="" />' + label.label + '</h2>' : '<h2>' + label.label + '</h2>',
-          infowindow = new google.maps.InfoWindow({ content: contentString });
+          infowindow = new GMaps.InfoWindow({ content: contentString });
       map.infowindows = map.infowindows || [];
       map.infowindows.push(infowindow);
-      google.maps.event.addListener(marker, 'click', function() {
+      GMaps.event.addListener(marker, 'click', function() {
         for(var j in map.infowindows) {
           var mapinfowindow = map.infowindows[j];
           mapinfowindow.close();
@@ -269,11 +277,11 @@ define([
     },
 
     // Create green marker to make difference with venue markers
-    greenMarker: function () {
+    coloredMarker: function (color) {
       // User's location marker
       // Credit: http://stackoverflow.com/users/3800/jack-b-nimble
-      var pinColor = "37c855";
-      var GMaps = google.maps;
+      var pinColor = color;
+      var GMaps = this.GMaps;
       var pinImage = new GMaps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
         new GMaps.Size(21, 34),
         new GMaps.Point(0, 0),
