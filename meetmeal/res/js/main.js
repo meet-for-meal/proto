@@ -2,6 +2,7 @@ require.config({
   paths: {
     jquery: 'jquery',
     jqueryUI: 'jquery-ui.custom',
+    handlebars: 'handlebars.min',
     cycle: 'jquery.cycle.all',
     bootstrap: 'bootstrap',
     backbone: 'backbone',
@@ -15,6 +16,9 @@ require.config({
     bootstrap: {
       deps: ['jquery'],
       exports: '$'
+    },
+    handlebars: {
+      exports: 'Handlebars'
     },
     lodash: {
       exports: '_'
