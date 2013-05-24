@@ -50,14 +50,15 @@ public class AnnouncePostAjax implements IAction{
 
 	public Announce readPost(HttpServletRequest request) {
 		int id = (toUpdate && getFieldValue(request, FIELD_ID) != null) ? Integer.parseInt(getFieldValue(request, FIELD_ID)) : 0;
-        int creator = Integer.parseInt(getFieldValue(request, FIELD_CREATOR));
-        Date created = new Date(getFieldValue(request, FIELD_CREATEDDATE));
-        Date dispo = new Date(getFieldValue(request, FIELD_DISPODATE));
-        boolean isOpen = Boolean.parseBoolean(getFieldValue(request, FIELD_ISOPEN));
-        double lat = Double.parseDouble(getFieldValue(request, FIELD_LATITUDE));
-        double lng = Double.parseDouble(getFieldValue(request, FIELD_LONGITUDE));
-        String msg = getFieldValue(request, FIELD_MESSAGE);
-       	Announce announce = null;
+        int creator = (getFieldValue(request, FIELD_CREATOR) != null) ? Integer.parseInt(getFieldValue(request, FIELD_CREATOR)) : 1;
+        Date created = (getFieldValue(request, FIELD_CREATEDDATE) != null) ? new Date(getFieldValue(request, FIELD_CREATEDDATE)) : null;
+        Date dispo = (getFieldValue(request, FIELD_DISPODATE) != null) ? new Date(getFieldValue(request, FIELD_DISPODATE)) : null;
+        boolean isOpen = (getFieldValue(request, FIELD_ISOPEN) != null) ? Boolean.parseBoolean(getFieldValue(request, FIELD_ISOPEN)) : false;
+        double lat = (getFieldValue(request, FIELD_LATITUDE) != null) ? Double.parseDouble(getFieldValue(request, FIELD_LATITUDE)) : 0;
+        double lng = (getFieldValue(request, FIELD_LATITUDE) != null) ? Double.parseDouble(getFieldValue(request, FIELD_LONGITUDE)) : 0;
+        String msg = (getFieldValue(request, FIELD_MESSAGE) != null) ? getFieldValue(request, FIELD_MESSAGE) : "";
+       	
+        Announce announce = null;
 		try {
 			announce = new Announce(id,created,dispo,isOpen,lat,lng,msg,UserDao.getUser(creator));
 		} catch (SQLException e) {

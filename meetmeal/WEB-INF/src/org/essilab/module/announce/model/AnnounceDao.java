@@ -55,8 +55,8 @@ public class AnnounceDao {
 		boolean ok = false;
 		if (a.getCreator() != null) {
 			String request = "UPDATE Announce SET";
-				if (a.getCreator() != null)
-				request += " creatorId="+ a.getCreator().getId();
+//				if (a.getCreator() != null)
+//				request += " creatorId="+ a.getCreator().getId();
 				if (a.getCreatedDate() != null)
 				request += ", createdDate='"+ new java.sql.Date(a.getCreatedDate().getTime())+" "+new java.sql.Time(a.getCreatedDate().getTime())+"'";
 				if (a.getDisponibilityDate() != null)
