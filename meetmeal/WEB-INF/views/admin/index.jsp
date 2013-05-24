@@ -20,7 +20,7 @@
       <a class="brand" href="<%= request.getContextPath() %>/admin#">Meet For Meal</a>
       <div class="nav-collapse collapse">
         <p class="navbar-text pull-right">
-          Connecté en tant que <a href="#" class="navbar-link">Username</a>
+          Connecté en tant que <a href="#" class="navbar-link">${sessionScope.sessionUser.firstname} ${sessionScope.sessionUser.lastname}</a>
         </p>
         <ul class="nav">
           <li><a href="<%= request.getContextPath() %>/admin#/">Frontend</a></li>
