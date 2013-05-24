@@ -37,7 +37,6 @@ import org.essilab.module.user.actions.UserListDisplay;
 import org.essilab.module.user.actions.UserListNearInterestsAjax;
 import org.essilab.module.user.actions.UserPostAjax;
 import org.essilab.module.user.model.User;
-//import org.essilab.module.user.actions.UserInsertAjax;
 
 public class FrontController extends HttpServlet {
 	public static final String ATT_SESSION_INTERESTS = "interests";
@@ -128,11 +127,11 @@ public class FrontController extends HttpServlet {
 						}
 					}
 					action.execute(request, response);
-				} else if (url.contains("ajax/restaurant")) {	//RESTAURANT
-					if (request.getMethod().equalsIgnoreCase("POST")) {
-						action = new RestaurantPostAjax(false);
-					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+				} else if (url.contains("ajax/restaurant")) {	//RESTAURANT 
+					if (url.contains("ajax/restaurant/update") || request.getMethod().equalsIgnoreCase("PUT")) {
 						action = new RestaurantPostAjax(true);
+					} else if (request.getMethod().equalsIgnoreCase("POST")) {
+						action = new RestaurantPostAjax(false);
 					} else {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));
@@ -146,10 +145,10 @@ public class FrontController extends HttpServlet {
 					}
 					action.execute(request, response);
 				} else if (url.contains("ajax/announce")) {		//ANNOUNCE
-					if (request.getMethod().equalsIgnoreCase("POST")) {
-						action = new RestaurantPostAjax(false);
-					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+					if (url.contains("ajax/announce/update") || request.getMethod().equalsIgnoreCase("PUT")) {
 						action = new RestaurantPostAjax(true);
+					} else if (request.getMethod().equalsIgnoreCase("POST")) {
+						action = new RestaurantPostAjax(false);
 					} else {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));

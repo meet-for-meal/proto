@@ -56,7 +56,6 @@ User user = (User)session.getAttribute("sessionUser");
             </p>
             <p>
                 Centres d'intérêts : 
-
 				<c:forEach items="${sessionScope.interests}" var="interest">  
 					<a href="#">#${interest.tag} </a>				
 				</c:forEach>
@@ -91,7 +90,18 @@ User user = (User)session.getAttribute("sessionUser");
 			        
 			    </c:when>
 				<c:otherwise>
-					Pas de demandes en cours
+					<c:choose>
+						<c:when test="${!empty sessionScope.meal && sessionScope.accepted.id != null}">
+									<p>Votre invitation a été acceptée pour votre prochain repas.</p>				        
+										        
+					    </c:when>
+						<c:when test="${!empty sessionScope.meal && sessionScope.accepted.id == null}">
+						        <p>Vous avez accepté une invitation pour votre prochain repas</p>
+					    </c:when>					    
+						<c:otherwise>
+							<p>Pas de demandes en cours</p>
+						</c:otherwise>
+					</c:choose>
 				</c:otherwise>
 			</c:choose>
 
@@ -103,7 +113,7 @@ User user = (User)session.getAttribute("sessionUser");
             <h2>Mes amis</h2>
 			<c:if test="${!empty sessionScope.friends}">
 				<c:forEach items="${sessionScope.friends}" var="friend">  
-					<a href="userpage" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/${friend.lastname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
+					<a href="userpage" name="${friend.id }" title="${friend.lastname }"><img src="/meetformeal/res/styles/default/img/users/${friend.lastname }.jpg" width="64" height="64" class="avatar" alt=""></a>			
 				</c:forEach>
 			</c:if>
         </div>

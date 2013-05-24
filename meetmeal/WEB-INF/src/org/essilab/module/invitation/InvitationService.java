@@ -25,6 +25,15 @@ public class InvitationService {
 		return null;
 	}
 	
+	public List<Invitation> findInvitationsByUserid(int id){
+		try{
+			return InvitationDao.findInvitationsByUserid(id);
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public boolean invitationInsert(Invitation a){
 		try {
 			return InvitationDao.insert(a);
