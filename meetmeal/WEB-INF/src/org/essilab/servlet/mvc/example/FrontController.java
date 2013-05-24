@@ -19,10 +19,13 @@ import org.essilab.module.interest.actions.InterestDeleteAjax;
 import org.essilab.module.interest.actions.InterestGetAjax;
 import org.essilab.module.interest.actions.InterestInsertAjax;
 import org.essilab.module.interest.actions.InterestListAjax;
+import org.essilab.module.message.actions.MessageInsertAjax;
 import org.essilab.module.restaurant.actions.RestaurantDeleteAjax;
 import org.essilab.module.restaurant.actions.RestaurantGetAjax;
 import org.essilab.module.restaurant.actions.RestaurantListAjax;
 import org.essilab.module.restaurant.actions.RestaurantPostAjax;
+import org.essilab.module.user.actions.FriendDeleteAjax;
+import org.essilab.module.user.actions.FriendInsertAjax;
 import org.essilab.module.user.actions.MainMenu;
 import org.essilab.module.user.actions.UserDeleteAjax;
 import org.essilab.module.user.actions.UserGetAjax;
@@ -52,9 +55,7 @@ public class FrontController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String url = request
-				.getRequestURI()
-				.substring(request.getContextPath().length()+1);
+		String url = request.getRequestURI().substring(request.getContextPath().length()+1);
 
 		HttpSession session = request.getSession();
 		if (url.trim().isEmpty()){
@@ -74,11 +75,12 @@ public class FrontController extends HttpServlet {
 			action.execute(request, response);
 		else {
 			try {
+				System.out.println(request.getMethod());
 				if (url.contains("ajax/user")) {				//USER
-					if (request.getMethod().equalsIgnoreCase("POST")) {
-						action = new UserPostAjax(false);
-					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
+					if (url.contains("ajax/user/update") || request.getMethod().equalsIgnoreCase("PUT")) {		
 						action = new UserPostAjax(true);
+					} else if (request.getMethod().equalsIgnoreCase("POST")) {
+						action = new UserPostAjax(false);
 					} else {
 						int slashIndex = url.lastIndexOf('/');
 						int endValue = Integer.parseInt(url.substring(slashIndex+1));
@@ -123,7 +125,7 @@ public class FrontController extends HttpServlet {
 						}
 					}
 					action.execute(request, response);
-				} else if (url.contains("ajax/announce")) {	//ANNOUNCE
+				} else if (url.contains("ajax/announce")) {		//ANNOUNCE
 					if (request.getMethod().equalsIgnoreCase("POST")) {
 						action = new RestaurantPostAjax(false);
 					} else if (request.getMethod().equalsIgnoreCase("PUT")) {
@@ -140,8 +142,18 @@ public class FrontController extends HttpServlet {
 						}
 					}
 					action.execute(request, response);
+				} else if (url.contains("ajax/message")) {		//MESSAGE
+					if (request.getMethod().equalsIgnoreCase("POST")) 
+						action = new MessageInsertAjax();
+					action.execute(request, response);
+				} else if (url.contains("ajax/friend")) {		//FRIEND
+					if (request.getMethod().equalsIgnoreCase("POST")) {
+						action = new FriendInsertAjax();
+					} else if (request.getMethod().equalsIgnoreCase("DELETE")) {
+						action = new FriendDeleteAjax();
+					}
+					action.execute(request, response);
 				}
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -98,4 +98,22 @@ public class UserService {
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean friendInsert(int userId, int friendId){
+		try {
+			return UserDao.insertFriend(userId, friendId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean friendDelete(int userId, int friendId) {
+		try {
+			return UserDao.deleteFriend(userId,friendId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

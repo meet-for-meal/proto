@@ -29,6 +29,7 @@ public class UserPostAjax implements IAction{
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		 System.out.println(request.getMethod());
 		try {
 			boolean ok = false;
 			User u = readPost(request);
@@ -63,6 +64,7 @@ public class UserPostAjax implements IAction{
      */
     private static String getFieldValue( HttpServletRequest request, String fieldName ) {
         String valeur = request.getParameter( fieldName );
+        System.out.println(valeur);
         if ( valeur == null || valeur.trim().length() == 0 ) {
             return null;
         } else {

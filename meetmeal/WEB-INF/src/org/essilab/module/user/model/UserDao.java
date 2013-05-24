@@ -183,6 +183,34 @@ public class UserDao {
 		return createUsers(result);
 	}
 	
+	//Insert Friend
+	public static boolean insertFriend(int userId, int friendId) throws SQLException{
+		boolean ok = false;
+		if (userId > 0 && friendId > 0) {
+			String request = "INSERT INTO Has_Friend (userId, friendId) VALUES ("+userId+","+friendId+");";
+				
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			ok = true;
+		}
+		return ok;
+	}
+	
+	//Delete Friend
+	public static boolean deleteFriend(int userId, int friendId) throws SQLException{
+		boolean ok = false;
+		if (userId > 0 && friendId > 0) {
+			String request = "DELETE FROM Has_Friend WHERE userId="+userId+" AND friendId="+friendId;
+				
+			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
+			ps.executeUpdate();
+			Connect.getConnection().close();
+			ok = true;
+		}
+		return ok;
+		}
+	
 	//Find near Users
 	public static List<User> findNearUsers(int userId) throws SQLException {
 		String request = "CALL nearUsers("+userId+", 5)";

@@ -13,7 +13,8 @@ import org.essilab.module.user.model.UserDao;
 public class MessageDao {
 
 	//Insert
-	public static void insert(Message msg) throws SQLException{
+	public static boolean insert(Message msg) throws SQLException{
+		boolean ok = false;
 		if (msg != null && msg.getSender() != null && msg.getReceiver() != null) {
 			String request = "INSERT INTO Message VALUES (NULL, "+
 				" "+ msg.getSender().getId() +"," +
@@ -24,7 +25,9 @@ public class MessageDao {
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 			ps.executeUpdate();
 			Connect.getConnection().close();
+			ok = true;
 		}
+		return ok;
 	}
 	
 	//List conversation with people for an User
