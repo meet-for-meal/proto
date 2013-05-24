@@ -98,16 +98,29 @@ function inArray(needle, tab) {
     return false;
 }
 
+function countProperties(obj) {
+	  var prop;
+	  var propCount = 0;
+
+	  for (prop in obj) {
+	    propCount++;
+	  }
+	  return propCount;
+	}
+
+
 //recup resto foursquare 
 var idf = ["4bf58dd8d48988d1ca94173", "123456"];
 var nbrestpart = idf.length;
 //recup id foursquare de la bdd 
 var jqxhr = $.getJSON('/meetformeal/restaurant/display.ajax', function() {
 			console.log( "success" );
-			})		
+			})	
+var nbrestpart = countProperties(jqxhr);
+
 console.log( jqxhr );
 console.log( idf );	
-
+console.log( nbrestpart );	
 
 for (i=0; i < nbrestpart ; i++) {
 	console.log( inArray(idf[i], jqxhr) );

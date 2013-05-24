@@ -25,10 +25,11 @@ public class RestaurantListAjax implements IAction{
 		List<Restaurant> restaurants = service.restaurantList();
 		try {
 			response.setContentType(HEADER_TYPE_JSON);
-			List<String> listResto = new ArrayList<String>();
-			for (Restaurant r : restaurants)
-				listResto.add(r.getFoursquareId());
-			mapper.writeValue(response.getOutputStream(), listResto);
+			//List<String> listResto = new ArrayList<String>();
+			//for (Restaurant r : restaurants)
+			//	listResto.add(r.getFoursquareId());
+			//mapper.writeValue(response.getOutputStream(), listResto);
+			mapper.writeValue(response.getOutputStream(), restaurants);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
