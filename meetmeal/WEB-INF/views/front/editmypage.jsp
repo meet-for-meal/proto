@@ -139,7 +139,36 @@ User user = (User)session.getAttribute("sessionUser");
 
         <div class="col-1">
 
-            
+            <h2>Nouvelles demandes</h2>
+            <c:choose>
+				<c:when test="${!empty sessionScope.invitation}">
+					<div class="user">
+		                <img src="/meetformeal/res/styles/default/img/users/default.png" width="64" height="64" class="avatar" alt="">
+		                <p>
+		                    <a href="userpage?uid=${sessionScope.invitation.sender.id}" class="black"><strong>${sessionScope.invitation.sender.firstname} ${sessionScope.invitation.sender.lastname}</strong></a><br>
+		                    <a href="#">#communication</a> <a href="#">#musique</a> <a href="#">#badminton</a><br>
+		                    <a href="mypage?accepted=true" class="btn"><i class="icon-ok"></i>Accepter</a> <a href="mypage?accepted=false" class="btn btn-neutral"><i class="icon-remove"></i>Ignorer</a>
+		                </p>
+		            </div>
+			        
+			    </c:when>
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${!empty sessionScope.meal && sessionScope.accepted.id != null}">
+									<p>Votre invitation a été acceptée pour votre prochain repas.</p>				        			        
+					    </c:when>
+						<c:when test="${!empty sessionScope.meal && sessionScope.accepted.id == null}">
+						        <p>Vous avez accepté une invitation pour votre prochain repas</p>
+					    </c:when>					    
+						<c:otherwise>
+							<p>Pas de demandes en cours</p>
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
+			</c:choose>
+
+	            
+
 
             <hr>
 
