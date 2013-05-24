@@ -38,9 +38,10 @@ define([
     GMaps: google.maps,
 
     events: {
-      'click .find-venues': 'fireVenuesSearch',
-      'click .check-all':   'checkAllCategories',
-      'click .uncheck-all': 'uncheckAllCategories'
+      'click .find-venues':   'fireVenuesSearch',
+      'click .check-all':     'checkAllCategories',
+      'click .uncheck-all':   'uncheckAllCategories',
+      'click .consult-venue': 'centerVenue'
     },
 
     initialize: function () {
@@ -100,7 +101,7 @@ define([
       var position = new this.GMaps.LatLng(this.userLatitude, this.userLongitude);
       var customMarker = this.coloredMarker('37c855');
       var marker = this.addMarker(map, 'users', position, 'You are here!', { icon: customMarker[0], shadow: customMarker[1] });
-      this.addInfoWindow (map, marker, {label: 'You are here!'});
+      this.addInfoWindow(map, marker, {label: 'You are here!'}, 'users');
       this.renderFriendsLocation(map);
     },
 
@@ -120,7 +121,7 @@ define([
             var marker = self.addMarker(map, 'users', position, friend.firstname + ' ' + friend.lastname, customMarker);
 
             (function(marker, friend) {
-              self.addInfoWindow(map, marker, {id: friend.id, label: friend.firstname + ' ' + friend.lastname});
+              self.addInfoWindow(map, marker, {id: friend.id, label: friend.firstname + ' ' + friend.lastname}, 'users');
             }(marker, friend));
           }
         }
@@ -166,6 +167,7 @@ define([
           var venues = results.response.groups[0].items;
           _.map(venues, function (venue, index) {
             venues[index].isPartner = self.venues.indexOf(venue.id) !== -1;
+            venues[index].index = index;
           });
           self.showNearVenues(self.map, venues);
           self.$nearVenues.html(self.venueTemplate({ venues: venues }));
@@ -186,7 +188,8 @@ define([
           var customMarker = this.coloredMarker('f6910a');
           layout = { icon: customMarker[0], shadow: customMarker[1] };
         }
-        this.addMarker(map, 'venues', new this.GMaps.LatLng(location.lat, location.lng), item.name, layout);
+        var marker = this.addMarker(map, 'venues', new this.GMaps.LatLng(location.lat, location.lng), item.name, layout);
+        var infowindow = this.addInfoWindow(map, marker, {label: item.name}, 'venues');
       }
     },
 
@@ -245,16 +248,25 @@ define([
     },
 
     // Add one infowindow to a marker from a map
-    addInfoWindow: function (map, marker, label) {
+    addInfoWindow: function (map, marker, label, type) {
       var GMaps = this.GMaps;
       var contentString = label.hasOwnProperty('id') ? '<h2><img width="70" src="/meetformeal/res/styles/default/img/' + label.id + '.jpg" alt="" />' + label.label + '</h2>' : '<h2>' + label.label + '</h2>',
           infowindow = new GMaps.InfoWindow({ content: contentString });
       map.infowindows = map.infowindows || [];
-      map.infowindows.push(infowindow);
+      map.infowindows[type] = map.infowindows[type] || [];
+      map.infowindows[type].push(infowindow);
       GMaps.event.addListener(marker, 'click', function() {
-        for(var j in map.infowindows) {
-          var mapinfowindow = map.infowindows[j];
-          mapinfowindow.close();
+        if(typeof map.infowindows.venues !== 'undefined') {
+          for(var j in map.infowindows.venues) {
+            var mapinfowindow = map.infowindows.venues[j];
+            mapinfowindow.close();
+          }
+        }
+        if(typeof map.infowindows.users !== 'undefined') {
+          for(var j in map.infowindows.users) {
+            var mapinfowindow = map.infowindows.users[j];
+            mapinfowindow.close();
+          }
         }
         infowindow.open(map, marker);
       });
@@ -293,6 +305,17 @@ define([
         new GMaps.Point(12, 35)
       );
       return [pinImage, pinShadow];
+    },
+
+    centerVenue: function (e) {
+      var venueId = $(e.currentTarget).data('venueid');
+      var marker = this.map.markers.venues[venueId];
+      var infowindow = this.map.infowindows.venues[venueId];
+      var latLng = marker.getPosition();
+      // Center map to the marker
+      this.map.setCenter(latLng);
+      // Open its infowindow
+      infowindow.open(this.map,marker);
     }
 
   });

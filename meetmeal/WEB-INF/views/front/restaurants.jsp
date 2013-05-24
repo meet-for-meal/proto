@@ -50,7 +50,7 @@
             <span><strong class="title red">{{ name }}</strong></span><br>
             <span>Catégorie : <strong>{{ showCategories this }}</strong></span><br>
             <span>Adresse : <strong>{{ location.address }}</strong></span><br>
-            <a href="#" class="btn"><i class="icon-eye-open icon-red"></i>Consulter</a>
+            <a href="#" data-venueId="{{ index }}" class="btn consult-venue"><i class="icon-eye-open icon-red"></i>Consulter</a>
         </p>
     </li>
 {{/each}}
