@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import org.essilab.module.category.model.CategoryDao;
 import org.essilab.module.interest.model.InterestDao;
 import org.essilab.module.user.model.User;
 import org.essilab.module.user.model.UserDao;
@@ -104,6 +105,16 @@ public class UserService {
 		try {
 			if (user != null)
 				user.setInterests(InterestDao.findInterestsUser(user.getId()));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	public User userTastes(User user) {
+		try {
+			if (user != null)
+				user.setTastes(CategoryDao.findCategoriesUser(user.getId()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

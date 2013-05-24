@@ -38,23 +38,27 @@ public class CreateAnnounceForm {
     	String dispo_hour = getFieldValue( request, DISPO_HOUR );
     	String description = getFieldValue( request, DESCRIPTION);
     	AnnounceService announceService = AnnounceService.getInstance();
+    	
+    	Announce announce = null;
     	String [] split = dispo_date.split("-");
     	String [] split_hour = dispo_hour.split(":");
-    	Calendar calendar = Calendar.getInstance();
-    	Calendar current = Calendar.getInstance();
-    	calendar.set(Integer.parseInt(split[2])+2000,Integer.parseInt(split[0]),Integer.parseInt(split[1]),Integer.parseInt(split_hour[0]),Integer.parseInt(split_hour[1]));
-    	Date mydispo_date = calendar.getTime();
-    	Date created_date = new Date();
-    	
-    	Announce announce = new Announce(0,
-				created_date, 
-				mydispo_date,
-				true,
-				user.getLastLat(),
-				user.getLastLong(),
-				description,
-				user);
-    	announceService.announceInsert(announce);
+    	if (split.length == 3 && split_hour.length == 2) {
+	    	Calendar calendar = Calendar.getInstance();
+	    	Calendar current = Calendar.getInstance();
+	    	calendar.set(Integer.parseInt(split[2])+2000,Integer.parseInt(split[0]),Integer.parseInt(split[1]),Integer.parseInt(split_hour[0]),Integer.parseInt(split_hour[1]));
+	    	Date mydispo_date = calendar.getTime();
+	    	Date created_date = new Date();
+	    	
+	    	announce = new Announce(0,
+					created_date, 
+					mydispo_date,
+					true,
+					user.getLastLat(),
+					user.getLastLong(),
+					description,
+					user);
+	    	announceService.announceInsert(announce);
+    	}
     	return announce;
     }
 	
