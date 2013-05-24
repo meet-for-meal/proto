@@ -34,25 +34,16 @@ public class MessageDao {
 	public static List<Message> findListConversation(int senderId) throws SQLException {
 		/* http://stackoverflow.com/questions/11095024/select-the-latest-message-between-the-communication-of-two-user-in-mysql */
 		
-		/*  GOOD
-		  	SELECT * FROM 
-				(SELECT MAX(createdDate) AS createdDate 
-			         FROM Message M 
-			         WHERE 1 IN (senderId,receiverId)
-			         GROUP BY IF (1 = senderId,receiverId,senderId)) AS latest
-			LEFT JOIN Message M ON latest.createdDate = M.createdDate AND 1 IN (M.senderId, M.receiverId)
-			GROUP BY IF (1 = M.senderId,M.receiverId,M.senderId)
-		 */
-		
 		String request = 
 			"SELECT M.id, M.createdDate, M.senderId sid, M.receiverId rid, M.content " +
 			"FROM (" +
 				"SELECT MAX(createdDate) AS createdDate "+
 				"FROM Message M "+
-				"WHERE "+senderId+" IN (receiverId) "+
+				"WHERE "+senderId+" IN (senderId, receiverId) "+
 				"GROUP BY IF ("+senderId+" = senderId,receiverId,senderId)) AS latest "+
 			"LEFT JOIN Message M ON latest.createdDate = M.createdDate AND "+senderId+" IN (M.senderId, M.receiverId) "+
-			"GROUP BY IF ("+senderId+" = M.senderId,M.receiverId,M.senderId)";
+			"GROUP BY IF ("+senderId+" = M.senderId,M.receiverId,M.senderId) ";
+		
 		
 		PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 		ResultSet result = ps.executeQuery();
@@ -96,7 +87,7 @@ public class MessageDao {
 		try {
 			//Insert
 			Message msg = new Message(0, "Tu veux venir ?", UserDao.getUser(1), UserDao.getUser(2), new Date());
-			insert(msg);
+//			insert(msg);
 			
 			//Find List Conversation
 			List<Message> items = findListConversation(1);
