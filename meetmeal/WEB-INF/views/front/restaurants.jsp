@@ -47,9 +47,10 @@
     <li {{#if isPartner}}class="featured"{{/if}}>
         <img src="{{ showIcon this }}" class="restaurant-category">
         <p class="restaurant-description">
-            <span><strong class="title red">{{ name }}</strong></span><br>
-            <span>Catégorie : <strong>{{ showCategories this }}</strong></span><br>
-            <span>Adresse : <strong>{{ location.address }}</strong></span><br>
+            <span><strong class="title red">{{ name }}</strong></span><br />
+            <span>Catégorie : <strong>{{ showCategories this }}</strong></span><br />
+            <span>Description : <strong>{{ description }}</strong></span><br />
+            <span>Adresse : <strong>{{ location.address }}</strong></span><br />
             <a href="#" data-venueId="{{ index }}" class="btn consult-venue"><i class="icon-eye-open icon-red"></i>Consulter</a>
         </p>
     </li>

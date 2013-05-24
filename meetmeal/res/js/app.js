@@ -117,7 +117,7 @@ define([
           var customMarker = {icon: '/meetformeal/res/styles/default/img/logo-marker.png'};
           for(var i in friends) {
             var friend = friends[i];
-            var position = new self.GMaps.LatLng(friend.lastLatitude, friend.lastLongitude);
+            var position = new self.GMaps.LatLng(friend.lastLat, friend.lastLong);
             var marker = self.addMarker(map, 'users', position, friend.firstname + ' ' + friend.lastname, customMarker);
 
             (function(marker, friend) {
