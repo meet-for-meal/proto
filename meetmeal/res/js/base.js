@@ -31,12 +31,12 @@ mfm = {
                 $('#alerts').prepend(alert);
                 $('.alert').slideDown(300);
             } else {
-                $('body').prepend('<div id="alerts">'+alert+'</div>');
+                $('#container').prepend('<div id="alerts">'+alert+'</div>');
                 $('.alert').slideDown(300);
             }
 
             setTimeout(function(){
-                jQuery('.alert').slideUp(300);
+                $('.alert').slideUp(300);
             },5000 );
 
         }
@@ -136,6 +136,13 @@ $(document).ready(function(){
             }
         }
     });
+
+    if(!$('.alert').is(':visible')){
+        $('.alert').slideDown(300);
+        setTimeout(function(){
+            $('.alert').slideUp(300);
+        },5000 );
+    }
 
     $('#toggle-map').click(function(){
         var map = $('#meetformealmap');
