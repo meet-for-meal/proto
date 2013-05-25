@@ -26,7 +26,6 @@ public class AnnounceDao {
 	}
 		
 	//Insert
-
 	public static boolean insert(Announce a) throws SQLException{
 		boolean ok = false;
 
@@ -153,10 +152,9 @@ public class AnnounceDao {
 		HashMap<Integer, Announce> announcesMap = new HashMap<Integer, Announce>();
 		
 		for (Integer interest : interests) {
-
 			String request = "CALL nearAnnouncesByInterests("+userId+","+ interest.intValue() +", "+distance+")";
 
-			
+			System.out.println(request);
 			PreparedStatement ps = Connect.getConnection().prepareStatement(request);
 			ResultSet result = ps.executeQuery();
 			
@@ -164,6 +162,7 @@ public class AnnounceDao {
 			for(Announce a : tmp) {
 				announcesMap.put(a.getId(), a);
 			}
+			System.out.println(tmp.size()+"announces for "+interest);
 		}
 		Connect.getConnection().close();
 		

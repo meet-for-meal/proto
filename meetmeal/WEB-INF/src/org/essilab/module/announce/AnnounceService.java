@@ -34,10 +34,10 @@ public class AnnounceService {
 			for(Interest in : interests){
 				list.add(in.getId());
 			}
-			System.out.println(u.getId());
-			System.out.println(list.get(0));
+//			System.out.println(u.getId());
+//			System.out.println(list.get(0));
 			//System.out.println(list.get(1));
-			 return AnnounceDao.findNearAnnouncesByInterests(u.getId(), list,10);
+			 return AnnounceDao.findNearAnnouncesByInterests(u.getId(), list, 10);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
