@@ -23,7 +23,7 @@
 					<c:forEach items="${sessionScope.messages}" var="message">  
 					   <div class="single-msg">
 			                <img src="/meetformeal/res/styles/default/img/users/default.png" width="40" height="40" class="avatar" alt="">
-			                <p class="author-msg"><a href="userpage" title=""/>${message.sender.lastname} ${message.sender.firstname}</a></p>
+			                <p class="author-msg"><a href="userprofile?id=${message.sender.id}" title=""/>${message.sender.lastname} ${message.sender.firstname}</a></p>
 			                <p class="message-date">Le <fmt:formatDate type="date" value="${message.createdDate}" /> à <fmt:formatDate type="time" timeStyle="short" value="${message.createdDate}" /></p>
 			                <div class="content-msg">
 								<p>${message.content}</p>
