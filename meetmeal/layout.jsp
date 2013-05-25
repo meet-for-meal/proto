@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title>Meet For Meal - <%= request.getAttribute("title") %></title>
+    <title>Meet For Meal></title>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
@@ -38,10 +38,10 @@
         <nav>
             <ul>
                 <li><a href="#" class="no-text toggle-notif"><i class="icon-info-sign"></i><span class="notif">3</span></a></li>
-                <li <% if(request.getAttribute("title").equals("index")) out.print("class=\"current\""); %> ><a href="index"><i class="icon-home"></i> Accueil</a></li>
-                <li <% if(request.getAttribute("title").equals("restaurants")) out.print("class=\"current\""); %>><a href="restaurants"><i class="icon-map-marker"></i>Les restaurants</a></li>
-                <li <% if(request.getAttribute("title").equals("mypage")) out.print("class=\"current\""); %>><a href="mypage"><i class="icon-user"></i>Mon profil</a></li>
-                <li <% if(request.getAttribute("title").equals("message")) out.print("class=\"current\""); %>><a href="message" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
+                <li <% if(request.getAttribute("title")!=null)if(request.getAttribute("title").equals("index")) out.print("class=\"current\""); %> ><a href="index"><i class="icon-home"></i> Accueil</a></li>
+                <li <% if(request.getAttribute("title")!=null)if(request.getAttribute("title").equals("restaurants")) out.print("class=\"current\""); %>><a href="restaurants"><i class="icon-map-marker"></i>Les restaurants</a></li>
+                <li <% if(request.getAttribute("title")!=null)if(request.getAttribute("title").equals("mypage")) out.print("class=\"current\""); %>><a href="mypage"><i class="icon-user"></i>Mon profil</a></li>
+                <li <% if(request.getAttribute("title")!=null)if(request.getAttribute("title").equals("message")) out.print("class=\"current\""); %>><a href="message" class="no-text"><i class="icon-envelope"></i></a></li>
                 <li><a href="logout" class="no-text"><i class="icon-off"></i></a></li>
             </ul>
         </nav>
