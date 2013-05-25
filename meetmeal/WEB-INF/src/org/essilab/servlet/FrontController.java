@@ -94,7 +94,7 @@ public class FrontController extends HttpServlet {
 			action.execute(request, response);
 		else {
 			try {
-				System.out.println(request.getMethod());
+				System.out.println(request.getMethod()+" "+url);
 				if (url.contains("ajax/user")) {				//USER
 					if (url.contains("ajax/user/update") || request.getMethod().equalsIgnoreCase("PUT")) {		
 						action = new UserPostAjax(true);
@@ -138,7 +138,8 @@ public class FrontController extends HttpServlet {
 						action = new RestaurantPostAjax(false);
 					} else {
 						int slashIndex = url.lastIndexOf('/');
-						int endValue = Integer.parseInt(url.substring(slashIndex+1));
+						String tmp = url.substring(slashIndex+1);
+						int endValue = (tmp != null) ? Integer.parseInt(tmp) : 0;
 						if (endValue > 0) {
 							if (request.getMethod().equalsIgnoreCase("GET")) {
 								action = new RestaurantGetAjax(endValue);
