@@ -277,7 +277,7 @@ define([
     // Add one infowindow to a marker from a map
     addInfoWindow: function (map, marker, label, type) {
       var GMaps = this.GMaps;
-      var contentString = label.hasOwnProperty('id') ? '<h2><img width="70" src="/meetformeal/res/styles/default/img/' + label.id + '.jpg" alt="" />' + label.label + '</h2>' : '<h2>' + label.label + '</h2>',
+      var contentString = label.hasOwnProperty('id') ? '<img width="70" height="70" src="/meetformeal/res/styles/default/img/' + label.id + '.jpg" style="margin: 0 auto 10px auto; display: block;" alt="" /><h2 style="text-align:center">' + label.label + '</h2>' : '<h2 style="text-align:center">' + label.label + '</h2>',
           infowindow = new GMaps.InfoWindow({ content: contentString });
       map.infowindows = map.infowindows || [];
       map.infowindows[type] = map.infowindows[type] || [];
