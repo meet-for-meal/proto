@@ -44,19 +44,16 @@ public class SearchAnnounce extends HttpServlet {
 	     			.substring(request.getContextPath().length()+1);
 	         request.setAttribute("url", url); 
 
-	        /* Préparation de l'objet formulaire */
+
 	        SearchAnnounceForm form = new SearchAnnounceForm();
 
-	        /* Traitement de la requête et récupération du bean en résultant */
+
 	        List<Interest> interests = form.SearchAnnounce( request );
 
-	        /* Récupération de la session depuis la requête */
+
 	        HttpSession session = request.getSession();
 	 
-	        /**
-	         * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
-	         * User à la session, sinon suppression du bean de la session.
-	         */
+
 	        User user = (User) session.getAttribute("sessionUser");
 
 	        if ( form.getErrors().isEmpty() && user != null && interests != null) {
