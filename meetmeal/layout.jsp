@@ -38,10 +38,10 @@
         <nav>
             <ul>
                 <li><a href="#" class="no-text toggle-notif"><i class="icon-info-sign"></i><span class="notif">3</span></a></li>
-                <li class="current"><a href="index"><i class="icon-home"></i> Accueil</a></li>
-                <li><a href="restaurants"><i class="icon-map-marker"></i>Les restaurants</a></li>
-                <li><a href="mypage"><i class="icon-user"></i>Mon profil</a></li>
-                <li><a href="message" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
+                <li <% if(request.getAttribute("title").equals("index")) out.print("class=\"current\""); %> ><a href="index"><i class="icon-home"></i> Accueil</a></li>
+                <li <% if(request.getAttribute("title").equals("restaurants")) out.print("class=\"current\""); %>><a href="restaurants"><i class="icon-map-marker"></i>Les restaurants</a></li>
+                <li <% if(request.getAttribute("title").equals("mypage")) out.print("class=\"current\""); %>><a href="mypage"><i class="icon-user"></i>Mon profil</a></li>
+                <li <% if(request.getAttribute("title").equals("message")) out.print("class=\"current\""); %>><a href="message" class="no-text"><i class="icon-envelope"></i><span class="notif">12</span></a></li>
                 <li><a href="logout" class="no-text"><i class="icon-off"></i></a></li>
             </ul>
         </nav>
