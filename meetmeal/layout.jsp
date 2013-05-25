@@ -51,7 +51,7 @@
                 <li>
                     <a href="#">
                     <span class="red">Alexandra Martin</span> a propos&eacute; une annonce.<br>
-                    <span class="message-date">28/02/2013 à 14h42</span>
+                    <span class="message-date">28/02/2013 &agrave; 14h42</span>
                     </a>
                 </li>
                 <li>
@@ -59,25 +59,25 @@
                     <p class="notification-action">
                         <a href="#" class="btn mfm-action" data-action="accept-request">Accepter</a> <a href="#" class="btn mfm-action btn-neutral" data-action="ignore-request">Ignorer</a>
                     </p>
-                    <span class="message-date">28/02/2013 à 14h42</span>
+                    <span class="message-date">28/02/2013 &agrave; 14h42</span>
                 </li>
                 <li>
                     <span class="red">R&eacute;my Hannequin</span> souhaite devenir votre ami.<br>
                     <p class="notification-action">
                     <a href="#" class="btn mfm-action" data-action="accept-request">Accepter</a> <a href="#" class="btn mfm-action btn-neutral" data-action="ignore-request">Ignorer</a>
                     </p>
-                    <span class="message-date">28/02/2013 à 14h42</span>
+                    <span class="message-date">28/02/2013 &agrave; 14h42</span>
                 </li>
                 <li>
                     <a href="#">
                     <span class="red">Pierre Grimaud</span> a propos&eacute; une annonce.<br>
-                    <span class="message-date">28/02/2013 à 14h42</span>
+                    <span class="message-date">28/02/2013 &agrave; 14h42</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                     <span class="red">Romain Deligny</span> a propos&eacute; une annonce.<br>
-                    <span class="message-date">28/02/2013 à 14h42</span>
+                    <span class="message-date">28/02/2013 &agrave; 14h42</span>
                     </a>
                 </li>
             </ul>
@@ -146,7 +146,7 @@
 <% } %>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script id="require-js" data-params='{"applicationPath": "<%= request.getContextPath() %>", "foursquareCategories":[{"name":"Boulangerie","id":"4bf58dd8d48988d16a941735"},{"name":"Brasserie","id":"50327c8591d4c4b30a586d5d"},{"name":"Lieu servant des hamburgers","id":"4bf58dd8d48988d16c941735"},{"name":"Restaurant chinois","id":"4bf58dd8d48988d145941735"},{"name":"Caf&eacute;-restaurant","id":"4bf58dd8d48988d147941735"},{"name":"Fast-food","id":"4bf58dd8d48988d16e941735"},{"name":"Restaurant français","id":"4bf58dd8d48988d10c941735"},{"name":"Restaurant grec","id":"4bf58dd8d48988d10e941735"},{"name":"Restaurant indien","id":"4bf58dd8d48988d10f941735"},{"name":"Restaurant japonais","id":"4bf58dd8d48988d111941735"},{"name":"Restaurant cor&eacute;en","id":"4bf58dd8d48988d113941735"},{"name":"Pizzeria","id":"4bf58dd8d48988d1ca941735"},{"name":"Sandwicherie","id":"4bf58dd8d48988d1c5941735"},{"name":"Restaurant de fruits de mer","id":"4bf58dd8d48988d1ce941735"},{"name":"Snack","id":"4bf58dd8d48988d1c7941735"},{"name":"Restaurant-grill","id":"4bf58dd8d48988d1cc941735"},{"name":"Bar à sushis","id":"4bf58dd8d48988d1d2941735"},{"name":"Bar à tapas","id":"4bf58dd8d48988d1db931735"},{"name":"Restaurant thaïlandais","id":"4bf58dd8d48988d149941735"},{"name":"Restaurant turc","id":"4f04af1f2fb6e1c99f3db0bb"},{"name":"Restaurant v&eacute;g&eacute;tarien/v&eacute;g&eacute;talien","id":"4bf58dd8d48988d1d3941735"}]}' data-main="<%= request.getContextPath() %>/res/js/main" src="<%= request.getContextPath() %>/res/js/require.js"></script>
+<script id="require-js" data-params='{"applicationPath": "<%= request.getContextPath() %>", "foursquareCategories":[{"name":"Boulangerie","id":"4bf58dd8d48988d16a941735"},{"name":"Brasserie","id":"50327c8591d4c4b30a586d5d"},{"name":"Lieu servant des hamburgers","id":"4bf58dd8d48988d16c941735"},{"name":"Restaurant chinois","id":"4bf58dd8d48988d145941735"},{"name":"Caf&eacute;-restaurant","id":"4bf58dd8d48988d147941735"},{"name":"Fast-food","id":"4bf58dd8d48988d16e941735"},{"name":"Restaurant fran&ccedil;ais","id":"4bf58dd8d48988d10c941735"},{"name":"Restaurant grec","id":"4bf58dd8d48988d10e941735"},{"name":"Restaurant indien","id":"4bf58dd8d48988d10f941735"},{"name":"Restaurant japonais","id":"4bf58dd8d48988d111941735"},{"name":"Restaurant cor&eacute;en","id":"4bf58dd8d48988d113941735"},{"name":"Pizzeria","id":"4bf58dd8d48988d1ca941735"},{"name":"Sandwicherie","id":"4bf58dd8d48988d1c5941735"},{"name":"Restaurant de fruits de mer","id":"4bf58dd8d48988d1ce941735"},{"name":"Snack","id":"4bf58dd8d48988d1c7941735"},{"name":"Restaurant-grill","id":"4bf58dd8d48988d1cc941735"},{"name":"Bar &agrave; sushis","id":"4bf58dd8d48988d1d2941735"},{"name":"Bar &agrave; tapas","id":"4bf58dd8d48988d1db931735"},{"name":"Restaurant tha&iuml;landais","id":"4bf58dd8d48988d149941735"},{"name":"Restaurant turc","id":"4f04af1f2fb6e1c99f3db0bb"},{"name":"Restaurant v&eacute;g&eacute;tarien/v&eacute;g&eacute;talien","id":"4bf58dd8d48988d1d3941735"}]}' data-main="<%= request.getContextPath() %>/res/js/main" src="<%= request.getContextPath() %>/res/js/require.js"></script>
 
 </body>
 </html>
